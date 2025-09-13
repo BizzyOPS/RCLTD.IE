@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollEffects();
     initContactForm();
     initAnimations();
+    initGDPR();
 });
 
 // Navigation functionality
@@ -335,6 +336,58 @@ window.addEventListener('load', function() {
         });
     }
 });
+
+// GDPR Cookie Consent functionality
+function initGDPR() {
+    const gdprBanner = document.getElementById('gdpr-banner');
+    const acceptBtn = document.getElementById('gdpr-accept');
+    const settingsBtn = document.getElementById('gdpr-settings');
+    
+    if (!gdprBanner) return;
+    
+    // Check if user has already given consent
+    const hasConsent = localStorage.getItem('rcltd-cookie-consent');
+    
+    if (!hasConsent) {
+        // Show banner after a short delay
+        setTimeout(() => {
+            gdprBanner.classList.add('show');
+        }, 2000);
+    }
+    
+    // Accept all cookies
+    if (acceptBtn) {
+        acceptBtn.addEventListener('click', function() {
+            localStorage.setItem('rcltd-cookie-consent', 'accepted');
+            localStorage.setItem('rcltd-cookie-preferences', JSON.stringify({
+                essential: true,
+                analytics: true,
+                marketing: true
+            }));
+            hideBanner();
+        });
+    }
+    
+    // Cookie settings (simplified - shows accept for now)
+    if (settingsBtn) {
+        settingsBtn.addEventListener('click', function() {
+            localStorage.setItem('rcltd-cookie-consent', 'customized');
+            localStorage.setItem('rcltd-cookie-preferences', JSON.stringify({
+                essential: true,
+                analytics: false,
+                marketing: false
+            }));
+            hideBanner();
+        });
+    }
+    
+    function hideBanner() {
+        gdprBanner.classList.remove('show');
+        setTimeout(() => {
+            gdprBanner.style.display = 'none';
+        }, 300);
+    }
+}
 
 // CSS animations
 const style = document.createElement('style');
