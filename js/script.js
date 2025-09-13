@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initContactForm();
     initAnimations();
     initGDPR();
+    initPageLoader();
 });
 
 // Navigation functionality
@@ -387,6 +388,39 @@ function initGDPR() {
             gdprBanner.style.display = 'none';
         }, 300);
     }
+}
+
+// Page Loading Animation
+function initPageLoader() {
+    const pageLoader = document.getElementById('page-loader');
+    
+    if (!pageLoader) return;
+    
+    // Hide loader after page is fully loaded
+    window.addEventListener('load', function() {
+        setTimeout(() => {
+            pageLoader.classList.add('hidden');
+            
+            // Remove loader from DOM after animation completes
+            setTimeout(() => {
+                if (pageLoader.parentNode) {
+                    pageLoader.parentNode.removeChild(pageLoader);
+                }
+            }, 500);
+        }, 1000); // Show loader for at least 1 second
+    });
+    
+    // Fallback: Hide loader after maximum time
+    setTimeout(() => {
+        if (pageLoader && !pageLoader.classList.contains('hidden')) {
+            pageLoader.classList.add('hidden');
+            setTimeout(() => {
+                if (pageLoader.parentNode) {
+                    pageLoader.parentNode.removeChild(pageLoader);
+                }
+            }, 500);
+        }
+    }, 5000); // Maximum 5 seconds
 }
 
 // CSS animations
