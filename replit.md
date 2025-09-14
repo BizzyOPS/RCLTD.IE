@@ -9,6 +9,7 @@ This is a static website for Robotics & Control Ltd, an Irish technology company
 **September 14, 2025**
 - **Professional Background Redesign**: Removed unprofessional circuit board traces ("black lines") above main heading and replaced with clean professional gradient background featuring Black → Dark Blue → Navy Blue → Grey → White color blending for enhanced visual appeal
 - **Mobile Navigation Fix**: Resolved navigation menu glitching and scrollability issues by disabling all animation effects on navigation elements and implementing 80vh height with smooth touch scrolling for access to all pages
+- **Digital Glitch Effect Implementation**: Created proper digital glitch effect (not glow) with RGB channel splitting, scanline artifacts, and jittery movement applied to all page headings across the entire website with hover and viewport entry triggers
 - **Interactive Popup Tooltips**: Added dismissible popup tooltips to homepage service cards and expertise sections that appear automatically after page load with helpful information and professional styling
 - **Responsive Training Scaling**: Fixed all scaling issues across training sections and knowledge check questions for mobile and desktop
 - **Mobile Navigation Touch Target Improvements**: Enhanced mobile menu usability by implementing proper touch targets (44px minimum height) for all navigation links, improved spacing, and visual feedback for better mobile accessibility

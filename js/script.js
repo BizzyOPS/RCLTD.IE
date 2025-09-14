@@ -1034,11 +1034,74 @@ class HeroTitleAnimator {
     }
 }
 
-// Initialize hero title animator
+// Initialize glitch effects for all headings
+function initGlitchHeadings() {
+    // Respect reduced motion preference
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+    }
+    
+    // Select all headings but exclude navigation and brand elements
+    const headings = document.querySelectorAll(`
+        main h1, main h2, main h3, main h4, main h5, main h6,
+        .hero-title, .section-title, .chapter-title, .about-title, 
+        .cta-title, .footer-title:not(.nav-brand *, .nav *, header *)
+    `);
+    
+    headings.forEach(heading => {
+        // Skip if already processed or inside navigation
+        if (heading.classList.contains('glitch') || 
+            heading.closest('.nav, .nav-brand, .header')) {
+            return;
+        }
+        
+        // Set up the glitch effect
+        heading.dataset.text = heading.textContent.trim();
+        heading.classList.add('glitch');
+        
+        // Add hover trigger
+        heading.addEventListener('mouseenter', () => {
+            if (!heading.classList.contains('glitch-active')) {
+                triggerGlitch(heading);
+            }
+        });
+        
+        // Add intersection observer for viewport entry
+        if (window.IntersectionObserver) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !entry.target.dataset.glitched) {
+                        // Delay to avoid all headings glitching at once
+                        setTimeout(() => {
+                            triggerGlitch(entry.target);
+                            entry.target.dataset.glitched = 'true';
+                        }, Math.random() * 500);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            observer.observe(heading);
+        }
+    });
+}
+
+function triggerGlitch(element) {
+    if (element.classList.contains('glitch-active')) return;
+    
+    element.classList.add('glitch-active');
+    
+    // Remove glitch effect after animation completes
+    setTimeout(() => {
+        element.classList.remove('glitch-active');
+    }, 700);
+}
+
+// Initialize hero title animator and glitch effects
 document.addEventListener('DOMContentLoaded', () => {
     // Small delay to ensure DOM is fully ready
     setTimeout(() => {
         window.heroTitleAnimator = new HeroTitleAnimator('.hero-title');
+        initGlitchHeadings();
     }, 100);
 });
 
