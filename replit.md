@@ -7,6 +7,7 @@ This is a static website for Robotics & Control Ltd, an Irish technology company
 ## Recent Changes
 
 **September 14, 2025**
+- **Footer Certifications**: Added professional certifications and partnerships section to footer across all pages with integrated color scheme
 - **Homepage Hero Enhancement**: Created dynamic hero section with dark blue to grey to white gradient background
 - **Interactive Particles**: Added moving particles animation with multiple colors and shapes for visual engagement
 - **Image Carousel**: Integrated responsive carousel with autoplay, navigation controls, and touch/swipe support
