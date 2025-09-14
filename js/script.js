@@ -1211,8 +1211,30 @@ class ScrollToTopManager {
     }
 }
 
-// Initialize dynamic header manager
+// Force scroll to top on page load
+function forceScrollToTop() {
+    // Immediately scroll to top without animation on page load
+    window.scrollTo(0, 0);
+    
+    // Also handle browser back/forward navigation
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    
+    // Ensure scroll position is reset after a short delay in case of any conflicts
+    setTimeout(() => {
+        window.scrollTo(0, 0);
+    }, 100);
+}
+
+// Initialize all managers and force scroll to top
 document.addEventListener('DOMContentLoaded', () => {
+    forceScrollToTop();
     window.headerManager = new DynamicHeaderManager();
     window.scrollToTopManager = new ScrollToTopManager();
+});
+
+// Also force scroll to top on page show (handles browser back/forward)
+window.addEventListener('pageshow', () => {
+    forceScrollToTop();
 });
