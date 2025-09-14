@@ -162,7 +162,7 @@
     /* Specifically disable problematic animations */
     .hero {
         animation: none !important;
-        background: linear-gradient(to bottom, #0a0f1c 0%, #0a0f1c 60%, rgba(10, 15, 28, 0.8) 80%, rgba(10, 15, 28, 0.3) 90%, transparent 100%) !important;
+        background: linear-gradient(to bottom, #0a0f1c 0%, #0a0f1c 75%, rgba(10, 15, 28, 0.9) 85%, rgba(10, 15, 28, 0.6) 92%, rgba(10, 15, 28, 0.2) 97%, transparent 100%) !important;
     }
     
     .hero::before,
@@ -577,8 +577,8 @@ body {
 
 /* Hero Section */
 .hero {
-    padding: calc(80px + var(--spacing-20)) 0 var(--spacing-20);
-    background: linear-gradient(to bottom, #0a0f1c 0%, #0a0f1c 60%, rgba(10, 15, 28, 0.8) 80%, rgba(10, 15, 28, 0.3) 90%, transparent 100%);
+    padding: calc(80px + var(--spacing-20)) 0 calc(var(--spacing-20) * 2);
+    background: linear-gradient(to bottom, #0a0f1c 0%, #0a0f1c 75%, rgba(10, 15, 28, 0.9) 85%, rgba(10, 15, 28, 0.6) 92%, rgba(10, 15, 28, 0.2) 97%, transparent 100%);
     position: relative;
     overflow: hidden;
 }

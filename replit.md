@@ -7,8 +7,12 @@ This is a static website for Robotics & Control Ltd, an Irish technology company
 ## Recent Changes
 
 **September 14, 2025**
+- **Hero Section Electric Background**: Implemented dark electric circuit pattern background extending down to services section
+- **Animated Hero Title**: Added glitch/electric crackle effects with randomized letter animations for dynamic visual impact
+- **Professional Hero Images**: Replaced carousel with 5 new professional robotics images showcasing company expertise
+- **Extended Dark Background**: Extended electric background coverage from 60% to 75% with seamless fade to white
+- **SEO-Optimized Animations**: Maintained semantic HTML structure while adding impressive visual effects
 - **Footer Certifications**: Added professional certifications and partnerships section to footer across all pages with integrated color scheme
-- **Homepage Hero Enhancement**: Created dynamic hero section with dark blue to grey to white gradient background
 - **Interactive Particles**: Added moving particles animation with multiple colors and shapes for visual engagement
 - **Image Carousel**: Integrated responsive carousel with autoplay, navigation controls, and touch/swipe support
 - **Accessibility Features**: Full reduced motion support and ARIA compliance for inclusive user experience
