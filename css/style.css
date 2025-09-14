@@ -578,10 +578,32 @@ body {
     right: 0;
     background: #ffffff;
     flex-direction: column;
-    padding: var(--spacing-6);
+    padding: var(--spacing-4) var(--spacing-6);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
     border-top: 1px solid var(--border-color);
     z-index: 10001;
+}
+
+/* Improve mobile touch targets */
+@media (max-width: 767px) {
+    .nav-menu.mobile-open .nav-item {
+        margin: var(--spacing-1) 0;
+    }
+    
+    .nav-menu.mobile-open .nav-link {
+        display: block;
+        padding: var(--spacing-4) var(--spacing-3);
+        min-height: 44px; /* Apple's recommended minimum touch target */
+        display: flex;
+        align-items: center;
+        border-radius: var(--radius-sm);
+        transition: background-color 0.2s ease;
+    }
+    
+    .nav-menu.mobile-open .nav-link:hover,
+    .nav-menu.mobile-open .nav-link:active {
+        background-color: rgba(8, 145, 178, 0.1);
+    }
 }
 
 .header.on-dark .nav-menu.mobile-open {
@@ -704,6 +726,22 @@ body {
 
 /* Mobile dropdown adjustments */
 @media (max-width: 767px) {
+    .nav-dropdown-container {
+        width: 100%;
+    }
+    
+    .nav-dropdown-container .nav-link {
+        flex: 1;
+        justify-content: space-between;
+        padding-right: var(--spacing-2) !important;
+    }
+    
+    .nav-dropdown-toggle {
+        min-width: 44px;
+        min-height: 44px;
+        padding: var(--spacing-3);
+    }
+    
     .nav-dropdown-menu {
         position: static;
         opacity: 0;
@@ -716,13 +754,13 @@ body {
         padding: var(--spacing-2) 0;
         max-height: 0;
         overflow: hidden;
-        transition: all var(--transition-fast);
+        transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
     }
     
     .nav-dropdown.open .nav-dropdown-menu {
         opacity: 1;
         visibility: visible;
-        max-height: 300px;
+        max-height: 400px;
     }
     
     .nav-dropdown-toggle::after {
@@ -730,8 +768,17 @@ body {
     }
     
     .nav-dropdown-menu .nav-link {
-        margin: 0;
-        padding: var(--spacing-2) var(--spacing-4);
+        margin: var(--spacing-1) 0;
+        padding: var(--spacing-3) var(--spacing-4);
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        border-radius: var(--radius-sm);
+    }
+    
+    .nav-dropdown-menu .nav-link:hover,
+    .nav-dropdown-menu .nav-link:active {
+        background: rgba(8, 145, 178, 0.1);
     }
 }
 

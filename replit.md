@@ -7,6 +7,7 @@ This is a static website for Robotics & Control Ltd, an Irish technology company
 ## Recent Changes
 
 **September 14, 2025**
+- **Mobile Navigation Touch Target Improvements**: Enhanced mobile menu usability by implementing proper touch targets (44px minimum height) for all navigation links, improved spacing, and visual feedback for better mobile accessibility
 - **Electric Circuit Background Animation**: Transformed homepage hero background lines into vibrant animated electric yellow circuits with flowing electrical current animation, making lines more prominent and visually striking with circuit-like movement
 - **Enhanced AI Chatbot with Service Specificity**: Completely transformed Controller Bot from generic assistant to specialized R&C Ltd sales tool with detailed service descriptions, industry-specific responses (pharmaceutical, automotive, food & beverage), and comprehensive navigation features
 - **Chatbot Navigation Integration**: Added clickable links throughout all chatbot responses directing users to relevant pages (automation.html, safety.html, contact.html, etc.) with professional styling and hover effects
