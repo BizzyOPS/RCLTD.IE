@@ -875,33 +875,7 @@ body {
     position: relative;
 }
 
-/* Glitch Effect Keyframes */
-@keyframes glitch {
-    0% {
-        transform: translate(0);
-        filter: hue-rotate(0deg);
-    }
-    20% {
-        transform: translate(-2px, 2px);
-        filter: hue-rotate(90deg);
-    }
-    40% {
-        transform: translate(-1px, -1px);
-        filter: hue-rotate(180deg);
-    }
-    60% {
-        transform: translate(1px, 2px);
-        filter: hue-rotate(270deg);
-    }
-    80% {
-        transform: translate(2px, -2px);
-        filter: hue-rotate(360deg);
-    }
-    100% {
-        transform: translate(0);
-        filter: hue-rotate(0deg);
-    }
-}
+/* Simple hero title animation - removed complex glitch effect */
 
 @keyframes electric-crackle {
     0%, 100% {
@@ -1004,48 +978,9 @@ body {
 }
 
 /* Letter Animation Classes */
-.hero-title .letter {
-    display: inline-block;
-    opacity: 0;
-    position: relative;
-}
+/* Removed complex letter animations */
 
-.hero-title .letter.animate-slide-left {
-    animation: slide-in-left 0.6s ease-out forwards;
-}
-
-.hero-title .letter.animate-slide-right {
-    animation: slide-in-right 0.6s ease-out forwards;
-}
-
-.hero-title .letter.animate-fade-up {
-    animation: fade-in-up 0.6s ease-out forwards;
-}
-
-.hero-title .letter.animate-fade-down {
-    animation: fade-in-down 0.6s ease-out forwards;
-}
-
-.hero-title .letter.animate-zoom {
-    animation: zoom-in 0.6s ease-out forwards;
-}
-
-.hero-title .letter.animate-electric {
-    animation: electric-flash 0.8s ease-out forwards;
-}
-
-.hero-title .letter.animate-rotate {
-    animation: rotate-in 0.7s ease-out forwards;
-}
-
-.hero-title .letter.space {
-    width: 0.3em;
-}
-
-/* Initial glitch effect on page load */
-.hero-title.initial-glitch {
-    animation: glitch 0.3s ease-in-out 3, electric-crackle 2s ease-in-out;
-}
+/* Removed glitch effect classes */
 
 /* Training System Grading and Celebration Styles */
 .grading-modal {
