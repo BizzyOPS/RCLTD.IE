@@ -2532,6 +2532,221 @@ body {
     }
 }
 
+/* Professional Tooltip Styles */
+.pro-tooltip {
+    position: absolute;
+    z-index: 10000;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    max-width: 280px;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    display: none;
+}
+
+/* Tooltip Container */
+.pro-tooltip .tooltip-text {
+    background: var(--text-primary);
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    position: relative;
+    word-wrap: break-word;
+    font-weight: 500;
+}
+
+.pro-tooltip .tooltip-icon {
+    display: inline-block;
+    margin-right: 0.5rem;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* Tooltip with Icon Layout */
+.pro-tooltip-success .tooltip-text,
+.pro-tooltip-warning .tooltip-text,
+.pro-tooltip-error .tooltip-text,
+.pro-tooltip-info .tooltip-text,
+.pro-tooltip-help .tooltip-text {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Tooltip Types */
+.pro-tooltip-success .tooltip-text {
+    background: #10b981;
+    border-left: 4px solid #059669;
+}
+
+.pro-tooltip-warning .tooltip-text {
+    background: #f59e0b;
+    border-left: 4px solid #d97706;
+}
+
+.pro-tooltip-error .tooltip-text {
+    background: #ef4444;
+    border-left: 4px solid #dc2626;
+}
+
+.pro-tooltip-info .tooltip-text {
+    background: var(--primary);
+    border-left: 4px solid var(--primary-dark);
+}
+
+.pro-tooltip-help .tooltip-text {
+    background: #8b5cf6;
+    border-left: 4px solid #7c3aed;
+}
+
+/* Tooltip Arrow Positioning */
+.pro-tooltip-top .tooltip-text::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--text-primary);
+}
+
+.pro-tooltip-success.pro-tooltip-top .tooltip-text::after {
+    border-top-color: #10b981;
+}
+
+.pro-tooltip-warning.pro-tooltip-top .tooltip-text::after {
+    border-top-color: #f59e0b;
+}
+
+.pro-tooltip-error.pro-tooltip-top .tooltip-text::after {
+    border-top-color: #ef4444;
+}
+
+.pro-tooltip-info.pro-tooltip-top .tooltip-text::after {
+    border-top-color: var(--primary);
+}
+
+.pro-tooltip-help.pro-tooltip-top .tooltip-text::after {
+    border-top-color: #8b5cf6;
+}
+
+.pro-tooltip-bottom .tooltip-text::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-bottom-color: var(--text-primary);
+}
+
+.pro-tooltip-success.pro-tooltip-bottom .tooltip-text::after {
+    border-bottom-color: #10b981;
+}
+
+.pro-tooltip-warning.pro-tooltip-bottom .tooltip-text::after {
+    border-bottom-color: #f59e0b;
+}
+
+.pro-tooltip-error.pro-tooltip-bottom .tooltip-text::after {
+    border-bottom-color: #ef4444;
+}
+
+.pro-tooltip-info.pro-tooltip-bottom .tooltip-text::after {
+    border-bottom-color: var(--primary);
+}
+
+.pro-tooltip-help.pro-tooltip-bottom .tooltip-text::after {
+    border-bottom-color: #8b5cf6;
+}
+
+.pro-tooltip-left .tooltip-text::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-left-color: var(--text-primary);
+}
+
+.pro-tooltip-success.pro-tooltip-left .tooltip-text::after {
+    border-left-color: #10b981;
+}
+
+.pro-tooltip-warning.pro-tooltip-left .tooltip-text::after {
+    border-left-color: #f59e0b;
+}
+
+.pro-tooltip-error.pro-tooltip-left .tooltip-text::after {
+    border-left-color: #ef4444;
+}
+
+.pro-tooltip-info.pro-tooltip-left .tooltip-text::after {
+    border-left-color: var(--primary);
+}
+
+.pro-tooltip-help.pro-tooltip-left .tooltip-text::after {
+    border-left-color: #8b5cf6;
+}
+
+.pro-tooltip-right .tooltip-text::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-right-color: var(--text-primary);
+}
+
+.pro-tooltip-success.pro-tooltip-right .tooltip-text::after {
+    border-right-color: #10b981;
+}
+
+.pro-tooltip-warning.pro-tooltip-right .tooltip-text::after {
+    border-right-color: #f59e0b;
+}
+
+.pro-tooltip-error.pro-tooltip-right .tooltip-text::after {
+    border-right-color: #ef4444;
+}
+
+.pro-tooltip-info.pro-tooltip-right .tooltip-text::after {
+    border-right-color: var(--primary);
+}
+
+.pro-tooltip-help.pro-tooltip-right .tooltip-text::after {
+    border-right-color: #8b5cf6;
+}
+
+/* Follow cursor tooltip (no arrow) */
+.pro-tooltip-follow .tooltip-text::after {
+    display: none;
+}
+
+/* Responsive tooltip adjustments */
+@media (max-width: 768px) {
+    .pro-tooltip {
+        max-width: 240px;
+        font-size: 0.8rem;
+    }
+    
+    .pro-tooltip .tooltip-text {
+        padding: 0.6rem 0.8rem;
+    }
+}
+
+/* Accessibility - reduce motion */
+@media (prefers-reduced-motion: reduce) {
+    .pro-tooltip {
+        transition: opacity 0.1s ease;
+    }
+}
+
 /* GDPR Banner */
 .gdpr-banner {
     position: fixed;

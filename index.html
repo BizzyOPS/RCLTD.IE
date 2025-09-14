@@ -116,14 +116,20 @@
                             <li><a href="panel.html" class="nav-link">Panel Building</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item"><a href="safety-training.html" class="nav-link">Safety Training</a></li>
+                    <li class="nav-item"><a href="safety-training.html" class="nav-link"
+                                               data-tooltip="Interactive safety courses with 90% pass requirement"
+                                               data-tooltip-type="info"
+                                               data-tooltip-position="bottom">Safety Training</a></li>
                     <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
                 
                 <div class="nav-contact">
                     <span class="nav-phone">+353 (0) 52 7443258</span>
-                    <a href="contact.html" class="btn-primary">Get Quote</a>
+                    <a href="contact.html" class="btn-primary"
+                       data-tooltip="Get a free quote for your project"
+                       data-tooltip-type="success"
+                       data-tooltip-position="bottom">Get Quote</a>
                 </div>
                 
                 <button class="nav-toggle" aria-label="Toggle navigation">
@@ -148,8 +154,14 @@
                     </h1>
                     <p class="hero-subtitle">Leading Irish technology company providing comprehensive automation, safety, electrical design, and panel building services since 2010.</p>
                     <div class="hero-cta">
-                        <a href="contact.html" class="btn-primary btn-large">Get Started Today</a>
-                        <a href="#services" class="btn-secondary btn-large">Explore Services</a>
+                        <a href="contact.html" class="btn-primary btn-large" 
+                           data-tooltip="Contact our experts for a personalized consultation" 
+                           data-tooltip-type="info" 
+                           data-tooltip-position="bottom">Get Started Today</a>
+                        <a href="#services" class="btn-secondary btn-large"
+                           data-tooltip="Discover our comprehensive automation solutions"
+                           data-tooltip-type="default"
+                           data-tooltip-position="bottom">Explore Services</a>
                     </div>
                 </div>
                 <div class="hero-image">
@@ -441,7 +453,10 @@
     </div>
 
     <!-- Scroll to Top Button -->
-    <button id="scroll-to-top" class="scroll-to-top" aria-label="Scroll to top" title="Scroll to top">
+    <button id="scroll-to-top" class="scroll-to-top" aria-label="Scroll to top" 
+            data-tooltip="Scroll back to top of page"
+            data-tooltip-type="help"
+            data-tooltip-position="left">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M18 15l-6-6-6 6"></path>
         </svg>
@@ -449,5 +464,6 @@
 
     <script src="js/script.js"></script>
     <script src="js/chatbot.js"></script>
+    <script src="js/tooltips.js"></script>
 </body>
 </html>
