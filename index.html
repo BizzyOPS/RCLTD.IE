@@ -109,16 +109,37 @@
                 </div>
                 <div class="hero-image">
                     <div class="hero-visual">
-                        <div class="hero-videos">
-                            <video class="hero-video primary-video" autoplay muted loop playsinline>
-                                <source src="videos/robotics-machine.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                            <video class="hero-video secondary-video" autoplay muted loop playsinline>
-                                <source src="videos/robot-automation.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
+                        <svg class="green-arm-illustration" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Robotic Arm Base -->
+                            <rect x="180" y="250" width="40" height="30" rx="5" fill="#4a5568" stroke="#2d3748" stroke-width="2"/>
+                            
+                            <!-- Arm Segment 1 -->
+                            <line x1="200" y1="250" x2="200" y2="180" stroke="#6b7280" stroke-width="8" stroke-linecap="round" class="arm-segment-1"/>
+                            
+                            <!-- Joint 1 (Green) -->
+                            <circle cx="200" cy="180" r="12" fill="#22c55e" stroke="#16a34a" stroke-width="3" class="joint-1"/>
+                            
+                            <!-- Arm Segment 2 -->
+                            <line x1="200" y1="180" x2="280" y2="120" stroke="#6b7280" stroke-width="8" stroke-linecap="round" class="arm-segment-2"/>
+                            
+                            <!-- Joint 2 (Green) -->
+                            <circle cx="280" cy="120" r="12" fill="#22c55e" stroke="#16a34a" stroke-width="3" class="joint-2"/>
+                            
+                            <!-- Arm Segment 3 -->
+                            <line x1="280" y1="120" x2="340" y2="80" stroke="#6b7280" stroke-width="6" stroke-linecap="round" class="arm-segment-3"/>
+                            
+                            <!-- End Effector/Gripper -->
+                            <g class="end-effector" transform="translate(340, 80)">
+                                <circle r="8" fill="#22c55e" stroke="#16a34a" stroke-width="2"/>
+                                <path d="M-6,-6 L-6,6 M6,-6 L6,6" stroke="#16a34a" stroke-width="2" stroke-linecap="round"/>
+                            </g>
+                            
+                            <!-- Motion Lines -->
+                            <g class="motion-lines" opacity="0.3">
+                                <path d="M350,85 Q370,85 375,90" stroke="#22c55e" stroke-width="2" fill="none" stroke-dasharray="3,3" class="motion-1"/>
+                                <path d="M345,75 Q365,70 370,75" stroke="#22c55e" stroke-width="2" fill="none" stroke-dasharray="3,3" class="motion-2"/>
+                            </g>
+                        </svg>
                     </div>
                 </div>
             </div>
