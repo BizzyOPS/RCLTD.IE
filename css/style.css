@@ -517,6 +517,10 @@ body {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
     border-top: 1px solid var(--border-color);
     z-index: 10001;
+    max-height: 80vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    animation: none !important;
 }
 
 /* Improve mobile touch targets */
@@ -695,7 +699,9 @@ body {
     .nav-dropdown.open .nav-dropdown-menu {
         opacity: 1;
         visibility: visible;
-        max-height: 400px;
+        max-height: 80vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
     
     .nav-dropdown-toggle::after {
@@ -842,6 +848,17 @@ body {
     .pcb-circuit {
         opacity: 0.3;
     }
+}
+
+/* Ensure navigation never gets animation effects */
+.header,
+.nav-menu,
+.nav-link,
+.nav-dropdown,
+.nav-dropdown-menu,
+.nav-toggle {
+    animation: none !important;
+    transform: none !important;
 }
 
 /* Particles Background - Limited to navy blue area only */
