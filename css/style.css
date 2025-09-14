@@ -615,7 +615,7 @@ body {
     color: rgba(255, 255, 255, 0.8);
     padding: var(--spacing-1);
     border-radius: var(--radius-sm);
-    transition: all 0.3s ease;
+    transition: color 0.2s ease, background 0.2s ease;
     width: 24px;
     height: 24px;
 }
@@ -635,7 +635,7 @@ body {
 }
 
 .dropdown-arrow {
-    transition: transform var(--transition-fast);
+    transition: transform 0.25s ease;
 }
 
 .nav-dropdown.open .dropdown-arrow {
@@ -644,7 +644,7 @@ body {
 
 .nav-dropdown-menu {
     position: absolute;
-    top: calc(100% + 10px);
+    top: calc(100% + 5px);
     left: 0;
     background: #ffffff;
     border-radius: var(--radius-md);
@@ -653,8 +653,8 @@ body {
     min-width: 200px;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-10px);
-    transition: all var(--transition-fast);
+    transform: translateY(-5px);
+    transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
     z-index: 1000;
     list-style: none;
     padding: var(--spacing-2) 0;
@@ -677,7 +677,7 @@ body {
     padding: var(--spacing-3) var(--spacing-4);
     color: var(--text-secondary);
     text-decoration: none;
-    transition: all var(--transition-fast);
+    transition: background-color 0.2s ease, color 0.2s ease;
     border-radius: var(--radius-sm);
 }
 
