@@ -356,6 +356,19 @@ body {
     /* Default text styling inherited from .nav-brand */
 }
 
+.nav-brand-link {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    text-decoration: none;
+    color: inherit;
+    transition: opacity var(--transition-fast);
+}
+
+.nav-brand-link:hover {
+    opacity: 0.8;
+}
+
 /* Mobile and Tablet: Show abbreviated name */
 @media (max-width: 1024px) {
     .nav-brand-text {
