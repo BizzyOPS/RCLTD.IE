@@ -355,23 +355,40 @@ function initNavigation() {
         }
     });
     
-    // Header scroll effect
+    // Header scroll effect - improved to prevent flickering
     if (header) {
         let lastScrollY = window.scrollY;
         
         window.addEventListener('scroll', function() {
             const currentScrollY = window.scrollY;
             
-            if (currentScrollY > 100) {
-                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            // Determine if we're on a dark or light section
+            const isDarkSection = currentScrollY < window.innerHeight * 0.6;
+            
+            // Remove any existing theme classes
+            header.classList.remove('on-dark', 'on-light');
+            
+            // Add appropriate theme class based on scroll position
+            if (isDarkSection) {
+                header.classList.add('on-dark');
             } else {
-                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = 'none';
+                header.classList.add('on-light');
             }
+            
+            // Clear any inline styles that might conflict
+            header.style.backgroundColor = '';
+            header.style.boxShadow = '';
             
             lastScrollY = currentScrollY;
         });
+        
+        // Initialize header state on page load
+        const initialIsDarkSection = window.scrollY < window.innerHeight * 0.6;
+        if (initialIsDarkSection) {
+            header.classList.add('on-dark');
+        } else {
+            header.classList.add('on-light');
+        }
     }
 }
 
