@@ -1148,31 +1148,37 @@ class DynamicHeaderManager {
         const scrollY = this.lastScrollY;
         const headerHeight = this.header.offsetHeight;
         
-        // Calculate the transition point
-        let transitionPoint = 0;
+        // Calculate the transition point more accurately
+        let transitionPoint = 400; // fallback minimum
         
         if (this.heroSection) {
-            // Get hero section bounds
+            // Get hero section bounds with buffer for smoother transition
             const heroRect = this.heroSection.getBoundingClientRect();
-            const heroBottom = heroRect.bottom + scrollY - headerHeight;
-            transitionPoint = heroBottom;
+            const heroBottom = heroRect.bottom + scrollY - headerHeight - 30;
+            transitionPoint = Math.max(heroBottom, 400);
         }
         
         // Determine if header is over dark or light background
         const isOverDark = scrollY < transitionPoint;
         
-        // Apply appropriate classes
-        if (isOverDark) {
-            this.header.classList.add('on-dark');
-            this.header.classList.remove('on-light');
-        } else {
-            this.header.classList.remove('on-dark');
-            this.header.classList.add('on-light');
-        }
+        // Force remove both classes first to prevent conflicts
+        this.header.classList.remove('on-dark', 'on-light');
         
-        // Remove any backdrop filter effects (solid color approach)
+        // Add the appropriate class in the next frame for smooth transition
+        requestAnimationFrame(() => {
+            if (isOverDark) {
+                this.header.classList.add('on-dark');
+            } else {
+                this.header.classList.add('on-light');
+            }
+        });
+        
+        // Ensure no conflicting inline styles
         this.header.style.backdropFilter = 'none';
         this.header.style.webkitBackdropFilter = 'none';
+        this.header.style.background = '';
+        this.header.style.borderBottom = '';
+        this.header.style.boxShadow = '';
     }
 }
 
