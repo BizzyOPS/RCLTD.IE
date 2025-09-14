@@ -2297,15 +2297,24 @@ body {
 .chatbot-close {
     background: none;
     border: none;
-    color: white;
+    color: #000000;
     cursor: pointer;
     padding: 0.5rem;
     border-radius: 8px;
-    transition: background-color var(--transition-fast);
+    transition: all var(--transition-fast);
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .chatbot-close:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.1);
+    color: #000000;
+}
+
+.chatbot-close:active,
+.chatbot-close:focus {
+    color: #dc2626;
+    background: rgba(220, 38, 38, 0.1);
 }
 
 .chatbot-messages {
