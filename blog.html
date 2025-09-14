@@ -13,6 +13,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Page Loading Animation -->
+    <div class="page-loader" id="page-loader">
+        <div style="text-align: center;">
+            <div class="loader-container">
+                <div class="diamond-loader r-diamond">
+                    <div class="diamond-letter">R</div>
+                </div>
+                <div class="diamond-loader c-diamond">
+                    <div class="diamond-letter">C</div>
+                </div>
+            </div>
+            <div class="loading-text">Loading...</div>
+        </div>
+    </div>
+
     <header class="header">
         <nav class="nav">
             <div class="nav-container">
@@ -23,11 +38,24 @@
                 
                 <ul class="nav-menu">
                     <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="automation.html" class="nav-link">Automation</a></li>
-                    <li class="nav-item"><a href="safety.html" class="nav-link">Safety</a></li>
-                    <li class="nav-item"><a href="design.html" class="nav-link">Design</a></li>
-                    <li class="nav-item"><a href="panel.html" class="nav-link">Panel Building</a></li>
-                    <li class="nav-item"><a href="safety-training.html" class="nav-link">Safety Training</a></li>
+                    <li class="nav-item nav-dropdown">
+                        <div class="nav-dropdown-container">
+                            <a href="services.html" class="nav-link">Services</a>
+                            <button class="nav-dropdown-toggle" aria-label="Toggle services menu">
+                                <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12">
+                                    <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="2" fill="none"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <ul class="nav-dropdown-menu">
+                            <li><a href="services.html" class="nav-link">All Services</a></li>
+                            <li><a href="automation.html" class="nav-link">Automation</a></li>
+                            <li><a href="safety.html" class="nav-link">Safety</a></li>
+                            <li><a href="design.html" class="nav-link">Design</a></li>
+                            <li><a href="panel.html" class="nav-link">Panel Building</a></li>
+                            <li><a href="safety-training.html" class="nav-link">Safety Training</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item"><a href="blog.html" class="nav-link active">Blog</a></li>
                     <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>

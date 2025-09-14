@@ -60,6 +60,63 @@ function initNavigation() {
         });
     }
     
+    // Dropdown functionality
+    const dropdowns = document.querySelectorAll('.nav-dropdown');
+    dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.nav-dropdown-toggle');
+        const menu = dropdown.querySelector('.nav-dropdown-menu');
+        
+        if (toggle && menu) {
+            // Handle toggle button clicks
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Close other dropdowns
+                dropdowns.forEach(otherDropdown => {
+                    if (otherDropdown !== dropdown) {
+                        otherDropdown.classList.remove('open');
+                    }
+                });
+                
+                // Toggle current dropdown
+                dropdown.classList.toggle('open');
+            });
+            
+            // Close dropdown when clicking on dropdown links
+            const dropdownLinks = menu.querySelectorAll('.nav-link');
+            dropdownLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    dropdown.classList.remove('open');
+                    // Also close mobile menu if open
+                    if (navToggle && navMenu) {
+                        navToggle.classList.remove('active');
+                        navMenu.classList.remove('mobile-open');
+                        navToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+        }
+    });
+    
+    // Close all dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.nav-dropdown')) {
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('open');
+            });
+        }
+    });
+    
+    // Close dropdowns on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('open');
+            });
+        }
+    });
+    
     // Header scroll effect
     if (header) {
         let lastScrollY = window.scrollY;
