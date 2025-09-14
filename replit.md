@@ -7,6 +7,10 @@ This is a static website for Robotics & Control Ltd, an Irish technology company
 ## Recent Changes
 
 **September 14, 2025**
+- **Safety Training Grading System**: Implemented 90% pass requirement with detailed grading results and celebration effects for perfect scores
+- **Training Course Updates**: Removed certificate references from all training descriptions and meta tags
+- **Responsive Training Scaling**: Fixed all scaling issues across training sections and knowledge check questions for mobile and desktop
+- **Celebration Effects**: Added confetti animation and celebration message for 100% perfect scores
 - **Hero Section Electric Background**: Implemented dark electric circuit pattern background extending down to services section
 - **Animated Hero Title**: Added glitch/electric crackle effects with randomized letter animations for dynamic visual impact
 - **Professional Hero Images**: Replaced carousel with 5 new professional robotics images showcasing company expertise

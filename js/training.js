@@ -623,16 +623,172 @@ class SafetyTrainingSystem {
             this.progress[moduleId] = {};
         }
         
-        this.progress[moduleId][chapterId] = true;
+        const score = this.calculateChapterScore(moduleId, chapterId);
+        this.progress[moduleId][chapterId] = score >= 90 ? true : 'failed';
         this.saveProgress();
+        
+        // Show grading results
+        this.showGradingResults(moduleId, chapterId, score);
         
         // Re-render to update UI
         this.showModule(moduleId, chapterId);
-        this.announce(`Chapter ${chapterId} marked as complete!`);
+        this.announce(`Chapter ${chapterId} completed with ${score}% score!`);
+    }
+    
+    calculateChapterScore(moduleId, chapterId) {
+        const module = trainingData.modules[moduleId];
+        if (!module || !module.chapters[chapterId]) return 0;
+        
+        const chapter = module.chapters[chapterId];
+        const questions = chapter.questions;
+        if (!questions || questions.length === 0) return 100;
+        
+        let correctAnswers = 0;
+        
+        questions.forEach((question, index) => {
+            const questionId = `${moduleId}-${chapterId}-${index}`;
+            const userAnswer = this.userAnswers[questionId];
+            
+            if (question.type === 'multiple-choice') {
+                if (userAnswer === question.correct) {
+                    correctAnswers++;
+                }
+            } else if (question.type === 'fill-in-blank') {
+                const correctAnswers_fillIn = Array.isArray(question.correct) ? question.correct : [question.correct];
+                if (correctAnswers_fillIn.some(answer => 
+                    answer.toLowerCase().trim() === String(userAnswer || '').toLowerCase().trim()
+                )) {
+                    correctAnswers++;
+                }
+            }
+        });
+        
+        return Math.round((correctAnswers / questions.length) * 100);
+    }
+    
+    showGradingResults(moduleId, chapterId, score) {
+        const passed = score >= 90;
+        const gradeElement = document.createElement('div');
+        gradeElement.className = `grading-modal ${passed ? 'passed' : 'failed'}`;
+        gradeElement.innerHTML = `
+            <div class="grading-overlay">
+                <div class="grading-content">
+                    <div class="grading-header">
+                        <h3>Chapter ${chapterId} Results</h3>
+                        ${passed ? '<div class="success-icon">✅</div>' : '<div class="fail-icon">❌</div>'}
+                    </div>
+                    <div class="grading-score">
+                        <div class="score-display">
+                            <span class="score-number">${score}%</span>
+                            <span class="score-label">Score</span>
+                        </div>
+                        <div class="pass-status ${passed ? 'passed' : 'failed'}">
+                            ${passed ? 'PASSED' : 'FAILED'}
+                        </div>
+                    </div>
+                    <div class="grading-message">
+                        ${passed 
+                            ? '<p>Congratulations! You have successfully completed this chapter.</p>' 
+                            : '<p>You need 90% or higher to pass. Please review the material and try again.</p>'
+                        }
+                    </div>
+                    <div class="grading-actions">
+                        <button class="btn-primary" onclick="this.closest('.grading-modal').remove()">
+                            ${passed ? 'Continue' : 'Review Material'}
+                        </button>
+                        ${!passed ? '<button class="btn-secondary" onclick="trainingSystem.retryChapter(\'' + moduleId + '\', \'' + chapterId + '\')">Retry Questions</button>' : ''}
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(gradeElement);
+        
+        // Add celebration effect for perfect scores
+        if (score === 100) {
+            this.showCelebrationEffect();
+        }
+        
+        // Auto-focus on the modal
+        setTimeout(() => {
+            const button = gradeElement.querySelector('button');
+            if (button) button.focus();
+        }, 100);
+    }
+    
+    showCelebrationEffect() {
+        const celebration = document.createElement('div');
+        celebration.className = 'celebration-container';
+        celebration.innerHTML = `
+            <div class="confetti"></div>
+            <div class="celebration-message">
+                🎉 Perfect Score! 🎉
+                <div class="celebration-subtitle">Outstanding work!</div>
+            </div>
+        `;
+        
+        document.body.appendChild(celebration);
+        
+        // Create confetti effect
+        this.createConfetti(celebration);
+        
+        // Remove after animation
+        setTimeout(() => {
+            celebration.remove();
+        }, 4000);
+    }
+    
+    createConfetti(container) {
+        const colors = ['#0891b2', '#67e8f9', '#f59e0b', '#10b981', '#f43f5e'];
+        
+        for (let i = 0; i < 50; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti-piece';
+            confetti.style.cssText = `
+                position: absolute;
+                width: 8px;
+                height: 8px;
+                background: ${colors[Math.floor(Math.random() * colors.length)]};
+                left: ${Math.random() * 100}%;
+                top: -10px;
+                transform: rotate(${Math.random() * 360}deg);
+                animation: confetti-fall ${2 + Math.random() * 2}s linear forwards;
+            `;
+            
+            container.appendChild(confetti);
+        }
+    }
+    
+    retryChapter(moduleId, chapterId) {
+        // Clear chapter answers
+        const module = trainingData.modules[moduleId];
+        if (module && module.chapters[chapterId]) {
+            const chapter = module.chapters[chapterId];
+            chapter.questions.forEach((question, index) => {
+                const questionId = `${moduleId}-${chapterId}-${index}`;
+                delete this.userAnswers[questionId];
+            });
+        }
+        
+        // Clear progress
+        if (this.progress[moduleId]) {
+            delete this.progress[moduleId][chapterId];
+        }
+        
+        this.saveUserAnswers();
+        this.saveProgress();
+        
+        // Close grading modal
+        const modal = document.querySelector('.grading-modal');
+        if (modal) modal.remove();
+        
+        // Re-render chapter
+        this.showModule(moduleId, chapterId);
+        this.announce('Chapter reset. You can now retry the questions.');
     }
     
     isChapterCompleted(moduleId, chapterId) {
-        return !!(this.progress[moduleId] && this.progress[moduleId][chapterId]);
+        return !!(this.progress[moduleId] && this.progress[moduleId][chapterId] === true);
     }
     
     getCompletedChaptersCount(moduleId) {
