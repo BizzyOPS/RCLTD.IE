@@ -7,6 +7,7 @@ This is a static website for Robotics & Control Ltd, an Irish technology company
 ## Recent Changes
 
 **September 14, 2025**
+- **Scroll to Top Feature**: Added smooth scroll-to-top button that appears when scrolling down 300px, positioned bottom-right with professional teal styling
 - **Clickable Logo Navigation**: Logo and business name in header now clickable and take users back to homepage across all 13 pages
 - **Solid Header Navigation**: Implemented solid header that merges with page colors and dynamically switches between dark/light backgrounds
 - **Dynamic Text Contrast**: Header text automatically switches between white (on dark backgrounds) and black (on light backgrounds) for optimal readability

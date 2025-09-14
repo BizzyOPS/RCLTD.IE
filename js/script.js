@@ -1176,7 +1176,43 @@ class DynamicHeaderManager {
     }
 }
 
+// Scroll to Top Functionality
+class ScrollToTopManager {
+    constructor() {
+        this.scrollButton = document.getElementById('scroll-to-top');
+        this.init();
+    }
+
+    init() {
+        if (!this.scrollButton) return;
+
+        // Show/hide button based on scroll position
+        window.addEventListener('scroll', () => this.toggleVisibility());
+        
+        // Smooth scroll to top when clicked
+        this.scrollButton.addEventListener('click', () => this.scrollToTop());
+    }
+
+    toggleVisibility() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > 300) {
+            this.scrollButton.classList.add('visible');
+        } else {
+            this.scrollButton.classList.remove('visible');
+        }
+    }
+
+    scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+}
+
 // Initialize dynamic header manager
 document.addEventListener('DOMContentLoaded', () => {
     window.headerManager = new DynamicHeaderManager();
+    window.scrollToTopManager = new ScrollToTopManager();
 });
