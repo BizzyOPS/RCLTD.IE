@@ -969,3 +969,131 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Animated Hero Title with Glitch/Electric Effects
+class HeroTitleAnimator {
+    constructor(selector) {
+        this.element = document.querySelector(selector);
+        this.contentElement = this.element?.querySelector('.hero-title-content');
+        this.originalText = this.element?.dataset.text || this.contentElement?.textContent || '';
+        this.animations = [
+            'animate-slide-left',
+            'animate-slide-right', 
+            'animate-fade-up',
+            'animate-fade-down',
+            'animate-zoom',
+            'animate-electric',
+            'animate-rotate'
+        ];
+        this.hasAnimated = false;
+        this.init();
+    }
+    
+    init() {
+        if (!this.element || !this.contentElement) return;
+        
+        // Add initial glitch effect
+        this.element.classList.add('initial-glitch');
+        
+        // Wait for page load and loading animation to complete
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                this.startLetterAnimation();
+            }, 2000); // Wait for loading animation
+        });
+        
+        // Also trigger on visibility change (if user comes back to tab)
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden && !this.hasAnimated) {
+                setTimeout(() => {
+                    this.startLetterAnimation();
+                }, 500);
+            }
+        });
+    }
+    
+    startLetterAnimation() {
+        if (this.hasAnimated) return;
+        this.hasAnimated = true;
+        
+        // Clear existing content
+        this.contentElement.innerHTML = '';
+        
+        // Create letter spans
+        const letters = this.originalText.split('').map(char => {
+            const span = document.createElement('span');
+            span.classList.add('letter');
+            
+            if (char === ' ') {
+                span.classList.add('space');
+                span.innerHTML = '&nbsp;';
+            } else {
+                span.textContent = char;
+            }
+            
+            return span;
+        });
+        
+        // Add letters to DOM
+        letters.forEach(letter => {
+            this.contentElement.appendChild(letter);
+        });
+        
+        // Animate letters with random effects and delays
+        this.animateLettersSequentially(letters);
+    }
+    
+    animateLettersSequentially(letters) {
+        letters.forEach((letter, index) => {
+            if (letter.classList.contains('space')) {
+                // Spaces don't need animation, just show them
+                setTimeout(() => {
+                    letter.style.opacity = '1';
+                }, index * 80);
+                return;
+            }
+            
+            // Random animation selection
+            const randomAnimation = this.animations[Math.floor(Math.random() * this.animations.length)];
+            
+            // Random delay between 50-150ms per letter
+            const delay = index * (80 + Math.random() * 70);
+            
+            setTimeout(() => {
+                letter.classList.add(randomAnimation);
+                
+                // Add electric effect occasionally for extra impact
+                if (Math.random() < 0.15 && randomAnimation !== 'animate-electric') {
+                    setTimeout(() => {
+                        letter.style.textShadow = '0 0 10px #67e8f9, 0 0 20px #0891b2';
+                        setTimeout(() => {
+                            letter.style.textShadow = '';
+                        }, 200);
+                    }, 300);
+                }
+            }, delay);
+        });
+        
+        // Remove initial glitch class after animation completes
+        setTimeout(() => {
+            this.element.classList.remove('initial-glitch');
+        }, letters.length * 150 + 1000);
+    }
+    
+    // Method to replay animation (can be called from console or other scripts)
+    replay() {
+        this.hasAnimated = false;
+        this.element.classList.add('initial-glitch');
+        setTimeout(() => {
+            this.startLetterAnimation();
+        }, 300);
+    }
+}
+
+// Initialize hero title animator
+document.addEventListener('DOMContentLoaded', () => {
+    // Small delay to ensure DOM is fully ready
+    setTimeout(() => {
+        window.heroTitleAnimator = new HeroTitleAnimator('.hero-title');
+    }, 100);
+});
