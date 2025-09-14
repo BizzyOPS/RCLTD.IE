@@ -7,7 +7,9 @@ This is a static website for Robotics & Control Ltd, an Irish technology company
 ## Recent Changes
 
 **September 14, 2025**
-- Added R&C diamond loading animation across all 13 pages for brand consistency
+- Replaced logo with professional Robotics & Control Ltd branding across all pages
+- Updated loading screens to use real logo instead of diamond animation for enhanced brand identity
+- Added R&C diamond loading animation across all 13 pages for brand consistency (later replaced with logo)
 - Restructured navigation with single Services dropdown menu replacing individual service items
 - Created new comprehensive services.html overview page with all services listed
 - Standardized navigation structure across all pages with proper active states
@@ -35,7 +37,7 @@ Preferred communication style: Simple, everyday language.
 
 ### JavaScript Architecture
 - **Vanilla JavaScript**: No frameworks, using modern ES6+ features
-- **Loading Animation**: R&C diamond loading animation with fade-out effect on all pages
+- **Loading Animation**: Professional logo-based loading animation with fade-out effect on all pages
 - **Module Pattern**: Functions organized into logical modules (navigation, scroll effects, contact forms, animations)
 - **Event-Driven**: DOM event listeners for user interactions
 - **Accessibility**: ARIA attributes and keyboard navigation support
