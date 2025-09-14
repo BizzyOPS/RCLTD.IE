@@ -291,6 +291,27 @@ body {
     width: auto;
 }
 
+.nav-brand-text {
+    /* Default text styling inherited from .nav-brand */
+}
+
+/* Mobile and Tablet: Show abbreviated name */
+@media (max-width: 1024px) {
+    .nav-brand-text {
+        font-size: 0; /* Hide original text */
+        position: relative;
+    }
+    
+    .nav-brand-text::after {
+        content: "R&C LTD";
+        font-size: 1rem;
+        line-height: 1;
+        display: inline;
+        font-weight: 600;
+        color: inherit;
+    }
+}
+
 .nav-menu {
     display: none;
     list-style: none;
