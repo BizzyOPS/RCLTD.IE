@@ -7,6 +7,10 @@ This is a static website for Robotics & Control Ltd, an Irish technology company
 ## Recent Changes
 
 **September 14, 2025**
+- **LinkedIn Social Media Integration**: Added LinkedIn social media button to all 15 page footers (automation.html, blog.html, cart.html, checkout.html, contact.html, cookies-policy.html, design.html, panel.html, privacy-policy.html, refund-policy.html, safety-training.html, safety.html, services.html, store.html, terms-of-service.html) with proper URL https://www.linkedin.com/company/robotics-control/
+- **Footer Contact Link Visibility Fix**: Changed footer phone and email link colors from rgba(255,255,255,0.9) to white for better visibility, with green hover color (#10b981) for improved accessibility
+- **Contact Page Interactive Cards**: Made contact page phone, email, and location cards fully clickable with proper anchor tags and hover effects, including telephone links, mailto links, and Google Maps integration
+- **Shopping Cart Navigation Fix**: Resolved cart icon confusion by changing from sidebar toggle button to proper navigation links to cart.html across all pages, eliminating user confusion about cart functionality
 - **Page Load Position**: Ensured all pages start at the top when loaded, preventing browsers from remembering previous scroll positions
 - **Scroll to Top Feature**: Added smooth scroll-to-top button that appears when scrolling down 300px, positioned bottom-right with professional teal styling
 - **Clickable Logo Navigation**: Logo and business name in header now clickable and take users back to homepage across all 13 pages
