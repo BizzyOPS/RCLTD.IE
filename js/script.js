@@ -1170,14 +1170,9 @@ class DynamicHeaderManager {
             this.header.classList.add('on-light');
         }
         
-        // Add a small scroll effect for extra visual enhancement
-        if (scrollY > 50) {
-            this.header.style.backdropFilter = 'blur(25px) saturate(180%)';
-            this.header.style.webkitBackdropFilter = 'blur(25px) saturate(180%)';
-        } else {
-            this.header.style.backdropFilter = 'blur(20px) saturate(180%)';
-            this.header.style.webkitBackdropFilter = 'blur(20px) saturate(180%)';
-        }
+        // Remove any backdrop filter effects (solid color approach)
+        this.header.style.backdropFilter = 'none';
+        this.header.style.webkitBackdropFilter = 'none';
     }
 }
 
