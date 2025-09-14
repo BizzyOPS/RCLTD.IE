@@ -4,6 +4,16 @@
 
 This is a static website for Robotics & Control Ltd, an Irish technology company providing automation, safety, electrical design, and panel building services. The website serves as a professional showcase for their services across pharmaceutical, industrial, and automotive sectors. It features a modern, responsive design with multiple service pages, contact information, and company details.
 
+## Recent Changes
+
+**September 14, 2025**
+- Added R&C diamond loading animation across all 13 pages for brand consistency
+- Restructured navigation with single Services dropdown menu replacing individual service items
+- Created new comprehensive services.html overview page with all services listed
+- Standardized navigation structure across all pages with proper active states
+- Implemented dual-function Services navigation (text links to overview, arrow toggles dropdown)
+- Fixed mobile dropdown behavior for proper expand/collapse functionality
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
@@ -25,15 +35,19 @@ Preferred communication style: Simple, everyday language.
 
 ### JavaScript Architecture
 - **Vanilla JavaScript**: No frameworks, using modern ES6+ features
+- **Loading Animation**: R&C diamond loading animation with fade-out effect on all pages
 - **Module Pattern**: Functions organized into logical modules (navigation, scroll effects, contact forms, animations)
 - **Event-Driven**: DOM event listeners for user interactions
 - **Accessibility**: ARIA attributes and keyboard navigation support
 
 ### Navigation System
+- **Services Dropdown Navigation**: Streamlined navigation with Services dropdown menu containing all service links
+- **Dual-Function Services**: Services text navigates to overview page, dedicated arrow button toggles dropdown
 - **Responsive Navigation**: Mobile hamburger menu with smooth transitions
-- **Active State Management**: Visual indication of current page
+- **Active State Management**: Visual indication of current page and active service in dropdown
 - **Accessibility Features**: Proper ARIA labels, keyboard navigation, and focus management
 - **Mobile-First**: Collapsible menu for mobile devices with touch-friendly interactions
+- **Standardized Structure**: Identical navigation across all 13 pages for consistent user experience
 
 ## External Dependencies
 
