@@ -7,6 +7,10 @@ This is a static website for Robotics & Control Ltd, an Irish technology company
 ## Recent Changes
 
 **September 14, 2025**
+- **Enhanced AI Chatbot with Service Specificity**: Completely transformed Controller Bot from generic assistant to specialized R&C Ltd sales tool with detailed service descriptions, industry-specific responses (pharmaceutical, automotive, food & beverage), and comprehensive navigation features
+- **Chatbot Navigation Integration**: Added clickable links throughout all chatbot responses directing users to relevant pages (automation.html, safety.html, contact.html, etc.) with professional styling and hover effects
+- **Expanded Quick Action Buttons**: Increased from 3 to 6 quick action buttons covering all core services (Automation, Safety, Electrical Design, Panel Building, Training, Get Quote) for improved user guidance
+- **Security Implementation**: Implemented comprehensive XSS protection with HTML escaping, URL sanitization, and safe Markdown rendering while maintaining full functionality
 - **Custom Industrial Background Design**: Redesigned homepage hero background to be unique and distinctive while maintaining the blur-to-white fade effect. Changed from generic circuit patterns to custom industrial automation theme with larger grid patterns, green accent nodes representing control systems, and angular robotic connection paths with slower, more sophisticated animation timing
 - **LinkedIn Social Media Integration**: Added LinkedIn social media button to all 15 page footers (automation.html, blog.html, cart.html, checkout.html, contact.html, cookies-policy.html, design.html, panel.html, privacy-policy.html, refund-policy.html, safety-training.html, safety.html, services.html, store.html, terms-of-service.html) with proper URL https://www.linkedin.com/company/robotics-control/
 - **Footer Contact Link Visibility Fix**: Changed footer phone and email link colors from rgba(255,255,255,0.9) to white for better visibility, with green hover color (#10b981) for improved accessibility
