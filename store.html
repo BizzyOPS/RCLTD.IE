@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shop premium automation and control equipment from Robotics & Control Ltd. Professional-grade PLCs, sensors, safety equipment, and industrial automation components with expert support.">
+    <meta name="keywords" content="automation equipment store, PLC shop Ireland, industrial sensors, safety equipment, control systems, automation components, electrical equipment">
+    <meta name="author" content="Robotics & Control Ltd">
+    <title>Equipment Store - Robotics & Control Ltd | Industrial Automation Components</title>
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="apple-touch-icon" href="images/favicon.png">
+    <meta name="msapplication-TileImage" content="images/favicon.png">
+    <meta name="msapplication-TileColor" content="#0891b2">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Equipment Store - Industrial Automation Components">
+    <meta property="og:description" content="Shop professional automation and control equipment from Ireland's leading technology company.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rcltd.ie/store.html">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Page Loading Animation -->
+    <div class="page-loader" id="page-loader">
+        <div class="loader-container">
+            <!-- Robotics-themed visual container -->
+            <div class="tech-loader">
+                <!-- Rotating Gears -->
+                <div class="gear gear-1"></div>
+                <div class="gear gear-2"></div>
+                <div class="gear gear-3"></div>
+                
+                <!-- Circuit Pattern Background -->
+                <div class="circuit-pattern"></div>
+            </div>
+            
+            <!-- Progress Display -->
+            <div class="progress-display">
+                <div class="progress-counter">0%</div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
+            
+            <!-- Technical Status Messages -->
+            <div class="tech-status">Loading equipment catalog...</div>
+        </div>
+    </div>
+
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <a href="index.html" class="nav-brand-link">
+                        <img src="images/logo.png" alt="Robotics & Control Ltd Logo" class="nav-logo">
+                        <span class="nav-brand-text">Robotics and Control LTD</span>
+                    </a>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item nav-dropdown">
+                        <div class="nav-dropdown-container">
+                            <a href="services.html" class="nav-link">Services</a>
+                            <button class="nav-dropdown-toggle" aria-label="Toggle services menu">
+                                <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12">
+                                    <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="2" fill="none"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <ul class="nav-dropdown-menu">
+                            <li><a href="services.html" class="nav-link">All Services</a></li>
+                            <li><a href="automation.html" class="nav-link">Automation</a></li>
+                            <li><a href="safety.html" class="nav-link">Safety</a></li>
+                            <li><a href="design.html" class="nav-link">Design</a></li>
+                            <li><a href="panel.html" class="nav-link">Panel Building</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="store.html" class="nav-link active">Store</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="safety-training.html" class="nav-link"
+                                               data-tooltip="Interactive safety courses with 90% pass requirement"
+                                               data-tooltip-type="info"
+                                               data-tooltip-position="bottom">Safety Training</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-contact">
+                    <span class="nav-phone">+353 (0) 52 7443258</span>
+                    <div class="nav-actions">
+                        <button id="cart-toggle" class="cart-button" 
+                                data-tooltip="View shopping cart"
+                                data-tooltip-type="info"
+                                data-tooltip-position="bottom">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="m1 1 4 4 7.68 13.39a2 2 0 0 0 1.92 1.61h8.4a2 2 0 0 0 2-1.61L18.68 11H7"></path>
+                            </svg>
+                            <span id="cart-count" class="cart-count">0</span>
+                        </button>
+                        <a href="contact.html" class="btn-primary"
+                           data-tooltip="Get a free quote for your project"
+                           data-tooltip-type="success"
+                           data-tooltip-position="bottom">Get Quote</a>
+                    </div>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Store Header -->
+        <section class="store-hero">
+            <div class="container">
+                <div class="store-hero-content">
+                    <h1 class="page-title">Equipment Store</h1>
+                    <p class="page-subtitle">Professional automation and control equipment with expert support</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Store Filters & Search -->
+        <section class="store-controls">
+            <div class="container">
+                <div class="store-toolbar">
+                    <div class="search-container">
+                        <input type="text" id="product-search" placeholder="Search products..." class="search-input">
+                        <button class="search-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.35-4.35"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="filter-controls">
+                        <select id="category-filter" class="filter-select">
+                            <option value="">All Categories</option>
+                            <option value="plc">PLCs & Controllers</option>
+                            <option value="sensors">Sensors & Actuators</option>
+                            <option value="safety">Safety Equipment</option>
+                            <option value="hmi">HMI & Displays</option>
+                            <option value="networking">Networking & Communication</option>
+                            <option value="power">Power & Distribution</option>
+                            <option value="accessories">Accessories & Tools</option>
+                        </select>
+                        
+                        <select id="sort-filter" class="filter-select">
+                            <option value="name">Sort by Name</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="newest">Newest First</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Grid -->
+        <section class="store-products">
+            <div class="container">
+                <div id="products-container" class="products-grid">
+                    <!-- Products will be loaded here -->
+                    <div class="store-empty-state">
+                        <div class="empty-icon">📦</div>
+                        <h3>Store Catalog Coming Soon</h3>
+                        <p>Our equipment catalog is being prepared. Check back soon for professional automation and control components.</p>
+                        <a href="contact.html" class="btn-primary">Contact Us for Product Inquiries</a>
+                    </div>
+                </div>
+                
+                <!-- Load More Button -->
+                <div class="load-more-container" style="display: none;">
+                    <button id="load-more" class="btn-secondary">Load More Products</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Store Features -->
+        <section class="store-features">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🚚</div>
+                        <h3>Fast Delivery</h3>
+                        <p>Quick shipping across Ireland with express options available</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>Quality Guarantee</h3>
+                        <p>All products backed by manufacturer warranties and our quality promise</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔧</div>
+                        <h3>Expert Support</h3>
+                        <p>Technical guidance and installation support from our qualified engineers</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💳</div>
+                        <h3>Secure Payment</h3>
+                        <p>Safe and secure payment processing with multiple payment options</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Shopping Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button id="cart-close" class="cart-close">&times;</button>
+        </div>
+        <div class="cart-content">
+            <div id="cart-items" class="cart-items">
+                <!-- Cart items will be populated here -->
+                <div class="cart-empty">
+                    <p>Your cart is empty</p>
+                    <p class="cart-empty-subtitle">Add some products to get started</p>
+                </div>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total: <strong id="cart-total">€0.00</strong></span>
+            </div>
+            <div class="cart-actions">
+                <a href="cart.html" class="btn-secondary btn-block">View Cart</a>
+                <a href="checkout.html" class="btn-primary btn-block">Checkout</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div id="cart-overlay" class="cart-overlay"></div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Robotics & Control Ltd</h3>
+                    <p class="footer-description">Leading Irish technology company providing comprehensive automation, safety, electrical design, and panel building services since 2010.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul class="footer-list">
+                        <li><a href="automation.html">Automation</a></li>
+                        <li><a href="safety.html">Safety Solutions</a></li>
+                        <li><a href="design.html">Electrical Design</a></li>
+                        <li><a href="panel.html">Panel Building</a></li>
+                        <li><a href="safety-training.html">Safety Training</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-list">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="store.html">Equipment Store</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Information</h4>
+                    <div class="contact-info">
+                        <p>Unit 2 Cahir Business Park<br>
+                        Cahir, Co. Tipperary<br>
+                        Ireland, E21 C564</p>
+                        <p>Phone: +353 (0) 52 7443258<br>
+                        Email: info@rcltd.ie</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-certifications">
+                <h4>Certifications & Partnerships</h4>
+                <img src="images/certifications.png" alt="Professional certifications including SafetyCert, E3 Zuken Series, TÜV, Ignition Certified Integrator, and Engineering the South East membership" class="certifications-image">
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Robotics & Control Ltd. All rights reserved. | Designed by <a href="https://webcraftr.co.uk" target="_blank" rel="noopener" style="color: var(--primary-light); text-decoration: none;">WebCraftr Design</a></p>
+                <div class="footer-legal">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                    <a href="terms-of-purchase.html">Terms of Purchase</a>
+                    <a href="refund-policy.html">Returns & Refunds</a>
+                    <a href="cookies-policy.html">Cookies Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" class="scroll-to-top" aria-label="Scroll to top" 
+            data-tooltip="Scroll back to top of page"
+            data-tooltip-type="help"
+            data-tooltip-position="left">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 15l-6-6-6 6"></path>
+        </svg>
+    </button>
+
+    <script src="js/script.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="js/tooltips.js"></script>
+    <script src="js/store.js"></script>
+</body>
+</html>
