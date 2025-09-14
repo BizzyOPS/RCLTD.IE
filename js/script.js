@@ -1048,11 +1048,12 @@ function initGlitchHeadings() {
         return;
     }
     
-    // Select all headings but exclude navigation and brand elements
+    // Select only main headings at the top of pages
     const headings = document.querySelectorAll(`
-        main h1, main h2, main h3, main h4, main h5, main h6,
-        .hero-title, .section-title, .chapter-title, .about-title, 
-        .cta-title, .footer-title:not(.nav-brand *, .nav *, header *)
+        .hero-title,
+        main > h1:first-of-type,
+        .page-header h1,
+        .main-title
     `);
     
     headings.forEach(heading => {
