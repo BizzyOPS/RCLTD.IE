@@ -885,6 +885,10 @@ body {
     overflow: hidden;
 }
 
+.hero-title.glitch-active {
+    animation: hero-glitch 0.6s ease-in-out, electric-flash 2s ease-in-out;
+}
+
 /* Responsive hero title sizing */
 @media (min-width: 480px) {
     .hero-title {
@@ -899,14 +903,60 @@ body {
 
 /* Simple hero title animation - removed complex glitch effect */
 
-@keyframes electric-crackle {
-    0%, 100% {
-        text-shadow: 0 0 5px #67e8f9, 0 0 10px #0891b2, 0 0 15px #0891b2;
+/* Hero Title Glitch Effect */
+@keyframes hero-glitch {
+    0% {
+        transform: translate(0);
         opacity: 1;
     }
+    10% {
+        transform: translate(-2px, 2px);
+        opacity: 0.9;
+    }
+    20% {
+        transform: translate(-1px, -1px);
+        opacity: 1;
+    }
+    30% {
+        transform: translate(1px, 2px);
+        opacity: 0.95;
+    }
+    40% {
+        transform: translate(2px, -2px);
+        opacity: 0.9;
+    }
     50% {
-        text-shadow: 0 0 2px #67e8f9, 0 0 25px #0891b2, 0 0 35px #0891b2, 0 0 45px #0891b2;
-        opacity: 0.8;
+        transform: translate(-1px, 1px);
+        opacity: 1;
+    }
+    60% {
+        transform: translate(1px, -1px);
+        opacity: 0.95;
+    }
+    70% {
+        transform: translate(-2px, -1px);
+        opacity: 0.9;
+    }
+    80% {
+        transform: translate(2px, 1px);
+        opacity: 1;
+    }
+    90% {
+        transform: translate(-1px, -2px);
+        opacity: 0.95;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 1;
+    }
+}
+
+@keyframes electric-flash {
+    0%, 90%, 100% {
+        text-shadow: 0 0 5px #67e8f9, 0 0 10px #0891b2, 0 0 15px #0891b2;
+    }
+    5%, 15%, 25% {
+        text-shadow: 0 0 20px #67e8f9, 0 0 30px #0891b2, 0 0 40px #0891b2, 0 0 50px #0891b2;
     }
 }
 

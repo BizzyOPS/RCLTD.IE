@@ -987,7 +987,7 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Simple Hero Title Animation - Clean and Reliable
+// Hero Title Glitch Animation
 class HeroTitleAnimator {
     constructor(selector) {
         this.element = document.querySelector(selector);
@@ -1010,16 +1010,27 @@ class HeroTitleAnimator {
         if (this.hasAnimated) return;
         this.hasAnimated = true;
         
-        // Simple fade-in animation
+        // Initial fade-in with transform
         this.element.style.opacity = '0';
         this.element.style.transform = 'translateY(30px)';
-        this.element.style.transition = 'all 1s ease-out';
+        this.element.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
         
-        // Trigger animation
+        // Fade in first
         setTimeout(() => {
             this.element.style.opacity = '1';
             this.element.style.transform = 'translateY(0)';
         }, 100);
+        
+        // Then add glitch effect after fade-in completes
+        setTimeout(() => {
+            this.element.style.transition = 'none'; // Remove transition for glitch
+            this.element.classList.add('glitch-active');
+            
+            // Remove glitch effect after animation completes
+            setTimeout(() => {
+                this.element.classList.remove('glitch-active');
+            }, 2600); // 600ms glitch + 2s electric flash
+        }, 1000);
     }
 }
 
