@@ -3943,10 +3943,11 @@ body {
     }
     
     .cart-sidebar {
-        width: calc(100vw - 2rem);
-        right: calc(-100vw + 2rem);
-        left: 1rem;
-        border-radius: 12px 12px 0 0;
+        width: 85vw;
+        right: -85vw;
+        left: auto;
+        border-radius: 12px 0 0 12px;
+        max-width: 380px;
     }
     
     .cart-header {
@@ -4135,11 +4136,12 @@ body {
     }
     
     .cart-sidebar {
-        width: 100vw;
-        right: -100vw;
-        left: 0;
-        border-radius: 0;
+        width: 90vw;
+        right: -90vw;
+        left: auto;
+        border-radius: 12px 0 0 12px;
         height: 100vh;
+        max-width: 350px;
     }
     
     .cart-header {
