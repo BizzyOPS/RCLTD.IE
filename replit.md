@@ -7,6 +7,7 @@ This is a static website for Robotics & Control Ltd, an Irish technology company
 ## Recent Changes
 
 **September 14, 2025**
+- **Electric Circuit Background Animation**: Transformed homepage hero background lines into vibrant animated electric yellow circuits with flowing electrical current animation, making lines more prominent and visually striking with circuit-like movement
 - **Enhanced AI Chatbot with Service Specificity**: Completely transformed Controller Bot from generic assistant to specialized R&C Ltd sales tool with detailed service descriptions, industry-specific responses (pharmaceutical, automotive, food & beverage), and comprehensive navigation features
 - **Chatbot Navigation Integration**: Added clickable links throughout all chatbot responses directing users to relevant pages (automation.html, safety.html, contact.html, etc.) with professional styling and hover effects
 - **Expanded Quick Action Buttons**: Increased from 3 to 6 quick action buttons covering all core services (Automation, Safety, Electrical Design, Panel Building, Training, Get Quote) for improved user guidance
