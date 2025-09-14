@@ -1274,6 +1274,60 @@ body {
     color: var(--primary-light);
 }
 
+/* Footer Certifications Section */
+.footer-certifications {
+    margin: var(--spacing-12) 0 var(--spacing-8);
+    padding: var(--spacing-8) 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.footer-certifications h4 {
+    color: white;
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    margin-bottom: var(--spacing-6);
+    text-align: center;
+}
+
+.certifications-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    transition: transform var(--transition-normal);
+    display: block;
+    margin: 0 auto;
+}
+
+.certifications-image:hover {
+    transform: scale(1.02);
+}
+
+/* Responsive design for certifications */
+@media (max-width: 767px) {
+    .footer-certifications {
+        margin: var(--spacing-8) 0 var(--spacing-6);
+        padding: var(--spacing-6) 0;
+    }
+    
+    .certifications-image {
+        max-width: 95%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .certifications-image {
+        max-width: 90%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .certifications-image {
+        max-width: 800px;
+    }
+}
+
 /* GDPR Banner */
 .gdpr-banner {
     position: fixed;
