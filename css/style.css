@@ -112,6 +112,43 @@
     100% { opacity: 0.1; transform: translateX(100%); }
 }
 
+@keyframes electric-pulse {
+    0%, 100% { 
+        opacity: 0.4; 
+        filter: brightness(1); 
+    }
+    25% { 
+        opacity: 0.6; 
+        filter: brightness(1.2); 
+    }
+    50% { 
+        opacity: 0.3; 
+        filter: brightness(0.8); 
+    }
+    75% { 
+        opacity: 0.7; 
+        filter: brightness(1.4); 
+    }
+}
+
+@keyframes electric-shift {
+    0% { 
+        background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 100px 50px, 200px 150px, 50px 200px, 0 0; 
+    }
+    25% { 
+        background-position: 50px 50px, 30px 30px, 20px 20px, 40px 40px, 60px 60px, 150px 100px, 250px 200px, 100px 250px, 100px 100px; 
+    }
+    50% { 
+        background-position: 100px 100px, 60px 60px, 40px 40px, 80px 80px, 120px 120px, 200px 150px, 300px 250px, 150px 300px, 200px 200px; 
+    }
+    75% { 
+        background-position: 150px 150px, 90px 90px, 60px 60px, 120px 120px, 180px 180px, 250px 200px, 350px 300px, 200px 350px, 300px 300px; 
+    }
+    100% { 
+        background-position: 200px 200px, 120px 120px, 80px 80px, 160px 160px, 240px 240px, 300px 250px, 400px 350px, 250px 400px, 400px 400px; 
+    }
+}
+
 /* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
     /* Disable all animations and transitions for users who prefer reduced motion */
@@ -125,7 +162,7 @@
     /* Specifically disable problematic animations */
     .hero {
         animation: none !important;
-        background: linear-gradient(to bottom, #1e3a8a 0%, #1e3a8a 60%, rgba(30, 58, 138, 0.8) 80%, rgba(30, 58, 138, 0.3) 90%, transparent 100%) !important;
+        background: linear-gradient(to bottom, #0a0f1c 0%, #0a0f1c 60%, rgba(10, 15, 28, 0.8) 80%, rgba(10, 15, 28, 0.3) 90%, transparent 100%) !important;
     }
     
     .hero::before,
@@ -541,9 +578,55 @@ body {
 /* Hero Section */
 .hero {
     padding: calc(80px + var(--spacing-20)) 0 var(--spacing-20);
-    background: linear-gradient(to bottom, #1e3a8a 0%, #1e3a8a 60%, rgba(30, 58, 138, 0.8) 80%, rgba(30, 58, 138, 0.3) 90%, transparent 100%);
+    background: linear-gradient(to bottom, #0a0f1c 0%, #0a0f1c 60%, rgba(10, 15, 28, 0.8) 80%, rgba(10, 15, 28, 0.3) 90%, transparent 100%);
     position: relative;
     overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        /* Electric circuit lines */
+        linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.1) 1%, transparent 2%),
+        linear-gradient(0deg, transparent 0%, rgba(6, 182, 212, 0.1) 1%, transparent 2%),
+        /* Diagonal electric lines */
+        linear-gradient(45deg, transparent 0%, rgba(103, 232, 249, 0.05) 1%, transparent 2%),
+        linear-gradient(-45deg, transparent 0%, rgba(103, 232, 249, 0.05) 1%, transparent 2%),
+        /* Circuit nodes */
+        radial-gradient(circle at 20% 20%, rgba(6, 182, 212, 0.2) 1px, transparent 1px),
+        radial-gradient(circle at 80% 40%, rgba(6, 182, 212, 0.2) 1px, transparent 1px),
+        radial-gradient(circle at 40% 80%, rgba(6, 182, 212, 0.2) 1px, transparent 1px),
+        radial-gradient(circle at 90% 90%, rgba(6, 182, 212, 0.2) 1px, transparent 1px),
+        /* Electric pulse lines */
+        linear-gradient(120deg, transparent 48%, rgba(103, 232, 249, 0.3) 49%, rgba(103, 232, 249, 0.6) 50%, rgba(103, 232, 249, 0.3) 51%, transparent 52%);
+    background-size: 
+        200px 200px,
+        200px 200px,
+        150px 150px,
+        150px 150px,
+        300px 300px,
+        400px 400px,
+        350px 350px,
+        250px 250px,
+        800px 800px;
+    background-position:
+        0 0,
+        0 0,
+        0 0,
+        0 0,
+        0 0,
+        100px 50px,
+        200px 150px,
+        50px 200px,
+        0 0;
+    opacity: 0.4;
+    animation: electric-pulse 8s ease-in-out infinite, electric-shift 12s linear infinite;
+    z-index: 1;
 }
 
 /* Particles Background - Limited to navy blue area only */
@@ -557,33 +640,7 @@ body {
     pointer-events: none;
 }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 10%;
-    left: 10%;
-    width: 120px;
-    height: 120px;
-    background: radial-gradient(circle, var(--primary-color) 0%, transparent 70%);
-    border-radius: 50%;
-    opacity: 0.1;
-    animation: float 15s ease-in-out infinite;
-    z-index: 1;
-}
 
-.hero::after {
-    content: '';
-    position: absolute;
-    top: 60%;
-    right: 15%;
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(45deg, var(--primary-light) 0%, transparent 70%);
-    border-radius: 30%;
-    opacity: 0.15;
-    animation: floatReverse 12s ease-in-out infinite;
-    z-index: 1;
-}
 
 .hero-container {
     max-width: 1200px;
