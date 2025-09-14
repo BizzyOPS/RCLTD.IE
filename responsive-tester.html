@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Design Tester</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: system-ui, sans-serif;
+            background: #f5f5f5;
+        }
+        .tester-controls {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .viewport-buttons {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+        .viewport-btn {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .viewport-btn:hover {
+            background: #f0f0f0;
+        }
+        .viewport-btn.active {
+            background: #007cba;
+            color: white;
+        }
+        .iframe-container {
+            margin-top: 80px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        .iframe-container iframe {
+            border: none;
+            display: block;
+        }
+        .info {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .page-selector {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+        .page-btn {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .page-btn:hover {
+            background: #f0f0f0;
+        }
+        .page-btn.active {
+            background: #28a745;
+            color: white;
+        }
+        .screenshot-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="tester-controls">
+        <div class="page-selector">
+            <button class="page-btn active" data-page="index.html">Homepage</button>
+            <button class="page-btn" data-page="safety-training.html">Safety Training</button>
+            <button class="page-btn" data-page="contact.html">Contact</button>
+        </div>
+        
+        <div class="viewport-buttons">
+            <button class="viewport-btn" data-width="320" data-height="568">Mobile XS (320px)</button>
+            <button class="viewport-btn active" data-width="375" data-height="667">iPhone (375px)</button>
+            <button class="viewport-btn" data-width="768" data-height="1024">iPad (768px)</button>
+            <button class="viewport-btn" data-width="1024" data-height="768">iPad Landscape</button>
+            <button class="viewport-btn" data-width="1440" data-height="900">Desktop (1440px)</button>
+            <button class="viewport-btn" data-width="1920" data-height="1080">Large Desktop</button>
+        </div>
+        
+        <button class="screenshot-btn" onclick="takeScreenshot()">📱 Document Current View</button>
+        
+        <div class="info">
+            <div id="current-size">375px × 667px</div>
+            <div id="current-page">index.html</div>
+        </div>
+    </div>
+
+    <div class="iframe-container" id="iframe-container">
+        <iframe id="test-iframe" src="index.html" width="375" height="667"></iframe>
+    </div>
+
+    <script>
+        const iframe = document.getElementById('test-iframe');
+        const container = document.getElementById('iframe-container');
+        const sizeInfo = document.getElementById('current-size');
+        const pageInfo = document.getElementById('current-page');
+        
+        let currentPage = 'index.html';
+        let currentWidth = 375;
+        let currentHeight = 667;
+        
+        // Viewport button handlers
+        document.querySelectorAll('.viewport-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active from all viewport buttons
+                document.querySelectorAll('.viewport-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const width = btn.dataset.width;
+                const height = btn.dataset.height;
+                
+                iframe.width = width;
+                iframe.height = height;
+                container.style.width = width + 'px';
+                container.style.height = height + 'px';
+                
+                currentWidth = width;
+                currentHeight = height;
+                sizeInfo.textContent = width + 'px × ' + height + 'px';
+                
+                console.log(`Testing ${currentPage} at ${width}px × ${height}px`);
+            });
+        });
+        
+        // Page button handlers
+        document.querySelectorAll('.page-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active from all page buttons
+                document.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const page = btn.dataset.page;
+                iframe.src = page;
+                currentPage = page;
+                pageInfo.textContent = page;
+                
+                console.log(`Switched to ${page} at ${currentWidth}px × ${currentHeight}px`);
+            });
+        });
+        
+        function takeScreenshot() {
+            const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+            const info = {
+                page: currentPage,
+                width: currentWidth,
+                height: currentHeight,
+                timestamp: timestamp,
+                viewport: `${currentWidth}x${currentHeight}`,
+                url: iframe.src
+            };
+            
+            console.log('Screenshot documentation for:', info);
+            
+            // Create a detailed test report
+            const report = `
+RESPONSIVE TEST DOCUMENTATION
+============================
+Page: ${info.page}
+Viewport: ${info.viewport}
+Timestamp: ${info.timestamp}
+URL: ${info.url}
+
+Visual Inspection Checklist:
+[ ] No horizontal scrolling
+[ ] Content readable without zooming  
+[ ] Touch targets >= 44px (mobile)
+[ ] Navigation functions correctly
+[ ] Images scale properly
+[ ] Text doesn't overflow containers
+[ ] Interactive elements accessible
+[ ] Visual hierarchy maintained
+
+Breakpoint Analysis:
+- Current width: ${info.width}px
+- Expected behavior for this breakpoint:
+  ${getExpectedBehavior(info.width)}
+
+Notes: [Add observations here]
+            `;
+            
+            // Log the report
+            console.log(report);
+            alert('Test documentation created! Check browser console for detailed report.');
+        }
+        
+        function getExpectedBehavior(width) {
+            if (width <= 479) {
+                return "• Mobile layout\n• Hamburger navigation\n• Stacked content\n• Small typography\n• Touch-optimized elements";
+            } else if (width <= 767) {
+                return "• Mobile layout\n• Hamburger navigation\n• Stacked content\n• Medium typography";
+            } else if (width <= 1023) {
+                return "• Tablet layout\n• Horizontal navigation\n• 2-column grids\n• Medium typography";
+            } else {
+                return "• Desktop layout\n• Full horizontal navigation\n• Multi-column grids\n• Large typography";
+            }
+        }
+        
+        // Initialize
+        container.style.width = currentWidth + 'px';
+        container.style.height = currentHeight + 'px';
+        
+        // Auto-refresh iframe when it loads to ensure styles are applied
+        iframe.addEventListener('load', () => {
+            setTimeout(() => {
+                console.log(`Loaded ${currentPage} at ${currentWidth}px × ${currentHeight}px`);
+            }, 100);
+        });
+    </script>
+</body>
+</html>
