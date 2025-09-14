@@ -506,6 +506,7 @@ body {
     padding: var(--spacing-6);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
     border-top: 1px solid var(--border-color);
+    z-index: 10001;
 }
 
 .header.on-dark .nav-menu.mobile-open {
@@ -2753,6 +2754,15 @@ body {
 @media (prefers-reduced-motion: reduce) {
     .pro-tooltip {
         transition: opacity 0.1s ease;
+    }
+}
+
+/* Disable tooltips on mobile to prevent interference with navigation */
+@media (max-width: 768px) {
+    .pro-tooltip {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
     }
 }
 
