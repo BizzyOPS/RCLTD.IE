@@ -591,7 +591,8 @@ Would you like to schedule a site visit or consultation?`;
         }
 
         // Default helpful response with smart suggestions
-        return `I understand you're asking about "${message}". Let me help you find the right information!
+        // Note: message is not directly included to prevent XSS via bot message reflection
+        return `I understand your question. Let me help you find the right information!
 
 **🔍 Popular Topics:**
 • **[🔧 Automation Services](automation.html)** - PLC, SCADA, robotics
@@ -645,18 +646,20 @@ Try the quick action buttons below or ask me about specific services, industries
 
     formatMessage(content) {
         // Convert markdown-like formatting to HTML with navigation links (bot messages only)
-        return content
+        // First escape any existing HTML to prevent injection
+        return this.escapeHtml(content)
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
             .replace(/\*(.*?)\*/g, '<em>$1</em>')
             .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => {
-                // Sanitize URLs - only allow safe schemes
-                if (url.match(/^(https?:\/\/|tel:|mailto:|[a-zA-Z0-9.-]+\.html)$/)) {
+                // Sanitize URLs - only allow safe schemes with proper full URL patterns
+                if (url.match(/^(https?:\/\/[^\s"'<>]+|tel:[0-9+()\-\s]+|mailto:[^\s"'<>]+|[A-Za-z0-9._\/-]+\.html)$/)) {
+                    // Text is already escaped above, URL is validated
                     return `<a href="${url}" target="_self" rel="noopener" class="chat-link">${text}</a>`;
                 }
                 return text; // Strip unsafe links, keep text
             })
-            .replace(/•/g, '•')
-            .replace(/\n/g, '<br>');
+            .replace(/•/g, '•');
+            // Note: \n already converted to <br> by escapeHtml
     }
 
     escapeHtml(text) {
