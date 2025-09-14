@@ -1398,19 +1398,34 @@ body {
     color: var(--secondary-color);
 }
 
-/* Page Loading Animation */
+/* Advanced Page Loading Animation - Robotics Theme */
 .page-loader {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--text-primary) 100%);
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--text-primary) 50%, var(--secondary-color) 100%);
+    background-size: 400% 400%;
+    animation: loaderBackgroundShift 8s ease-in-out infinite;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
     transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+    overflow: hidden;
+}
+
+.page-loader::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 20%, rgba(8, 145, 178, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(103, 232, 249, 0.1) 0%, transparent 50%);
+    animation: ambientGlow 6s ease-in-out infinite alternate;
 }
 
 .page-loader.hidden {
@@ -1423,46 +1438,257 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
+    position: relative;
+    z-index: 2;
 }
 
-.logo-loader {
+/* Robotics-themed Logo Container */
+.tech-loader {
+    position: relative;
     width: 200px;
-    height: auto;
-    max-width: 90vw;
-    animation: logoFadeScale 2.5s ease-in-out infinite;
-    filter: drop-shadow(0 0 20px rgba(8, 145, 178, 0.3));
+    height: 200px;
+    margin-bottom: var(--spacing-8);
 }
 
-.logo-loader img {
+/* Company Logo */
+.loader-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: auto;
+    z-index: 3;
+    filter: drop-shadow(0 0 15px rgba(8, 145, 178, 0.5));
+    animation: logoFloat 4s ease-in-out infinite;
+}
+
+.loader-logo img {
     width: 100%;
     height: auto;
     display: block;
 }
 
-.loading-text {
+/* Rotating Gear Elements */
+.gear {
+    position: absolute;
+    border-radius: 50%;
+    border: 3px solid var(--primary-color);
+    opacity: 0.6;
+}
+
+.gear::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px dashed var(--primary-light);
+    top: -2px;
+    left: -2px;
+    animation: inherit;
+}
+
+.gear-1 {
+    width: 60px;
+    height: 60px;
+    top: 20px;
+    right: 20px;
+    animation: rotateClockwise 8s linear infinite;
+}
+
+.gear-2 {
+    width: 40px;
+    height: 40px;
+    bottom: 30px;
+    left: 30px;
+    animation: rotateCounterClockwise 12s linear infinite;
+}
+
+.gear-3 {
+    width: 30px;
+    height: 30px;
+    top: 40px;
+    left: 10px;
+    animation: rotateClockwise 6s linear infinite;
+}
+
+/* Circuit Board Pattern */
+.circuit-pattern {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+    background: linear-gradient(90deg, transparent 45%, var(--primary-color) 50%, transparent 55%),
+                linear-gradient(0deg, transparent 45%, var(--primary-color) 50%, transparent 55%);
+    background-size: 40px 40px;
+    animation: circuitPulse 3s ease-in-out infinite;
+}
+
+/* Progress Display */
+.progress-display {
+    margin: var(--spacing-6) 0;
+}
+
+.progress-counter {
+    font-size: var(--font-size-5xl);
+    font-weight: 700;
+    color: var(--primary-color);
+    text-shadow: 0 0 20px rgba(8, 145, 178, 0.3);
+    margin-bottom: var(--spacing-2);
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    animation: counterGlow 2s ease-in-out infinite alternate;
+}
+
+.progress-bar-container {
+    width: 300px;
+    height: 4px;
+    background: rgba(107, 114, 128, 0.3);
+    border-radius: 2px;
+    overflow: hidden;
+    margin: var(--spacing-4) 0;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+    border-radius: 2px;
+    width: 0%;
+    transition: width 100ms ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: progressShimmer 2s linear infinite;
+}
+
+/* Technical Status Messages */
+.tech-status {
     color: var(--primary-light);
-    font-size: 1.2rem;
+    font-size: var(--font-size-lg);
     font-weight: 500;
-    margin-top: 2rem;
-    animation: textFade 2s ease-in-out infinite;
+    margin-top: var(--spacing-4);
+    text-align: center;
+    min-height: 1.5em;
+    opacity: 0;
+    animation: statusFadeIn 0.5s ease-in-out forwards;
 }
 
-@keyframes logoFadeScale {
-    0%, 100% { 
-        opacity: 0.7;
-        transform: scale(1);
-        filter: drop-shadow(0 0 20px rgba(8, 145, 178, 0.3));
+.tech-status::before {
+    content: '• ';
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* Loading Animation Keyframes */
+@keyframes loaderBackgroundShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes ambientGlow {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.8; }
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translate(-50%, -50%) translateY(0px) scale(1); }
+    50% { transform: translate(-50%, -50%) translateY(-10px) scale(1.05); }
+}
+
+@keyframes rotateClockwise {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes rotateCounterClockwise {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+@keyframes circuitPulse {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes counterGlow {
+    0% { text-shadow: 0 0 20px rgba(8, 145, 178, 0.3); }
+    100% { text-shadow: 0 0 30px rgba(8, 145, 178, 0.6), 0 0 40px rgba(8, 145, 178, 0.3); }
+}
+
+@keyframes progressShimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(300px); }
+}
+
+@keyframes statusFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design for Loader */
+@media (max-width: 768px) {
+    .tech-loader {
+        width: 150px;
+        height: 150px;
     }
-    50% { 
-        opacity: 1;
-        transform: scale(1.05);
-        filter: drop-shadow(0 0 30px rgba(8, 145, 178, 0.6));
+    
+    .loader-logo {
+        width: 60px;
+    }
+    
+    .gear-1 {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .gear-2 {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .gear-3 {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .progress-counter {
+        font-size: var(--font-size-4xl);
+    }
+    
+    .progress-bar-container {
+        width: 250px;
+    }
+    
+    .tech-status {
+        font-size: var(--font-size-base);
+        padding: 0 var(--spacing-4);
     }
 }
 
-@keyframes textFade {
-    0%, 100% { opacity: 0.6; }
-    50% { opacity: 1; }
+@media (max-width: 480px) {
+    .tech-loader {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .progress-counter {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .progress-bar-container {
+        width: 200px;
+    }
 }
 
 /* Hero Robot Video */

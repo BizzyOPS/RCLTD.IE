@@ -14,13 +14,33 @@
 <body>
     <!-- Page Loading Animation -->
     <div class="page-loader" id="page-loader">
-        <div style="text-align: center;">
-            <div class="loader-container">
-                <div class="logo-loader">
+        <div class="loader-container">
+            <!-- Robotics-themed visual container -->
+            <div class="tech-loader">
+                <!-- Company Logo -->
+                <div class="loader-logo">
                     <img src="images/logo.png" alt="Robotics & Control Ltd">
                 </div>
+                
+                <!-- Rotating Gears -->
+                <div class="gear gear-1"></div>
+                <div class="gear gear-2"></div>
+                <div class="gear gear-3"></div>
+                
+                <!-- Circuit Pattern Background -->
+                <div class="circuit-pattern"></div>
             </div>
-            <div class="loading-text">Loading...</div>
+            
+            <!-- Progress Display -->
+            <div class="progress-display">
+                <div class="progress-counter">0%</div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
+            
+            <!-- Technical Status Messages -->
+            <div class="tech-status">Initializing robotic systems...</div>
         </div>
     </div>
 

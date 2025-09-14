@@ -685,27 +685,227 @@ function initGDPR() {
     }
 }
 
-// Page Loading Animation
+// Advanced Page Loading Animation with Progress and Technical Messages
 function initPageLoader() {
     const pageLoader = document.getElementById('page-loader');
     
+    if (!pageLoader) return;
+    
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    // Get or create progress elements with retry mechanism
+    function findLoaderElements() {
+        const progressCounter = pageLoader.querySelector('.progress-counter');
+        const progressBar = pageLoader.querySelector('.progress-bar');
+        const techStatus = pageLoader.querySelector('.tech-status');
+        return { progressCounter, progressBar, techStatus };
+    }
+    
+    // Try to find elements with multiple retry attempts
+    let attempts = 0;
+    const maxAttempts = 5;
+    const retryDelay = 50;
+    
+    function attemptToFindElements() {
+        attempts++;
+        const { progressCounter, progressBar, techStatus } = findLoaderElements();
+        
+        if (progressCounter && progressBar && techStatus) {
+            startAdvancedLoader(progressCounter, progressBar, techStatus, pageLoader);
+            return;
+        }
+        
+        if (attempts < maxAttempts) {
+            setTimeout(attemptToFindElements, retryDelay);
+        } else {
+            console.warn('Loader elements not found in DOM after multiple retries - falling back to simple loader');
+            initSimpleLoader();
+        }
+    }
+    
+    // Initial attempt
+    const { progressCounter, progressBar, techStatus } = findLoaderElements();
+    if (progressCounter && progressBar && techStatus) {
+        startAdvancedLoader(progressCounter, progressBar, techStatus, pageLoader);
+    } else {
+        attemptToFindElements();
+    }
+}
+
+function startAdvancedLoader(progressCounter, progressBar, techStatus, pageLoader) {
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    // Store pageLoader reference to ensure it's accessible throughout the function
+    const loaderElement = pageLoader;
+    
+    // Technical loading messages for robotics/automation
+    const techMessages = [
+        'Initializing robotic systems...',
+        'Connecting to PLC networks...',
+        'Loading safety protocols...',
+        'Calibrating automation sensors...',
+        'Establishing machine control...',
+        'Synchronizing industrial networks...',
+        'Validating safety systems...',
+        'Optimizing control algorithms...',
+        'Loading panel configurations...',
+        'Finalizing system integration...',
+        'Systems ready for operation...'
+    ];
+    
+    let currentProgress = 0;
+    let currentMessageIndex = 0;
+    let loaderStartTime = Date.now();
+    const minLoadTime = prefersReducedMotion ? 800 : 2500; // Shorter for reduced motion
+    const maxLoadTime = prefersReducedMotion ? 1500 : 4000;
+    
+    // Initialize display
+    progressCounter.textContent = '0%';
+    progressBar.style.width = '0%';
+    techStatus.textContent = techMessages[0];
+    
+    // Animation timing
+    const progressUpdateInterval = prefersReducedMotion ? 50 : 80;
+    const messageChangeInterval = prefersReducedMotion ? 400 : 600;
+    
+    // Progress animation function
+    function updateProgress() {
+        if (currentProgress < 100) {
+            // Variable speed progression for more natural feel
+            let increment;
+            if (currentProgress < 20) {
+                increment = Math.random() * 3 + 1; // 1-4% increments early
+            } else if (currentProgress < 80) {
+                increment = Math.random() * 2 + 0.5; // 0.5-2.5% increments middle
+            } else {
+                increment = Math.random() * 1 + 0.2; // 0.2-1.2% increments near end
+            }
+            
+            currentProgress = Math.min(100, currentProgress + increment);
+            
+            // Update display
+            progressCounter.textContent = Math.floor(currentProgress) + '%';
+            progressBar.style.width = currentProgress + '%';
+            
+            // Continue animation
+            setTimeout(updateProgress, progressUpdateInterval);
+        } else {
+            // Progress complete - show final message briefly then hide
+            setTimeout(() => {
+                completeLoader();
+            }, prefersReducedMotion ? 200 : 500);
+        }
+    }
+    
+    // Message rotation function
+    function updateMessage() {
+        if (currentProgress < 95) {
+            currentMessageIndex = (currentMessageIndex + 1) % techMessages.length;
+            techStatus.style.opacity = '0';
+            
+            setTimeout(() => {
+                techStatus.textContent = techMessages[currentMessageIndex];
+                techStatus.style.opacity = '1';
+            }, 200);
+            
+            setTimeout(updateMessage, messageChangeInterval);
+        }
+    }
+    
+    // Complete loader function
+    function completeLoader() {
+        const elapsedTime = Date.now() - loaderStartTime;
+        const remainingTime = Math.max(0, minLoadTime - elapsedTime);
+        
+        setTimeout(() => {
+            if (loaderElement) {
+                loaderElement.classList.add('hidden');
+                
+                // Remove loader from DOM after animation completes
+                setTimeout(() => {
+                    if (loaderElement.parentNode) {
+                        loaderElement.parentNode.removeChild(loaderElement);
+                    }
+                }, 500);
+            }
+        }, remainingTime);
+    }
+    
+    // Start animations
+    if (!prefersReducedMotion) {
+        setTimeout(updateProgress, 300); // Slight delay for visual effect
+        setTimeout(updateMessage, messageChangeInterval);
+    } else {
+        // Simplified version for reduced motion
+        currentProgress = 100;
+        progressCounter.textContent = '100%';
+        progressBar.style.width = '100%';
+        techStatus.textContent = 'Systems ready for operation...';
+        setTimeout(completeLoader, 800);
+    }
+    
+    // Page load event handler
+    window.addEventListener('load', function pageLoadHandler() {
+        // If page loads before animation completes, speed up to finish
+        if (currentProgress < 100) {
+            const remainingProgress = 100 - currentProgress;
+            const speedUpInterval = 30;
+            
+            function speedUpProgress() {
+                if (currentProgress < 100) {
+                    currentProgress = Math.min(100, currentProgress + (remainingProgress / 10));
+                    progressCounter.textContent = Math.floor(currentProgress) + '%';
+                    progressBar.style.width = currentProgress + '%';
+                    
+                    if (currentProgress < 100) {
+                        setTimeout(speedUpProgress, speedUpInterval);
+                    } else {
+                        setTimeout(completeLoader, 300);
+                    }
+                }
+            }
+            speedUpProgress();
+        }
+    });
+    
+    // Fallback: Force hide loader after maximum time
+    const fallbackTimeout = setTimeout(() => {
+        if (loaderElement && !loaderElement.classList.contains('hidden')) {
+            loaderElement.classList.add('hidden');
+            setTimeout(() => {
+                if (loaderElement && loaderElement.parentNode) {
+                    loaderElement.parentNode.removeChild(loaderElement);
+                }
+            }, 500);
+        }
+    }, maxLoadTime);
+    
+    // Return cleanup function in case it's needed
+    return function cleanup() {
+        clearTimeout(fallbackTimeout);
+    };
+}
+
+// Simple fallback loader for when elements are missing
+function initSimpleLoader() {
+    const pageLoader = document.getElementById('page-loader');
     if (!pageLoader) return;
     
     // Hide loader after page is fully loaded
     window.addEventListener('load', function() {
         setTimeout(() => {
             pageLoader.classList.add('hidden');
-            
-            // Remove loader from DOM after animation completes
             setTimeout(() => {
                 if (pageLoader.parentNode) {
                     pageLoader.parentNode.removeChild(pageLoader);
                 }
             }, 500);
-        }, 1000); // Show loader for at least 1 second
+        }, 1000);
     });
     
-    // Fallback: Hide loader after maximum time
+    // Fallback timer
     setTimeout(() => {
         if (pageLoader && !pageLoader.classList.contains('hidden')) {
             pageLoader.classList.add('hidden');
@@ -715,7 +915,7 @@ function initPageLoader() {
                 }
             }, 500);
         }
-    }, 5000); // Maximum 5 seconds
+    }, 5000);
 }
 
 // CSS animations
