@@ -6016,6 +6016,7 @@ img {
 .fill-blank-input {
     display: inline-block;
     min-width: 120px;
+    max-width: 200px;
     padding: var(--spacing-2) var(--spacing-3);
     border: 2px solid var(--primary-color);
     border-radius: var(--radius-sm);
@@ -6024,6 +6025,7 @@ img {
     background: var(--surface);
     transition: all var(--transition-fast);
     margin: 0 var(--spacing-1);
+    box-sizing: border-box;
 }
 
 .fill-blank-input:focus {
@@ -6206,9 +6208,41 @@ img {
         gap: var(--spacing-6);
     }
     
+    /* Fix fill-in-blank inputs for mobile */
+    .fill-blank-input {
+        display: block;
+        width: 100%;
+        min-width: auto;
+        max-width: none;
+        margin: var(--spacing-2) 0;
+        font-size: var(--font-size-sm);
+    }
+    
+    .question-text {
+        line-height: 1.8;
+    }
+    
     .chapter-navigation {
         position: static;
         order: -1;
+    }
+}
+
+/* Very small screens - further optimize fill-in-blank inputs */
+@media (max-width: 480px) {
+    .fill-blank-input {
+        padding: var(--spacing-2);
+        margin: var(--spacing-1) 0;
+        font-size: var(--font-size-xs);
+    }
+    
+    .question-container {
+        padding: var(--spacing-4);
+    }
+    
+    .question-text {
+        font-size: var(--font-size-base);
+        line-height: 2;
     }
     
     .chapter-list {
