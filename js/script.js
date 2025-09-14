@@ -1024,12 +1024,19 @@ class HeroTitleAnimator {
         // Then add glitch effect after fade-in completes
         setTimeout(() => {
             this.element.style.transition = 'none'; // Remove transition for glitch
+            
+            // Set up glitch effect
+            if (!this.element.classList.contains('glitch')) {
+                this.element.dataset.text = this.element.textContent.trim();
+                this.element.classList.add('glitch');
+            }
+            
             this.element.classList.add('glitch-active');
             
             // Remove glitch effect after animation completes
             setTimeout(() => {
                 this.element.classList.remove('glitch-active');
-            }, 2600); // 600ms glitch + 2s electric flash
+            }, 700); // 700ms for new glitch animation
         }, 1000);
     }
 }
@@ -1093,7 +1100,22 @@ function triggerGlitch(element) {
     // Remove glitch effect after animation completes
     setTimeout(() => {
         element.classList.remove('glitch-active');
-    }, 700);
+    }, 800);
+    
+    // Schedule periodic glitch effect every 8-12 seconds
+    if (!element.dataset.periodicGlitch) {
+        element.dataset.periodicGlitch = 'true';
+        const scheduleNext = () => {
+            const delay = 8000 + Math.random() * 4000; // 8-12 seconds
+            setTimeout(() => {
+                if (document.contains(element)) {
+                    triggerGlitch(element);
+                    scheduleNext();
+                }
+            }, delay);
+        };
+        scheduleNext();
+    }
 }
 
 // Initialize hero title animator and glitch effects

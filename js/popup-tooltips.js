@@ -200,8 +200,10 @@ class PopupTooltips {
             if (e.target.classList.contains('popup-tooltip-close') || 
                 e.target.closest('.popup-tooltip-close')) {
                 const button = e.target.closest('.popup-tooltip-close');
-                const tooltipId = button.dataset.tooltipId;
-                this.hideTooltip(tooltipId);
+                const tooltipId = button && button.dataset ? button.dataset.tooltipId : null;
+                if (tooltipId) {
+                    this.hideTooltip(tooltipId);
+                }
             }
         });
 
@@ -216,7 +218,8 @@ class PopupTooltips {
 
         // Hide tooltips when clicking elsewhere
         document.addEventListener('click', (e) => {
-            if (!e.target.closest('.popup-tooltip') && 
+            if (e.target && 
+                !e.target.closest('.popup-tooltip') && 
                 !e.target.closest('[data-popup-tooltip]')) {
                 this.hideAllTooltips();
             }
@@ -237,8 +240,10 @@ class PopupTooltips {
     hideAllTooltips() {
         const allTooltips = document.querySelectorAll('.popup-tooltip');
         allTooltips.forEach(tooltip => {
-            const tooltipId = tooltip.dataset.tooltipId;
-            this.hideTooltip(tooltipId);
+            const tooltipId = tooltip && tooltip.dataset ? tooltip.dataset.tooltipId : null;
+            if (tooltipId) {
+                this.hideTooltip(tooltipId);
+            }
         });
     }
 
