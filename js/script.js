@@ -1097,3 +1097,91 @@ document.addEventListener('DOMContentLoaded', () => {
         window.heroTitleAnimator = new HeroTitleAnimator('.hero-title');
     }, 100);
 });
+
+// Dynamic Header Glass Effect with Background Detection
+class DynamicHeaderManager {
+    constructor() {
+        this.header = document.querySelector('.header');
+        this.heroSection = document.querySelector('.hero');
+        this.servicesSection = document.querySelector('.services, #services');
+        this.lastScrollY = window.scrollY;
+        this.ticking = false;
+        
+        if (this.header) {
+            this.init();
+        }
+    }
+    
+    init() {
+        // Set initial state
+        this.updateHeaderState();
+        
+        // Listen for scroll events with throttling
+        window.addEventListener('scroll', () => {
+            this.lastScrollY = window.scrollY;
+            this.requestTick();
+        });
+        
+        // Listen for resize events
+        window.addEventListener('resize', () => {
+            this.updateHeaderState();
+        });
+        
+        // Initial state after load
+        window.addEventListener('load', () => {
+            setTimeout(() => this.updateHeaderState(), 100);
+        });
+    }
+    
+    requestTick() {
+        if (!this.ticking) {
+            requestAnimationFrame(() => this.updateHeaderState());
+            this.ticking = true;
+        }
+    }
+    
+    updateHeaderState() {
+        this.ticking = false;
+        
+        if (!this.header) return;
+        
+        const scrollY = this.lastScrollY;
+        const headerHeight = this.header.offsetHeight;
+        
+        // Calculate the transition point
+        let transitionPoint = 0;
+        
+        if (this.heroSection) {
+            // Get hero section bounds
+            const heroRect = this.heroSection.getBoundingClientRect();
+            const heroBottom = heroRect.bottom + scrollY - headerHeight;
+            transitionPoint = heroBottom;
+        }
+        
+        // Determine if header is over dark or light background
+        const isOverDark = scrollY < transitionPoint;
+        
+        // Apply appropriate classes
+        if (isOverDark) {
+            this.header.classList.add('on-dark');
+            this.header.classList.remove('on-light');
+        } else {
+            this.header.classList.remove('on-dark');
+            this.header.classList.add('on-light');
+        }
+        
+        // Add a small scroll effect for extra visual enhancement
+        if (scrollY > 50) {
+            this.header.style.backdropFilter = 'blur(25px) saturate(180%)';
+            this.header.style.webkitBackdropFilter = 'blur(25px) saturate(180%)';
+        } else {
+            this.header.style.backdropFilter = 'blur(20px) saturate(180%)';
+            this.header.style.webkitBackdropFilter = 'blur(20px) saturate(180%)';
+        }
+    }
+}
+
+// Initialize dynamic header manager
+document.addEventListener('DOMContentLoaded', () => {
+    window.headerManager = new DynamicHeaderManager();
+});

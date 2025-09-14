@@ -7,6 +7,9 @@ This is a static website for Robotics & Control Ltd, an Irish technology company
 ## Recent Changes
 
 **September 14, 2025**
+- **Glass Header Navigation**: Implemented transparent glassmorphism effect for header with dynamic color switching based on background
+- **Dynamic Text Contrast**: Header text automatically switches between white (on dark backgrounds) and black (on light backgrounds) for optimal readability
+- **Enhanced Circuit Background**: Replaced rain-like lines with proper PCB circuit board patterns that resemble actual electronic components
 - **Safety Training Grading System**: Implemented 90% pass requirement with detailed grading results and celebration effects for perfect scores
 - **Training Course Updates**: Removed certificate references from all training descriptions and meta tags
 - **Responsive Training Scaling**: Fixed all scaling issues across training sections and knowledge check questions for mobile and desktop
