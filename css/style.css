@@ -1641,6 +1641,35 @@ body {
     stroke-width: 2;
 }
 
+/* Clickable Contact Method Cards */
+.contact-method-clickable {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: all var(--transition-fast);
+    border-radius: 12px;
+    padding: 0.5rem;
+    margin: -0.5rem;
+}
+
+.contact-method-clickable:hover {
+    background: rgba(8, 145, 178, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(8, 145, 178, 0.15);
+}
+
+.contact-method-clickable:active {
+    transform: translateY(0);
+}
+
+.contact-method-clickable .contact-details h3 {
+    transition: color var(--transition-fast);
+}
+
+.contact-method-clickable:hover .contact-details h3 {
+    color: var(--primary);
+}
+
 .service-title {
     font-size: var(--font-size-xl);
     font-weight: 600;
