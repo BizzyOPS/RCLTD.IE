@@ -15,15 +15,12 @@ class RCStore {
     }
 
     bindEvents() {
-        // Cart toggle
-        const cartToggle = document.getElementById('cart-toggle');
+        // Cart sidebar elements (for pages that have cart sidebar)
         const cartSidebar = document.getElementById('cart-sidebar');
         const cartOverlay = document.getElementById('cart-overlay');
         const cartClose = document.getElementById('cart-close');
 
-        if (cartToggle) {
-            cartToggle.addEventListener('click', () => this.toggleCart());
-        }
+        // Note: cart-toggle is no longer used - cart icon now links to cart.html
 
         if (cartClose) {
             cartClose.addEventListener('click', () => this.closeCart());
