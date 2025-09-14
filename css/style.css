@@ -131,14 +131,22 @@
     }
 }
 
-@keyframes circuit-glow {
+@keyframes automation-pulse {
     0%, 100% { 
         opacity: 0.3; 
-        filter: brightness(1); 
+        filter: brightness(1) hue-rotate(0deg); 
+    }
+    25% { 
+        opacity: 0.35; 
+        filter: brightness(1.1) hue-rotate(5deg); 
     }
     50% { 
-        opacity: 0.4; 
-        filter: brightness(1.2); 
+        opacity: 0.42; 
+        filter: brightness(1.25) hue-rotate(10deg); 
+    }
+    75% { 
+        opacity: 0.38; 
+        filter: brightness(1.15) hue-rotate(5deg); 
     }
 }
 
@@ -676,48 +684,47 @@ body {
     width: 100%;
     height: 100%;
     background-image: 
-        /* Circuit board grid - horizontal traces */
-        linear-gradient(90deg, transparent 49%, rgba(6, 182, 212, 0.15) 50%, transparent 51%),
-        /* Circuit board grid - vertical traces */
-        linear-gradient(0deg, transparent 49%, rgba(6, 182, 212, 0.15) 50%, transparent 51%),
-        /* Electronic component nodes */
-        radial-gradient(circle at 15% 25%, rgba(103, 232, 249, 0.3) 2px, transparent 3px),
-        radial-gradient(circle at 75% 15%, rgba(103, 232, 249, 0.3) 2px, transparent 3px),
-        radial-gradient(circle at 35% 65%, rgba(103, 232, 249, 0.3) 2px, transparent 3px),
-        radial-gradient(circle at 85% 75%, rgba(103, 232, 249, 0.3) 2px, transparent 3px),
-        radial-gradient(circle at 60% 40%, rgba(103, 232, 249, 0.3) 2px, transparent 3px),
-        /* Microchip patterns */
-        linear-gradient(90deg, transparent 24%, rgba(6, 182, 212, 0.1) 25%, rgba(6, 182, 212, 0.1) 26%, transparent 27%),
-        linear-gradient(0deg, transparent 24%, rgba(6, 182, 212, 0.1) 25%, rgba(6, 182, 212, 0.1) 26%, transparent 27%),
-        /* PCB connection paths */
-        linear-gradient(45deg, transparent 49.5%, rgba(103, 232, 249, 0.08) 50%, transparent 50.5%),
-        linear-gradient(-45deg, transparent 49.5%, rgba(103, 232, 249, 0.08) 50%, transparent 50.5%);
+        /* Industrial automation grid - main framework */
+        linear-gradient(90deg, transparent 48%, rgba(8, 145, 178, 0.18) 49%, rgba(8, 145, 178, 0.18) 51%, transparent 52%),
+        linear-gradient(0deg, transparent 48%, rgba(8, 145, 178, 0.18) 49%, rgba(8, 145, 178, 0.18) 51%, transparent 52%),
+        /* Control system nodes - larger industrial components */
+        radial-gradient(circle at 20% 30%, rgba(16, 185, 129, 0.25) 3px, transparent 4px),
+        radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.25) 3px, transparent 4px),
+        radial-gradient(circle at 25% 70%, rgba(16, 185, 129, 0.25) 3px, transparent 4px),
+        radial-gradient(circle at 75% 80%, rgba(16, 185, 129, 0.25) 3px, transparent 4px),
+        radial-gradient(circle at 50% 45%, rgba(16, 185, 129, 0.25) 3px, transparent 4px),
+        /* Automation pathway patterns */
+        linear-gradient(90deg, transparent 23%, rgba(8, 145, 178, 0.12) 24%, rgba(8, 145, 178, 0.12) 28%, transparent 29%),
+        linear-gradient(0deg, transparent 23%, rgba(8, 145, 178, 0.12) 24%, rgba(8, 145, 178, 0.12) 28%, transparent 29%),
+        /* Robotic connection paths - angular and industrial */
+        linear-gradient(30deg, transparent 49%, rgba(16, 185, 129, 0.06) 50%, transparent 51%),
+        linear-gradient(-30deg, transparent 49%, rgba(16, 185, 129, 0.06) 50%, transparent 51%);
     background-size: 
-        120px 120px,
-        120px 120px,
+        150px 150px,
+        150px 150px,
+        220px 220px,
+        300px 300px,
+        400px 400px,
+        350px 350px,
+        250px 250px,
+        80px 80px,
+        80px 80px,
         180px 180px,
-        240px 240px,
-        320px 320px,
-        280px 280px,
-        200px 200px,
-        60px 60px,
-        60px 60px,
-        200px 200px,
-        200px 200px;
+        180px 180px;
     background-position:
         0 0,
         0 0,
+        25px 25px,
+        75px 75px,
+        150px 150px,
+        225px 225px,
+        110px 110px,
         0 0,
-        60px 60px,
-        120px 120px,
-        180px 180px,
-        90px 90px,
         0 0,
-        0 0,
-        0 0,
-        0 0;
+        40px 40px,
+        40px 40px;
     opacity: 0.3;
-    animation: circuit-glow 6s ease-in-out infinite;
+    animation: automation-pulse 8s ease-in-out infinite;
     z-index: 1;
 }
 
