@@ -2624,6 +2624,23 @@ body {
     border-color: var(--primary);
 }
 
+/* Chat links within messages */
+.chat-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(8, 145, 178, 0.3);
+    transition: all var(--transition-fast);
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+.chat-link:hover {
+    background: rgba(8, 145, 178, 0.1);
+    border-bottom-color: var(--primary);
+    text-decoration: none;
+}
+
 /* Mobile responsive adjustments */
 @media (max-width: 768px) {
     .chatbot-container {
