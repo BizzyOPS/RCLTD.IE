@@ -21,6 +21,7 @@ class RCStore {
         const cartClose = document.getElementById('cart-close');
 
         // Note: cart-toggle is no longer used - cart icon now links to cart.html
+        // But we still need cart sidebar functionality for "Add to Cart" actions
 
         if (cartClose) {
             cartClose.addEventListener('click', () => this.closeCart());
@@ -228,6 +229,9 @@ class RCStore {
     }
 
     showCartNotification(message) {
+        // Show cart sidebar when items are added
+        this.toggleCart();
+        
         // Create and show a toast notification
         const notification = document.createElement('div');
         notification.className = 'cart-notification';
