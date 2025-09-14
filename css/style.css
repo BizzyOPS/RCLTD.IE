@@ -424,7 +424,8 @@ body {
     justify-content: center;
     position: relative;
     box-shadow: var(--shadow-xl);
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    overflow: hidden;
+    background: var(--text-primary);
 }
 
 .hero-visual::before {
@@ -1118,65 +1119,12 @@ body {
     50% { opacity: 1; }
 }
 
-/* Green Robotic Arm Illustration */
-.green-arm-illustration {
+/* Hero Robot Video */
+.hero-robot-video {
     width: 100%;
     height: 100%;
-    max-width: 380px;
-    max-height: 280px;
-}
-
-.green-arm-illustration .joint-1,
-.green-arm-illustration .joint-2 {
-    animation: jointPulse 3s ease-in-out infinite;
-}
-
-.green-arm-illustration .joint-2 {
-    animation-delay: 0.5s;
-}
-
-.green-arm-illustration .end-effector {
-    animation: gripperRotate 4s ease-in-out infinite;
-    transform-origin: 340px 80px;
-}
-
-.green-arm-illustration .motion-lines .motion-1 {
-    animation: motionFlow 2s ease-in-out infinite;
-}
-
-.green-arm-illustration .motion-lines .motion-2 {
-    animation: motionFlow 2s ease-in-out infinite;
-    animation-delay: 1s;
-}
-
-@keyframes jointPulse {
-    0%, 100% { 
-        fill: #22c55e;
-        stroke: #16a34a;
-        r: 12;
-    }
-    50% { 
-        fill: #34d399;
-        stroke: #059669;
-        r: 14;
-    }
-}
-
-@keyframes gripperRotate {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(15deg); }
-    75% { transform: rotate(-15deg); }
-}
-
-@keyframes motionFlow {
-    0%, 100% { 
-        opacity: 0.3;
-        stroke-dashoffset: 0;
-    }
-    50% { 
-        opacity: 0.8;
-        stroke-dashoffset: 12;
-    }
+    object-fit: cover;
+    border-radius: var(--radius-xl);
 }
 
 @media (max-width: 768px) {
