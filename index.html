@@ -154,48 +154,57 @@
             <!-- Particles Background -->
             <div id="tsparticles"></div>
             
-            <!-- Circuit Board Background -->
-            <div class="circuit-board">
-                <!-- Circuit Pattern Overlay -->
-                <div class="circuit-pattern"></div>
-                
-                <!-- Horizontal Circuit Lines -->
-                <div class="circuit-line horizontal" style="top: 15%; left: 10%; animation-delay: 0s;"></div>
-                <div class="circuit-line horizontal" style="top: 25%; left: 70%; animation-delay: 1s;"></div>
-                <div class="circuit-line horizontal" style="top: 45%; left: 20%; animation-delay: 2s;"></div>
-                <div class="circuit-line horizontal" style="top: 65%; left: 60%; animation-delay: 0.5s;"></div>
-                <div class="circuit-line horizontal" style="top: 80%; left: 15%; animation-delay: 1.5s;"></div>
-                
-                <!-- Vertical Circuit Lines -->
-                <div class="circuit-line vertical" style="top: 20%; left: 25%; animation-delay: 0.3s;"></div>
-                <div class="circuit-line vertical" style="top: 35%; left: 75%; animation-delay: 1.3s;"></div>
-                <div class="circuit-line vertical" style="top: 55%; left: 45%; animation-delay: 2.3s;"></div>
-                <div class="circuit-line vertical" style="top: 10%; left: 85%; animation-delay: 0.8s;"></div>
-                
-                <!-- Circuit Nodes -->
-                <div class="circuit-node" style="top: 15%; left: 25%;"></div>
-                <div class="circuit-node" style="top: 35%; left: 75%;"></div>
-                <div class="circuit-node large" style="top: 45%; left: 45%;"></div>
-                <div class="circuit-node" style="top: 65%; left: 60%;"></div>
-                <div class="circuit-node large" style="top: 80%; left: 20%;"></div>
-                <div class="circuit-node" style="top: 25%; left: 70%;"></div>
-                <div class="circuit-node" style="top: 55%; left: 30%;"></div>
-                <div class="circuit-node large" style="top: 10%; left: 85%;"></div>
-                
-                <!-- Circuit Components -->
-                <div class="circuit-component resistor" style="top: 20%; left: 40%; animation-delay: 0.5s;"></div>
-                <div class="circuit-component capacitor" style="top: 40%; left: 15%; animation-delay: 1.2s;"></div>
-                <div class="circuit-component chip" style="top: 60%; left: 75%; animation-delay: 0.8s;"></div>
-                <div class="circuit-component resistor" style="top: 75%; left: 50%; animation-delay: 1.8s;"></div>
-                <div class="circuit-component capacitor" style="top: 30%; left: 85%; animation-delay: 0.2s;"></div>
-                <div class="circuit-component chip" style="top: 50%; left: 10%; animation-delay: 1.5s;"></div>
-                
-                <!-- Circuit Traces -->
-                <div class="circuit-trace" style="top: 18%; left: 15%; width: 150px; transform: rotate(15deg); animation-delay: 0s;"></div>
-                <div class="circuit-trace" style="top: 38%; left: 50%; width: 200px; transform: rotate(-30deg); animation-delay: 1s;"></div>
-                <div class="circuit-trace" style="top: 58%; left: 25%; width: 180px; transform: rotate(45deg); animation-delay: 2s;"></div>
-                <div class="circuit-trace" style="top: 72%; left: 65%; width: 120px; transform: rotate(-15deg); animation-delay: 0.7s;"></div>
-                <div class="circuit-trace" style="top: 28%; left: 35%; width: 160px; transform: rotate(60deg); animation-delay: 1.4s;"></div>
+            <!-- Professional PCB Circuit Board -->
+            <div class="pcb-circuit">
+                <svg viewBox="0 0 1440 600" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Main PCB Traces with Curves and Realistic Angles -->
+                    <path class="pcb-trace animated" d="M50,150 Q200,120 350,180 L500,160 Q650,140 800,200 L950,180 Q1100,160 1250,220" />
+                    <path class="pcb-trace animated" d="M100,280 L250,260 Q400,240 550,300 L700,280 Q850,260 1000,320 L1150,300" />
+                    <path class="pcb-trace animated" d="M200,80 Q350,60 500,120 L650,100 Q800,80 950,140 L1100,120 Q1250,100 1400,160" />
+                    
+                    <!-- Static PCB Traces -->
+                    <path class="pcb-trace" d="M80,350 L230,330 Q380,310 530,370 L680,350 Q830,330 980,390" />
+                    <path class="pcb-trace" d="M150,420 Q300,400 450,460 L600,440 Q750,420 900,480 L1050,460" />
+                    <path class="pcb-trace" d="M300,50 L450,30 Q600,10 750,70 L900,50 Q1050,30 1200,90" />
+                    <path class="pcb-trace" d="M70,500 Q220,480 370,540 L520,520 Q670,500 820,560" />
+                    
+                    <!-- Connecting Traces with 30/60 degree angles -->
+                    <path class="pcb-trace" d="M350,180 L380,240 L420,260" />
+                    <path class="pcb-trace" d="M800,200 L830,160 L870,140" />
+                    <path class="pcb-trace" d="M550,300 L580,340 L620,360" />
+                    <path class="pcb-trace" d="M500,120 L530,80 L570,60" />
+                    <path class="pcb-trace" d="M750,70 L780,110 L820,130" />
+                    
+                    <!-- PCB Vias (connection points) -->
+                    <circle class="pcb-via" cx="350" cy="180" r="4" />
+                    <circle class="pcb-via" cx="800" cy="200" r="4" />
+                    <circle class="pcb-via" cx="550" cy="300" r="4" />
+                    <circle class="pcb-via" cx="500" cy="120" r="4" />
+                    <circle class="pcb-via" cx="750" cy="70" r="4" />
+                    <circle class="pcb-via" cx="1100" cy="160" r="4" />
+                    <circle class="pcb-via" cx="380" cy="310" r="3" />
+                    <circle class="pcb-via" cx="680" cy="350" r="3" />
+                    
+                    <!-- IC Component Outlines -->
+                    <rect class="pcb-component" x="320" y="160" width="60" height="40" rx="3" />
+                    <rect class="pcb-component" x="770" y="180" width="60" height="40" rx="3" />
+                    <rect class="pcb-component" x="520" y="280" width="60" height="40" rx="3" />
+                    
+                    <!-- Resistor Components -->
+                    <rect class="pcb-component" x="470" y="115" width="30" height="10" rx="2" />
+                    <rect class="pcb-component" x="720" y="65" width="30" height="10" rx="2" />
+                    <rect class="pcb-component" x="350" y="305" width="30" height="10" rx="2" />
+                    
+                    <!-- Capacitor Components -->
+                    <rect class="pcb-component" x="545" y="295" width="10" height="20" rx="1" />
+                    <rect class="pcb-component" x="795" y="195" width="10" height="20" rx="1" />
+                    
+                    <!-- Energy Pulse Points -->
+                    <circle class="pcb-charge" cx="200" cy="130" />
+                    <circle class="pcb-charge" cx="650" cy="170" />
+                    <circle class="pcb-charge" cx="400" cy="250" />
+                    <circle class="pcb-charge" cx="850" cy="290" />
+                </svg>
             </div>
             
             <div class="hero-container">
