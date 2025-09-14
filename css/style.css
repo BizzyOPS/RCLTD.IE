@@ -870,14 +870,6 @@ body {
     }
 }
 
-@keyframes electric-flash {
-    0%, 90%, 100% {
-        text-shadow: 0 0 5px #67e8f9, 0 0 10px #0891b2, 0 0 15px #0891b2;
-    }
-    5%, 15%, 25% {
-        text-shadow: 0 0 20px #67e8f9, 0 0 30px #0891b2, 0 0 40px #0891b2, 0 0 50px #0891b2;
-    }
-}
 
 @keyframes slide-in-left {
     0% {

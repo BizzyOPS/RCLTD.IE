@@ -224,7 +224,7 @@ class PopupTooltips {
 
         // Show tooltip on hover for elements that haven't been shown yet
         document.addEventListener('mouseenter', (e) => {
-            const tooltipId = e.target.dataset.popupTooltip;
+            const tooltipId = e.target && e.target.dataset ? e.target.dataset.popupTooltip : null;
             if (tooltipId && !this.shownTooltips.has(tooltipId)) {
                 const config = this.tooltips.get(tooltipId);
                 if (config) {
