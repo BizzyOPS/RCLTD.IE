@@ -150,71 +150,10 @@
     }
 }
 
-@keyframes floating-cogs {
-    0% { 
-        transform: translateY(0px) rotate(0deg);
-        background-position:
-            0% 0%,
-            20% 0%,
-            40% 0%,
-            60% 0%,
-            80% 0%,
-            100% 0%,
-            0% 50%,
-            20% 50%,
-            40% 50%;
-    }
-    25% { 
-        transform: translateY(-10px) rotate(90deg);
-        background-position:
-            10% 10%,
-            30% 10%,
-            50% 10%,
-            70% 10%,
-            90% 10%,
-            110% 10%,
-            10% 60%,
-            30% 60%,
-            50% 60%;
-    }
-    50% { 
-        transform: translateY(-5px) rotate(180deg);
-        background-position:
-            20% 20%,
-            40% 20%,
-            60% 20%,
-            80% 20%,
-            100% 20%,
-            120% 20%,
-            20% 70%,
-            40% 70%,
-            60% 70%;
-    }
-    75% { 
-        transform: translateY(-15px) rotate(270deg);
-        background-position:
-            15% 15%,
-            35% 15%,
-            55% 15%,
-            75% 15%,
-            95% 15%,
-            115% 15%,
-            15% 65%,
-            35% 65%,
-            55% 65%;
-    }
-    100% { 
-        transform: translateY(0px) rotate(360deg);
-        background-position:
-            0% 0%,
-            20% 0%,
-            40% 0%,
-            60% 0%,
-            80% 0%,
-            100% 0%,
-            0% 50%,
-            20% 50%,
-            40% 50%;
+/* Reduced motion support for gears */
+@media (prefers-reduced-motion: reduce) {
+    .gear {
+        animation: none !important;
     }
 }
 
@@ -802,41 +741,85 @@ body {
     z-index: 1;
 }
 
-/* Floating Cogs Background Animation */
-.hero::after {
-    content: '';
+/* Mechanical Gears Background Container */
+.hero .gear-bg {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: 
-        /* White cogs */
-        radial-gradient(circle at 15% 20%, transparent 10px, transparent 12px, rgba(255, 255, 255, 0.8) 13px, rgba(255, 255, 255, 0.8) 18px, transparent 19px),
-        radial-gradient(circle at 85% 15%, transparent 8px, transparent 10px, rgba(255, 255, 255, 0.7) 11px, rgba(255, 255, 255, 0.7) 15px, transparent 16px),
-        radial-gradient(circle at 25% 80%, transparent 12px, transparent 14px, rgba(255, 255, 255, 0.6) 15px, rgba(255, 255, 255, 0.6) 20px, transparent 21px),
-        /* Yellow cogs */
-        radial-gradient(circle at 65% 25%, transparent 9px, transparent 11px, rgba(255, 255, 0, 0.8) 12px, rgba(255, 255, 0, 0.8) 16px, transparent 17px),
-        radial-gradient(circle at 20% 60%, transparent 11px, transparent 13px, rgba(255, 235, 59, 0.7) 14px, rgba(255, 235, 59, 0.7) 18px, transparent 19px),
-        /* Red cogs */
-        radial-gradient(circle at 75% 70%, transparent 10px, transparent 12px, rgba(220, 53, 69, 0.8) 13px, rgba(220, 53, 69, 0.8) 17px, transparent 18px),
-        radial-gradient(circle at 40% 30%, transparent 8px, transparent 10px, rgba(255, 82, 82, 0.7) 11px, rgba(255, 82, 82, 0.7) 14px, transparent 15px),
-        /* Brown cogs */
-        radial-gradient(circle at 80% 85%, transparent 9px, transparent 11px, rgba(139, 69, 19, 0.8) 12px, rgba(139, 69, 19, 0.8) 16px, transparent 17px),
-        radial-gradient(circle at 30% 45%, transparent 11px, transparent 13px, rgba(160, 82, 45, 0.7) 14px, rgba(160, 82, 45, 0.7) 18px, transparent 19px);
-    background-size: 
-        400px 400px,
-        300px 300px,
-        350px 350px,
-        280px 280px,
-        320px 320px,
-        360px 360px,
-        240px 240px,
-        380px 380px,
-        290px 290px;
-    animation: floating-cogs 20s linear infinite;
-    opacity: 0.4;
+    pointer-events: none;
     z-index: 1;
+}
+
+/* Individual Mechanical Gears */
+.gear {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: var(--size, 120px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    --teeth: var(--teeth, 12);
+    --tooth: calc(360deg / var(--teeth));
+    --inner: 26%;
+    --outer: 50%;
+    animation: gear-float var(--dur, 12s) ease-in-out infinite;
+    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.35)) drop-shadow(0 1px 0 rgba(255, 255, 255, 0.2));
+    
+    /* Webkit browsers (Chrome, Safari) */
+    -webkit-mask: 
+        repeating-conic-gradient(#000 0 calc(var(--tooth) * 0.6), transparent 0 var(--tooth)),
+        radial-gradient(circle, transparent 0 var(--inner), #000 var(--inner) var(--outer), transparent var(--outer));
+    -webkit-mask-composite: source-in;
+    
+    /* Firefox */
+    mask: 
+        repeating-conic-gradient(#000 0 calc(var(--tooth) * 0.6), transparent 0 var(--tooth)),
+        radial-gradient(circle, transparent 0 var(--inner), #000 var(--inner) var(--outer), transparent var(--outer));
+    mask-composite: intersect;
+}
+
+/* White metallic gears */
+.gear.white {
+    background: linear-gradient(160deg, #f8fafc, #e2e8f0 45%, #cbd5e1 60%, #e2e8f0);
+}
+
+/* Yellow brass gears */
+.gear.yellow {
+    background: linear-gradient(160deg, #fef08a, #facc15 45%, #eab308 60%, #fde047);
+}
+
+/* Red steel gears */
+.gear.red {
+    background: linear-gradient(160deg, #fca5a5, #ef4444 45%, #dc2626 60%, #f87171);
+}
+
+/* Brown bronze gears */
+.gear.brown {
+    background: linear-gradient(160deg, #d2b48c, #8b4513 45%, #654321 60%, #a0522d);
+}
+
+/* Metallic texture overlay */
+.gear::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0.15;
+    mix-blend-mode: overlay;
+    background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.35) 0 1px, rgba(0, 0, 0, 0.12) 1px 3px);
+}
+
+/* Floating animation without rotation */
+@keyframes gear-float {
+    0%, 100% { 
+        transform: translateY(0px);
+    }
+    50% { 
+        transform: translateY(-12px);
+    }
 }
 
 /* Particles Background - Limited to navy blue area only */
