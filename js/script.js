@@ -1,5 +1,240 @@
 // Modern JavaScript for RCLtd Website
 
+// Particles initialization with performance optimizations
+function initParticles() {
+    if (typeof tsParticles !== 'undefined') {
+        // Check for reduced motion preference
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        // Responsive particle configuration based on screen size
+        const isMobile = window.innerWidth < 768;
+        const isTablet = window.innerWidth < 1024;
+        
+        // If user prefers reduced motion, disable particles entirely
+        if (prefersReducedMotion) {
+            return;
+        }
+        
+        // Adaptive settings based on device capability
+        const particleCount = isMobile ? 15 : isTablet ? 25 : 30;
+        const fpsLimit = isMobile ? 30 : 45;
+        const linksEnabled = !isMobile; // Disable links on mobile for better performance
+        const interactiveMode = isMobile ? false : true;
+        
+        tsParticles.load('tsparticles', {
+            background: {
+                color: {
+                    value: 'transparent'
+                }
+            },
+            fpsLimit: fpsLimit,
+            interactivity: {
+                events: {
+                    onClick: {
+                        enable: interactiveMode,
+                        mode: 'push'
+                    },
+                    onHover: {
+                        enable: interactiveMode,
+                        mode: 'repulse'
+                    },
+                    resize: true
+                },
+                modes: {
+                    push: {
+                        quantity: isMobile ? 1 : 2
+                    },
+                    repulse: {
+                        distance: isMobile ? 100 : 150,
+                        duration: 0.3
+                    }
+                }
+            },
+            particles: {
+                color: {
+                    value: ['#0891b2', '#67e8f9', '#6b7280', '#ffffff']
+                },
+                links: {
+                    color: '#0891b2',
+                    distance: isMobile ? 0 : 120,
+                    enable: linksEnabled,
+                    opacity: 0.2,
+                    width: 1
+                },
+                collisions: {
+                    enable: false // Disabled for better performance
+                },
+                move: {
+                    direction: 'none',
+                    enable: true,
+                    outModes: {
+                        default: 'out'
+                    },
+                    random: false,
+                    speed: isMobile ? 1 : 1.5,
+                    straight: false
+                },
+                number: {
+                    density: {
+                        enable: true,
+                        area: isMobile ? 400 : 800
+                    },
+                    value: particleCount
+                },
+                opacity: {
+                    value: isMobile ? 0.3 : 0.4
+                },
+                shape: {
+                    type: isMobile ? ['circle'] : ['circle', 'triangle', 'star']
+                },
+                size: {
+                    value: { min: 1, max: isMobile ? 3 : 4 }
+                }
+            },
+            detectRetina: true,
+            pauseOnBlur: true,
+            pauseOnOutsideViewport: true
+        });
+    }
+}
+
+// Hero Carousel initialization
+function initHeroCarousel() {
+    if (typeof EmblaCarousel !== 'undefined') {
+        const emblaNode = document.querySelector('#hero-embla');
+        const viewportNode = emblaNode;
+        const prevBtn = document.querySelector('.embla__prev');
+        const nextBtn = document.querySelector('.embla__next');
+        const dotsContainer = document.querySelector('.embla__dots');
+        
+        if (emblaNode && viewportNode) {
+            // Check for reduced motion preference
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            
+            // Only enable autoplay if user doesn't prefer reduced motion
+            const autoplay = (!prefersReducedMotion && typeof EmblaCarouselAutoplay !== 'undefined') ? 
+                EmblaCarouselAutoplay({ delay: 4000, stopOnInteraction: false }) : null;
+            
+            const plugins = autoplay ? [autoplay] : [];
+            
+            const embla = EmblaCarousel(viewportNode, {
+                loop: true,
+                dragFree: false,
+                containScroll: 'trimSnaps'
+            }, plugins);
+            
+            // Navigation buttons
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', () => embla.scrollPrev());
+                nextBtn.addEventListener('click', () => embla.scrollNext());
+                
+                const updateButtonStates = () => {
+                    prevBtn.disabled = !embla.canScrollPrev();
+                    nextBtn.disabled = !embla.canScrollNext();
+                };
+                
+                embla.on('select', updateButtonStates);
+                updateButtonStates();
+            }
+            
+            // Dots navigation
+            if (dotsContainer) {
+                const slides = embla.slideNodes();
+                
+                slides.forEach((_, index) => {
+                    const dot = document.createElement('button');
+                    dot.className = 'embla__dot';
+                    dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+                    dot.addEventListener('click', () => embla.scrollTo(index));
+                    dotsContainer.appendChild(dot);
+                });
+                
+                const updateDots = () => {
+                    const selectedIndex = embla.selectedScrollSnap();
+                    const dots = dotsContainer.querySelectorAll('.embla__dot');
+                    dots.forEach((dot, index) => {
+                        const isSelected = index === selectedIndex;
+                        dot.classList.toggle('embla__dot--selected', isSelected);
+                        // Improve accessibility with aria-current
+                        if (isSelected) {
+                            dot.setAttribute('aria-current', 'true');
+                        } else {
+                            dot.removeAttribute('aria-current');
+                        }
+                    });
+                };
+                
+                embla.on('select', updateDots);
+                updateDots();
+            }
+        }
+    }
+}
+
+// Hero Video initialization with reduced motion support
+function initHeroVideo() {
+    const heroVideo = document.querySelector('.hero-robot-video');
+    
+    if (heroVideo) {
+        // Check for reduced motion preference
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        if (prefersReducedMotion) {
+            // Disable autoplay and loop for users who prefer reduced motion
+            heroVideo.removeAttribute('autoplay');
+            heroVideo.removeAttribute('loop');
+            
+            // Pause the video if it's already playing
+            heroVideo.pause();
+            
+            // Show the first frame
+            heroVideo.currentTime = 0;
+            
+            // Add manual control hint for accessibility
+            heroVideo.setAttribute('aria-label', 'Robotics video - click to play manually');
+            heroVideo.setAttribute('tabindex', '0');
+            
+            // Allow manual play on click or Enter key
+            const playVideo = () => {
+                if (heroVideo.paused) {
+                    heroVideo.play().catch(e => {
+                        console.log('Video play failed:', e);
+                    });
+                } else {
+                    heroVideo.pause();
+                }
+            };
+            
+            heroVideo.addEventListener('click', playVideo);
+            heroVideo.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    playVideo();
+                }
+            });
+        } else {
+            // For users who don't prefer reduced motion, ensure autoplay works
+            heroVideo.setAttribute('autoplay', '');
+            heroVideo.setAttribute('loop', '');
+            
+            // Try to play the video (browsers may still block autoplay)
+            heroVideo.play().catch(e => {
+                console.log('Autoplay prevented by browser:', e);
+            });
+        }
+        
+        // Add error handling
+        heroVideo.addEventListener('error', (e) => {
+            console.error('Video loading error:', e);
+            // Hide video container if there's an error
+            const videoContainer = heroVideo.closest('.hero-visual');
+            if (videoContainer) {
+                videoContainer.style.display = 'none';
+            }
+        });
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all components
     initNavigation();
@@ -8,6 +243,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initAnimations();
     initGDPR();
     initPageLoader();
+    initParticles();
+    initHeroCarousel();
+    initHeroVideo();
 });
 
 // Navigation functionality

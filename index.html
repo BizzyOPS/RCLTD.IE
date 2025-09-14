@@ -45,6 +45,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- tsParticles CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+    
+    <!-- Embla Carousel CDN -->
+    <script src="https://unpkg.com/embla-carousel@8.0.0/embla-carousel.umd.js"></script>
+    <script src="https://unpkg.com/embla-carousel-autoplay@8.0.0/embla-carousel-autoplay.umd.js"></script>
 </head>
 <body>
     <!-- Page Loading Animation -->
@@ -108,6 +115,9 @@
     <main>
         <!-- Hero Section -->
         <section class="hero">
+            <!-- Particles Background -->
+            <div id="tsparticles"></div>
+            
             <div class="hero-container">
                 <div class="hero-content">
                     <h1 class="hero-title">Advanced Automation & Safety Solutions</h1>
@@ -118,11 +128,48 @@
                     </div>
                 </div>
                 <div class="hero-image">
-                    <div class="hero-visual">
-                        <video class="hero-robot-video" autoplay muted loop playsinline>
-                            <source src="videos/robotics-machine.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
+                    <!-- Image Carousel -->
+                    <div class="hero-carousel">
+                        <div class="embla" id="hero-embla">
+                            <div class="embla__container">
+                                <div class="embla__slide">
+                                    <div class="hero-visual">
+                                        <video class="hero-robot-video" autoplay muted loop playsinline>
+                                            <source src="videos/robotics-machine.mp4" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                </div>
+                                <div class="embla__slide">
+                                    <div class="hero-visual">
+                                        <img src="attached_assets/file_000000002b9c624695065876f3a7e879_1757809785926.png" alt="Automation Solutions" class="hero-image-item">
+                                    </div>
+                                </div>
+                                <div class="embla__slide">
+                                    <div class="hero-visual">
+                                        <img src="attached_assets/file_000000002b9c624695065876f3a7e879_1757809907819.png" alt="Safety Systems" class="hero-image-item">
+                                    </div>
+                                </div>
+                                <div class="embla__slide">
+                                    <div class="hero-visual">
+                                        <img src="attached_assets/file_00000000b268620aab970ee24c7438cf_1757810890228.png" alt="Panel Building" class="hero-image-item">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Carousel Navigation -->
+                        <button class="embla__prev" aria-label="Previous image">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <button class="embla__next" aria-label="Next image">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <!-- Carousel Dots -->
+                        <div class="embla__dots"></div>
                     </div>
                 </div>
             </div>

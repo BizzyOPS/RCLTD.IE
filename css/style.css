@@ -112,6 +112,62 @@
     100% { opacity: 0.1; transform: translateX(100%); }
 }
 
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    /* Disable all animations and transitions for users who prefer reduced motion */
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    /* Specifically disable problematic animations */
+    .hero {
+        animation: none !important;
+        background: linear-gradient(135deg, #1e3a8a 0%, #6b7280 50%, #ffffff 100%) !important;
+    }
+    
+    .hero::before,
+    .hero::after {
+        animation: none !important;
+        opacity: 0 !important;
+    }
+    
+    /* Disable particles background animations */
+    #tsparticles {
+        display: none !important;
+    }
+    
+    /* Disable floating and rotating elements */
+    .service-card,
+    .team-member-card,
+    .feature-card {
+        transform: none !important;
+    }
+    
+    /* Disable hover animations on reduced motion */
+    .btn-primary:hover,
+    .btn-secondary:hover {
+        transform: none !important;
+    }
+    
+    .service-card:hover {
+        transform: none !important;
+    }
+    
+    /* Ensure smooth scrolling is disabled */
+    html {
+        scroll-behavior: auto !important;
+    }
+    
+    /* Pause any CSS-driven video animations */
+    video {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -452,11 +508,22 @@ body {
 /* Hero Section */
 .hero {
     padding: calc(80px + var(--spacing-20)) 0 var(--spacing-20);
-    background: linear-gradient(135deg, var(--accent-color) 0%, #e0f2fe 50%, var(--primary-light) 100%);
+    background: linear-gradient(135deg, #1e3a8a 0%, #6b7280 50%, #ffffff 100%);
     background-size: 400% 400%;
     animation: gradientMove 12s ease infinite;
     position: relative;
     overflow: hidden;
+}
+
+/* Particles Background */
+#tsparticles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
 }
 
 .hero::before {
@@ -495,6 +562,8 @@ body {
     grid-template-columns: 1fr;
     gap: var(--spacing-12);
     align-items: center;
+    position: relative;
+    z-index: 2;
 }
 
 .hero-content {
@@ -550,6 +619,116 @@ body {
     inset: 0;
     background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
     border-radius: var(--radius-xl);
+}
+
+/* Hero Carousel Styles */
+.hero-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    aspect-ratio: 4 / 3;
+}
+
+.embla {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+.embla__container {
+    display: flex;
+    height: 100%;
+}
+
+.embla__slide {
+    flex: 0 0 100%;
+    min-width: 0;
+    position: relative;
+}
+
+.hero-image-item {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
+}
+
+/* Carousel Navigation */
+.embla__prev,
+.embla__next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-md);
+}
+
+.embla__prev {
+    left: var(--spacing-3);
+}
+
+.embla__next {
+    right: var(--spacing-3);
+}
+
+.embla__prev:hover,
+.embla__next:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: var(--shadow-lg);
+}
+
+.embla__prev:disabled,
+.embla__next:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Carousel Dots */
+.embla__dots {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-2);
+    position: absolute;
+    bottom: var(--spacing-4);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.embla__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    backdrop-filter: blur(10px);
+}
+
+.embla__dot:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: scale(1.2);
+}
+
+.embla__dot--selected {
+    background: var(--primary-color);
+    transform: scale(1.3);
 }
 
 @media (min-width: 768px) {
@@ -1245,6 +1424,36 @@ body {
         width: 100%;
         max-width: 350px;
         height: 250px;
+    }
+    
+    .hero-carousel {
+        width: 100%;
+        max-width: 350px;
+        height: 250px;
+    }
+    
+    .embla__prev,
+    .embla__next {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .embla__prev {
+        left: var(--spacing-2);
+    }
+    
+    .embla__next {
+        right: var(--spacing-2);
+    }
+    
+    .embla__dots {
+        bottom: var(--spacing-3);
+        gap: var(--spacing-1);
+    }
+    
+    .embla__dot {
+        width: 8px;
+        height: 8px;
     }
 }
 
