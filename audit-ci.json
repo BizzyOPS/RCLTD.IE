@@ -1,15 +1,19 @@
 {
+  "_comment": "Audit CI Configuration for Robotics & Control Ltd Security Pipeline",
+  "_description": "This configuration will FAIL builds on critical vulnerabilities and allow limited high/moderate vulnerabilities",
+  
   "levels": {
     "low": false,
     "moderate": false,
-    "high": false,
-    "critical": false
+    "high": true,
+    "critical": true
   },
+  
   "allowlist": [],
   "skipDev": false,
   "registry": "https://registry.npmjs.org/",
   "retries": 3,
-  "timeout": 120000,
+  "timeout": 180000,
   "summary-format": "json",
   "report-type": "full",
   "advisories": [],
@@ -24,10 +28,23 @@
   "package-lock-only": false,
   "production-only": false,
   "registry-type": "npm",
+  
   "threshold": {
     "critical": 0,
-    "high": 3,
-    "moderate": 10,
-    "low": 50
+    "high": 2,
+    "moderate": 5,
+    "low": 20
+  },
+  
+  "_ci_configuration": {
+    "_note": "For CI/CD pipelines:",
+    "_usage": "npm run security:ci:gate will fail build on threshold violations",
+    "_local_dev": "Use npm run security:scan for non-blocking local development scans",
+    "_thresholds_explanation": {
+      "critical": "0 - Any critical vulnerability fails the build",
+      "high": "2 - More than 2 high severity vulnerabilities fails the build",
+      "moderate": "5 - More than 5 moderate vulnerabilities fails the build",
+      "low": "20 - More than 20 low vulnerabilities fails the build"
+    }
   }
 }

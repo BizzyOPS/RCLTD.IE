@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Test Report - 11bab2f4-cff5-4e25-8b87-dfed4a19621e</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .header { background: #2c3e50; color: white; padding: 20px; border-radius: 5px; }
+        .score { font-size: 2em; font-weight: bold; }
+        .section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .pass { color: green; }
+        .fail { color: red; }
+        .warn { color: orange; }
+        .vuln-critical { background: #ffebee; border-left: 5px solid #f44336; }
+        .vuln-high { background: #fff3e0; border-left: 5px solid #ff9800; }
+        .vuln-medium { background: #f3e5f5; border-left: 5px solid #9c27b0; }
+        .vuln-low { background: #e8f5e8; border-left: 5px solid #4caf50; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Robotics & Control Ltd</h1>
+        <h2>Comprehensive Security Test Report</h2>
+        <div class="score">Security Score: 83/100</div>
+        <div>Risk Level: LOW</div>
+        <div>Test ID: 11bab2f4-cff5-4e25-8b87-dfed4a19621e</div>
+        <div>Generated: 2025-09-15T16:36:36.305Z</div>
+    </div>
+
+    <div class="section">
+        <h3>Executive Summary</h3>
+        <p><strong>Tests:</strong> 70 passed, 
+           2 failed, 
+           6 skipped</p>
+        <p><strong>Vulnerabilities:</strong> 2 total
+           (0 critical, 
+           0 high,
+           2 medium,
+           0 low)</p>
+    </div>
+
+    <div class="section">
+        <h3>Test Results</h3>
+        <div class="pass">
+                <strong>environment-setup:</strong> Test environment configured securely
+            </div><div class="pass">
+                <strong>secrets-validation-fail-safe:</strong> System properly fails when JWT_SECRET is missing
+            </div><div class="pass">
+                <strong>secrets-validation-success:</strong> System works with valid secrets
+            </div><div class="pass">
+                <strong>security-header-X-Content-Type-Options:</strong> X-Content-Type-Options header properly configured
+            </div><div class="pass">
+                <strong>security-header-X-Frame-Options:</strong> X-Frame-Options header properly configured
+            </div><div class="pass">
+                <strong>security-header-X-XSS-Protection:</strong> X-XSS-Protection header properly configured
+            </div><div class="pass">
+                <strong>security-header-Strict-Transport-Security:</strong> Strict-Transport-Security header properly configured
+            </div><div class="fail">
+                <strong>security-header-Content-Security-Policy:</strong> Content-Security-Policy header missing or misconfigured
+            </div><div class="pass">
+                <strong>security-header-Referrer-Policy:</strong> Referrer-Policy header properly configured
+            </div><div class="pass">
+                <strong>security-header-Permissions-Policy:</strong> Permissions-Policy header properly configured
+            </div><div class="pass">
+                <strong>security-header-X-DNS-Prefetch-Control:</strong> X-DNS-Prefetch-Control header properly configured
+            </div><div class="pass">
+                <strong>cors-configuration:</strong> CORS configuration found in server
+            </div><div class="warn">
+                <strong>csp-unsafe-inline:</strong> CSP uses unsafe-inline which reduces security
+            </div><div class="pass">
+                <strong>csp-configuration:</strong> Content Security Policy configured
+            </div><div class="pass">
+                <strong>https-enforcement:</strong> HTTPS enforcement configured
+            </div><div class="pass">
+                <strong>production-env-test:</strong> Production environment can be set
+            </div><div class="pass">
+                <strong>development-env-test:</strong> Development environment can be set
+            </div><div class="pass">
+                <strong>xss-prevention:</strong> XSS prevention 100.0% effective
+            </div><div class="pass">
+                <strong>html-sanitization:</strong> HTML sanitization removes dangerous scripts
+            </div><div class="pass">
+                <strong>object-validation:</strong> Object validation works correctly
+            </div><div class="pass">
+                <strong>path-traversal-prevention:</strong> Path traversal prevention 87.5% effective
+            </div><div class="pass">
+                <strong>sql-injection-prevention:</strong> SQL injection prevention 80.0% effective
+            </div><div class="fail">
+                <strong>command-injection-prevention:</strong> Command injection prevention 44.4% effective
+            </div><div class="pass">
+                <strong>api-key-auth:</strong> API key authentication middleware found
+            </div><div class="info">
+                <strong>jwt-support:</strong> JWT support not explicitly found
+            </div><div class="warn">
+                <strong>admin-route-protection:</strong> Admin route protection not clearly identified
+            </div><div class="pass">
+                <strong>A01-Broken-Access-Control-implementation:</strong> A01-Broken-Access-Control protection implemented
+            </div><div class="pass">
+                <strong>A01-Broken-Access-Control-testEndpoints:</strong> A01-Broken-Access-Control testEndpoints configured
+            </div><div class="pass">
+                <strong>A01-Broken-Access-Control-testMethods:</strong> A01-Broken-Access-Control testMethods configured
+            </div><div class="pass">
+                <strong>A01-Broken-Access-Control-expectedStatus:</strong> A01-Broken-Access-Control expectedStatus configured
+            </div><div class="pass">
+                <strong>A02-Cryptographic-Failures-implementation:</strong> A02-Cryptographic-Failures protection implemented
+            </div><div class="pass">
+                <strong>A02-Cryptographic-Failures-testPlaintextStorage:</strong> A02-Cryptographic-Failures testPlaintextStorage configured
+            </div><div class="pass">
+                <strong>A02-Cryptographic-Failures-testWeakEncryption:</strong> A02-Cryptographic-Failures testWeakEncryption configured
+            </div><div class="pass">
+                <strong>A02-Cryptographic-Failures-testCertificateValidation:</strong> A02-Cryptographic-Failures testCertificateValidation configured
+            </div><div class="pass">
+                <strong>A03-Injection-implementation:</strong> A03-Injection protection implemented
+            </div><div class="pass">
+                <strong>A03-Injection-testXSS:</strong> A03-Injection testXSS configured
+            </div><div class="pass">
+                <strong>A03-Injection-testSQLInjection:</strong> A03-Injection testSQLInjection configured
+            </div><div class="pass">
+                <strong>A03-Injection-testCommandInjection:</strong> A03-Injection testCommandInjection configured
+            </div><div class="skip">
+                <strong>A03-Injection-testLDAPInjection:</strong> A03-Injection testLDAPInjection not applicable
+            </div><div class="pass">
+                <strong>A04-Insecure-Design-implementation:</strong> A04-Insecure-Design protection implemented
+            </div><div class="pass">
+                <strong>A04-Insecure-Design-testBusinessLogic:</strong> A04-Insecure-Design testBusinessLogic configured
+            </div><div class="pass">
+                <strong>A04-Insecure-Design-testSecurityPatterns:</strong> A04-Insecure-Design testSecurityPatterns configured
+            </div><div class="pass">
+                <strong>A04-Insecure-Design-testThreatModeling:</strong> A04-Insecure-Design testThreatModeling configured
+            </div><div class="pass">
+                <strong>A05-Security-Misconfiguration-implementation:</strong> A05-Security-Misconfiguration protection implemented
+            </div><div class="pass">
+                <strong>A05-Security-Misconfiguration-testDefaultCredentials:</strong> A05-Security-Misconfiguration testDefaultCredentials configured
+            </div><div class="pass">
+                <strong>A05-Security-Misconfiguration-testErrorHandling:</strong> A05-Security-Misconfiguration testErrorHandling configured
+            </div><div class="pass">
+                <strong>A05-Security-Misconfiguration-testSecurityHeaders:</strong> A05-Security-Misconfiguration testSecurityHeaders configured
+            </div><div class="pass">
+                <strong>A05-Security-Misconfiguration-testHttpMethods:</strong> A05-Security-Misconfiguration testHttpMethods configured
+            </div><div class="pass">
+                <strong>A06-Vulnerable-Components-implementation:</strong> A06-Vulnerable-Components protection implemented
+            </div><div class="pass">
+                <strong>A06-Vulnerable-Components-testDependencyScanning:</strong> A06-Vulnerable-Components testDependencyScanning configured
+            </div><div class="pass">
+                <strong>A06-Vulnerable-Components-testOutdatedPackages:</strong> A06-Vulnerable-Components testOutdatedPackages configured
+            </div><div class="pass">
+                <strong>A06-Vulnerable-Components-testKnownVulnerabilities:</strong> A06-Vulnerable-Components testKnownVulnerabilities configured
+            </div><div class="pass">
+                <strong>A07-Authentication-Failures-implementation:</strong> A07-Authentication-Failures protection implemented
+            </div><div class="pass">
+                <strong>A07-Authentication-Failures-testBruteForce:</strong> A07-Authentication-Failures testBruteForce configured
+            </div><div class="skip">
+                <strong>A07-Authentication-Failures-testWeakPasswords:</strong> A07-Authentication-Failures testWeakPasswords not applicable
+            </div><div class="pass">
+                <strong>A07-Authentication-Failures-testSessionManagement:</strong> A07-Authentication-Failures testSessionManagement configured
+            </div><div class="skip">
+                <strong>A07-Authentication-Failures-testMultiFactor:</strong> A07-Authentication-Failures testMultiFactor not applicable
+            </div><div class="pass">
+                <strong>A08-Software-Integrity-implementation:</strong> A08-Software-Integrity protection implemented
+            </div><div class="pass">
+                <strong>A08-Software-Integrity-testCodeTampering:</strong> A08-Software-Integrity testCodeTampering configured
+            </div><div class="pass">
+                <strong>A08-Software-Integrity-testSupplyChain:</strong> A08-Software-Integrity testSupplyChain configured
+            </div><div class="pass">
+                <strong>A08-Software-Integrity-testChecksumsValidation:</strong> A08-Software-Integrity testChecksumsValidation configured
+            </div><div class="pass">
+                <strong>A09-Logging-Monitoring-implementation:</strong> A09-Logging-Monitoring protection implemented
+            </div><div class="pass">
+                <strong>A09-Logging-Monitoring-testSecurityEventLogging:</strong> A09-Logging-Monitoring testSecurityEventLogging configured
+            </div><div class="pass">
+                <strong>A09-Logging-Monitoring-testAuditTrail:</strong> A09-Logging-Monitoring testAuditTrail configured
+            </div><div class="pass">
+                <strong>A09-Logging-Monitoring-testIncidentDetection:</strong> A09-Logging-Monitoring testIncidentDetection configured
+            </div><div class="pass">
+                <strong>A09-Logging-Monitoring-testRealTimeMonitoring:</strong> A09-Logging-Monitoring testRealTimeMonitoring configured
+            </div><div class="pass">
+                <strong>A10-Server-Side-Request-Forgery-implementation:</strong> A10-Server-Side-Request-Forgery protection implemented
+            </div><div class="pass">
+                <strong>A10-Server-Side-Request-Forgery-testSSRFPrevention:</strong> A10-Server-Side-Request-Forgery testSSRFPrevention configured
+            </div><div class="pass">
+                <strong>A10-Server-Side-Request-Forgery-testURLValidation:</strong> A10-Server-Side-Request-Forgery testURLValidation configured
+            </div><div class="pass">
+                <strong>A10-Server-Side-Request-Forgery-testInternalNetworkAccess:</strong> A10-Server-Side-Request-Forgery testInternalNetworkAccess configured
+            </div><div class="pass">
+                <strong>security-monitoring-init:</strong> Security monitoring system initializes
+            </div><div class="pass">
+                <strong>security-monitoring-middleware:</strong> Security monitoring middleware available
+            </div><div class="pass">
+                <strong>vulnerability-scanner-init:</strong> Vulnerability scanner initializes
+            </div><div class="pass">
+                <strong>compliance-reporting:</strong> Compliance reporting directory exists
+            </div><div class="pass">
+                <strong>security-logging:</strong> Security logging configured
+            </div><div class="pass">
+                <strong>production-environment:</strong> Production environment configuration tested
+            </div><div class="pass">
+                <strong>production-error-handling:</strong> Production error handling configured
+            </div>
+    </div>
+
+    <div class="section">
+        <h3>Vulnerabilities</h3>
+        <div class="vuln-medium">
+                <h4>Missing security header: Content-Security-Policy</h4>
+                <p><strong>Severity:</strong> MEDIUM</p>
+                <p><strong>Recommendation:</strong> Configure Content-Security-Policy header for enhanced security</p>
+            </div><div class="vuln-medium">
+                <h4>CSP allows unsafe-inline</h4>
+                <p><strong>Severity:</strong> MEDIUM</p>
+                <p><strong>Recommendation:</strong> Remove unsafe-inline from CSP where possible</p>
+            </div>
+    </div>
+
+    <div class="section">
+        <h3>Compliance Assessment</h3>
+        <p><strong>OWASP Top 10:</strong> 93% coverage</p>
+        <p><strong>Production Ready:</strong> Yes</p>
+    </div>
+
+    <div class="section">
+        <h3>Recommendations</h3>
+        <ul>
+            <li>Configure Content-Security-Policy header for enhanced security</li><li>Remove unsafe-inline from CSP where possible</li><li>Review and address failed security tests to improve overall security posture</li><li>Implement additional security measures to achieve enterprise-grade security (90+ score)</li>
+        </ul>
+    </div>
+</body>
+</html>

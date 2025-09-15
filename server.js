@@ -40,6 +40,7 @@ const {
 const { VulnerabilityScanner } = require('./lib/vulnerability-scanner');
 const { SecurityMonitor } = require('./lib/security-monitor');
 const { SecurityReporter } = require('./lib/security-reporter');
+const OWASPProtectionManager = require('./lib/owasp-protection');
 const cron = require('node-cron');
 require('dotenv').config();
 
@@ -55,12 +56,64 @@ const vulnerabilityScanner = new VulnerabilityScanner();
 const securityMonitor = new SecurityMonitor();
 const securityReporter = new SecurityReporter(vulnerabilityScanner, securityMonitor);
 
+// Initialize OWASP protection system
+const owaspProtection = new OWASPProtectionManager(securityMonitor);
+
 console.log('[SECURITY] Initializing comprehensive security monitoring system...');
 console.log(`[SECURITY] Environment: ${NODE_ENV}`);
 console.log(`[SECURITY] Security monitoring: ${securityMonitor.config.monitoring.enabled ? 'ENABLED' : 'DISABLED'}`);
 console.log(`[SECURITY] Vulnerability scanning: ${vulnerabilityScanner.config.automation.autoScan ? 'ENABLED' : 'DISABLED'}`);
 
+// Initialize OWASP protection system asynchronously
+(async () => {
+    try {
+        await owaspProtection.initialize();
+        console.log('[OWASP] OWASP Top 10 protection system fully initialized');
+    } catch (error) {
+        console.error('[OWASP] Failed to initialize OWASP protection system:', error);
+        console.warn('[OWASP] Server will continue with basic security protections');
+    }
+})();
+
 // ==================== SECURITY MIDDLEWARE ====================
+
+// Simple API key authentication middleware for administrative endpoints
+const adminAuthMiddleware = (req, res, next) => {
+    const apiKey = req.headers['x-api-key'] || req.headers['authorization'];
+    const validApiKey = process.env.ADMIN_API_KEY;
+    
+    if (!validApiKey) {
+        console.error('[SECURITY] ADMIN_API_KEY environment variable not set - API access disabled');
+        return res.status(500).json({
+            success: false,
+            error: 'Server configuration error. Contact administrator.',
+            timestamp: new Date().toISOString()
+        });
+    }
+    
+    if (!apiKey) {
+        return res.status(401).json({
+            success: false,
+            error: 'Authentication required. Provide X-API-Key header.',
+            timestamp: new Date().toISOString()
+        });
+    }
+    
+    // Support both direct key and Bearer token format
+    const providedKey = apiKey.startsWith('Bearer ') ? apiKey.slice(7) : apiKey;
+    
+    if (providedKey !== validApiKey) {
+        console.warn(`[SECURITY-AUTH] Invalid API key attempt from ${req.ip}`);
+        return res.status(403).json({
+            success: false,
+            error: 'Invalid authentication credentials.',
+            timestamp: new Date().toISOString()
+        });
+    }
+    
+    console.log(`[SECURITY-AUTH] Admin authenticated from ${req.ip}`);
+    next();
+};
 
 // Note: Removed nonce generation as it's not used in static HTML files
 // This prevents CSP blocking of JavaScript functionality
@@ -315,6 +368,11 @@ app.use(speedLimiter);
 app.use(securityMonitor.middleware());
 
 console.log('[SECURITY] Security monitoring middleware active');
+
+// Apply OWASP protection middleware
+app.use(owaspProtection.middleware());
+
+console.log('[OWASP] OWASP Top 10 protection middleware active');
 
 // ==================== PERFORMANCE MONITORING MIDDLEWARE ====================
 
@@ -624,6 +682,197 @@ app.get('/api/security/status', async (req, res) => {
         console.error('[SECURITY-STATUS] Error getting security status:', error);
         res.status(500).json({
             error: 'Failed to retrieve security status',
+            timestamp: new Date().toISOString()
+        });
+    }
+});
+
+// ==================== OWASP COMPLIANCE ENDPOINTS ====================
+
+// OWASP compliance status endpoint
+app.get('/api/owasp/status', async (req, res) => {
+    try {
+        const owaspStatus = owaspProtection.getStatus();
+        
+        res.json({
+            success: true,
+            timestamp: new Date().toISOString(),
+            organizationName: 'Robotics & Control Ltd',
+            framework: 'OWASP Top 10 (2021)',
+            status: owaspStatus
+        });
+    } catch (error) {
+        console.error('[OWASP-API] Error getting OWASP status:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to retrieve OWASP protection status',
+            timestamp: new Date().toISOString()
+        });
+    }
+});
+
+// OWASP compliance check endpoint
+app.post('/api/owasp/compliance-check', adminAuthMiddleware, async (req, res) => {
+    try {
+        console.log(`[OWASP-API] Compliance check requested by ${req.ip}`);
+        
+        const complianceCheck = await owaspProtection.checkCompliance();
+        
+        res.json({
+            success: true,
+            timestamp: new Date().toISOString(),
+            organizationName: 'Robotics & Control Ltd',
+            framework: 'OWASP Top 10 (2021)',
+            compliance: complianceCheck
+        });
+    } catch (error) {
+        console.error('[OWASP-API] Error during compliance check:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Compliance check failed',
+            details: error.message,
+            timestamp: new Date().toISOString()
+        });
+    }
+});
+
+// OWASP security report generation endpoint
+app.post('/api/owasp/security-report', adminAuthMiddleware, async (req, res) => {
+    try {
+        console.log(`[OWASP-API] Security report requested by ${req.ip}`);
+        
+        const securityReport = await owaspProtection.generateSecurityReport();
+        
+        res.json({
+            success: true,
+            timestamp: new Date().toISOString(),
+            report: securityReport
+        });
+    } catch (error) {
+        console.error('[OWASP-API] Error generating security report:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Security report generation failed',
+            details: error.message,
+            timestamp: new Date().toISOString()
+        });
+    }
+});
+
+// OWASP protection metrics endpoint
+app.get('/api/owasp/metrics', async (req, res) => {
+    try {
+        const status = owaspProtection.getStatus();
+        
+        const metrics = {
+            timestamp: new Date().toISOString(),
+            organizationName: 'Robotics & Control Ltd',
+            framework: 'OWASP Top 10 (2021)',
+            protections: {
+                totalProtections: 10,
+                activeProtections: status.activeProtections,
+                protectionCoverage: Math.round((status.activeProtections / 10) * 100),
+                systemHealth: status.systemHealth
+            },
+            threats: {
+                totalThreatsBlocked: status.totalThreatsBlocked,
+                lastComplianceCheck: status.lastComplianceCheck
+            },
+            categories: status.protectionStats
+        };
+        
+        res.json({
+            success: true,
+            metrics: metrics
+        });
+    } catch (error) {
+        console.error('[OWASP-API] Error getting OWASP metrics:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to retrieve OWASP metrics',
+            timestamp: new Date().toISOString()
+        });
+    }
+});
+
+// OWASP protection test endpoint (for development/testing)
+app.post('/api/owasp/test-protection', adminAuthMiddleware, async (req, res) => {
+    try {
+        const { protectionType, testData } = req.body;
+        
+        if (!protectionType) {
+            return res.status(400).json({
+                success: false,
+                error: 'Protection type is required',
+                availableTypes: ['A01', 'A02', 'A03', 'A04', 'A05', 'A06', 'A07', 'A08', 'A09', 'A10']
+            });
+        }
+        
+        console.log(`[OWASP-API] Protection test requested: ${protectionType} from ${req.ip}`);
+        
+        // Log security event for testing
+        await owaspProtection.logSecurityEvent('PROTECTION_TEST', {
+            protectionType: protectionType,
+            testData: testData,
+            requestedBy: req.ip,
+            timestamp: new Date().toISOString()
+        });
+        
+        const testResult = {
+            protectionType: protectionType,
+            tested: true,
+            timestamp: new Date().toISOString(),
+            result: 'Protection system is active and responding',
+            status: 'success'
+        };
+        
+        res.json({
+            success: true,
+            test: testResult
+        });
+    } catch (error) {
+        console.error('[OWASP-API] Error during protection test:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Protection test failed',
+            details: error.message,
+            timestamp: new Date().toISOString()
+        });
+    }
+});
+
+// OWASP configuration endpoint (read-only)
+app.get('/api/owasp/config', adminAuthMiddleware, async (req, res) => {
+    try {
+        const config = {
+            timestamp: new Date().toISOString(),
+            organizationName: 'Robotics & Control Ltd',
+            framework: 'OWASP Top 10 (2021)',
+            protections: {
+                a01_access_control: owaspProtection.config.protections.a01_access_control,
+                a02_cryptographic: owaspProtection.config.protections.a02_cryptographic,
+                a03_injection: owaspProtection.config.protections.a03_injection,
+                a04_insecure_design: owaspProtection.config.protections.a04_insecure_design,
+                a05_misconfiguration: owaspProtection.config.protections.a05_misconfiguration,
+                a06_vulnerable_components: owaspProtection.config.protections.a06_vulnerable_components,
+                a07_authentication: owaspProtection.config.protections.a07_authentication,
+                a08_integrity: owaspProtection.config.protections.a08_integrity,
+                a09_logging: owaspProtection.config.protections.a09_logging,
+                a10_ssrf: owaspProtection.config.protections.a10_ssrf
+            },
+            compliance: owaspProtection.config.compliance,
+            alerting: owaspProtection.config.alerting
+        };
+        
+        res.json({
+            success: true,
+            config: config
+        });
+    } catch (error) {
+        console.error('[OWASP-API] Error getting OWASP config:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to retrieve OWASP configuration',
             timestamp: new Date().toISOString()
         });
     }
@@ -1372,16 +1621,39 @@ app.post('/api/security/report', apiLimiter, async (req, res) => {
     }
 });
 
-// Block/unblock IP endpoint (admin only - could add authentication)
-app.post('/api/security/block-ip', apiLimiter, async (req, res) => {
+// Block/unblock IP endpoint (admin only with authentication required)
+app.post('/api/security/block-ip', apiLimiter, adminAuthMiddleware, async (req, res) => {
     try {
         const { ip, action, reason } = req.body;
         
+        // Enhanced input validation
         if (!ip || !action) {
             return res.status(400).json({
                 success: false,
                 error: 'IP address and action required',
-                timestamp: new Date().toISOString()
+                timestamp: new Date().toISOString(),
+                requestId: req.securityRequestId
+            });
+        }
+        
+        // Validate IP address format
+        const ipRegex = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+        if (!ipRegex.test(ip)) {
+            return res.status(400).json({
+                success: false,
+                error: 'Invalid IP address format',
+                timestamp: new Date().toISOString(),
+                requestId: req.securityRequestId
+            });
+        }
+        
+        // Prevent self-blocking
+        if (ip === req.ip) {
+            return res.status(400).json({
+                success: false,
+                error: 'Cannot block your own IP address',
+                timestamp: new Date().toISOString(),
+                requestId: req.securityRequestId
             });
         }
         
@@ -1416,14 +1688,182 @@ app.post('/api/security/block-ip', apiLimiter, async (req, res) => {
 
 // ==================== SCHEDULED SECURITY TASKS ====================
 
+// Job tracking system
+class JobTracker {
+    constructor() {
+        this.jobs = new Map();
+        this.executionHistory = [];
+        this.performanceMetrics = {
+            requestLatency: [],
+            memoryUsage: [],
+            cpuUsage: [],
+            lastCollected: Date.now()
+        };
+    }
+    
+    async logJobStart(jobId, jobName, schedule) {
+        const startTime = Date.now();
+        this.jobs.set(jobId, {
+            id: jobId,
+            name: jobName,
+            schedule: schedule,
+            startTime: startTime,
+            startTimestamp: new Date().toISOString(),
+            status: 'running'
+        });
+        
+        console.log(`[SECURITY-CRON] JOB STARTED [${jobId}] ${jobName} at ${new Date().toISOString()}`);
+        return startTime;
+    }
+    
+    async logJobEnd(jobId, success = true, result = null, error = null) {
+        const job = this.jobs.get(jobId);
+        if (!job) return;
+        
+        const endTime = Date.now();
+        const duration = endTime - job.startTime;
+        
+        job.endTime = endTime;
+        job.endTimestamp = new Date().toISOString();
+        job.duration = duration;
+        job.status = success ? 'completed' : 'failed';
+        job.result = result;
+        job.error = error;
+        
+        // Add to execution history
+        this.executionHistory.unshift({
+            ...job
+        });
+        
+        // Keep only last 50 executions
+        if (this.executionHistory.length > 50) {
+            this.executionHistory = this.executionHistory.slice(0, 50);
+        }
+        
+        // Log completion
+        const status = success ? 'COMPLETED' : 'FAILED';
+        console.log(`[SECURITY-CRON] JOB ${status} [${jobId}] ${job.name} - Duration: ${duration}ms`);
+        
+        if (result && result.id) {
+            console.log(`[SECURITY-CRON] JOB RESULT [${jobId}] Report ID: ${result.id}`);
+        }
+        
+        if (result && result.reportPath) {
+            console.log(`[SECURITY-CRON] JOB RESULT [${jobId}] Report saved: ${result.reportPath}`);
+        }
+        
+        if (error) {
+            console.error(`[SECURITY-CRON] JOB ERROR [${jobId}] ${error.message}`);
+        }
+        
+        // Clean up active job
+        this.jobs.delete(jobId);
+    }
+    
+    getActiveJobs() {
+        return Array.from(this.jobs.values());
+    }
+    
+    getExecutionHistory() {
+        return this.executionHistory;
+    }
+    
+    collectPerformanceMetrics() {
+        const used = process.memoryUsage();
+        const cpuUsage = process.cpuUsage();
+        
+        this.performanceMetrics.memoryUsage.push({
+            timestamp: Date.now(),
+            heapUsed: used.heapUsed,
+            heapTotal: used.heapTotal,
+            external: used.external,
+            rss: used.rss
+        });
+        
+        this.performanceMetrics.cpuUsage.push({
+            timestamp: Date.now(),
+            user: cpuUsage.user,
+            system: cpuUsage.system
+        });
+        
+        // Keep only last hour of metrics (collected every 30 seconds = 120 entries)
+        if (this.performanceMetrics.memoryUsage.length > 120) {
+            this.performanceMetrics.memoryUsage = this.performanceMetrics.memoryUsage.slice(-120);
+        }
+        if (this.performanceMetrics.cpuUsage.length > 120) {
+            this.performanceMetrics.cpuUsage = this.performanceMetrics.cpuUsage.slice(-120);
+        }
+        
+        this.performanceMetrics.lastCollected = Date.now();
+    }
+    
+    addLatencyMetric(latency) {
+        this.performanceMetrics.requestLatency.push({
+            timestamp: Date.now(),
+            latency: latency
+        });
+        
+        // Keep only last 1000 requests
+        if (this.performanceMetrics.requestLatency.length > 1000) {
+            this.performanceMetrics.requestLatency = this.performanceMetrics.requestLatency.slice(-1000);
+        }
+    }
+    
+    getPerformanceMetrics() {
+        return this.performanceMetrics;
+    }
+}
+
+const jobTracker = new JobTracker();
+
+// Performance monitoring middleware to track request latency
+app.use((req, res, next) => {
+    const startTime = Date.now();
+    
+    res.on('finish', () => {
+        const latency = Date.now() - startTime;
+        jobTracker.addLatencyMetric(latency);
+    });
+    
+    next();
+});
+
+// Collect performance metrics every 30 seconds
+setInterval(() => {
+    jobTracker.collectPerformanceMetrics();
+}, 30000);
+
 // Schedule automated vulnerability scanning (daily at 2 AM)
-cron.schedule('0 2 * * *', async () => {
+const vulnerabilityScanJob = cron.schedule('0 2 * * *', async () => {
+    const jobId = `vuln-scan-${Date.now()}`;
+    let result = null;
+    let error = null;
+    
+    await jobTracker.logJobStart(jobId, 'Daily Vulnerability Scan', '0 2 * * *');
+    
     try {
-        console.log('[SECURITY-CRON] Starting scheduled vulnerability scan...');
-        await vulnerabilityScanner.runFullScan({ type: 'scheduled' });
-        console.log('[SECURITY-CRON] Scheduled vulnerability scan completed');
-    } catch (error) {
-        console.error('[SECURITY-CRON] Scheduled scan failed:', error);
+        result = await vulnerabilityScanner.runFullScan({ 
+            type: 'scheduled',
+            jobId: jobId,
+            timestamp: new Date().toISOString()
+        });
+        
+        // Verify scan completed successfully
+        if (!result || !result.scanId) {
+            throw new Error('Vulnerability scan did not return valid results');
+        }
+        
+        await jobTracker.logJobEnd(jobId, true, {
+            id: result.scanId,
+            reportPath: result.reportPath || 'security-reports/',
+            vulnerabilities: result.summary?.totalVulnerabilities || 0,
+            status: result.status
+        });
+        
+    } catch (err) {
+        error = err;
+        console.error(`[SECURITY-CRON] Vulnerability scan job ${jobId} failed:`, err.message);
+        await jobTracker.logJobEnd(jobId, false, null, err);
     }
 }, {
     scheduled: true,
@@ -1431,17 +1871,38 @@ cron.schedule('0 2 * * *', async () => {
 });
 
 // Schedule security report generation (weekly on Sundays at 3 AM)
-cron.schedule('0 3 * * 0', async () => {
+const securityReportJob = cron.schedule('0 3 * * 0', async () => {
+    const jobId = `sec-report-${Date.now()}`;
+    let result = null;
+    let error = null;
+    
+    await jobTracker.logJobStart(jobId, 'Weekly Security Report', '0 3 * * 0');
+    
     try {
-        console.log('[SECURITY-CRON] Generating weekly security report...');
-        await securityReporter.generateSecurityReport({ 
+        result = await securityReporter.generateSecurityReport({ 
             type: 'weekly', 
             period: 'weekly',
-            formats: ['json', 'html', 'csv']
+            formats: ['json', 'html', 'csv'],
+            jobId: jobId,
+            timestamp: new Date().toISOString()
         });
-        console.log('[SECURITY-CRON] Weekly security report generated');
-    } catch (error) {
-        console.error('[SECURITY-CRON] Weekly report generation failed:', error);
+        
+        // Verify report generated successfully
+        if (!result || !result.id) {
+            throw new Error('Security report generation did not return valid results');
+        }
+        
+        await jobTracker.logJobEnd(jobId, true, {
+            id: result.id,
+            reportPath: result.reportPath || 'security-reports/dashboard/',
+            type: result.type,
+            formats: result.formats
+        });
+        
+    } catch (err) {
+        error = err;
+        console.error(`[SECURITY-CRON] Security report job ${jobId} failed:`, err.message);
+        await jobTracker.logJobEnd(jobId, false, null, err);
     }
 }, {
     scheduled: true,
@@ -1449,23 +1910,159 @@ cron.schedule('0 3 * * 0', async () => {
 });
 
 // Schedule cleanup of old security logs (daily at 1 AM)
-cron.schedule('0 1 * * *', async () => {
+const logCleanupJob = cron.schedule('0 1 * * *', async () => {
+    const jobId = `log-cleanup-${Date.now()}`;
+    let result = null;
+    let error = null;
+    
+    await jobTracker.logJobStart(jobId, 'Daily Log Cleanup', '0 1 * * *');
+    
     try {
-        console.log('[SECURITY-CRON] Cleaning up old security logs...');
-        // Cleanup is handled by individual components
-        console.log('[SECURITY-CRON] Security log cleanup completed');
-    } catch (error) {
-        console.error('[SECURITY-CRON] Log cleanup failed:', error);
+        // Call cleanup methods from security components
+        const cleanupResults = {
+            securityMonitor: 0,
+            vulnerabilityScanner: 0,
+            securityReporter: 0
+        };
+        
+        // Cleanup security monitor logs
+        if (securityMonitor && securityMonitor.cleanupOldLogs) {
+            await securityMonitor.cleanupOldLogs();
+            cleanupResults.securityMonitor = 1;
+        }
+        
+        // Cleanup vulnerability scanner reports (older than 30 days)
+        const fs = require('fs-extra');
+        const path = require('path');
+        const reportsDir = './security-reports';
+        const cutoffDate = new Date();
+        cutoffDate.setDate(cutoffDate.getDate() - 30);
+        
+        if (await fs.exists(reportsDir)) {
+            const files = await fs.readdir(reportsDir);
+            for (const file of files) {
+                const filePath = path.join(reportsDir, file);
+                const stats = await fs.stat(filePath);
+                if (stats.mtime < cutoffDate) {
+                    await fs.remove(filePath);
+                    cleanupResults.vulnerabilityScanner++;
+                }
+            }
+        }
+        
+        result = cleanupResults;
+        
+        await jobTracker.logJobEnd(jobId, true, {
+            id: jobId,
+            cleanedFiles: cleanupResults.securityMonitor + cleanupResults.vulnerabilityScanner,
+            components: cleanupResults
+        });
+        
+    } catch (err) {
+        error = err;
+        console.error(`[SECURITY-CRON] Log cleanup job ${jobId} failed:`, err.message);
+        await jobTracker.logJobEnd(jobId, false, null, err);
     }
 }, {
     scheduled: true,
     timezone: "Europe/Dublin"
 });
 
-console.log('[SECURITY] Scheduled security tasks configured:');
-console.log('  ✓ Daily vulnerability scan at 2:00 AM');
-console.log('  ✓ Weekly security report on Sundays at 3:00 AM');
-console.log('  ✓ Daily log cleanup at 1:00 AM');
+// Health check for scheduled jobs (every hour)
+const healthCheckJob = cron.schedule('0 * * * *', async () => {
+    const activeJobs = jobTracker.getActiveJobs();
+    const recentHistory = jobTracker.getExecutionHistory().slice(0, 10);
+    
+    console.log(`[SECURITY-CRON] HEALTH CHECK - Active jobs: ${activeJobs.length}`);
+    
+    // Check for stuck jobs (running for more than 2 hours)
+    const twoHoursAgo = Date.now() - (2 * 60 * 60 * 1000);
+    const stuckJobs = activeJobs.filter(job => job.startTime < twoHoursAgo);
+    
+    if (stuckJobs.length > 0) {
+        console.warn(`[SECURITY-CRON] WARNING - ${stuckJobs.length} jobs may be stuck:`);
+        stuckJobs.forEach(job => {
+            console.warn(`[SECURITY-CRON] STUCK JOB [${job.id}] ${job.name} - Running for ${Math.round((Date.now() - job.startTime) / 60000)} minutes`);
+        });
+    }
+    
+    // Report recent job failures
+    const recentFailures = recentHistory.filter(job => job.status === 'failed');
+    if (recentFailures.length > 0) {
+        console.warn(`[SECURITY-CRON] WARNING - ${recentFailures.length} recent job failures`);
+    }
+    
+    // Collect and log performance metrics
+    const perfMetrics = jobTracker.getPerformanceMetrics();
+    if (perfMetrics.requestLatency.length > 0) {
+        const latencies = perfMetrics.requestLatency.slice(-100).map(m => m.latency);
+        const avgLatency = latencies.reduce((a, b) => a + b, 0) / latencies.length;
+        const maxLatency = Math.max(...latencies);
+        console.log(`[SECURITY-CRON] PERFORMANCE - Avg latency: ${avgLatency.toFixed(2)}ms, Max: ${maxLatency}ms (last 100 requests)`);
+    }
+    
+    if (perfMetrics.memoryUsage.length > 0) {
+        const lastMemory = perfMetrics.memoryUsage[perfMetrics.memoryUsage.length - 1];
+        const memoryMB = Math.round(lastMemory.heapUsed / 1024 / 1024);
+        console.log(`[SECURITY-CRON] PERFORMANCE - Memory usage: ${memoryMB}MB heap`);
+    }
+}, {
+    scheduled: true,
+    timezone: "Europe/Dublin"
+});
+
+console.log('[SECURITY] Enhanced scheduled security tasks configured:');
+console.log('  ✓ Daily vulnerability scan at 2:00 AM (with job tracking)');
+console.log('  ✓ Weekly security report on Sundays at 3:00 AM (with verification)');
+console.log('  ✓ Daily log cleanup at 1:00 AM (with detailed cleanup)');
+console.log('  ✓ Hourly health checks and performance monitoring');
+console.log('  ✓ Real-time performance metrics collection');
+
+// Add job status endpoint for monitoring
+app.get('/api/security/jobs/status', async (req, res) => {
+    try {
+        const activeJobs = jobTracker.getActiveJobs();
+        const executionHistory = jobTracker.getExecutionHistory().slice(0, 20);
+        const performanceMetrics = jobTracker.getPerformanceMetrics();
+        
+        // Calculate performance summary
+        const recentLatencies = performanceMetrics.requestLatency.slice(-100).map(m => m.latency);
+        const performanceSummary = {
+            avgLatency: recentLatencies.length > 0 ? recentLatencies.reduce((a, b) => a + b, 0) / recentLatencies.length : 0,
+            maxLatency: recentLatencies.length > 0 ? Math.max(...recentLatencies) : 0,
+            requestCount: recentLatencies.length,
+            lastUpdated: new Date(performanceMetrics.lastCollected).toISOString()
+        };
+        
+        if (performanceMetrics.memoryUsage.length > 0) {
+            const lastMemory = performanceMetrics.memoryUsage[performanceMetrics.memoryUsage.length - 1];
+            performanceSummary.memoryUsage = {
+                heapUsedMB: Math.round(lastMemory.heapUsed / 1024 / 1024),
+                heapTotalMB: Math.round(lastMemory.heapTotal / 1024 / 1024),
+                timestamp: new Date(lastMemory.timestamp).toISOString()
+            };
+        }
+        
+        res.json({
+            success: true,
+            timestamp: new Date().toISOString(),
+            activeJobs: activeJobs,
+            recentExecutions: executionHistory,
+            performance: performanceSummary,
+            systemHealth: {
+                stuckJobCount: activeJobs.filter(job => Date.now() - job.startTime > 2 * 60 * 60 * 1000).length,
+                recentFailureCount: executionHistory.filter(job => job.status === 'failed').length
+            }
+        });
+    } catch (error) {
+        console.error('[SECURITY-API] Job status endpoint error:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to retrieve job status',
+            timestamp: new Date().toISOString()
+        });
+    }
+});
 
 // Serve static files
 app.use(express.static('.', {

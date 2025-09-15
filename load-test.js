@@ -39,13 +39,33 @@ const LOAD_TEST_CONFIG = {
         }
     },
     
-    // Test endpoints
+    // Performance thresholds for validation
+    thresholds: {
+        averageResponseTime: 100, // ms
+        p95ResponseTime: 250, // ms
+        p99ResponseTime: 500, // ms
+        errorRate: 0.01, // 1%
+        memoryIncreaseMB: 50, // Max memory increase during test
+        throughputRPS: 100 // Minimum requests per second
+    },
+    
+    // Test endpoints with realistic weights
     endpoints: [
-        { path: '/', method: 'GET', weight: 0.4 },
-        { path: '/services.html', method: 'GET', weight: 0.2 },
-        { path: '/contact.html', method: 'GET', weight: 0.2 },
-        { path: '/api/health', method: 'GET', weight: 0.1 },
-        { path: '/api/metrics', method: 'GET', weight: 0.1 }
+        { path: '/', method: 'GET', weight: 0.25 },
+        { path: '/services.html', method: 'GET', weight: 0.15 },
+        { path: '/about.html', method: 'GET', weight: 0.15 },
+        { path: '/contact.html', method: 'GET', weight: 0.10 },
+        { path: '/css/style.css', method: 'GET', weight: 0.10 },
+        { path: '/js/script.js', method: 'GET', weight: 0.10 },
+        { path: '/api/security/jobs/status', method: 'GET', weight: 0.10 },
+        { path: '/images/logo.png', method: 'GET', weight: 0.05 }
+    ],
+    
+    // Security endpoint tests
+    securityEndpoints: [
+        { path: '/api/security/jobs/status', method: 'GET', expectAuth: false },
+        { path: '/api/security/metrics', method: 'GET', expectAuth: false },
+        { path: '/api/security/ip/block', method: 'POST', expectAuth: true }
     ]
 };
 
@@ -65,14 +85,300 @@ class LoadTester {
                 maxResponseTime: 0,
                 percentiles: {},
                 requestsPerSecond: 0,
-                errorRate: 0
+                errorRate: 0,
+                memoryUsage: {
+                    initial: null,
+                    peak: null,
+                    final: null,
+                    samples: []
+                },
+                cpuUsage: []
             },
-            errors: []
+            errors: [],
+            securityTests: []
         };
         
         this.activeRequests = 0;
         this.testStartTime = null;
         this.testEndTime = null;
+        this.performanceMonitor = null;
+    }
+    
+    /**
+     * Start performance monitoring
+     */
+    startPerformanceMonitoring() {
+        const initialMemory = process.memoryUsage();
+        this.results.metrics.memoryUsage.initial = {
+            timestamp: Date.now(),
+            heapUsed: Math.round(initialMemory.heapUsed / 1024 / 1024),
+            heapTotal: Math.round(initialMemory.heapTotal / 1024 / 1024),
+            external: Math.round(initialMemory.external / 1024 / 1024),
+            rss: Math.round(initialMemory.rss / 1024 / 1024)
+        };
+        
+        // Monitor memory and CPU every second
+        this.performanceMonitor = setInterval(() => {
+            const memory = process.memoryUsage();
+            const cpu = process.cpuUsage();
+            
+            const memoryData = {
+                timestamp: Date.now(),
+                heapUsed: Math.round(memory.heapUsed / 1024 / 1024),
+                heapTotal: Math.round(memory.heapTotal / 1024 / 1024),
+                external: Math.round(memory.external / 1024 / 1024),
+                rss: Math.round(memory.rss / 1024 / 1024)
+            };
+            
+            this.results.metrics.memoryUsage.samples.push(memoryData);
+            
+            // Track peak memory usage
+            if (!this.results.metrics.memoryUsage.peak || 
+                memoryData.heapUsed > this.results.metrics.memoryUsage.peak.heapUsed) {
+                this.results.metrics.memoryUsage.peak = memoryData;
+            }
+            
+            this.results.metrics.cpuUsage.push({
+                timestamp: Date.now(),
+                user: cpu.user,
+                system: cpu.system
+            });
+            
+        }, 1000);
+    }
+    
+    /**
+     * Stop performance monitoring
+     */
+    stopPerformanceMonitoring() {
+        if (this.performanceMonitor) {
+            clearInterval(this.performanceMonitor);
+        }
+        
+        const finalMemory = process.memoryUsage();
+        this.results.metrics.memoryUsage.final = {
+            timestamp: Date.now(),
+            heapUsed: Math.round(finalMemory.heapUsed / 1024 / 1024),
+            heapTotal: Math.round(finalMemory.heapTotal / 1024 / 1024),
+            external: Math.round(finalMemory.external / 1024 / 1024),
+            rss: Math.round(finalMemory.rss / 1024 / 1024)
+        };
+    }
+    
+    /**
+     * Test security endpoints specifically
+     */
+    async testSecurityEndpoints() {
+        console.log('\n🔐 Testing security endpoints...');
+        
+        for (const endpoint of this.config.securityEndpoints) {
+            try {
+                const startTime = Date.now();
+                const response = await this.makeSecurityRequest(endpoint);
+                const responseTime = Date.now() - startTime;
+                
+                const testResult = {
+                    endpoint: endpoint.path,
+                    method: endpoint.method,
+                    expectedAuth: endpoint.expectAuth,
+                    statusCode: response.statusCode,
+                    responseTime: responseTime,
+                    success: this.validateSecurityResponse(endpoint, response),
+                    timestamp: startTime
+                };
+                
+                this.results.securityTests.push(testResult);
+                
+                const status = testResult.success ? '✅' : '❌';
+                console.log(`   ${status} ${endpoint.method} ${endpoint.path} - ${response.statusCode} (${responseTime}ms)`);
+                
+            } catch (error) {
+                this.results.securityTests.push({
+                    endpoint: endpoint.path,
+                    method: endpoint.method,
+                    error: error.message,
+                    success: false,
+                    timestamp: Date.now()
+                });
+                
+                console.log(`   ❌ ${endpoint.method} ${endpoint.path} - Error: ${error.message}`);
+            }
+        }
+    }
+    
+    /**
+     * Make request to security endpoint
+     */
+    async makeSecurityRequest(endpoint) {
+        const url = new URL(endpoint.path, this.config.baseUrl);
+        const options = {
+            hostname: url.hostname,
+            port: url.port || (url.protocol === 'https:' ? 443 : 80),
+            path: url.pathname + url.search,
+            method: endpoint.method,
+            headers: {
+                'User-Agent': 'SecurityTester/1.0',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            timeout: 10000
+        };
+        
+        return new Promise((resolve, reject) => {
+            const client = url.protocol === 'https:' ? https : http;
+            
+            const req = client.request(options, (res) => {
+                let data = '';
+                res.on('data', chunk => data += chunk);
+                res.on('end', () => {
+                    resolve({
+                        statusCode: res.statusCode,
+                        headers: res.headers,
+                        data: data
+                    });
+                });
+            });
+            
+            req.on('error', reject);
+            req.on('timeout', () => reject(new Error('Request timeout')));
+            
+            if (endpoint.method === 'POST' && endpoint.expectAuth) {
+                // Test data for POST requests
+                const testData = JSON.stringify({ ip: '192.168.1.100', action: 'block', reason: 'test' });
+                req.write(testData);
+            }
+            
+            req.end();
+        });
+    }
+    
+    /**
+     * Validate security endpoint response
+     */
+    validateSecurityResponse(endpoint, response) {
+        // For endpoints that expect authentication, 401/403 is expected without auth
+        if (endpoint.expectAuth) {
+            return response.statusCode === 401 || response.statusCode === 403;
+        }
+        
+        // For public endpoints, 200 is expected
+        return response.statusCode >= 200 && response.statusCode < 400;
+    }
+    
+    /**
+     * Run comprehensive performance suite
+     */
+    async runPerformanceSuite() {
+        console.log('\n🚀 Running Comprehensive Performance Test Suite');
+        console.log('===============================================');
+        
+        const results = {};
+        
+        // Test security endpoints first
+        await this.testSecurityEndpoints();
+        
+        // Run load test scenarios
+        for (const [scenarioName, scenario] of Object.entries(this.config.scenarios)) {
+            console.log(`\n📊 Running ${scenario.name}...`);
+            results[scenarioName] = await this.runScenario(scenarioName);
+            
+            // Validate against thresholds
+            const validation = this.validatePerformance(results[scenarioName]);
+            results[scenarioName].validation = validation;
+            
+            const status = validation.overall ? '✅' : '⚠️';
+            console.log(`${status} ${scenario.name} completed - ${validation.passed}/${validation.total} checks passed`);
+            
+            if (scenarioName !== Object.keys(this.config.scenarios).slice(-1)[0]) {
+                console.log('⏳ Cooling down...');
+                await new Promise(resolve => setTimeout(resolve, 5000));
+            }
+        }
+        
+        // Generate performance report
+        await this.generatePerformanceReport(results);
+        
+        return results;
+    }
+    
+    /**
+     * Validate performance against thresholds
+     */
+    validatePerformance(results) {
+        const metrics = results.metrics;
+        const thresholds = this.config.thresholds;
+        
+        const checks = {
+            averageResponseTime: metrics.averageResponseTime <= thresholds.averageResponseTime,
+            p95ResponseTime: metrics.percentiles.p95 <= thresholds.p95ResponseTime,
+            p99ResponseTime: metrics.percentiles.p99 <= thresholds.p99ResponseTime,
+            errorRate: metrics.errorRate <= (thresholds.errorRate * 100),
+            throughput: metrics.requestsPerSecond >= thresholds.throughputRPS
+        };
+        
+        // Check memory usage if available
+        if (metrics.memoryUsage.initial && metrics.memoryUsage.final) {
+            const memoryIncrease = metrics.memoryUsage.final.heapUsed - metrics.memoryUsage.initial.heapUsed;
+            checks.memoryIncrease = memoryIncrease <= thresholds.memoryIncreaseMB;
+        }
+        
+        const passed = Object.values(checks).filter(Boolean).length;
+        const total = Object.keys(checks).length;
+        
+        return {
+            checks: checks,
+            passed: passed,
+            total: total,
+            overall: passed === total
+        };
+    }
+    
+    /**
+     * Generate comprehensive performance report
+     */
+    async generatePerformanceReport(results) {
+        const fs = require('fs-extra');
+        const path = require('path');
+        
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        const reportDir = './security-reports';
+        const reportPath = path.join(reportDir, `load-test-report-${timestamp}.json`);
+        
+        await fs.ensureDir(reportDir);
+        
+        const report = {
+            timestamp: new Date().toISOString(),
+            server: this.config.baseUrl,
+            thresholds: this.config.thresholds,
+            scenarios: results,
+            securityTests: this.results.securityTests,
+            summary: this.generateSummary(results)
+        };
+        
+        await fs.writeJSON(reportPath, report, { spaces: 2 });
+        
+        console.log(`\n📊 Performance report saved: ${reportPath}`);
+        
+        return reportPath;
+    }
+    
+    /**
+     * Generate test summary
+     */
+    generateSummary(results) {
+        const scenarios = Object.keys(results);
+        const passedScenarios = scenarios.filter(s => results[s].validation?.overall).length;
+        const securityTestsPassed = this.results.securityTests.filter(t => t.success).length;
+        
+        return {
+            totalScenarios: scenarios.length,
+            passedScenarios: passedScenarios,
+            failedScenarios: scenarios.length - passedScenarios,
+            securityTestsPassed: securityTestsPassed,
+            securityTestsTotal: this.results.securityTests.length,
+            overallResult: passedScenarios === scenarios.length && 
+                          securityTestsPassed === this.results.securityTests.length ? 'PASS' : 'FAIL'
+        };
     }
 
     /**
@@ -91,7 +397,7 @@ class LoadTester {
         
         this.testStartTime = Date.now();
         
-        // Reset results
+        // Reset results for this scenario
         this.results = {
             requests: [],
             metrics: {
@@ -103,10 +409,20 @@ class LoadTester {
                 maxResponseTime: 0,
                 percentiles: {},
                 requestsPerSecond: 0,
-                errorRate: 0
+                errorRate: 0,
+                memoryUsage: {
+                    initial: null,
+                    peak: null,
+                    final: null,
+                    samples: []
+                },
+                cpuUsage: []
             },
             errors: []
         };
+
+        // Start performance monitoring
+        this.startPerformanceMonitoring();
 
         // Start concurrent workers
         const workers = [];
@@ -121,9 +437,14 @@ class LoadTester {
         
         // Wait for any remaining requests to complete
         console.log('\n⏳ Waiting for remaining requests to complete...');
-        while (this.activeRequests > 0) {
+        let waitTime = 0;
+        while (this.activeRequests > 0 && waitTime < 30000) { // Max 30 second wait
             await new Promise(resolve => setTimeout(resolve, 100));
+            waitTime += 100;
         }
+        
+        // Stop performance monitoring
+        this.stopPerformanceMonitoring();
         
         // Calculate final metrics
         this.calculateMetrics();
@@ -314,6 +635,19 @@ class LoadTester {
         console.log(`✅ Successful: ${metrics.successfulRequests} (${((metrics.successfulRequests / metrics.totalRequests) * 100).toFixed(2)}%)`);
         console.log(`❌ Failed: ${metrics.failedRequests} (${metrics.errorRate.toFixed(2)}%)`);
         console.log(`🚀 Requests/sec: ${metrics.requestsPerSecond.toFixed(2)}`);
+        
+        // Memory usage metrics
+        if (metrics.memoryUsage.initial && metrics.memoryUsage.final) {
+            const memoryIncrease = metrics.memoryUsage.final.heapUsed - metrics.memoryUsage.initial.heapUsed;
+            const peakMemory = metrics.memoryUsage.peak ? metrics.memoryUsage.peak.heapUsed : 0;
+            console.log('');
+            console.log('💾 Memory Usage:');
+            console.log(`   Initial: ${metrics.memoryUsage.initial.heapUsed}MB`);
+            console.log(`   Peak: ${peakMemory}MB`);
+            console.log(`   Final: ${metrics.memoryUsage.final.heapUsed}MB`);
+            console.log(`   Increase: ${memoryIncrease}MB`);
+        }
+        
         console.log('');
         console.log('⏱️  Response Time Metrics:');
         console.log(`   Average: ${metrics.averageResponseTime.toFixed(2)}ms`);
@@ -332,24 +666,45 @@ class LoadTester {
             });
         }
         
-        // Performance assessment
+        // Performance assessment against thresholds
         console.log('\n🎯 Performance Assessment:');
-        if (metrics.averageResponseTime < 100) {
-            console.log('   ✅ Excellent response times (<100ms average)');
-        } else if (metrics.averageResponseTime < 500) {
-            console.log('   ✅ Good response times (<500ms average)');
-        } else if (metrics.averageResponseTime < 1000) {
-            console.log('   ⚠️  Acceptable response times (<1s average)');
+        const thresholds = this.config.thresholds;
+        
+        // Response time assessment
+        if (metrics.averageResponseTime <= thresholds.averageResponseTime) {
+            console.log(`   ✅ Average response time: ${metrics.averageResponseTime.toFixed(2)}ms (≤ ${thresholds.averageResponseTime}ms)`);
         } else {
-            console.log('   ❌ Poor response times (>1s average)');
+            console.log(`   ❌ Average response time: ${metrics.averageResponseTime.toFixed(2)}ms (> ${thresholds.averageResponseTime}ms)`);
         }
         
-        if (metrics.errorRate < 1) {
-            console.log('   ✅ Excellent error rate (<1%)');
-        } else if (metrics.errorRate < 5) {
-            console.log('   ⚠️  Acceptable error rate (<5%)');
+        if (metrics.percentiles.p95 <= thresholds.p95ResponseTime) {
+            console.log(`   ✅ 95th percentile: ${metrics.percentiles.p95}ms (≤ ${thresholds.p95ResponseTime}ms)`);
         } else {
-            console.log('   ❌ High error rate (>5%)');
+            console.log(`   ❌ 95th percentile: ${metrics.percentiles.p95}ms (> ${thresholds.p95ResponseTime}ms)`);
+        }
+        
+        // Error rate assessment
+        if (metrics.errorRate <= (thresholds.errorRate * 100)) {
+            console.log(`   ✅ Error rate: ${metrics.errorRate.toFixed(2)}% (≤ ${(thresholds.errorRate * 100).toFixed(1)}%)`);
+        } else {
+            console.log(`   ❌ Error rate: ${metrics.errorRate.toFixed(2)}% (> ${(thresholds.errorRate * 100).toFixed(1)}%)`);
+        }
+        
+        // Throughput assessment
+        if (metrics.requestsPerSecond >= thresholds.throughputRPS) {
+            console.log(`   ✅ Throughput: ${metrics.requestsPerSecond.toFixed(2)} RPS (≥ ${thresholds.throughputRPS} RPS)`);
+        } else {
+            console.log(`   ⚠️  Throughput: ${metrics.requestsPerSecond.toFixed(2)} RPS (< ${thresholds.throughputRPS} RPS)`);
+        }
+        
+        // Memory assessment
+        if (metrics.memoryUsage.initial && metrics.memoryUsage.final) {
+            const memoryIncrease = metrics.memoryUsage.final.heapUsed - metrics.memoryUsage.initial.heapUsed;
+            if (memoryIncrease <= thresholds.memoryIncreaseMB) {
+                console.log(`   ✅ Memory increase: ${memoryIncrease}MB (≤ ${thresholds.memoryIncreaseMB}MB)`);
+            } else {
+                console.log(`   ❌ Memory increase: ${memoryIncrease}MB (> ${thresholds.memoryIncreaseMB}MB)`);
+            }
         }
     }
 
@@ -357,24 +712,7 @@ class LoadTester {
      * Run all test scenarios
      */
     async runAllScenarios() {
-        const results = {};
-        
-        for (const [scenarioName, scenario] of Object.entries(this.config.scenarios)) {
-            try {
-                results[scenarioName] = await this.runScenario(scenarioName);
-                
-                // Wait between scenarios
-                if (Object.keys(results).length < Object.keys(this.config.scenarios).length) {
-                    console.log('\n⏸️  Waiting 10 seconds before next test...');
-                    await new Promise(resolve => setTimeout(resolve, 10000));
-                }
-            } catch (error) {
-                console.error(`❌ Failed to run scenario ${scenarioName}:`, error);
-                results[scenarioName] = { error: error.message };
-            }
-        }
-        
-        return results;
+        return await this.runPerformanceSuite();
     }
 }
 
@@ -384,27 +722,56 @@ async function main() {
     const args = process.argv.slice(2);
     const scenarioName = args[0] || 'all';
     
-    console.log('🔧 Load Testing Utility for Security System');
-    console.log('==========================================');
+    console.log('🔧 Enhanced Load Testing Utility for Security System');
+    console.log('===================================================');
+    console.log(`🎯 Testing: ${LOAD_TEST_CONFIG.baseUrl}`);
+    console.log(`📊 Performance Thresholds:`);
+    console.log(`   - Avg Response Time: ≤ ${LOAD_TEST_CONFIG.thresholds.averageResponseTime}ms`);
+    console.log(`   - 95th Percentile: ≤ ${LOAD_TEST_CONFIG.thresholds.p95ResponseTime}ms`);
+    console.log(`   - Error Rate: ≤ ${(LOAD_TEST_CONFIG.thresholds.errorRate * 100).toFixed(1)}%`);
+    console.log(`   - Min Throughput: ≥ ${LOAD_TEST_CONFIG.thresholds.throughputRPS} RPS`);
+    console.log(`   - Max Memory Increase: ≤ ${LOAD_TEST_CONFIG.thresholds.memoryIncreaseMB}MB\n`);
     
     const loadTester = new LoadTester();
     
     try {
+        let results;
+        
         if (scenarioName === 'all') {
-            await loadTester.runAllScenarios();
+            results = await loadTester.runPerformanceSuite();
+        } else if (scenarioName === 'security') {
+            console.log('🔐 Running security endpoint tests only...');
+            await loadTester.testSecurityEndpoints();
+            return;
         } else if (LOAD_TEST_CONFIG.scenarios[scenarioName]) {
-            await loadTester.runScenario(scenarioName);
+            console.log(`🚀 Running single scenario: ${scenarioName}`);
+            results = await loadTester.runScenario(scenarioName);
+            const validation = loadTester.validatePerformance(results);
+            console.log(`\n📊 Validation: ${validation.passed}/${validation.total} checks passed`);
         } else {
             console.error(`❌ Unknown scenario: ${scenarioName}`);
             console.log('\nAvailable scenarios:');
             Object.keys(LOAD_TEST_CONFIG.scenarios).forEach(name => {
                 console.log(`  - ${name}`);
             });
-            console.log('  - all (run all scenarios)');
+            console.log('  - all (run comprehensive performance suite)');
+            console.log('  - security (run security endpoint tests only)');
             process.exit(1);
         }
         
         console.log('\n✅ Load testing completed successfully!');
+        
+        // Exit with error code if performance validation fails
+        if (results && typeof results === 'object') {
+            const overallSuccess = Object.values(results)
+                .filter(r => r.validation)
+                .every(r => r.validation.overall);
+            
+            if (!overallSuccess) {
+                console.log('⚠️  Some performance thresholds were not met.');
+                process.exit(1);
+            }
+        }
         
     } catch (error) {
         console.error('❌ Load testing failed:', error);
