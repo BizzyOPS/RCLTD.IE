@@ -816,14 +816,20 @@ body {
 
 .robotic .robotic-text {
     display: inline-block;
-    opacity: 0;
+    opacity: 1;
 }
 
 .robotic .robotic-char {
     display: inline-block;
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Only hide characters when animation is about to start */
+.robotic.robotic-preparing .robotic-char {
     opacity: 0;
     transform: translateY(20px) rotateX(90deg);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .robotic.robotic-active .robotic-char {

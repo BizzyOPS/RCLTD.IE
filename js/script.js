@@ -1101,15 +1101,21 @@ function setupRoboticText(element) {
 function triggerRobotic(element) {
     if (element.classList.contains('robotic-active')) return;
     
-    element.classList.add('robotic-active');
+    // First prepare the animation by hiding characters
+    element.classList.add('robotic-preparing');
     
-    // Animate characters with staggered delay
-    const chars = element.querySelectorAll('.robotic-char');
-    chars.forEach((char, index) => {
-        setTimeout(() => {
-            char.style.animationDelay = `${index * 0.05}s`;
-        }, index * 50);
-    });
+    setTimeout(() => {
+        element.classList.remove('robotic-preparing');
+        element.classList.add('robotic-active');
+        
+        // Animate characters with staggered delay
+        const chars = element.querySelectorAll('.robotic-char');
+        chars.forEach((char, index) => {
+            setTimeout(() => {
+                char.style.animationDelay = `${index * 0.05}s`;
+            }, index * 50);
+        });
+    }, 100);
     
     // Remove robotic effect after animation completes
     setTimeout(() => {
