@@ -1106,17 +1106,19 @@ function setupGlitchText(element) {
     element.classList.add('glitch-text');
     element.setAttribute('data-text', text);
     
-    // Wrap each character in a span for individual animation
-    const chars = text.split('').map(char => 
-        char === ' ' ? '<span class="glitch-char">&nbsp;</span>' : `<span class="glitch-char">${char}</span>`
-    ).join('');
+    // Wrap each character in a span for individual animation using safe DOM methods
+    const fragment = document.createDocumentFragment();
+    text.split('').forEach(char => {
+        const span = document.createElement('span');
+        span.className = 'glitch-char';
+        span.textContent = char === ' ' ? '\u00A0' : char; // Use non-breaking space for spaces
+        fragment.appendChild(span);
+    });
     
-    // Replace the content of the text element
-    if (textElement !== element) {
-        textElement.innerHTML = chars;
-    } else {
-        element.innerHTML = chars;
-    }
+    // Replace the content of the text element safely
+    const targetElement = textElement !== element ? textElement : element;
+    targetElement.innerHTML = ''; // Clear existing content
+    targetElement.appendChild(fragment);
 }
 
 function triggerGlitch(element) {
