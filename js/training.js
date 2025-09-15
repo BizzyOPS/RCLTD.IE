@@ -670,37 +670,90 @@ class SafetyTrainingSystem {
         const passed = score >= 90;
         const gradeElement = document.createElement('div');
         gradeElement.className = `grading-modal ${passed ? 'passed' : 'failed'}`;
-        gradeElement.innerHTML = `
-            <div class="grading-overlay">
-                <div class="grading-content">
-                    <div class="grading-header">
-                        <h3>Chapter ${chapterId} Results</h3>
-                        ${passed ? '<div class="success-icon">✅</div>' : '<div class="fail-icon">❌</div>'}
-                    </div>
-                    <div class="grading-score">
-                        <div class="score-display">
-                            <span class="score-number">${score}%</span>
-                            <span class="score-label">Score</span>
-                        </div>
-                        <div class="pass-status ${passed ? 'passed' : 'failed'}">
-                            ${passed ? 'PASSED' : 'FAILED'}
-                        </div>
-                    </div>
-                    <div class="grading-message">
-                        ${passed 
-                            ? '<p>Congratulations! You have successfully completed this chapter.</p>' 
-                            : '<p>You need 90% or higher to pass. Please review the material and try again.</p>'
-                        }
-                    </div>
-                    <div class="grading-actions">
-                        <button class="btn-primary" onclick="this.closest('.grading-modal').remove()">
-                            ${passed ? 'Continue' : 'Review Material'}
-                        </button>
-                        ${!passed ? '<button class="btn-secondary" onclick="trainingSystem.retryChapter(\'' + moduleId + '\', \'' + chapterId + '\')">Retry Questions</button>' : ''}
-                    </div>
-                </div>
-            </div>
-        `;
+        
+        // Create elements safely using DOM methods
+        const overlay = document.createElement('div');
+        overlay.className = 'grading-overlay';
+        
+        const content = document.createElement('div');
+        content.className = 'grading-content';
+        
+        // Header section
+        const header = document.createElement('div');
+        header.className = 'grading-header';
+        
+        const title = document.createElement('h3');
+        title.textContent = 'Chapter ' + chapterId + ' Results';
+        header.appendChild(title);
+        
+        const icon = document.createElement('div');
+        icon.className = passed ? 'success-icon' : 'fail-icon';
+        icon.textContent = passed ? '✅' : '❌';
+        header.appendChild(icon);
+        
+        // Score section
+        const scoreSection = document.createElement('div');
+        scoreSection.className = 'grading-score';
+        
+        const scoreDisplay = document.createElement('div');
+        scoreDisplay.className = 'score-display';
+        
+        const scoreNumber = document.createElement('span');
+        scoreNumber.className = 'score-number';
+        scoreNumber.textContent = score + '%';
+        scoreDisplay.appendChild(scoreNumber);
+        
+        const scoreLabel = document.createElement('span');
+        scoreLabel.className = 'score-label';
+        scoreLabel.textContent = 'Score';
+        scoreDisplay.appendChild(scoreLabel);
+        
+        const passStatus = document.createElement('div');
+        passStatus.className = 'pass-status ' + (passed ? 'passed' : 'failed');
+        passStatus.textContent = passed ? 'PASSED' : 'FAILED';
+        
+        scoreSection.appendChild(scoreDisplay);
+        scoreSection.appendChild(passStatus);
+        
+        // Message section
+        const message = document.createElement('div');
+        message.className = 'grading-message';
+        
+        const messageParagraph = document.createElement('p');
+        messageParagraph.textContent = passed 
+            ? 'Congratulations! You have successfully completed this chapter.'
+            : 'You need 90% or higher to pass. Please review the material and try again.';
+        message.appendChild(messageParagraph);
+        
+        // Actions section
+        const actions = document.createElement('div');
+        actions.className = 'grading-actions';
+        
+        const primaryButton = document.createElement('button');
+        primaryButton.className = 'btn-primary';
+        primaryButton.textContent = passed ? 'Continue' : 'Review Material';
+        primaryButton.addEventListener('click', () => {
+            gradeElement.remove();
+        });
+        actions.appendChild(primaryButton);
+        
+        if (!passed) {
+            const retryButton = document.createElement('button');
+            retryButton.className = 'btn-secondary';
+            retryButton.textContent = 'Retry Questions';
+            retryButton.addEventListener('click', () => {
+                trainingSystem.retryChapter(moduleId, chapterId);
+            });
+            actions.appendChild(retryButton);
+        }
+        
+        // Assemble the modal
+        content.appendChild(header);
+        content.appendChild(scoreSection);
+        content.appendChild(message);
+        content.appendChild(actions);
+        overlay.appendChild(content);
+        gradeElement.appendChild(overlay);
         
         document.body.appendChild(gradeElement);
         
@@ -719,13 +772,23 @@ class SafetyTrainingSystem {
     showCelebrationEffect() {
         const celebration = document.createElement('div');
         celebration.className = 'celebration-container';
-        celebration.innerHTML = `
-            <div class="confetti"></div>
-            <div class="celebration-message">
-                🎉 Perfect Score! 🎉
-                <div class="celebration-subtitle">Outstanding work!</div>
-            </div>
-        `;
+        
+        // Create confetti container
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        
+        // Create celebration message
+        const message = document.createElement('div');
+        message.className = 'celebration-message';
+        message.textContent = '🎉 Perfect Score! 🎉';
+        
+        const subtitle = document.createElement('div');
+        subtitle.className = 'celebration-subtitle';
+        subtitle.textContent = 'Outstanding work!';
+        message.appendChild(subtitle);
+        
+        celebration.appendChild(confetti);
+        celebration.appendChild(message);
         
         document.body.appendChild(celebration);
         
