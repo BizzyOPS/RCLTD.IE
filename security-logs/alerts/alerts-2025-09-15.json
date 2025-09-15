@@ -1,0 +1,638 @@
+[
+  {
+    "id": "803b09e8-0a7a-4862-8ac9-5fe3abbe5ebd",
+    "requestId": "862af16a-6787-4aea-8317-4821c5b84e93",
+    "timestamp": "2025-09-15T02:22:38.075Z",
+    "ip": "127.0.0.1",
+    "userAgent": "curl/8.14.1",
+    "url": "/api/security/health",
+    "method": "GET",
+    "threats": [
+      "suspicious_user_agent"
+    ],
+    "riskScore": 35,
+    "details": {
+      "rateLimit": {
+        "suspicious": false,
+        "score": 0,
+        "issues": [],
+        "metrics": {
+          "recentRequests": 14,
+          "recentSuspicious": 0
+        }
+      },
+      "content": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "userAgent": {
+        "suspicious": true,
+        "score": 35,
+        "issues": [
+          "Suspicious User-Agent pattern detected"
+        ]
+      },
+      "payload": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "path": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "sql": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "xss": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "bot": {
+        "suspicious": false,
+        "score": 10,
+        "issues": [
+          "Bot-like User-Agent detected"
+        ]
+      }
+    }
+  },
+  {
+    "id": "4111a37a-2e21-4135-b2da-a46e31a27a30",
+    "requestId": "68b44e2c-7511-4ddb-a6b8-2b9aa11607e3",
+    "timestamp": "2025-09-15T02:22:38.890Z",
+    "ip": "127.0.0.1",
+    "userAgent": "curl/8.14.1",
+    "url": "/api/security/metrics",
+    "method": "GET",
+    "threats": [
+      "suspicious_user_agent"
+    ],
+    "riskScore": 35,
+    "details": {
+      "rateLimit": {
+        "suspicious": false,
+        "score": 0,
+        "issues": [],
+        "metrics": {
+          "recentRequests": 15,
+          "recentSuspicious": 1
+        }
+      },
+      "content": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "userAgent": {
+        "suspicious": true,
+        "score": 35,
+        "issues": [
+          "Suspicious User-Agent pattern detected"
+        ]
+      },
+      "payload": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "path": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "sql": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "xss": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "bot": {
+        "suspicious": false,
+        "score": 10,
+        "issues": [
+          "Bot-like User-Agent detected"
+        ]
+      }
+    }
+  },
+  {
+    "id": "a0f3d293-68e2-426a-b484-7f5b75b85956",
+    "requestId": "c454b958-e8e1-4af9-92f7-e6b8b059b10c",
+    "timestamp": "2025-09-15T02:29:30.066Z",
+    "ip": "127.0.0.1",
+    "userAgent": "curl/8.14.1",
+    "url": "/api/health",
+    "method": "GET",
+    "threats": [
+      "suspicious_user_agent"
+    ],
+    "riskScore": 35,
+    "details": {
+      "rateLimit": {
+        "suspicious": false,
+        "score": 0,
+        "issues": [],
+        "metrics": {
+          "recentRequests": 0,
+          "recentSuspicious": 0
+        }
+      },
+      "content": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "userAgent": {
+        "suspicious": true,
+        "score": 35,
+        "issues": [
+          "Suspicious User-Agent pattern detected"
+        ]
+      },
+      "payload": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "path": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "sql": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "xss": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "bot": {
+        "suspicious": false,
+        "score": 10,
+        "issues": [
+          "Bot-like User-Agent detected"
+        ]
+      }
+    }
+  },
+  {
+    "id": "72b3266e-350a-4d89-9d7c-5addf0ec5d45",
+    "requestId": "3063f477-8954-4c92-86ff-1b2646b28906",
+    "timestamp": "2025-09-15T02:29:30.898Z",
+    "ip": "127.0.0.1",
+    "userAgent": "curl/8.14.1",
+    "url": "/api/security/status",
+    "method": "GET",
+    "threats": [
+      "suspicious_user_agent"
+    ],
+    "riskScore": 35,
+    "details": {
+      "rateLimit": {
+        "suspicious": false,
+        "score": 0,
+        "issues": [],
+        "metrics": {
+          "recentRequests": 1,
+          "recentSuspicious": 1
+        }
+      },
+      "content": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "userAgent": {
+        "suspicious": true,
+        "score": 35,
+        "issues": [
+          "Suspicious User-Agent pattern detected"
+        ]
+      },
+      "payload": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "path": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "sql": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "xss": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "bot": {
+        "suspicious": false,
+        "score": 10,
+        "issues": [
+          "Bot-like User-Agent detected"
+        ]
+      }
+    }
+  },
+  {
+    "id": "055446e5-da39-4592-9eed-de58afe82e12",
+    "requestId": "f6903a1f-baef-467c-811c-39d9e1946294",
+    "timestamp": "2025-09-15T02:29:31.585Z",
+    "ip": "127.0.0.1",
+    "userAgent": "curl/8.14.1",
+    "url": "/api/metrics",
+    "method": "GET",
+    "threats": [
+      "suspicious_user_agent"
+    ],
+    "riskScore": 35,
+    "details": {
+      "rateLimit": {
+        "suspicious": false,
+        "score": 0,
+        "issues": [],
+        "metrics": {
+          "recentRequests": 2,
+          "recentSuspicious": 2
+        }
+      },
+      "content": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "userAgent": {
+        "suspicious": true,
+        "score": 35,
+        "issues": [
+          "Suspicious User-Agent pattern detected"
+        ]
+      },
+      "payload": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "path": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "sql": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "xss": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "bot": {
+        "suspicious": false,
+        "score": 10,
+        "issues": [
+          "Bot-like User-Agent detected"
+        ]
+      }
+    }
+  },
+  {
+    "id": "b1371f6f-c232-4919-9e25-bbdcdaccf00e",
+    "requestId": "989f3971-8d39-45c2-ab08-ac17986bcae1",
+    "timestamp": "2025-09-15T02:30:02.153Z",
+    "ip": "127.0.0.1",
+    "userAgent": "curl/8.14.1",
+    "url": "/api/health",
+    "method": "GET",
+    "threats": [
+      "suspicious_user_agent"
+    ],
+    "riskScore": 35,
+    "details": {
+      "rateLimit": {
+        "suspicious": false,
+        "score": 0,
+        "issues": [],
+        "metrics": {
+          "recentRequests": 14,
+          "recentSuspicious": 0
+        }
+      },
+      "content": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "userAgent": {
+        "suspicious": true,
+        "score": 35,
+        "issues": [
+          "Suspicious User-Agent pattern detected"
+        ]
+      },
+      "payload": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "path": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "sql": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "xss": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "bot": {
+        "suspicious": false,
+        "score": 10,
+        "issues": [
+          "Bot-like User-Agent detected"
+        ]
+      }
+    }
+  },
+  {
+    "id": "a0155994-8ba9-4108-9783-fe57c77d8416",
+    "requestId": "edb76d8e-7684-4bbd-80e5-daf39ce2ed60",
+    "timestamp": "2025-09-15T02:30:03.058Z",
+    "ip": "127.0.0.1",
+    "userAgent": "curl/8.14.1",
+    "url": "/api/security/status",
+    "method": "GET",
+    "threats": [
+      "suspicious_user_agent"
+    ],
+    "riskScore": 35,
+    "details": {
+      "rateLimit": {
+        "suspicious": false,
+        "score": 0,
+        "issues": [],
+        "metrics": {
+          "recentRequests": 15,
+          "recentSuspicious": 1
+        }
+      },
+      "content": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "userAgent": {
+        "suspicious": true,
+        "score": 35,
+        "issues": [
+          "Suspicious User-Agent pattern detected"
+        ]
+      },
+      "payload": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "path": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "sql": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "xss": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "bot": {
+        "suspicious": false,
+        "score": 10,
+        "issues": [
+          "Bot-like User-Agent detected"
+        ]
+      }
+    }
+  },
+  {
+    "id": "64d255d0-6356-42aa-8766-15408d35aaf8",
+    "requestId": "e2dc6734-c79f-4163-848b-cd2298bbad25",
+    "timestamp": "2025-09-15T02:30:03.703Z",
+    "ip": "127.0.0.1",
+    "userAgent": "curl/8.14.1",
+    "url": "/api/metrics",
+    "method": "GET",
+    "threats": [
+      "suspicious_user_agent"
+    ],
+    "riskScore": 35,
+    "details": {
+      "rateLimit": {
+        "suspicious": false,
+        "score": 0,
+        "issues": [],
+        "metrics": {
+          "recentRequests": 16,
+          "recentSuspicious": 2
+        }
+      },
+      "content": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "userAgent": {
+        "suspicious": true,
+        "score": 35,
+        "issues": [
+          "Suspicious User-Agent pattern detected"
+        ]
+      },
+      "payload": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "path": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "sql": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "xss": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "bot": {
+        "suspicious": false,
+        "score": 10,
+        "issues": [
+          "Bot-like User-Agent detected"
+        ]
+      }
+    }
+  },
+  {
+    "id": "a8f13d36-b38e-400d-b7f0-a2b164f84f4c",
+    "requestId": "6fdcd024-bbee-4eb2-8d1d-50f96f683913",
+    "timestamp": "2025-09-15T02:30:22.774Z",
+    "ip": "127.0.0.1",
+    "userAgent": "LoadTester/1.0 (Security Monitoring Test)",
+    "url": "/services.html",
+    "method": "GET",
+    "threats": [
+      "rate_limit_exceeded",
+      "bot_activity"
+    ],
+    "riskScore": 50,
+    "details": {
+      "rateLimit": {
+        "suspicious": true,
+        "score": 30,
+        "issues": [
+          "101 requests in last minute (threshold: 100)"
+        ],
+        "metrics": {
+          "recentRequests": 101,
+          "recentSuspicious": 3
+        }
+      },
+      "content": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "userAgent": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "payload": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "path": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "sql": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "xss": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "bot": {
+        "suspicious": true,
+        "score": 20,
+        "issues": [
+          "High-frequency requests indicative of bot activity"
+        ]
+      }
+    }
+  },
+  {
+    "id": "b282f914-9186-4b2d-91ff-f9dc99b8c995",
+    "requestId": "0da40756-f773-41af-a3c1-a088b475ca90",
+    "timestamp": "2025-09-15T02:30:22.835Z",
+    "ip": "127.0.0.1",
+    "userAgent": "LoadTester/1.0 (Security Monitoring Test)",
+    "url": "/",
+    "method": "GET",
+    "threats": [
+      "rate_limit_exceeded",
+      "bot_activity"
+    ],
+    "riskScore": 50,
+    "details": {
+      "rateLimit": {
+        "suspicious": true,
+        "score": 30,
+        "issues": [
+          "103 requests in last minute (threshold: 100)"
+        ],
+        "metrics": {
+          "recentRequests": 103,
+          "recentSuspicious": 5
+        }
+      },
+      "content": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "userAgent": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "payload": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "path": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "sql": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "xss": {
+        "suspicious": false,
+        "score": 0,
+        "issues": []
+      },
+      "bot": {
+        "suspicious": true,
+        "score": 20,
+        "issues": [
+          "High-frequency requests indicative of bot activity"
+        ]
+      }
+    }
+  }
+]
+
+    }
+  }
+]

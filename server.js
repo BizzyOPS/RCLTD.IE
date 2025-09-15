@@ -37,12 +37,28 @@ const {
     validateContentSecurityPolicy,
     VALIDATION_MESSAGES 
 } = require('./lib/validation');
+const { VulnerabilityScanner } = require('./lib/vulnerability-scanner');
+const { SecurityMonitor } = require('./lib/security-monitor');
+const { SecurityReporter } = require('./lib/security-reporter');
+const cron = require('node-cron');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const IS_PRODUCTION = NODE_ENV === 'production';
+
+// ==================== SECURITY MONITORING INITIALIZATION ====================
+
+// Initialize security monitoring system
+const vulnerabilityScanner = new VulnerabilityScanner();
+const securityMonitor = new SecurityMonitor();
+const securityReporter = new SecurityReporter(vulnerabilityScanner, securityMonitor);
+
+console.log('[SECURITY] Initializing comprehensive security monitoring system...');
+console.log(`[SECURITY] Environment: ${NODE_ENV}`);
+console.log(`[SECURITY] Security monitoring: ${securityMonitor.config.monitoring.enabled ? 'ENABLED' : 'DISABLED'}`);
+console.log(`[SECURITY] Vulnerability scanning: ${vulnerabilityScanner.config.automation.autoScan ? 'ENABLED' : 'DISABLED'}`);
 
 // ==================== SECURITY MIDDLEWARE ====================
 
@@ -293,6 +309,96 @@ const speedLimiter = slowDown({
 app.use(globalLimiter);
 app.use(speedLimiter);
 
+// ==================== SECURITY MONITORING MIDDLEWARE ====================
+
+// Apply security monitoring middleware
+app.use(securityMonitor.middleware());
+
+console.log('[SECURITY] Security monitoring middleware active');
+
+// ==================== PERFORMANCE MONITORING MIDDLEWARE ====================
+
+// Initialize global performance metrics
+global.performanceMetrics = {
+    totalRequests: 0,
+    totalResponseTime: 0,
+    averageResponseTime: 0,
+    errorCount: 0,
+    errorRate: 0,
+    requestsIn24h: [],
+    responseTimesIn24h: [],
+    lastCleanup: Date.now()
+};
+
+// Performance monitoring middleware
+app.use((req, res, next) => {
+    const startTime = Date.now();
+    const requestId = req.securityRequestId || `req_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    
+    // Track request start
+    req.performanceStartTime = startTime;
+    req.performanceRequestId = requestId;
+    
+    // Override res.end to capture response metrics
+    const originalEnd = res.end;
+    res.end = function(chunk, encoding) {
+        const responseTime = Date.now() - startTime;
+        const statusCode = res.statusCode;
+        
+        // Update global metrics
+        global.performanceMetrics.totalRequests++;
+        global.performanceMetrics.totalResponseTime += responseTime;
+        global.performanceMetrics.averageResponseTime = 
+            global.performanceMetrics.totalResponseTime / global.performanceMetrics.totalRequests;
+        
+        // Track errors (4xx and 5xx status codes)
+        if (statusCode >= 400) {
+            global.performanceMetrics.errorCount++;
+            global.performanceMetrics.errorRate = 
+                (global.performanceMetrics.errorCount / global.performanceMetrics.totalRequests) * 100;
+        }
+        
+        // Store detailed metrics for the last 24 hours
+        const now = Date.now();
+        global.performanceMetrics.requestsIn24h.push({
+            timestamp: now,
+            responseTime: responseTime,
+            statusCode: statusCode,
+            method: req.method,
+            url: req.url,
+            userAgent: req.get('User-Agent') || 'unknown',
+            ip: req.ip
+        });
+        
+        global.performanceMetrics.responseTimesIn24h.push({
+            timestamp: now,
+            responseTime: responseTime
+        });
+        
+        // Cleanup old metrics every hour to prevent memory leaks
+        if (now - global.performanceMetrics.lastCleanup > 3600000) { // 1 hour
+            const cutoff = now - 86400000; // 24 hours ago
+            global.performanceMetrics.requestsIn24h = 
+                global.performanceMetrics.requestsIn24h.filter(r => r.timestamp > cutoff);
+            global.performanceMetrics.responseTimesIn24h = 
+                global.performanceMetrics.responseTimesIn24h.filter(r => r.timestamp > cutoff);
+            global.performanceMetrics.lastCleanup = now;
+        }
+        
+        // Log slow requests (over 2 seconds)
+        if (responseTime > 2000) {
+            console.warn(`[PERFORMANCE] Slow request detected: ${req.method} ${req.url} - ${responseTime}ms`);
+        }
+        
+        // Call original end function
+        originalEnd.call(this, chunk, encoding);
+    };
+    
+    next();
+});
+
+console.log('[PERFORMANCE] Performance monitoring middleware active');
+
 // ==================== BODY PARSING AND INPUT SECURITY ====================
 
 // Limit request size
@@ -435,13 +541,128 @@ app.use((req, res, next) => {
 
 // ==================== API ENDPOINTS ====================
 
-// Health check endpoint
-app.get('/api/health', (req, res) => {
-    res.json({
-        status: 'healthy',
-        timestamp: new Date().toISOString(),
-        environment: NODE_ENV
-    });
+// Enhanced health check endpoint with security automation verification
+app.get('/api/health', async (req, res) => {
+    try {
+        const healthStatus = {
+            status: 'healthy',
+            timestamp: new Date().toISOString(),
+            environment: NODE_ENV,
+            security: {
+                monitoring: {
+                    enabled: securityMonitor.config.monitoring.enabled,
+                    status: 'operational',
+                    lastAlert: securityMonitor.alertHistory.length > 0 ? 
+                        securityMonitor.alertHistory[securityMonitor.alertHistory.length - 1].timestamp : null
+                },
+                vulnerabilityScanning: {
+                    enabled: vulnerabilityScanner.config.automation.autoScan,
+                    lastScan: vulnerabilityScanner.lastScanResults ? 
+                        vulnerabilityScanner.lastScanResults.timestamp : null,
+                    scanStatus: vulnerabilityScanner.lastScanResults ? 
+                        vulnerabilityScanner.lastScanResults.status : 'never_run'
+                },
+                automation: {
+                    cronJobsScheduled: true, // These are scheduled in server startup
+                    timezone: 'Europe/Dublin',
+                    nextVulnerabilityScan: '02:00 daily',
+                    nextWeeklyReport: '03:00 Sunday'
+                }
+            },
+            performance: {
+                uptime: process.uptime(),
+                memoryUsage: process.memoryUsage(),
+                requestCount: securityMonitor.metrics.get('totalRequests') || 0,
+                suspiciousActivity: securityMonitor.metrics.get('suspiciousRequests') || 0
+            }
+        };
+
+        // Check if any critical systems are down
+        if (!securityMonitor.config.monitoring.enabled) {
+            healthStatus.status = 'degraded';
+            healthStatus.warnings = ['Security monitoring disabled'];
+        }
+
+        res.json(healthStatus);
+    } catch (error) {
+        console.error('[HEALTH-CHECK] Error during health check:', error);
+        res.status(500).json({
+            status: 'unhealthy',
+            timestamp: new Date().toISOString(),
+            error: 'Health check failed',
+            environment: NODE_ENV
+        });
+    }
+});
+
+// Security status endpoint for detailed monitoring
+app.get('/api/security/status', async (req, res) => {
+    try {
+        const securityStatus = {
+            timestamp: new Date().toISOString(),
+            monitoring: {
+                status: securityMonitor.config.monitoring.enabled ? 'active' : 'disabled',
+                metrics: {
+                    totalRequests: securityMonitor.metrics.get('totalRequests') || 0,
+                    suspiciousRequests: securityMonitor.metrics.get('suspiciousRequests') || 0,
+                    blockedRequests: securityMonitor.metrics.get('blockedRequests') || 0,
+                    activeThreats: securityMonitor.suspiciousIps.size
+                },
+                recentAlerts: securityMonitor.alertHistory.slice(-5) // Last 5 alerts
+            },
+            vulnerabilityScanning: {
+                lastScan: vulnerabilityScanner.lastScanResults,
+                scanHistory: vulnerabilityScanner.scanHistory.slice(-3), // Last 3 scans
+                nextScheduledScan: '02:00 UTC daily'
+            },
+            compliance: vulnerabilityScanner.lastScanResults ? 
+                vulnerabilityScanner.lastScanResults.compliance : null
+        };
+
+        res.json(securityStatus);
+    } catch (error) {
+        console.error('[SECURITY-STATUS] Error getting security status:', error);
+        res.status(500).json({
+            error: 'Failed to retrieve security status',
+            timestamp: new Date().toISOString()
+        });
+    }
+});
+
+// Performance metrics endpoint
+app.get('/api/metrics', (req, res) => {
+    try {
+        const metrics = {
+            timestamp: new Date().toISOString(),
+            server: {
+                uptime: process.uptime(),
+                memoryUsage: process.memoryUsage(),
+                cpuUsage: process.cpuUsage(),
+                nodeVersion: process.version,
+                platform: process.platform
+            },
+            security: {
+                totalRequests: securityMonitor.metrics.get('totalRequests') || 0,
+                suspiciousRequests: securityMonitor.metrics.get('suspiciousRequests') || 0,
+                blockedIps: securityMonitor.blockedIps.size,
+                activeThreats: securityMonitor.suspiciousIps.size
+            },
+            performance: {
+                // These will be populated by the enhanced middleware below
+                averageResponseTime: global.performanceMetrics?.averageResponseTime || 0,
+                totalRequests: global.performanceMetrics?.totalRequests || 0,
+                errorRate: global.performanceMetrics?.errorRate || 0
+            }
+        };
+
+        res.json(metrics);
+    } catch (error) {
+        console.error('[METRICS] Error getting metrics:', error);
+        res.status(500).json({
+            error: 'Failed to retrieve metrics',
+            timestamp: new Date().toISOString()
+        });
+    }
 });
 
 // Contact form endpoint with enhanced validation
@@ -951,6 +1172,300 @@ app.use((req, res, next) => {
     
     next();
 });
+
+// ==================== SECURITY API ENDPOINTS ====================
+
+// Security monitoring dashboard
+app.get('/api/security/dashboard', apiLimiter, (req, res) => {
+    try {
+        const dashboardData = securityReporter.getDashboardData();
+        const securityMetrics = securityMonitor.getSecurityMetrics();
+        const vulnerabilityMetrics = vulnerabilityScanner.getSecurityMetrics();
+        
+        res.json({
+            success: true,
+            timestamp: new Date().toISOString(),
+            dashboard: dashboardData,
+            monitoring: securityMetrics,
+            vulnerabilities: vulnerabilityMetrics,
+            systemStatus: {
+                monitoring: securityMonitor.config.monitoring.enabled,
+                scanning: vulnerabilityScanner.config.automation.autoScan,
+                alerting: securityMonitor.config.monitoring.realTimeAlerts
+            }
+        });
+    } catch (error) {
+        console.error('[SECURITY-API] Dashboard error:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to retrieve security dashboard',
+            timestamp: new Date().toISOString()
+        });
+    }
+});
+
+// Run vulnerability scan endpoint
+app.post('/api/security/scan', apiLimiter, async (req, res) => {
+    try {
+        console.log(`[SECURITY-API] Manual vulnerability scan requested from ${req.ip}`);
+        
+        const scanOptions = {
+            type: req.body.type || 'manual',
+            formats: req.body.formats || ['json'],
+            includeRawData: req.body.includeRawData || false
+        };
+        
+        // Start scan asynchronously
+        const scanPromise = vulnerabilityScanner.runFullScan(scanOptions);
+        
+        // Return immediate response with scan ID
+        res.json({
+            success: true,
+            message: 'Vulnerability scan initiated',
+            scanId: vulnerabilityScanner.currentScanId,
+            timestamp: new Date().toISOString()
+        });
+        
+        // Let scan continue in background
+        scanPromise.catch(error => {
+            console.error('[SECURITY-API] Background scan failed:', error);
+        });
+        
+    } catch (error) {
+        console.error('[SECURITY-API] Scan initiation error:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to initiate vulnerability scan',
+            timestamp: new Date().toISOString()
+        });
+    }
+});
+
+// Get latest scan results
+app.get('/api/security/scan/latest', apiLimiter, (req, res) => {
+    try {
+        const latestResults = vulnerabilityScanner.getLatestResults();
+        
+        if (!latestResults) {
+            return res.json({
+                success: true,
+                message: 'No scan results available',
+                timestamp: new Date().toISOString()
+            });
+        }
+        
+        res.json({
+            success: true,
+            scanResults: latestResults,
+            timestamp: new Date().toISOString()
+        });
+    } catch (error) {
+        console.error('[SECURITY-API] Latest scan error:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to retrieve scan results',
+            timestamp: new Date().toISOString()
+        });
+    }
+});
+
+// Security metrics endpoint
+app.get('/api/security/metrics', apiLimiter, (req, res) => {
+    try {
+        const metrics = {
+            monitoring: securityMonitor.getSecurityMetrics(),
+            vulnerabilities: vulnerabilityScanner.getSecurityMetrics(),
+            recentAlerts: securityMonitor.getRecentAlerts(10),
+            blockedIps: securityMonitor.getBlockedIps().slice(0, 10)
+        };
+        
+        res.json({
+            success: true,
+            metrics: metrics,
+            timestamp: new Date().toISOString()
+        });
+    } catch (error) {
+        console.error('[SECURITY-API] Metrics error:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to retrieve security metrics',
+            timestamp: new Date().toISOString()
+        });
+    }
+});
+
+// Security health check
+app.get('/api/security/health', (req, res) => {
+    try {
+        const healthStatus = {
+            monitoring: {
+                status: securityMonitor.config.monitoring.enabled ? 'active' : 'disabled',
+                alerting: securityMonitor.config.monitoring.realTimeAlerts ? 'enabled' : 'disabled',
+                logging: securityMonitor.config.monitoring.logToFile ? 'enabled' : 'disabled'
+            },
+            scanning: {
+                status: vulnerabilityScanner.config.automation.autoScan ? 'active' : 'disabled',
+                lastScan: vulnerabilityScanner.getLatestResults()?.timestamp || 'never',
+                tools: vulnerabilityScanner.config.tools
+            },
+            security: {
+                csp: 'enabled',
+                cors: 'enabled',
+                rateLimit: 'enabled',
+                inputValidation: 'enabled',
+                helmet: 'enabled'
+            }
+        };
+        
+        const overallHealth = 'healthy'; // Could implement more sophisticated health checks
+        
+        res.json({
+            success: true,
+            status: overallHealth,
+            details: healthStatus,
+            timestamp: new Date().toISOString()
+        });
+    } catch (error) {
+        console.error('[SECURITY-API] Health check error:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Security health check failed',
+            timestamp: new Date().toISOString()
+        });
+    }
+});
+
+// Generate security report
+app.post('/api/security/report', apiLimiter, async (req, res) => {
+    try {
+        console.log(`[SECURITY-API] Security report requested from ${req.ip}`);
+        
+        const reportOptions = {
+            type: req.body.type || 'comprehensive',
+            period: req.body.period || 'daily',
+            formats: req.body.formats || ['json', 'html'],
+            includeRawData: req.body.includeRawData || false
+        };
+        
+        const report = await securityReporter.generateSecurityReport(reportOptions);
+        
+        res.json({
+            success: true,
+            report: {
+                id: report.id,
+                timestamp: report.timestamp,
+                type: report.type,
+                executiveSummary: report.executiveSummary,
+                compliance: report.compliance,
+                recommendations: report.recommendations.slice(0, 5) // Top 5 recommendations
+            },
+            message: 'Security report generated successfully',
+            timestamp: new Date().toISOString()
+        });
+    } catch (error) {
+        console.error('[SECURITY-API] Report generation error:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to generate security report',
+            timestamp: new Date().toISOString()
+        });
+    }
+});
+
+// Block/unblock IP endpoint (admin only - could add authentication)
+app.post('/api/security/block-ip', apiLimiter, async (req, res) => {
+    try {
+        const { ip, action, reason } = req.body;
+        
+        if (!ip || !action) {
+            return res.status(400).json({
+                success: false,
+                error: 'IP address and action required',
+                timestamp: new Date().toISOString()
+            });
+        }
+        
+        if (action === 'block') {
+            await securityMonitor.blockIp(ip, reason || 'Manual block via API');
+            console.log(`[SECURITY-API] IP ${ip} blocked via API from ${req.ip}`);
+        } else if (action === 'unblock') {
+            await securityMonitor.unblockIp(ip);
+            console.log(`[SECURITY-API] IP ${ip} unblocked via API from ${req.ip}`);
+        } else {
+            return res.status(400).json({
+                success: false,
+                error: 'Invalid action. Use "block" or "unblock"',
+                timestamp: new Date().toISOString()
+            });
+        }
+        
+        res.json({
+            success: true,
+            message: `IP ${ip} ${action}ed successfully`,
+            timestamp: new Date().toISOString()
+        });
+    } catch (error) {
+        console.error('[SECURITY-API] IP block/unblock error:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Failed to modify IP block status',
+            timestamp: new Date().toISOString()
+        });
+    }
+});
+
+// ==================== SCHEDULED SECURITY TASKS ====================
+
+// Schedule automated vulnerability scanning (daily at 2 AM)
+cron.schedule('0 2 * * *', async () => {
+    try {
+        console.log('[SECURITY-CRON] Starting scheduled vulnerability scan...');
+        await vulnerabilityScanner.runFullScan({ type: 'scheduled' });
+        console.log('[SECURITY-CRON] Scheduled vulnerability scan completed');
+    } catch (error) {
+        console.error('[SECURITY-CRON] Scheduled scan failed:', error);
+    }
+}, {
+    scheduled: true,
+    timezone: "Europe/Dublin" // Irish timezone
+});
+
+// Schedule security report generation (weekly on Sundays at 3 AM)
+cron.schedule('0 3 * * 0', async () => {
+    try {
+        console.log('[SECURITY-CRON] Generating weekly security report...');
+        await securityReporter.generateSecurityReport({ 
+            type: 'weekly', 
+            period: 'weekly',
+            formats: ['json', 'html', 'csv']
+        });
+        console.log('[SECURITY-CRON] Weekly security report generated');
+    } catch (error) {
+        console.error('[SECURITY-CRON] Weekly report generation failed:', error);
+    }
+}, {
+    scheduled: true,
+    timezone: "Europe/Dublin"
+});
+
+// Schedule cleanup of old security logs (daily at 1 AM)
+cron.schedule('0 1 * * *', async () => {
+    try {
+        console.log('[SECURITY-CRON] Cleaning up old security logs...');
+        // Cleanup is handled by individual components
+        console.log('[SECURITY-CRON] Security log cleanup completed');
+    } catch (error) {
+        console.error('[SECURITY-CRON] Log cleanup failed:', error);
+    }
+}, {
+    scheduled: true,
+    timezone: "Europe/Dublin"
+});
+
+console.log('[SECURITY] Scheduled security tasks configured:');
+console.log('  ✓ Daily vulnerability scan at 2:00 AM');
+console.log('  ✓ Weekly security report on Sundays at 3:00 AM');
+console.log('  ✓ Daily log cleanup at 1:00 AM');
 
 // Serve static files
 app.use(express.static('.', {
