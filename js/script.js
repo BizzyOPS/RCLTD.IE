@@ -24,7 +24,10 @@ function initParticles() {
         const particleCount = isMobile ? 15 : isTablet ? 25 : 30;
         const fpsLimit = isMobile ? 30 : 45;
         const linksEnabled = !isMobile; // Disable links on mobile for better performance
-        const interactiveMode = !isMobile; // Enable interactions unless truly mobile (< 480px)
+        
+        // Disable interactions in production to keep particles subtle and non-distracting
+        const isProduction = window.location.hostname !== 'localhost' && !window.location.hostname.includes('replit');
+        const interactiveMode = isProduction ? false : !isMobile; // Disabled in production, enabled in development
         
         console.log('Loading tsParticles with interactive mode:', interactiveMode);
         
