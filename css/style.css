@@ -818,6 +818,10 @@ body {
     transition: transform 0.1s ease;
 }
 
+.glitch-text.glitching {
+    animation: letterFlip 0.6s ease-in-out;
+}
+
 .glitch-text.glitching .glitch-char {
     animation: letterFlip 0.6s ease-in-out;
 }

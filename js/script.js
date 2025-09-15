@@ -1037,30 +1037,49 @@ class HeroTitleAnimator {
 
 // Initialize glitch effects for hero title only
 function initGlitchHeading() {
+    console.log('Initializing glitch heading...');
+    
     // Respect reduced motion preference
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        console.log('Reduced motion enabled, skipping glitch effect');
         return;
     }
     
     // Select only the hero title specifically
     const heroTitle = document.querySelector('.hero-title');
+    console.log('Found hero title:', heroTitle);
     
     if (heroTitle && !heroTitle.classList.contains('glitch-text')) {
+        console.log('Setting up glitch effect...');
         // Set up the glitch effect
         setupGlitchText(heroTitle);
         
         // Add hover trigger
         heroTitle.addEventListener('mouseenter', () => {
+            console.log('Hero title hovered');
             if (!heroTitle.classList.contains('glitching')) {
                 triggerGlitch(heroTitle);
             }
         });
+        
+        // Add click trigger for testing
+        heroTitle.addEventListener('click', () => {
+            console.log('Hero title clicked');
+            triggerGlitch(heroTitle);
+        });
+        
+        // Trigger immediately for testing
+        setTimeout(() => {
+            console.log('Testing glitch effect...');
+            triggerGlitch(heroTitle);
+        }, 2000);
         
         // Add intersection observer for viewport entry
         if (window.IntersectionObserver) {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting && !entry.target.dataset.glitchTriggered) {
+                        console.log('Hero title entered viewport');
                         // Delay for initial effect
                         setTimeout(() => {
                             triggerGlitch(entry.target);
@@ -1072,11 +1091,18 @@ function initGlitchHeading() {
             
             observer.observe(heroTitle);
         }
+    } else if (!heroTitle) {
+        console.log('No hero title found!');
+    } else {
+        console.log('Hero title already has glitch effect');
     }
 }
 
 function setupGlitchText(element) {
-    const text = element.textContent.trim();
+    // Get text from the nested span if it exists, otherwise from the element itself
+    const textElement = element.querySelector('.hero-title-content') || element;
+    const text = textElement.textContent.trim();
+    
     element.classList.add('glitch-text');
     element.setAttribute('data-text', text);
     
@@ -1085,16 +1111,24 @@ function setupGlitchText(element) {
         char === ' ' ? '<span class="glitch-char">&nbsp;</span>' : `<span class="glitch-char">${char}</span>`
     ).join('');
     
-    element.innerHTML = chars;
+    // Replace the content of the text element
+    if (textElement !== element) {
+        textElement.innerHTML = chars;
+    } else {
+        element.innerHTML = chars;
+    }
 }
 
 function triggerGlitch(element) {
     if (element.classList.contains('glitching')) return;
     
+    console.log('Triggering glitch effect on:', element);
     element.classList.add('glitching');
     
     // Randomly animate individual characters with staggered delays
     const chars = element.querySelectorAll('.glitch-char');
+    console.log('Found glitch characters:', chars.length);
+    
     chars.forEach((char, index) => {
         // Random delay between 0-300ms for each character
         const delay = Math.random() * 300;
@@ -1106,6 +1140,7 @@ function triggerGlitch(element) {
     // Remove glitch effect after animation completes
     setTimeout(() => {
         element.classList.remove('glitching');
+        console.log('Glitch effect completed');
     }, 1000);
     
     // Schedule periodic glitch effect every 8-12 seconds
@@ -1124,12 +1159,44 @@ function triggerGlitch(element) {
     }
 }
 
-// Initialize hero title animator and robotic effects
+// Simple direct glitch effect
+function simpleGlitchEffect() {
+    const heroTitle = document.querySelector('.hero-title');
+    if (heroTitle) {
+        heroTitle.style.position = 'relative';
+        heroTitle.classList.add('glitch-text');
+        
+        // Create the glitch animation
+        heroTitle.addEventListener('mouseenter', () => {
+            heroTitle.classList.add('glitching');
+            setTimeout(() => {
+                heroTitle.classList.remove('glitching');
+            }, 1000);
+        });
+        
+        // Auto-trigger glitch every 10 seconds
+        setInterval(() => {
+            heroTitle.classList.add('glitching');
+            setTimeout(() => {
+                heroTitle.classList.remove('glitching');
+            }, 1000);
+        }, 10000);
+        
+        // Initial glitch after 2 seconds
+        setTimeout(() => {
+            heroTitle.classList.add('glitching');
+            setTimeout(() => {
+                heroTitle.classList.remove('glitching');
+            }, 1000);
+        }, 2000);
+    }
+}
+
+// Initialize effects
 document.addEventListener('DOMContentLoaded', () => {
-    // Small delay to ensure DOM is fully ready
     setTimeout(() => {
         window.heroTitleAnimator = new HeroTitleAnimator('.hero-title');
-        initGlitchHeading();
+        simpleGlitchEffect();
     }, 100);
 });
 
