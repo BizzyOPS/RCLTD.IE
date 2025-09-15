@@ -1159,44 +1159,56 @@ function triggerGlitch(element) {
     }
 }
 
-// Simple direct glitch effect
-function simpleGlitchEffect() {
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        heroTitle.style.position = 'relative';
-        heroTitle.classList.add('glitch-text');
+// Auto glitch effect for all page headings
+function autoGlitchEffect() {
+    // Select main headings across all pages
+    const headings = document.querySelectorAll(`
+        .hero-title,
+        .page-title,
+        main h1,
+        .main-title,
+        .section-title,
+        h1.title,
+        .content h1:first-of-type
+    `);
+    
+    headings.forEach((heading, index) => {
+        // Skip if already processed or inside navigation
+        if (heading.classList.contains('glitch-text') || 
+            heading.closest('.nav, .nav-brand, .header, .navigation')) {
+            return;
+        }
         
-        // Create the glitch animation
-        heroTitle.addEventListener('mouseenter', () => {
-            heroTitle.classList.add('glitching');
-            setTimeout(() => {
-                heroTitle.classList.remove('glitching');
-            }, 1000);
-        });
+        heading.style.position = 'relative';
+        heading.classList.add('glitch-text');
         
-        // Auto-trigger glitch every 10 seconds
-        setInterval(() => {
-            heroTitle.classList.add('glitching');
-            setTimeout(() => {
-                heroTitle.classList.remove('glitching');
-            }, 1000);
-        }, 10000);
+        // Stagger initial glitch timing for multiple headings
+        const initialDelay = 1000 + (index * 500);
         
-        // Initial glitch after 2 seconds
+        // Initial glitch after staggered delay
         setTimeout(() => {
-            heroTitle.classList.add('glitching');
+            heading.classList.add('glitching');
             setTimeout(() => {
-                heroTitle.classList.remove('glitching');
+                heading.classList.remove('glitching');
             }, 1000);
-        }, 2000);
-    }
+        }, initialDelay);
+        
+        // Auto-trigger glitch every 8-12 seconds with random offset
+        const interval = 8000 + Math.random() * 4000; // 8-12 seconds
+        setInterval(() => {
+            heading.classList.add('glitching');
+            setTimeout(() => {
+                heading.classList.remove('glitching');
+            }, 1000);
+        }, interval);
+    });
 }
 
 // Initialize effects
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         window.heroTitleAnimator = new HeroTitleAnimator('.hero-title');
-        simpleGlitchEffect();
+        autoGlitchEffect();
     }, 100);
 });
 
