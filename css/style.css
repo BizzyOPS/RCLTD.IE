@@ -2066,7 +2066,7 @@ body {
     flex-direction: column;
     gap: var(--spacing-6);
     align-items: center;
-    margin-bottom: var(--spacing-10);
+    margin-bottom: 4rem;
 }
 
 .cta-contact {
