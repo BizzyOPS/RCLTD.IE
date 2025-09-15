@@ -632,13 +632,45 @@ Try the quick action buttons below or ask me about specific services, industries
             this.formatMessage(message.content) : 
             this.escapeHtml(message.content);
 
-        messageElement.innerHTML = `
-            ${avatar}
-            <div class="message-content">
-                <div class="message-text">${formattedContent}</div>
-                <div class="message-time">${time}</div>
-            </div>
-        `;
+        // Create avatar element safely
+        if (message.type === 'bot') {
+            const avatarImg = document.createElement('img');
+            avatarImg.src = 'images/logo.png';
+            avatarImg.alt = 'Controller Bot';
+            avatarImg.className = 'message-avatar';
+            messageElement.appendChild(avatarImg);
+        } else {
+            const avatarDiv = document.createElement('div');
+            avatarDiv.className = 'user-avatar';
+            avatarDiv.textContent = '👤';
+            messageElement.appendChild(avatarDiv);
+        }
+
+        // Create message content container
+        const messageContentDiv = document.createElement('div');
+        messageContentDiv.className = 'message-content';
+
+        // Create message text element
+        const messageTextDiv = document.createElement('div');
+        messageTextDiv.className = 'message-text';
+        
+        // For bot messages, we can safely use innerHTML since content is controlled and pre-escaped
+        // For user messages, use textContent to prevent any HTML
+        if (message.type === 'bot') {
+            messageTextDiv.innerHTML = formattedContent; // Safe: content is from controlled sources and pre-escaped
+        } else {
+            messageTextDiv.textContent = message.content; // Safe: direct text content
+        }
+
+        // Create timestamp element
+        const timeDiv = document.createElement('div');
+        timeDiv.className = 'message-time';
+        timeDiv.textContent = time;
+
+        // Assemble the structure
+        messageContentDiv.appendChild(messageTextDiv);
+        messageContentDiv.appendChild(timeDiv);
+        messageElement.appendChild(messageContentDiv);
 
         messagesContainer.appendChild(messageElement);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
