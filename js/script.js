@@ -7,11 +7,16 @@ function initParticles() {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         
         // Responsive particle configuration based on screen size
-        const isMobile = window.innerWidth < 768;
-        const isTablet = window.innerWidth < 1024;
+        // Adjusted mobile detection to better handle development environments
+        const isMobile = window.innerWidth < 480; // Reduced from 768 to 480 for better dev experience
+        const isTablet = window.innerWidth < 768; // Reduced from 1024 to 768
+        
+        // Debug logging for development
+        console.log('Particles init - Width:', window.innerWidth, 'isMobile:', isMobile, 'isTablet:', isTablet);
         
         // If user prefers reduced motion, disable particles entirely
         if (prefersReducedMotion) {
+            console.log('Particles disabled - user prefers reduced motion');
             return;
         }
         
@@ -19,7 +24,9 @@ function initParticles() {
         const particleCount = isMobile ? 15 : isTablet ? 25 : 30;
         const fpsLimit = isMobile ? 30 : 45;
         const linksEnabled = !isMobile; // Disable links on mobile for better performance
-        const interactiveMode = isMobile ? false : true;
+        const interactiveMode = !isMobile; // Enable interactions unless truly mobile (< 480px)
+        
+        console.log('Loading tsParticles with interactive mode:', interactiveMode);
         
         tsParticles.load('tsparticles', {
             background: {
