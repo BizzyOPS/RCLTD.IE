@@ -33,6 +33,16 @@ class SafetyTrainingSystem {
         console.log('Safety Training System initialized');
     }
     
+    // ==================== SECURITY UTILITIES ====================
+    
+    escapeAttr(s) {
+        return String(s)
+            .replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+    }
+    
     // ==================== ACCESSIBILITY SETUP ====================
     
     setupAccessibility() {
@@ -449,7 +459,7 @@ class SafetyTrainingSystem {
                 <input type="text" 
                        class="fill-blank-input ${inputClass}"
                        id="${inputId}"
-                       value="${inputValue}"
+                       value="${this.escapeAttr(inputValue)}"
                        ${isAnswered ? 'readonly' : ''}
                        placeholder="Type your answer"
                        aria-label="Fill in the blank ${index + 1}"
