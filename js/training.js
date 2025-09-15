@@ -42,6 +42,15 @@ class SafetyTrainingSystem {
             .replace(/</g, '&lt;')
             .replace(/>/g, '&gt;');
     }
+
+    escapeHtml(s) {
+        return String(s)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#x27;');
+    }
     
     // ==================== ACCESSIBILITY SETUP ====================
     
@@ -390,7 +399,7 @@ class SafetyTrainingSystem {
         return `
             <div class="question-container multiple-choice" data-question-id="${questionId}">
                 <div class="question-header">
-                    <h5 class="question-text">${question.question}</h5>
+                    <h5 class="question-text">${this.escapeHtml(question.question)}</h5>
                 </div>
                 
                 <div class="question-options" role="radiogroup" aria-labelledby="question-${questionId}-text">
@@ -418,7 +427,7 @@ class SafetyTrainingSystem {
                                        ${isAnswered ? 'disabled' : ''}
                                        onchange="trainingSystem.handleMultipleChoiceAnswer('${questionId}', ${index})"
                                        aria-describedby="${isAnswered ? 'feedback-' + questionId : ''}">
-                                <span class="option-text">${option}</span>
+                                <span class="option-text">${this.escapeHtml(option)}</span>
                                 ${isAnswered && isCorrect ? '<span class="correct-indicator" aria-label="Correct answer">✓</span>' : ''}
                             </label>
                         `;
@@ -435,7 +444,7 @@ class SafetyTrainingSystem {
                         </div>
                         <div class="feedback-text">
                             <strong>${userAnswer === question.correct ? 'Correct!' : 'Incorrect.'}</strong>
-                            ${question.explanation}
+                            ${this.escapeHtml(question.explanation)}
                         </div>
                     </div>
                 ` : ''}
@@ -496,10 +505,10 @@ class SafetyTrainingSystem {
                         </div>
                         <div class="feedback-text">
                             <strong>${this.isAllBlanksCorrect(questionId, question) ? 'Correct!' : 'Some answers need correction.'}</strong>
-                            ${question.explanation}
+                            ${this.escapeHtml(question.explanation)}
                             ${!this.isAllBlanksCorrect(questionId, question) ? `
                                 <div class="correct-answers">
-                                    <strong>Correct answers:</strong> ${blanks.join(', ')}
+                                    <strong>Correct answers:</strong> ${this.escapeHtml(blanks.join(', '))}
                                 </div>
                             ` : ''}
                         </div>
