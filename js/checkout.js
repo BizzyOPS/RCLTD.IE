@@ -54,30 +54,61 @@ class CheckoutManager {
         const container = document.getElementById('checkout-items');
         if (!container) return;
 
+        // Clear container safely
+        container.replaceChildren();
+
         if (this.cart.length === 0) {
-            container.innerHTML = `
-                <div class="checkout-empty">
-                    <p>No items in cart</p>
-                    <a href="store.html" class="btn-primary">Continue Shopping</a>
-                </div>
-            `;
+            const emptyDiv = document.createElement('div');
+            emptyDiv.className = 'checkout-empty';
+            
+            const p = document.createElement('p');
+            p.textContent = 'No items in cart';
+            
+            const a = document.createElement('a');
+            a.href = 'store.html';
+            a.className = 'btn-primary';
+            a.textContent = 'Continue Shopping';
+            
+            emptyDiv.appendChild(p);
+            emptyDiv.appendChild(a);
+            container.appendChild(emptyDiv);
             return;
         }
 
-        const itemsHtml = this.cart.map(item => `
-            <div class="checkout-item">
-                <div class="item-image">
-                    <img src="${item.image || 'images/placeholder-product.png'}" alt="${item.name}">
-                </div>
-                <div class="item-details">
-                    <h4>${item.name}</h4>
-                    <p class="item-qty">Qty: ${item.quantity}</p>
-                    <p class="item-price">€${(item.price * item.quantity).toFixed(2)}</p>
-                </div>
-            </div>
-        `).join('');
+        // Create checkout items safely using DOM methods
+        this.cart.forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'checkout-item';
 
-        container.innerHTML = itemsHtml;
+            const imageDiv = document.createElement('div');
+            imageDiv.className = 'item-image';
+            
+            const img = document.createElement('img');
+            img.src = item.image || 'images/placeholder-product.png';
+            img.alt = item.name || '';
+            
+            const detailsDiv = document.createElement('div');
+            detailsDiv.className = 'item-details';
+            
+            const h4 = document.createElement('h4');
+            h4.textContent = item.name || '';
+            
+            const qtyP = document.createElement('p');
+            qtyP.className = 'item-qty';
+            qtyP.textContent = `Qty: ${item.quantity || 0}`;
+            
+            const priceP = document.createElement('p');
+            priceP.className = 'item-price';
+            priceP.textContent = `€${((item.price || 0) * (item.quantity || 0)).toFixed(2)}`;
+
+            imageDiv.appendChild(img);
+            detailsDiv.appendChild(h4);
+            detailsDiv.appendChild(qtyP);
+            detailsDiv.appendChild(priceP);
+            itemDiv.appendChild(imageDiv);
+            itemDiv.appendChild(detailsDiv);
+            container.appendChild(itemDiv);
+        });
     }
 
     updateCheckoutTotals() {
@@ -336,16 +367,29 @@ class CheckoutManager {
     }
 
     showError(message) {
-        // Create error notification
+        // Create error notification safely using DOM methods
         const notification = document.createElement('div');
         notification.className = 'checkout-error';
-        notification.innerHTML = `
-            <div class="error-content">
-                <span class="error-icon">⚠️</span>
-                <span class="error-message">${message}</span>
-                <button class="error-close">&times;</button>
-            </div>
-        `;
+        
+        const errorContent = document.createElement('div');
+        errorContent.className = 'error-content';
+        
+        const errorIcon = document.createElement('span');
+        errorIcon.className = 'error-icon';
+        errorIcon.textContent = '⚠️';
+        
+        const errorMessage = document.createElement('span');
+        errorMessage.className = 'error-message';
+        errorMessage.textContent = message; // Safe: uses textContent instead of innerHTML
+        
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'error-close';
+        closeBtn.innerHTML = '&times;'; // Safe: static content
+        
+        errorContent.appendChild(errorIcon);
+        errorContent.appendChild(errorMessage);
+        errorContent.appendChild(closeBtn);
+        notification.appendChild(errorContent);
 
         document.body.appendChild(notification);
 
@@ -353,7 +397,6 @@ class CheckoutManager {
         setTimeout(() => notification.classList.add('show'), 100);
 
         // Handle close button
-        const closeBtn = notification.querySelector('.error-close');
         closeBtn.addEventListener('click', () => {
             notification.classList.remove('show');
             setTimeout(() => document.body.removeChild(notification), 300);
@@ -369,15 +412,24 @@ class CheckoutManager {
     }
 
     showSuccess(message) {
-        // Create success notification
+        // Create success notification safely using DOM methods
         const notification = document.createElement('div');
         notification.className = 'checkout-success';
-        notification.innerHTML = `
-            <div class="success-content">
-                <span class="success-icon">✅</span>
-                <span class="success-message">${message}</span>
-            </div>
-        `;
+        
+        const successContent = document.createElement('div');
+        successContent.className = 'success-content';
+        
+        const successIcon = document.createElement('span');
+        successIcon.className = 'success-icon';
+        successIcon.textContent = '✅';
+        
+        const successMessage = document.createElement('span');
+        successMessage.className = 'success-message';
+        successMessage.textContent = message; // Safe: uses textContent instead of innerHTML
+        
+        successContent.appendChild(successIcon);
+        successContent.appendChild(successMessage);
+        notification.appendChild(successContent);
 
         document.body.appendChild(notification);
 
