@@ -5874,8 +5874,14 @@ img {
     border-radius: var(--radius-lg);
     padding: var(--spacing-6);
     height: fit-content;
-    position: sticky;
-    top: 120px;
+}
+
+/* Only apply sticky positioning on larger screens where we have sidebar layout */
+@media (min-width: 1024px) {
+    .chapter-navigation {
+        position: sticky;
+        top: 120px;
+    }
 }
 
 .chapter-navigation h3 {
