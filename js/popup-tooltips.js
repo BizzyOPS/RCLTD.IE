@@ -227,12 +227,17 @@ class PopupTooltips {
 
         // Show tooltip on hover for elements that haven't been shown yet
         document.addEventListener('mouseenter', (e) => {
-            const tooltipId = e.target && e.target.dataset ? e.target.dataset.popupTooltip : null;
-            if (tooltipId && !this.shownTooltips.has(tooltipId)) {
-                const config = this.tooltips.get(tooltipId);
-                if (config) {
-                    this.showTooltip(tooltipId, e.target, config);
+            try {
+                const tooltipId = e.target && e.target.dataset ? e.target.dataset.popupTooltip : null;
+                if (tooltipId && !this.shownTooltips.has(tooltipId)) {
+                    const config = this.tooltips.get(tooltipId);
+                    if (config) {
+                        this.showTooltip(tooltipId, e.target, config);
+                    }
                 }
+            } catch (error) {
+                // Silently handle tooltip errors to prevent blocking other scripts
+                console.debug('Tooltip error:', error);
             }
         }, true);
     }

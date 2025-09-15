@@ -1025,24 +1025,18 @@ class HeroTitleAnimator {
         setTimeout(() => {
             this.element.style.transition = 'none'; // Remove transition for glitch
             
-            // Set up glitch effect
-            if (!this.element.classList.contains('glitch')) {
-                this.element.dataset.text = this.element.textContent.trim();
-                this.element.classList.add('glitch');
+            // Set up robotic effect for hero title
+            if (!this.element.classList.contains('robotic')) {
+                setupRoboticText(this.element);
             }
             
-            this.element.classList.add('glitch-active');
-            
-            // Remove glitch effect after animation completes
-            setTimeout(() => {
-                this.element.classList.remove('glitch-active');
-            }, 700); // 700ms for new glitch animation
+            triggerRobotic(this.element);
         }, 1000);
     }
 }
 
-// Initialize glitch effects for all headings
-function initGlitchHeadings() {
+// Initialize robotic effects for main headings
+function initRoboticHeadings() {
     // Respect reduced motion preference
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         return;
@@ -1058,19 +1052,18 @@ function initGlitchHeadings() {
     
     headings.forEach(heading => {
         // Skip if already processed or inside navigation
-        if (heading.classList.contains('glitch') || 
+        if (heading.classList.contains('robotic') || 
             heading.closest('.nav, .nav-brand, .header')) {
             return;
         }
         
-        // Set up the glitch effect
-        heading.dataset.text = heading.textContent.trim();
-        heading.classList.add('glitch');
+        // Set up the robotic effect
+        setupRoboticText(heading);
         
         // Add hover trigger
         heading.addEventListener('mouseenter', () => {
-            if (!heading.classList.contains('glitch-active')) {
-                triggerGlitch(heading);
+            if (!heading.classList.contains('robotic-active')) {
+                triggerRobotic(heading);
             }
         });
         
@@ -1078,11 +1071,11 @@ function initGlitchHeadings() {
         if (window.IntersectionObserver) {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting && !entry.target.dataset.glitched) {
-                        // Delay to avoid all headings glitching at once
+                    if (entry.isIntersecting && !entry.target.dataset.roboticTriggered) {
+                        // Delay to avoid all headings triggering at once
                         setTimeout(() => {
-                            triggerGlitch(entry.target);
-                            entry.target.dataset.glitched = 'true';
+                            triggerRobotic(entry.target);
+                            entry.target.dataset.roboticTriggered = 'true';
                         }, Math.random() * 500);
                     }
                 });
@@ -1093,24 +1086,44 @@ function initGlitchHeadings() {
     });
 }
 
-function triggerGlitch(element) {
-    if (element.classList.contains('glitch-active')) return;
+function setupRoboticText(element) {
+    const text = element.textContent.trim();
+    element.classList.add('robotic');
     
-    element.classList.add('glitch-active');
+    // Wrap each character in a span for individual animation
+    const chars = text.split('').map(char => 
+        char === ' ' ? '<span class="robotic-char">&nbsp;</span>' : `<span class="robotic-char">${char}</span>`
+    ).join('');
     
-    // Remove glitch effect after animation completes
+    element.innerHTML = `<span class="robotic-text">${chars}</span>`;
+}
+
+function triggerRobotic(element) {
+    if (element.classList.contains('robotic-active')) return;
+    
+    element.classList.add('robotic-active');
+    
+    // Animate characters with staggered delay
+    const chars = element.querySelectorAll('.robotic-char');
+    chars.forEach((char, index) => {
+        setTimeout(() => {
+            char.style.animationDelay = `${index * 0.05}s`;
+        }, index * 50);
+    });
+    
+    // Remove robotic effect after animation completes
     setTimeout(() => {
-        element.classList.remove('glitch-active');
-    }, 800);
+        element.classList.remove('robotic-active');
+    }, 3000);
     
-    // Schedule periodic glitch effect every 8-12 seconds
-    if (!element.dataset.periodicGlitch) {
-        element.dataset.periodicGlitch = 'true';
+    // Schedule periodic robotic effect every 10-15 seconds
+    if (!element.dataset.periodicRobotic) {
+        element.dataset.periodicRobotic = 'true';
         const scheduleNext = () => {
-            const delay = 8000 + Math.random() * 4000; // 8-12 seconds
+            const delay = 10000 + Math.random() * 5000; // 10-15 seconds
             setTimeout(() => {
                 if (document.contains(element)) {
-                    triggerGlitch(element);
+                    triggerRobotic(element);
                     scheduleNext();
                 }
             }, delay);
@@ -1119,12 +1132,12 @@ function triggerGlitch(element) {
     }
 }
 
-// Initialize hero title animator and glitch effects
+// Initialize hero title animator and robotic effects
 document.addEventListener('DOMContentLoaded', () => {
     // Small delay to ensure DOM is fully ready
     setTimeout(() => {
         window.heroTitleAnimator = new HeroTitleAnimator('.hero-title');
-        initGlitchHeadings();
+        initRoboticHeadings();
     }, 100);
 });
 
