@@ -268,7 +268,14 @@ class PopupTooltips {
     }
 }
 
-// Initialize when DOM is ready
+// Initialize when DOM is ready - only on desktop
 document.addEventListener('DOMContentLoaded', () => {
-    window.popupTooltips = new PopupTooltips();
+    // Only initialize tooltips on desktop to prevent mobile interference
+    if (window.innerWidth > 768) {
+        try {
+            window.popupTooltips = new PopupTooltips();
+        } catch (error) {
+            console.debug('Tooltip initialization failed:', error);
+        }
+    }
 });

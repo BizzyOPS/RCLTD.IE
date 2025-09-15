@@ -530,13 +530,16 @@ body {
     }
     
     .nav-menu.mobile-open .nav-link {
-        display: block;
-        padding: var(--spacing-4) var(--spacing-3);
-        min-height: 44px; /* Apple's recommended minimum touch target */
         display: flex;
+        padding: var(--spacing-4) var(--spacing-3);
+        min-height: 48px; /* Increased touch target for better mobile accessibility */
         align-items: center;
         border-radius: var(--radius-sm);
         transition: background-color 0.2s ease;
+        text-decoration: none;
+        position: relative;
+        z-index: 10;
+        touch-action: manipulation;
     }
     
     .nav-menu.mobile-open .nav-link:hover,
@@ -3108,10 +3111,22 @@ body {
 
 /* Disable tooltips on mobile to prevent interference with navigation */
 @media (max-width: 768px) {
+    .pro-tooltip,
+    [data-tooltip] {
+        pointer-events: none !important;
+    }
+    
     .pro-tooltip {
         display: none !important;
         visibility: hidden !important;
         opacity: 0 !important;
+    }
+    
+    /* Ensure mobile navigation links are always clickable */
+    .nav-menu.mobile-open .nav-link {
+        pointer-events: auto !important;
+        position: relative;
+        z-index: 999;
     }
 }
 
