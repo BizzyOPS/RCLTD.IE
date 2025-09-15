@@ -237,15 +237,15 @@ class SafetyTrainingSystem {
                         ← All Modules
                     </button>
                     <span class="breadcrumb-separator">›</span>
-                    <span class="breadcrumb-current">${module.title}</span>
+                    <span class="breadcrumb-current">${this.escapeHtml(module.title)}</span>
                 </div>
                 
                 <div class="module-header-section">
-                    <h2 class="module-title">${module.title}</h2>
-                    <p class="module-description">${module.description}</p>
+                    <h2 class="module-title">${this.escapeHtml(module.title)}</h2>
+                    <p class="module-description">${this.escapeHtml(module.description)}</p>
                     <div class="module-meta">
-                        <span class="meta-item">📅 ${module.duration}</span>
-                        <span class="meta-item">📈 ${module.difficulty}</span>
+                        <span class="meta-item">📅 ${this.escapeHtml(module.duration)}</span>
+                        <span class="meta-item">📈 ${this.escapeHtml(module.difficulty)}</span>
                         <span class="meta-item">✅ ${this.getCompletedChaptersCount(moduleId)}/${Object.keys(module.chapters).length} Chapters</span>
                     </div>
                 </div>
@@ -261,13 +261,13 @@ class SafetyTrainingSystem {
                                 
                                 return `
                                     <button class="chapter-item ${isCurrent ? 'current' : ''} ${isCompleted ? 'completed' : ''}"
-                                            onclick="trainingSystem.showChapter('${moduleId}', ${chapterNum})"
+                                            onclick="trainingSystem.showChapter('${this.escapeAttr(moduleId)}', ${chapterNum})"
                                             role="listitem"
                                             aria-current="${isCurrent ? 'page' : 'false'}"
                                             aria-describedby="chapter-${chapterNum}-status">
                                         <div class="chapter-number">${chapterNum}</div>
                                         <div class="chapter-info">
-                                            <h4 class="chapter-title">${chapter.title}</h4>
+                                            <h4 class="chapter-title">${this.escapeHtml(chapter.title)}</h4>
                                             <div class="chapter-status" id="chapter-${chapterNum}-status">
                                                 ${isCompleted ? '✓ Completed' : 'Not started'}
                                             </div>
