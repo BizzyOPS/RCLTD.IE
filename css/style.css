@@ -33,6 +33,7 @@ main {
     justify-content: flex-start;
     color: white;
     overflow: hidden;
+    margin-bottom: var(--spacing-16);
 }
 .hero-cover-image {
     background-size: cover;
@@ -3985,6 +3986,7 @@ body {
     text-align: center;
     position: relative;
     overflow: hidden;
+    margin-bottom: var(--spacing-16);
 }
 .store-hero::before {
     content: '';
@@ -5629,6 +5631,7 @@ body {
     text-align: center;
     position: relative;
     overflow: hidden;
+    margin-bottom: var(--spacing-16);
 }
 
 /* Services Page Specific Background */
