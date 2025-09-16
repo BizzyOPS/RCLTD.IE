@@ -526,7 +526,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: var(--spacing-3) var(--spacing-6);
-    background-color: #ef4444;
+    background-color: #ff6b35;
     color: white;
     text-decoration: none;
     border-radius: var(--radius-md);
@@ -538,7 +538,7 @@ body {
 }
 
 .btn-primary:hover {
-    background-color: #dc2626;
+    background-color: #e55a2b;
     transform: translateY(-1px);
     box-shadow: var(--shadow-md);
 }
