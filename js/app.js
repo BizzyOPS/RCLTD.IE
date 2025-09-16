@@ -1,5 +1,26 @@
-// Particles completely disabled - clean version
-
+// PARTICLES COMPLETELY DISABLED - NO PARTICLE CODE SHOULD EXECUTE
+// Override all particle functions before any code runs
+if (typeof window !== 'undefined') {
+    window.tsParticles = { load: () => Promise.resolve(), loadFull: () => Promise.resolve() };
+    window.particlesJS = () => {};
+    
+    // Block any tsParticles script loading
+    const originalCreateElement = document.createElement;
+    document.createElement = function(tagName) {
+        const element = originalCreateElement.call(document, tagName);
+        if (tagName.toLowerCase() === 'script') {
+            const originalSetAttribute = element.setAttribute;
+            element.setAttribute = function(name, value) {
+                if (name === 'src' && value && value.includes('tsparticles')) {
+                    console.log('BLOCKED: tsParticles script loading attempt');
+                    return; // Block tsParticles loading
+                }
+                return originalSetAttribute.call(this, name, value);
+            };
+        }
+        return element;
+    };
+}
 
 // Hero Carousel initialization
 function initHeroCarousel() {
