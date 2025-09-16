@@ -608,11 +608,11 @@ body {
     /* No default background - let theme classes handle it */
 }
 
-/* Header on dark background - solid black since cover images are now below */
+/* Header with white background */
 .header.on-dark {
-    background: #000000 !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4) !important;
+    background: #ffffff !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* Header on light background - solid white */
@@ -648,7 +648,7 @@ body {
 
 /* Ensure brand colors follow header theme */
 .header.on-dark .nav-brand {
-    color: #ffffff;
+    color: var(--text-primary);
 }
 
 .header.on-light .nav-brand {
@@ -701,7 +701,7 @@ body {
 }
 
 .nav-link {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-secondary);
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
@@ -714,7 +714,7 @@ body {
 
 .nav-link:hover,
 .nav-link.active {
-    color: #67e8f9;
+    color: var(--primary-color);
 }
 
 .header.on-light .nav-link:hover,
