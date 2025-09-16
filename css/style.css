@@ -580,10 +580,75 @@ body {
     margin: 0 auto;
     padding: 0 var(--spacing-4);
 }
-/* Section backgrounds restored to normal since page background is now white */
-.services, .overview-section, .automation-services, .about, .partners, .footer {
+/* Universal Section Spacing */
+section {
+    padding: var(--spacing-16) 0;
+    margin-bottom: var(--spacing-8);
+}
+
+section + section {
+    margin-top: var(--spacing-4);
+}
+
+/* Specific section spacing */
+.services-section,
+.industries-section,
+.cta-section,
+.about-section,
+.contact-section,
+.testimonials-section,
+.partners-section,
+.overview-section,
+.automation-services,
+.services,
+.about,
+.partners {
+    padding: var(--spacing-16) 0;
+    margin: var(--spacing-12) 0;
     background: transparent;
-    margin: 2rem 0;
+}
+
+/* Content block spacing */
+.section-header {
+    margin-bottom: var(--spacing-12);
+}
+
+.service-grid,
+.features-grid,
+.team-grid,
+.about-grid,
+.automation-grid,
+.contact-grid {
+    margin: var(--spacing-8) 0;
+}
+
+.service-cards,
+.certification-grid,
+.contact-methods,
+.automation-features,
+.safety-features,
+.design-features {
+    margin: var(--spacing-8) 0;
+}
+
+/* Additional content spacing */
+.hero-stats,
+.company-stats,
+.feature-list,
+.benefit-list {
+    margin: var(--spacing-8) 0;
+}
+
+.card,
+.feature-card,
+.service-card {
+    margin-bottom: var(--spacing-6);
+}
+
+/* Footer gets special spacing */
+.footer {
+    margin-top: var(--spacing-16);
+    padding-top: var(--spacing-16);
 }
 @media (min-width: 768px) {
     .container {
