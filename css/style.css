@@ -647,7 +647,7 @@ body {
 }
 
 .nav-logo {
-    height: 60px;
+    height: 80px;
     width: auto;
 }
 
@@ -671,13 +671,13 @@ body {
 /* Mobile responsive logo sizing */
 @media (max-width: 768px) {
     .nav-logo {
-        height: 50px;
+        height: 65px;
     }
 }
 
 @media (max-width: 480px) {
     .nav-logo {
-        height: 45px;
+        height: 55px;
     }
 }
 
