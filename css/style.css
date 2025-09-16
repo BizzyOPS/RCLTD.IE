@@ -647,7 +647,7 @@ body {
 }
 
 .nav-logo {
-    height: 80px;
+    height: 120px;
     width: auto;
 }
 
@@ -668,16 +668,23 @@ body {
     opacity: 0.8;
 }
 
-/* Mobile responsive logo sizing */
+/* Mobile responsive logo sizing - much larger */
 @media (max-width: 768px) {
     .nav-logo {
-        height: 65px;
+        height: 100px;
+        max-width: 60vw;
     }
 }
 
 @media (max-width: 480px) {
     .nav-logo {
-        height: 55px;
+        height: 80px;
+        max-width: 70vw;
+    }
+    
+    .nav-brand {
+        flex: 1;
+        max-width: 70%;
     }
 }
 
@@ -752,12 +759,12 @@ body {
 .hamburger {
     width: 24px;
     height: 2px;
-    background-color: #ffffff;
+    background-color: #ff6b35;
     transition: all 0.3s ease;
 }
 
 .header.on-light .hamburger {
-    background-color: var(--text-primary);
+    background-color: #ff6b35;
 }
 
 .nav-toggle.active .hamburger:nth-child(1) {
