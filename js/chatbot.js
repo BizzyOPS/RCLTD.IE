@@ -73,8 +73,8 @@ ControllerBot.prototype.createChatInterface = function() {
         '                        <button class="quick-action-btn" data-message="What about panel building?">',
         '                            🏗️ Panel Building',
         '                        </button>',
-        '                        <button class="quick-action-btn" data-message="Tell me about safety training">',
-        '                            📚 Training',
+        '                        <button class="quick-action-btn" data-message="Tell me about on-site safety training">',
+        '                            📚 On-Site Training',
         '                        </button>',
         '                        <button class="quick-action-btn" data-message="How can I get a quote?">',
         '                            💬 Get Quote',
@@ -342,7 +342,7 @@ ControllerBot.prototype.getLocalResponse = function(message) {
                 '• **[Safety Solutions](safety.html)** - Risk assessment, compliance, CE marking\n' +
                 '• **[Electrical Design](design.html)** - Control systems, power distribution\n' +
                 '• **[Panel Building](panel.html)** - Custom control panels, MCCs\n' +
-                '• **[Safety Training](safety-training.html)** - Interactive courses, certification\n\n' +
+                '• **[On-Site Safety Training](contact.html)** - Professional on-site courses, certification\n\n' +
                 '**🏭 Industries We Serve:**\n' +
                 '• **Pharmaceutical** - GMP compliance, validation protocols\n' +
                 '• **Automotive** - Assembly lines, quality control systems\n' +
@@ -355,16 +355,16 @@ ControllerBot.prototype.getLocalResponse = function(message) {
                 'Which service interests you most?';
             resolve(response);
         } else if (lowerMessage.includes('training') || lowerMessage.includes('course') || lowerMessage.includes('learn')) {
-            var response = '**📚 Professional Safety Training Programs**\n\n' +
-                'R&C Ltd offers comprehensive safety training to keep your team compliant and safe:\n\n' +
-                '**🎓 Available Training Modules:**\n' +
-                '• **Automation Safety** - Industrial robot safety, cobot integration (4-5 hrs)\n' +
-                '• **Electrical Design Safety** - IEC 60204-1, protective systems (4-5 hrs)\n' +
-                '• **Panel Building Safety** - IEC 61439, testing procedures (4-5 hrs)\n' +
+            var response = '**📚 Professional On-Site Safety Training Programs**\n\n' +
+                'R&C Ltd offers comprehensive on-site safety training delivered at your facility to keep your team compliant and safe:\n\n' +
+                '**🎓 Available On-Site Training Modules:**\n' +
+                '• **Automation Safety** - Industrial robot safety, cobot integration (delivered at your facility)\n' +
+                '• **Electrical Design Safety** - IEC 60204-1, protective systems (delivered at your facility)\n' +
+                '• **Panel Building Safety** - IEC 61439, testing procedures (delivered at your facility)\n' +
                 '• **Risk Assessment** - ISO 12100 methodology and practice\n' +
                 '• **Machine Safety** - Guards, interlocks, emergency systems\n\n' +
                 '**💡 Training Features:**\n' +
-                '• **Interactive Online Platform** - Learn at your own pace\n' +
+                '• **Professional On-Site Delivery** - Expert-led training at your facility\n' +
                 '• **Real Industry Scenarios** - Practical examples from our projects\n' +
                 '• **Progress Tracking** - Monitor your team\'s development\n' +
                 '• **90% Pass Requirement** - Ensures thorough understanding\n' +
@@ -373,9 +373,9 @@ ControllerBot.prototype.getLocalResponse = function(message) {
                 '• Developed by practicing engineers with 15+ years experience\n' +
                 '• Based on real-world projects and challenges\n' +
                 '• Covers latest standards and best practices\n' +
-                '• Flexible online format fits busy schedules\n\n' +
+                '• Flexible on-site format fits your facility schedule\n\n' +
                 '**🔗 Get Started:**\n' +
-                '[Start Training Now →](safety-training.html)\n' +
+                '[Request Training Quote →](contact.html)\n' +
                 '[Contact for Group Training →](contact.html)\n\n' +
                 'Which training module interests your team most?';
             resolve(response);
@@ -518,7 +518,7 @@ ControllerBot.prototype.getLocalResponse = function(message) {
                 '• **[🛡️ Safety Solutions](safety.html)** - Risk assessment, compliance\n' +
                 '• **[⚡ Electrical Design](design.html)** - Control systems, power distribution\n' +
                 '• **[🏗️ Panel Building](panel.html)** - Custom control panels, MCCs\n' +
-                '• **[📚 Safety Training](safety-training.html)** - Interactive online courses\n\n' +
+                '• **[📚 On-Site Safety Training](contact.html)** - Professional on-site courses\n\n' +
                 '**🏭 Industry Solutions:**\n' +
                 '• **Pharmaceutical** - GMP compliance, process validation\n' +
                 '• **Automotive** - Assembly lines, quality control\n' +

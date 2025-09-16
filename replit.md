@@ -13,6 +13,7 @@ This is a static website for Robotics & Control Ltd, an Irish technology company
 - **Cross-Browser JavaScript Compatibility**: Maintained ES6 to ES5 conversion and polyfill support for IE11 compatibility throughout all script fixes
 
 **September 16, 2025**
+- **Interactive Safety Training Removal**: Removed safety-training.html and all interactive online training components as safety training is delivered on-site at customer facilities. Updated all navigation, service cards, and references to reflect "On-Site Safety Training" with contact form links instead
 - **Comprehensive Theme Rollout**: Applied new theme design across all 17 HTML pages featuring enlarged logo (120px desktop), orange hamburger menu (#ff6b35), teal navigation links (#10b981), and orange Quote buttons (#ff6b35) for consistent branding
 - **Header Streamlining**: Removed duplicate company text from all page headers, creating clean logo-only navigation design across entire website
 - **Quote Button Standardization**: Unified all Quote button text and styling across 16 pages to match homepage design with consistent orange theme color
