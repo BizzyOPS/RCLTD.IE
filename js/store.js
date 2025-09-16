@@ -111,11 +111,11 @@ RCStore.prototype.updateCartQuantity = function(productId, quantity) {
         }
     }
 
-    saveCart() {
+RCStore.prototype.saveCart = function() {
         localStorage.setItem('rcltd_cart', JSON.stringify(this.cart));
     }
 
-    updateCartDisplay() {
+RCStore.prototype.updateCartDisplay = function() {
         var cartCount = document.getElementById('cart-count');
         var cartTotal = document.getElementById('cart-total');
         
@@ -135,7 +135,7 @@ RCStore.prototype.updateCartQuantity = function(productId, quantity) {
         this.renderCartItems();
     }
 
-    renderCartItems() {
+RCStore.prototype.renderCartItems = function() {
         var cartItems = document.getElementById('cart-items');
         var cartItemsList = document.getElementById('cart-items-list');
         

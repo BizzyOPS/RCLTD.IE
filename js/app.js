@@ -894,54 +894,48 @@ function initSimpleLoader() {
 
 // CSS animations
 var style = document.createElement('style');
-style.textContent = '
-    .animate-in {
-        animation: slideInUp 0.6s ease-out forwards;
-    }
-    
-    @keyframes slideInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    .form-message {
-        padding: 1rem;
-        border-radius: 0.5rem;
-        margin-bottom: 1rem;
-        font-weight: 500;
-    }
-    
-    .form-message.success {
-        background-color: #d1fae5;
-        color: #065f46;
-        border: 1px solid #a7f3d0;
-    }
-    
-    .form-message.error {
-        background-color: #fee2e2;
-        color: #991b1b;
-        border: 1px solid #fca5a5;
-    }
-    
-    .error-message {
-        display: block;
-        color: #dc2626;
-        font-size: 0.875rem;
-        margin-top: 0.25rem;
-    }
-    
-    input.error,
-    textarea.error {
-        border-color: #dc2626;
-        box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
-    }
-`;
+style.textContent = [
+    '    .animate-in {',
+    '        animation: slideInUp 0.6s ease-out forwards;',
+    '    }',
+    '    ',
+    '    @keyframes slideInUp {',
+    '        from {',
+    '            opacity: 0;',
+    '            transform: translateY(30px);',
+    '        }',
+    '        to {',
+    '            opacity: 1;',
+    '            transform: translateY(0);',
+    '        }',
+    '    }',
+    '    ',
+    '    .form-message {',
+    '        padding: 1rem;',
+    '        border-radius: 0.5rem;',
+    '        margin-bottom: 1rem;',
+    '        font-weight: 500;',
+    '    }',
+    '    ',
+    '    .form-message.success {',
+    '        background-color: #d1fae5;',
+    '        color: #065f46;',
+    '        border: 1px solid #a7f3d0;',
+    '    }',
+    '    ',
+    '    .form-message.error {',
+    '        background-color: #fee2e2;',
+    '        color: #991b1b;',
+    '        border: 1px solid #fca5a5;',
+    '    }',
+    '    ',
+    '    .error-message {',
+    '        display: block;',
+    '        color: #dc2626;',
+    '        font-size: 0.875rem;',
+    '        margin-top: 0.25rem;',
+    '    }'
+].join('\n');
 document.head.appendChild(style);
 
 

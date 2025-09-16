@@ -533,7 +533,7 @@ ControllerBot.prototype.getLocalResponse = function(message) {
     });
 };
 
-    renderMessage(message) {
+ControllerBot.prototype.renderMessage = function(message) {
         var messagesContainer = document.getElementById('chatbot-messages');
         
         var messageElement = document.createElement('div');

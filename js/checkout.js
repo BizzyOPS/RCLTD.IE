@@ -50,7 +50,7 @@ CheckoutManager.prototype.bindEvents = function() {
         }
     }
 
-    renderCheckoutItems() {
+CheckoutManager.prototype.renderCheckoutItems = function() {
         var container = document.getElementById('checkout-items');
         if (!container) return;
 

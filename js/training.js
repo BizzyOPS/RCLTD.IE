@@ -129,71 +129,75 @@ SafetyTrainingSystem.prototype.createTrainingInterface = function() {
 SafetyTrainingSystem.prototype.showModuleSelection = function() {
         var modules = trainingData.modules;
         
-        var moduleSelectionHTML = '
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title">Interactive Safety Training</h2>
-                    <p class="section-subtitle">Choose a training module to begin your safety education journey</p>
-                </div>
-                
-                <div class="training-modules-grid">
-                    ' + Object.keys(modules).map(function(key) { var module = modules[key]; return '
-                        <div class="training-module-card" data-module="' + module.id + '">
-                            <div class="module-header">
-                                <h3 class="module-title">' + module.title + '</h3>
-                                <span class="module-difficulty">' + module.difficulty + '</span>
-                            </div>
-                            <p class="module-description">' + module.description + '</p>
-                            <div class="module-details">
-                                <span class="module-duration">📅 Duration: ' + module.duration + '</span>
-                                <span class="module-chapters">📚 ' + Object.keys(module.chapters).length + ' Chapters</span>
-                            </div>
-                            <div class="module-progress">
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: ' + this.getModuleProgress(module.id) + '%"></div>
-                                </div>
-                                <span class="progress-text">' + Math.round(this.getModuleProgress(module.id)) + '% Complete</span>
-                            </div>
-                            <button class="btn-primary module-start-btn" 
-                                    data-module="${module.id}"
-                                    aria-describedby="module-${module.id}-desc">
-                                ${this.getModuleProgress(module.id) === 0 ? 'Start Training' : 'Continue Training'} →
-                            </button>
-                            <div id="module-${module.id}-desc" class="sr-only">
-                                ${module.description}. Duration: ${module.duration}. ${Object.keys(module.chapters).length} chapters available.
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-                
-                <div class="training-overview">
-                    <h3>Training System Features</h3>
-                    <div class="features-grid">
-                        <div class="feature-item">
-                            <div class="feature-icon">📋</div>
-                            <div class="feature-content">
-                                <h4>Interactive Questions</h4>
-                                <p>Multiple choice and fill-in-the-blank exercises with immediate feedback</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">📊</div>
-                            <div class="feature-content">
-                                <h4>Progress Tracking</h4>
-                                <p>Your progress is automatically saved and synced across sessions</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">🏆</div>
-                            <div class="feature-content">
-                                <h4>Professional Content</h4>
-                                <p>Industry-standard training aligned with R&C Ltd's expertise</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
+        var self = this;
+        var moduleSelectionHTML = [
+            '<div class="container">',
+            '    <div class="section-header">',
+            '        <h2 class="section-title">Interactive Safety Training</h2>',
+            '        <p class="section-subtitle">Choose a training module to begin your safety education journey</p>',
+            '    </div>',
+            '    ',
+            '    <div class="training-modules-grid">',
+            '        ' + Object.keys(modules).map(function(key) { 
+                var module = modules[key]; 
+                return [
+                    '<div class="training-module-card" data-module="' + module.id + '">',
+                    '    <div class="module-header">',
+                    '        <h3 class="module-title">' + module.title + '</h3>',
+                    '        <span class="module-difficulty">' + module.difficulty + '</span>',
+                    '    </div>',
+                    '    <p class="module-description">' + module.description + '</p>',
+                    '    <div class="module-details">',
+                    '        <span class="module-duration">📅 Duration: ' + module.duration + '</span>',
+                    '        <span class="module-chapters">📚 ' + Object.keys(module.chapters).length + ' Chapters</span>',
+                    '    </div>',
+                    '    <div class="module-progress">',
+                    '        <div class="progress-bar">',
+                    '            <div class="progress-fill" style="width: ' + self.getModuleProgress(module.id) + '%"></div>',
+                    '        </div>',
+                    '        <span class="progress-text">' + Math.round(self.getModuleProgress(module.id)) + '% Complete</span>',
+                    '    </div>',
+                    '    <button class="btn-primary module-start-btn" ',
+                    '            data-module="' + module.id + '"',
+                    '            aria-describedby="module-' + module.id + '-desc">',
+                    '        ' + (self.getModuleProgress(module.id) === 0 ? 'Start Training' : 'Continue Training') + ' →',
+                    '    </button>',
+                    '    <div id="module-' + module.id + '-desc" class="sr-only">',
+                    '        ' + module.description + '. Duration: ' + module.duration + '. ' + Object.keys(module.chapters).length + ' chapters available.',
+                    '    </div>',
+                    '</div>'
+                ].join('\n        ');
+            }).join('\n        '),
+            '    </div>',
+            '    ',
+            '    <div class="training-overview">',
+            '        <h3>Training System Features</h3>',
+            '        <div class="features-grid">',
+            '            <div class="feature-item">',
+            '                <div class="feature-icon">📋</div>',
+            '                <div class="feature-content">',
+            '                    <h4>Interactive Questions</h4>',
+            '                    <p>Multiple choice and fill-in-the-blank exercises with immediate feedback</p>',
+            '                </div>',
+            '            </div>',
+            '            <div class="feature-item">',
+            '                <div class="feature-icon">📊</div>',
+            '                <div class="feature-content">',
+            '                    <h4>Progress Tracking</h4>',
+            '                    <p>Your progress is automatically saved and synced across sessions</p>',
+            '                </div>',
+            '            </div>',
+            '            <div class="feature-item">',
+            '                <div class="feature-icon">🏆</div>',
+            '                <div class="feature-content">',
+            '                    <h4>Professional Content</h4>',
+            '                    <p>Industry-standard training aligned with R&C Ltd\'s expertise</p>',
+            '                </div>',
+            '            </div>',
+            '        </div>',
+            '    </div>',
+            '</div>'
+        ].join('\n');
         
         this.trainingContainer.innerHTML = moduleSelectionHTML;
         this.currentModule = null;
