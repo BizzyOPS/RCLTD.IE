@@ -88,8 +88,10 @@
                 </div>
             </div>
             
-            <!-- Technical Status Messages -->
-            <div class="tech-status">Initializing robotic systems...</div>
+            <!-- Company Logo -->
+            <div class="loader-logo">
+                <img src="images/roundlogo.png" alt="Robotics & Control Ltd" class="loading-logo">
+            </div>
         </div>
     </div>
 
@@ -491,39 +493,11 @@
     </button>
 
 
-    <!-- FORCE CACHE CLEAR AND RELOAD -->
+    <!-- Simple particle blocking without reload loops -->
     <script>
-    // Complete cache destruction
-    (function() {
-        // Block particles immediately
-        window.tsParticles = { load: () => Promise.resolve(), loadFull: () => Promise.resolve() };
-        window.particlesJS = () => {};
-        
-        // Clear all storage and caches
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.getRegistrations().then(registrations => {
-                registrations.forEach(registration => registration.unregister());
-            });
-        }
-        if (window.caches) {
-            caches.keys().then(keys => keys.forEach(key => caches.delete(key)));
-        }
-        
-        // Clear storage
-        try {
-            localStorage.clear();
-            sessionStorage.clear();
-        } catch(e) {}
-        
-        // Force reload if first visit with new timestamp
-        const reloadKey = 'hero_reload_1758021605';
-        if (!sessionStorage.getItem(reloadKey)) {
-            sessionStorage.setItem(reloadKey, 'true');
-            setTimeout(() => {
-                window.location.reload(true);
-            }, 100);
-        }
-    })();
+    // Block particles without causing infinite reload
+    window.tsParticles = { load: () => Promise.resolve(), loadFull: () => Promise.resolve() };
+    window.particlesJS = () => {};
     </script>
     
     <script src="js/app.js?v=1758021605&nocache=true&hero=new&bust=force"></script>

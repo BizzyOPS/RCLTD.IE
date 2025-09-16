@@ -208,6 +208,24 @@
     }
 }
 
+/* Loading Screen Logo Styles */
+.loader-logo {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.loading-logo {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    animation: logoFade 2s ease-in-out infinite alternate;
+}
+
+@keyframes logoFade {
+    0% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
 /* Animated Background Keyframes */
 @keyframes gradientMove {
     0% { background-position: 0% 50%; }
