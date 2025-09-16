@@ -1,70 +1,70 @@
 // Checkout Process for Robotics & Control Ltd Store
-class CheckoutManager {
-    constructor() {
+function CheckoutManager() {
         this.cart = JSON.parse(localStorage.getItem('rcltd_cart')) || [];
         this.init();
-    }
+}
 
-    init() {
+CheckoutManager.prototype.init = function() {
         this.renderCheckoutItems();
         this.updateCheckoutTotals();
         this.bindEvents();
         this.initFormValidation();
-    }
+};
 
-    bindEvents() {
+CheckoutManager.prototype.bindEvents = function() {
         // Checkout form submission
-        const checkoutForm = document.getElementById('checkout-form');
+        var checkoutForm = document.getElementById('checkout-form');
+        var self = this;
         if (checkoutForm) {
-            checkoutForm.addEventListener('submit', (e) => this.handleCheckoutSubmit(e));
+            checkoutForm.addEventListener('submit', function(e) { self.handleCheckoutSubmit(e); });
         }
 
         // Payment method changes
-        const paymentMethods = document.querySelectorAll('input[name="payment"]');
-        paymentMethods.forEach(method => {
-            method.addEventListener('change', () => this.togglePaymentFields());
-        });
+        var paymentMethods = document.querySelectorAll('input[name="payment"]');
+        for (var i = 0; i < paymentMethods.length; i++) {
+            paymentMethods[i].addEventListener('change', function() { self.togglePaymentFields(); });
+        }
 
         // Billing address toggle
-        const sameAsShipping = document.getElementById('same-as-shipping');
+        var sameAsShipping = document.getElementById('same-as-shipping');
         if (sameAsShipping) {
-            sameAsShipping.addEventListener('change', () => this.toggleBillingFields());
+            sameAsShipping.addEventListener('change', function() { self.toggleBillingFields(); });
         }
 
         // Card number formatting
-        const cardNumber = document.getElementById('card-number');
+        var cardNumber = document.getElementById('card-number');
         if (cardNumber) {
-            cardNumber.addEventListener('input', (e) => this.formatCardNumber(e));
+            cardNumber.addEventListener('input', function(e) { self.formatCardNumber(e); });
         }
 
         // Expiry date formatting
-        const expiry = document.getElementById('expiry');
+        var expiry = document.getElementById('expiry');
         if (expiry) {
-            expiry.addEventListener('input', (e) => this.formatExpiry(e));
+            expiry.addEventListener('input', function(e) { self.formatExpiry(e); });
         }
 
         // CVV validation
-        const cvv = document.getElementById('cvv');
+        var cvv = document.getElementById('cvv');
         if (cvv) {
-            cvv.addEventListener('input', (e) => this.formatCVV(e));
+            cvv.addEventListener('input', function(e) { self.formatCVV(e); });
         }
     }
 
     renderCheckoutItems() {
-        const container = document.getElementById('checkout-items');
+        var container = document.getElementById('checkout-items');
         if (!container) return;
 
         // Clear container safely
         container.replaceChildren();
 
         if (this.cart.length === 0) {
-            const emptyDiv = document.createElement('div');
+            var emptyDiv = document.createElement('div');
             emptyDiv.className = 'checkout-empty';
             
-            const p = document.createElement('p');
+            var p = document.createElement('p');
             p.textContent = 'No items in cart';
             
-            const a = document.createElement('a');
+            var a = document.createElement('a');
             a.href = 'store.html';
             a.className = 'btn-primary';
             a.textContent = 'Continue Shopping';
@@ -76,30 +76,31 @@ class CheckoutManager {
         }
 
         // Create checkout items safely using DOM methods
-        this.cart.forEach(item => {
-            const itemDiv = document.createElement('div');
+        for (var i = 0; i < this.cart.length; i++) {
+            var item = this.cart[i];
+            var itemDiv = document.createElement('div');
             itemDiv.className = 'checkout-item';
 
-            const imageDiv = document.createElement('div');
+            var imageDiv = document.createElement('div');
             imageDiv.className = 'item-image';
             
-            const img = document.createElement('img');
+            var img = document.createElement('img');
             img.src = item.image || 'images/placeholder-product.png';
             img.alt = item.name || '';
             
-            const detailsDiv = document.createElement('div');
+            var detailsDiv = document.createElement('div');
             detailsDiv.className = 'item-details';
             
-            const h4 = document.createElement('h4');
+            var h4 = document.createElement('h4');
             h4.textContent = item.name || '';
             
-            const qtyP = document.createElement('p');
+            var qtyP = document.createElement('p');
             qtyP.className = 'item-qty';
-            qtyP.textContent = `Qty: ${item.quantity || 0}`;
+            qtyP.textContent = 'Qty: ' + (item.quantity || 0);
             
-            const priceP = document.createElement('p');
+            var priceP = document.createElement('p');
             priceP.className = 'item-price';
-            priceP.textContent = `€${((item.price || 0) * (item.quantity || 0)).toFixed(2)}`;
+            priceP.textContent = '€' + ((item.price || 0) * (item.quantity || 0)).toFixed(2);
 
             imageDiv.appendChild(img);
             detailsDiv.appendChild(h4);
@@ -108,40 +109,42 @@ class CheckoutManager {
             itemDiv.appendChild(imageDiv);
             itemDiv.appendChild(detailsDiv);
             container.appendChild(itemDiv);
-        });
+        }
     }
 
     updateCheckoutTotals() {
-        const subtotal = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        const shipping = subtotal > 500 ? 0 : 25; // Free shipping over €500
-        const vat = (subtotal + shipping) * 0.23; // 23% VAT
-        const total = subtotal + shipping + vat;
+        var subtotal = this.cart.reduce(function(sum, item) { return sum + (item.price * item.quantity); }, 0);
+        var shipping = subtotal > 500 ? 0 : 25; // Free shipping over €500
+        var vat = (subtotal + shipping) * 0.23; // 23% VAT
+        var total = subtotal + shipping + vat;
 
-        const elements = {
+        var elements = {
             'checkout-subtotal': subtotal,
             'checkout-shipping': shipping,
             'checkout-vat': vat,
             'checkout-total': total
         };
 
-        Object.entries(elements).forEach(([id, value]) => {
-            const element = document.getElementById(id);
+        for (var id in elements) {
+            var element = document.getElementById(id);
             if (element) {
-                element.textContent = `€${value.toFixed(2)}`;
+                element.textContent = '€' + elements[id].toFixed(2);
             }
-        });
+        }
     }
 
     togglePaymentFields() {
-        const selectedPayment = document.querySelector('input[name="payment"]:checked')?.value;
-        const cardFields = document.getElementById('card-fields');
-        const bankFields = document.getElementById('bank-fields');
-        const quoteFields = document.getElementById('quote-fields');
+        var selectedPaymentEl = document.querySelector('input[name="payment"]:checked');
+        var selectedPayment = selectedPaymentEl ? selectedPaymentEl.value : null;
+        var cardFields = document.getElementById('card-fields');
+        var bankFields = document.getElementById('bank-fields');
+        var quoteFields = document.getElementById('quote-fields');
 
         // Hide all payment fields
-        [cardFields, bankFields, quoteFields].forEach(field => {
-            if (field) field.style.display = 'none';
-        });
+        var fields = [cardFields, bankFields, quoteFields];
+        for (var i = 0; i < fields.length; i++) {
+            if (fields[i]) fields[i].style.display = 'none';
+        }
 
         // Show selected payment fields
         switch (selectedPayment) {
@@ -158,8 +161,8 @@ class CheckoutManager {
     }
 
     toggleBillingFields() {
-        const sameAsShipping = document.getElementById('same-as-shipping');
-        const billingFields = document.getElementById('billing-fields');
+        var sameAsShipping = document.getElementById('same-as-shipping');
+        var billingFields = document.getElementById('billing-fields');
         
         if (sameAsShipping && billingFields) {
             billingFields.style.display = sameAsShipping.checked ? 'none' : 'block';
@@ -167,8 +170,9 @@ class CheckoutManager {
     }
 
     formatCardNumber(e) {
-        let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
-        let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+        var value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+        var matches = value.match(/.{1,4}/g);
+        var formattedValue = matches ? matches.join(' ') : value;
         
         if (formattedValue.length > 19) {
             formattedValue = formattedValue.substr(0, 19);
@@ -178,7 +182,7 @@ class CheckoutManager {
     }
 
     formatExpiry(e) {
-        let value = e.target.value.replace(/\D/g, '');
+        var value = e.target.value.replace(/\D/g, '');
         
         if (value.length >= 2) {
             value = value.substring(0, 2) + '/' + value.substring(2, 4);
@@ -188,24 +192,26 @@ class CheckoutManager {
     }
 
     formatCVV(e) {
-        let value = e.target.value.replace(/\D/g, '');
+        var value = e.target.value.replace(/\D/g, '');
         e.target.value = value.substring(0, 4);
     }
 
     initFormValidation() {
-        const form = document.getElementById('checkout-form');
+        var form = document.getElementById('checkout-form');
         if (!form) return;
 
         // Add custom validation styles
-        const inputs = form.querySelectorAll('input[required], select[required]');
-        inputs.forEach(input => {
-            input.addEventListener('blur', () => this.validateField(input));
-            input.addEventListener('input', () => this.clearFieldError(input));
-        });
+        var inputs = form.querySelectorAll('input[required], select[required]');
+        var self = this;
+        for (var i = 0; i < inputs.length; i++) {
+            var input = inputs[i];
+            input.addEventListener('blur', function() { self.validateField(this); });
+            input.addEventListener('input', function() { self.clearFieldError(this); });
+        }
     }
 
     validateField(field) {
-        const isValid = field.checkValidity();
+        var isValid = field.checkValidity();
         
         field.classList.toggle('invalid', !isValid);
         field.classList.toggle('valid', isValid);
@@ -218,33 +224,34 @@ class CheckoutManager {
     }
 
     validateForm() {
-        const form = document.getElementById('checkout-form');
+        var form = document.getElementById('checkout-form');
         if (!form) return false;
 
-        let isValid = true;
-        const requiredFields = form.querySelectorAll('input[required], select[required]');
+        var isValid = true;
+        var requiredFields = form.querySelectorAll('input[required], select[required]');
         
-        requiredFields.forEach(field => {
-            if (!this.validateField(field)) {
+        for (var i = 0; i < requiredFields.length; i++) {
+            if (!this.validateField(requiredFields[i])) {
                 isValid = false;
             }
-        });
+        }
 
         // Validate payment method specific fields
-        const paymentMethod = document.querySelector('input[name="payment"]:checked')?.value;
+        var paymentMethodEl = document.querySelector('input[name="payment"]:checked');
+        var paymentMethod = paymentMethodEl ? paymentMethodEl.value : null;
         
         if (paymentMethod === 'card') {
-            const cardFields = ['card-number', 'expiry', 'cvv', 'card-name'];
-            cardFields.forEach(fieldId => {
-                const field = document.getElementById(fieldId);
+            var cardFields = ['card-number', 'expiry', 'cvv', 'card-name'];
+            for (var i = 0; i < cardFields.length; i++) {
+                var field = document.getElementById(cardFields[i]);
                 if (field && !this.validateField(field)) {
                     isValid = false;
                 }
-            });
+            }
         }
 
         // Validate terms agreement
-        const termsAgree = document.getElementById('terms-agree');
+        var termsAgree = document.getElementById('terms-agree');
         if (termsAgree && !termsAgree.checked) {
             this.showError('Please agree to the terms and conditions.');
             isValid = false;
@@ -266,8 +273,8 @@ class CheckoutManager {
             return;
         }
 
-        const formData = new FormData(e.target);
-        const orderData = this.collectOrderData(formData);
+        var formData = new FormData(e.target);
+        var orderData = this.collectOrderData(formData);
 
         try {
             await this.processOrder(orderData);
@@ -277,8 +284,12 @@ class CheckoutManager {
     }
 
     collectOrderData(formData) {
-        const data = Object.fromEntries(formData);
-        const paymentMethod = document.querySelector('input[name="payment"]:checked')?.value;
+        var data = {};
+        for (var pair of formData.entries()) {
+            data[pair[0]] = pair[1];
+        }
+        var paymentMethodEl = document.querySelector('input[name="payment"]:checked');
+        var paymentMethod = paymentMethodEl ? paymentMethodEl.value : null;
         
         return {
             customer: {
@@ -322,17 +333,20 @@ class CheckoutManager {
     }
 
     calculateTotals() {
-        const subtotal = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        const shipping = subtotal > 500 ? 0 : 25;
-        const vat = (subtotal + shipping) * 0.23;
-        const total = subtotal + shipping + vat;
+        var subtotal = this.cart.reduce(function(sum, item) { return sum + (item.price * item.quantity); }, 0);
+        var shipping = subtotal > 500 ? 0 : 25;
+        var vat = (subtotal + shipping) * 0.23;
+        var total = subtotal + shipping + vat;
 
-        return { subtotal, shipping, vat, total };
+        return { subtotal: subtotal, shipping: shipping, vat: vat, total: total };
     }
 
-    async processOrder(orderData) {
-        const submitBtn = document.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
+    processOrder(orderData) {
+        var self = this;
+        var submitBtn = document.querySelector('button[type="submit"]');
+        var originalText = submitBtn.textContent;
+        
+        return new Promise(function(resolve, reject) {
         
         // Show loading state
         submitBtn.disabled = true;
@@ -340,7 +354,7 @@ class CheckoutManager {
 
         try {
             // Simulate order processing
-            await this.simulateOrderProcessing(orderData);
+            self.simulateOrderProcessing(orderData).then(function() {
             
             // Clear cart and redirect to confirmation
             localStorage.removeItem('rcltd_cart');
@@ -366,21 +380,21 @@ class CheckoutManager {
 
     showError(message) {
         // Create error notification safely using DOM methods
-        const notification = document.createElement('div');
+        var notification = document.createElement('div');
         notification.className = 'checkout-error';
         
-        const errorContent = document.createElement('div');
+        var errorContent = document.createElement('div');
         errorContent.className = 'error-content';
         
-        const errorIcon = document.createElement('span');
+        var errorIcon = document.createElement('span');
         errorIcon.className = 'error-icon';
         errorIcon.textContent = '⚠️';
         
-        const errorMessage = document.createElement('span');
+        var errorMessage = document.createElement('span');
         errorMessage.className = 'error-message';
         errorMessage.textContent = message; // Safe: uses textContent instead of innerHTML
         
-        const closeBtn = document.createElement('button');
+        var closeBtn = document.createElement('button');
         closeBtn.className = 'error-close';
         closeBtn.innerHTML = '&times;'; // Safe: static content
         
@@ -411,17 +425,17 @@ class CheckoutManager {
 
     showSuccess(message) {
         // Create success notification safely using DOM methods
-        const notification = document.createElement('div');
+        var notification = document.createElement('div');
         notification.className = 'checkout-success';
         
-        const successContent = document.createElement('div');
+        var successContent = document.createElement('div');
         successContent.className = 'success-content';
         
-        const successIcon = document.createElement('span');
+        var successIcon = document.createElement('span');
         successIcon.className = 'success-icon';
         successIcon.textContent = '✅';
         
-        const successMessage = document.createElement('span');
+        var successMessage = document.createElement('span');
         successMessage.className = 'success-message';
         successMessage.textContent = message; // Safe: uses textContent instead of innerHTML
         

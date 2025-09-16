@@ -1,89 +1,81 @@
 // Interactive Safety Training System for R&C Ltd
 // Comprehensive training controller with hash routing, progress tracking, and accessibility
 
-class SafetyTrainingSystem {
-    constructor() {
-        this.currentModule = null;
-        this.currentChapter = null;
-        this.progress = this.loadProgress();
-        this.userAnswers = this.loadUserAnswers();
-        this.trainingContainer = null;
-        
-        // Accessibility support
-        this.announcer = null;
-        this.focusStack = [];
-        
-        // Initialize when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => this.initialize());
-        } else {
-            this.initialize();
-        }
-    }
+function SafetyTrainingSystem() {
+    var self = this;
+    this.currentModule = null;
+    this.currentChapter = null;
+    this.progress = this.loadProgress();
+    this.userAnswers = this.loadUserAnswers();
+    this.trainingContainer = null;
     
-    initialize() {
-        this.createTrainingInterface();
-        this.setupEventListeners();
-        this.setupAccessibility();
-        this.handleHashRoute();
-        
-        // Handle browser back/forward
-        window.addEventListener('hashchange', () => this.handleHashRoute());
-        
-    }
+    // Accessibility support
+    this.announcer = null;
+    this.focusStack = [];
     
-    // ==================== SECURITY UTILITIES ====================
-    
-    escapeAttr(s) {
-        return String(s)
-            .replace(/&/g, '&amp;')
-            .replace(/"/g, '&quot;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;');
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() { self.initialize(); });
+    } else {
+        this.initialize();
     }
+}
 
-    escapeHtml(s) {
-        return String(s)
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#x27;');
-    }
+SafetyTrainingSystem.prototype.initialize = function() {
+    var self = this;
+    this.createTrainingInterface();
+    this.setupEventListeners();
+    this.setupAccessibility();
+    this.handleHashRoute();
     
-    // ==================== ACCESSIBILITY SETUP ====================
+    // Handle browser back/forward
+    window.addEventListener('hashchange', function() { self.handleHashRoute(); });
+};
+
+// ==================== SECURITY UTILITIES ====================
+
+SafetyTrainingSystem.prototype.escapeAttr = function(s) {
+    return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+};
+
+SafetyTrainingSystem.prototype.escapeHtml = function(s) {
+    return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#x27;');
+};
     
-    setupAccessibility() {
+// ==================== ACCESSIBILITY SETUP ====================
+
+SafetyTrainingSystem.prototype.setupAccessibility = function() {
         // Create ARIA live region for announcements
         this.announcer = document.createElement('div');
         this.announcer.setAttribute('aria-live', 'polite');
         this.announcer.setAttribute('aria-atomic', 'true');
         this.announcer.className = 'sr-only';
-        this.announcer.style.cssText = `
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0,0,0,0);
-            white-space: nowrap;
-            border: 0;
-        `;
+        this.announcer.style.cssText = 'position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;';
         document.body.appendChild(this.announcer);
         
         // Setup keyboard navigation
-        document.addEventListener('keydown', (e) => this.handleKeyboardNavigation(e));
-    }
-    
-    announce(message) {
+        var self = this;
+        document.addEventListener('keydown', function(e) { self.handleKeyboardNavigation(e); });
+};
+
+SafetyTrainingSystem.prototype.announce = function(message) {
         if (this.announcer) {
             this.announcer.textContent = message;
-            setTimeout(() => this.announcer.textContent = '', 100);
+            var self = this;
+            setTimeout(function() { self.announcer.textContent = ''; }, 100);
         }
-    }
-    
-    handleKeyboardNavigation(e) {
+};
+
+SafetyTrainingSystem.prototype.handleKeyboardNavigation = function(e) {
         // Handle Escape key to return to module selection
         if (e.key === 'Escape' && this.currentModule) {
             e.preventDefault();
@@ -95,9 +87,9 @@ class SafetyTrainingSystem {
         if (e.target.classList.contains('training-nav-btn')) {
             if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
                 e.preventDefault();
-                const buttons = document.querySelectorAll('.training-nav-btn');
-                const currentIndex = Array.from(buttons).indexOf(e.target);
-                let newIndex = currentIndex;
+                var buttons = document.querySelectorAll('.training-nav-btn');
+                var currentIndex = Array.from(buttons).indexOf(e.target);
+                var newIndex = currentIndex;
                 
                 if (e.key === 'ArrowLeft' && currentIndex > 0) {
                     newIndex = currentIndex - 1;
@@ -110,13 +102,13 @@ class SafetyTrainingSystem {
                 }
             }
         }
-    }
-    
-    // ==================== TRAINING INTERFACE CREATION ====================
-    
-    createTrainingInterface() {
+};
+
+// ==================== TRAINING INTERFACE CREATION ====================
+
+SafetyTrainingSystem.prototype.createTrainingInterface = function() {
         // Find the course grid section to replace with training interface
-        const courseSection = document.querySelector('.automation-services');
+        var courseSection = document.querySelector('.automation-services');
         if (!courseSection) {
             return;
         }
@@ -132,12 +124,12 @@ class SafetyTrainingSystem {
         
         // Show module selection by default
         this.showModuleSelection();
-    }
-    
-    showModuleSelection() {
-        const modules = trainingData.modules;
+};
+
+SafetyTrainingSystem.prototype.showModuleSelection = function() {
+        var modules = trainingData.modules;
         
-        const moduleSelectionHTML = `
+        var moduleSelectionHTML = '
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Interactive Safety Training</h2>
@@ -145,22 +137,22 @@ class SafetyTrainingSystem {
                 </div>
                 
                 <div class="training-modules-grid">
-                    ${Object.values(modules).map(module => `
-                        <div class="training-module-card" data-module="${module.id}">
+                    ' + Object.keys(modules).map(function(key) { var module = modules[key]; return '
+                        <div class="training-module-card" data-module="' + module.id + '">
                             <div class="module-header">
-                                <h3 class="module-title">${module.title}</h3>
-                                <span class="module-difficulty">${module.difficulty}</span>
+                                <h3 class="module-title">' + module.title + '</h3>
+                                <span class="module-difficulty">' + module.difficulty + '</span>
                             </div>
-                            <p class="module-description">${module.description}</p>
+                            <p class="module-description">' + module.description + '</p>
                             <div class="module-details">
-                                <span class="module-duration">📅 Duration: ${module.duration}</span>
-                                <span class="module-chapters">📚 ${Object.keys(module.chapters).length} Chapters</span>
+                                <span class="module-duration">📅 Duration: ' + module.duration + '</span>
+                                <span class="module-chapters">📚 ' + Object.keys(module.chapters).length + ' Chapters</span>
                             </div>
                             <div class="module-progress">
                                 <div class="progress-bar">
-                                    <div class="progress-fill" style="width: ${this.getModuleProgress(module.id)}%"></div>
+                                    <div class="progress-fill" style="width: ' + this.getModuleProgress(module.id) + '%"></div>
                                 </div>
-                                <span class="progress-text">${Math.round(this.getModuleProgress(module.id))}% Complete</span>
+                                <span class="progress-text">' + Math.round(this.getModuleProgress(module.id)) + '% Complete</span>
                             </div>
                             <button class="btn-primary module-start-btn" 
                                     data-module="${module.id}"
@@ -218,7 +210,7 @@ class SafetyTrainingSystem {
     // ==================== MODULE AND CHAPTER NAVIGATION ====================
     
     showModule(moduleId, chapterId = 1) {
-        const module = trainingData.modules[moduleId];
+        var module = trainingData.modules[moduleId];
         if (!module) {
             return;
         }
@@ -226,7 +218,7 @@ class SafetyTrainingSystem {
         this.currentModule = moduleId;
         this.currentChapter = parseInt(chapterId);
         
-        const moduleHTML = `
+        var moduleHTML = `
             <div class="container">
                 <div class="training-breadcrumb">
                     <button class="breadcrumb-btn" onclick="trainingSystem.showModuleSelection()" 
@@ -252,9 +244,9 @@ class SafetyTrainingSystem {
                         <h3>Chapters</h3>
                         <div class="chapter-list" role="list">
                             ${Object.values(module.chapters).map((chapter, index) => {
-                                const chapterNum = index + 1;
-                                const isCompleted = this.isChapterCompleted(moduleId, chapterNum);
-                                const isCurrent = chapterNum === this.currentChapter;
+                                var chapterNum = index + 1;
+                                var isCompleted = this.isChapterCompleted(moduleId, chapterNum);
+                                var isCurrent = chapterNum === this.currentChapter;
                                 
                                 return `
                                     <button class="chapter-item ${isCurrent ? 'current' : ''} ${isCompleted ? 'completed' : ''}"
@@ -288,8 +280,8 @@ class SafetyTrainingSystem {
     }
     
     showChapter(moduleId, chapterId) {
-        const module = trainingData.modules[moduleId];
-        const chapter = module?.chapters[chapterId];
+        var module = trainingData.modules[moduleId];
+        var chapter = module?.chapters[chapterId];
         
         if (!chapter) {
             return;
@@ -302,15 +294,15 @@ class SafetyTrainingSystem {
     }
     
     renderChapter(moduleId, chapterId) {
-        const module = trainingData.modules[moduleId];
-        const chapter = module.chapters[chapterId];
+        var module = trainingData.modules[moduleId];
+        var chapter = module.chapters[chapterId];
         
         if (!chapter) {
             return '<div class="error-message">Chapter not found</div>';
         }
         
-        const nextChapter = module.chapters[chapterId + 1];
-        const prevChapter = module.chapters[chapterId - 1];
+        var nextChapter = module.chapters[chapterId + 1];
+        var prevChapter = module.chapters[chapterId - 1];
         
         return `
             <div class="chapter-container">
@@ -378,9 +370,9 @@ class SafetyTrainingSystem {
     // ==================== QUESTION RENDERING AND HANDLING ====================
     
     renderQuestion(moduleId, chapterId, questionIndex, question) {
-        const questionId = `${moduleId}-${chapterId}-${questionIndex}`;
-        const userAnswer = this.userAnswers[questionId];
-        const isAnswered = userAnswer !== undefined;
+        var questionId = `${moduleId}-${chapterId}-${questionIndex}`;
+        var userAnswer = this.userAnswers[questionId];
+        var isAnswered = userAnswer !== undefined;
         
         if (question.type === 'multiple-choice') {
             return this.renderMultipleChoice(questionId, question, userAnswer, isAnswered);
@@ -400,9 +392,9 @@ class SafetyTrainingSystem {
                 
                 <div class="question-options" role="radiogroup" aria-labelledby="question-${questionId}-text">
                     ${question.options.map((option, index) => {
-                        const isSelected = userAnswer === index;
-                        const isCorrect = index === question.correct;
-                        let optionClass = 'option';
+                        var isSelected = userAnswer === index;
+                        var isCorrect = index === question.correct;
+                        var optionClass = 'option';
                         
                         if (isAnswered) {
                             if (isSelected && isCorrect) {
@@ -449,18 +441,18 @@ class SafetyTrainingSystem {
     }
     
     renderFillInBlank(questionId, question, userAnswer, isAnswered) {
-        const blanks = question.blanks;
-        const userBlanks = userAnswer || [];
+        var blanks = question.blanks;
+        var userBlanks = userAnswer || [];
         
         // Create the question text with input fields
-        let questionWithInputs = question.question;
+        var questionWithInputs = question.question;
         blanks.forEach((blank, index) => {
-            const inputId = `${questionId}-blank-${index}`;
-            const inputValue = userBlanks[index] || '';
-            const isCorrect = isAnswered && this.checkBlankAnswer(inputValue, blank, question.flexibleAnswers);
+            var inputId = `${questionId}-blank-${index}`;
+            var inputValue = userBlanks[index] || '';
+            var isCorrect = isAnswered && this.checkBlankAnswer(inputValue, blank, question.flexibleAnswers);
             
-            const inputClass = isAnswered ? (isCorrect ? 'correct' : 'incorrect') : '';
-            const inputHTML = `
+            var inputClass = isAnswered ? (isCorrect ? 'correct' : 'incorrect') : '';
+            var inputHTML = `
                 <input type="text" 
                        class="fill-blank-input ${inputClass}"
                        id="${inputId}"
@@ -521,16 +513,16 @@ class SafetyTrainingSystem {
         this.saveUserAnswers();
         
         // Re-render the question to show feedback
-        const questionContainer = document.querySelector(`[data-question-id="${questionId}"]`);
+        var questionContainer = document.querySelector(`[data-question-id="${questionId}"]`);
         if (questionContainer) {
-            const [moduleId, chapterId, questionIndex] = questionId.split('-');
-            const module = trainingData.modules[moduleId];
-            const question = module.chapters[chapterId].questions[questionIndex];
+            var [moduleId, chapterId, questionIndex] = questionId.split('-');
+            var module = trainingData.modules[moduleId];
+            var question = module.chapters[chapterId].questions[questionIndex];
             
             questionContainer.outerHTML = this.renderQuestion(moduleId, chapterId, questionIndex, question);
             
             // Announce the result
-            const isCorrect = selectedOption === question.correct;
+            var isCorrect = selectedOption === question.correct;
             this.announce(isCorrect ? 'Correct answer!' : 'Incorrect answer. Please review the explanation.');
         }
     }
@@ -544,11 +536,11 @@ class SafetyTrainingSystem {
     }
     
     checkFillInBlankAnswer(questionId) {
-        const [moduleId, chapterId, questionIndex] = questionId.split('-');
-        const module = trainingData.modules[moduleId];
-        const question = module.chapters[chapterId].questions[questionIndex];
+        var [moduleId, chapterId, questionIndex] = questionId.split('-');
+        var module = trainingData.modules[moduleId];
+        var question = module.chapters[chapterId].questions[questionIndex];
         
-        const userBlanks = this.userAnswers[questionId] || [];
+        var userBlanks = this.userAnswers[questionId] || [];
         
         // Check if all blanks are filled
         if (userBlanks.length < question.blanks.length || userBlanks.some(blank => !blank || blank.trim() === '')) {
@@ -557,12 +549,12 @@ class SafetyTrainingSystem {
         }
         
         // Re-render the question to show feedback
-        const questionContainer = document.querySelector(`[data-question-id="${questionId}"]`);
+        var questionContainer = document.querySelector(`[data-question-id="${questionId}"]`);
         if (questionContainer) {
             questionContainer.outerHTML = this.renderQuestion(moduleId, chapterId, questionIndex, question);
             
             // Announce the result
-            const allCorrect = this.isAllBlanksCorrect(questionId, question);
+            var allCorrect = this.isAllBlanksCorrect(questionId, question);
             this.announce(allCorrect ? 'All answers correct!' : 'Some answers need correction. Please review the feedback.');
         }
     }
@@ -570,15 +562,15 @@ class SafetyTrainingSystem {
     checkBlankAnswer(userAnswer, correctAnswer, flexibleAnswers = []) {
         if (!userAnswer || !correctAnswer) return false;
         
-        const normalizedUser = userAnswer.trim().toLowerCase();
-        const normalizedCorrect = correctAnswer.trim().toLowerCase();
+        var normalizedUser = userAnswer.trim().toLowerCase();
+        var normalizedCorrect = correctAnswer.trim().toLowerCase();
         
         // Check exact match first
         if (normalizedUser === normalizedCorrect) return true;
         
         // Check flexible answers if provided
         if (flexibleAnswers) {
-            for (const flexAnswer of flexibleAnswers) {
+            for (var flexAnswer of flexibleAnswers) {
                 if (flexAnswer.pattern.test(userAnswer)) {
                     return true;
                 }
@@ -589,7 +581,7 @@ class SafetyTrainingSystem {
     }
     
     isAllBlanksCorrect(questionId, question) {
-        const userBlanks = this.userAnswers[questionId] || [];
+        var userBlanks = this.userAnswers[questionId] || [];
         return question.blanks.every((correctAnswer, index) => 
             this.checkBlankAnswer(userBlanks[index], correctAnswer, question.flexibleAnswers)
         );
@@ -599,7 +591,7 @@ class SafetyTrainingSystem {
     
     loadProgress() {
         try {
-            const saved = localStorage.getItem('rcltd-training-progress');
+            var saved = localStorage.getItem('rcltd-training-progress');
             return saved ? JSON.parse(saved) : {};
         } catch (e) {
             return {};
@@ -615,7 +607,7 @@ class SafetyTrainingSystem {
     
     loadUserAnswers() {
         try {
-            const saved = localStorage.getItem('rcltd-training-answers');
+            var saved = localStorage.getItem('rcltd-training-answers');
             return saved ? JSON.parse(saved) : {};
         } catch (e) {
             return {};
@@ -634,7 +626,7 @@ class SafetyTrainingSystem {
             this.progress[moduleId] = {};
         }
         
-        const score = this.calculateChapterScore(moduleId, chapterId);
+        var score = this.calculateChapterScore(moduleId, chapterId);
         this.progress[moduleId][chapterId] = score >= 90 ? true : 'failed';
         this.saveProgress();
         
@@ -647,25 +639,25 @@ class SafetyTrainingSystem {
     }
     
     calculateChapterScore(moduleId, chapterId) {
-        const module = trainingData.modules[moduleId];
+        var module = trainingData.modules[moduleId];
         if (!module || !module.chapters[chapterId]) return 0;
         
-        const chapter = module.chapters[chapterId];
-        const questions = chapter.questions;
+        var chapter = module.chapters[chapterId];
+        var questions = chapter.questions;
         if (!questions || questions.length === 0) return 100;
         
-        let correctAnswers = 0;
+        var correctAnswers = 0;
         
         questions.forEach((question, index) => {
-            const questionId = `${moduleId}-${chapterId}-${index}`;
-            const userAnswer = this.userAnswers[questionId];
+            var questionId = `${moduleId}-${chapterId}-${index}`;
+            var userAnswer = this.userAnswers[questionId];
             
             if (question.type === 'multiple-choice') {
                 if (userAnswer === question.correct) {
                     correctAnswers++;
                 }
             } else if (question.type === 'fill-in-blank') {
-                const correctAnswers_fillIn = Array.isArray(question.correct) ? question.correct : [question.correct];
+                var correctAnswers_fillIn = Array.isArray(question.correct) ? question.correct : [question.correct];
                 if (correctAnswers_fillIn.some(answer => 
                     answer.toLowerCase().trim() === String(userAnswer || '').toLowerCase().trim()
                 )) {
@@ -678,48 +670,48 @@ class SafetyTrainingSystem {
     }
     
     showGradingResults(moduleId, chapterId, score) {
-        const passed = score >= 90;
-        const gradeElement = document.createElement('div');
+        var passed = score >= 90;
+        var gradeElement = document.createElement('div');
         gradeElement.className = `grading-modal ${passed ? 'passed' : 'failed'}`;
         
         // Create elements safely using DOM methods
-        const overlay = document.createElement('div');
+        var overlay = document.createElement('div');
         overlay.className = 'grading-overlay';
         
-        const content = document.createElement('div');
+        var content = document.createElement('div');
         content.className = 'grading-content';
         
         // Header section
-        const header = document.createElement('div');
+        var header = document.createElement('div');
         header.className = 'grading-header';
         
-        const title = document.createElement('h3');
+        var title = document.createElement('h3');
         title.textContent = 'Chapter ' + chapterId + ' Results';
         header.appendChild(title);
         
-        const icon = document.createElement('div');
+        var icon = document.createElement('div');
         icon.className = passed ? 'success-icon' : 'fail-icon';
         icon.textContent = passed ? '✅' : '❌';
         header.appendChild(icon);
         
         // Score section
-        const scoreSection = document.createElement('div');
+        var scoreSection = document.createElement('div');
         scoreSection.className = 'grading-score';
         
-        const scoreDisplay = document.createElement('div');
+        var scoreDisplay = document.createElement('div');
         scoreDisplay.className = 'score-display';
         
-        const scoreNumber = document.createElement('span');
+        var scoreNumber = document.createElement('span');
         scoreNumber.className = 'score-number';
         scoreNumber.textContent = score + '%';
         scoreDisplay.appendChild(scoreNumber);
         
-        const scoreLabel = document.createElement('span');
+        var scoreLabel = document.createElement('span');
         scoreLabel.className = 'score-label';
         scoreLabel.textContent = 'Score';
         scoreDisplay.appendChild(scoreLabel);
         
-        const passStatus = document.createElement('div');
+        var passStatus = document.createElement('div');
         passStatus.className = 'pass-status ' + (passed ? 'passed' : 'failed');
         passStatus.textContent = passed ? 'PASSED' : 'FAILED';
         
@@ -727,20 +719,20 @@ class SafetyTrainingSystem {
         scoreSection.appendChild(passStatus);
         
         // Message section
-        const message = document.createElement('div');
+        var message = document.createElement('div');
         message.className = 'grading-message';
         
-        const messageParagraph = document.createElement('p');
+        var messageParagraph = document.createElement('p');
         messageParagraph.textContent = passed 
             ? 'Congratulations! You have successfully completed this chapter.'
             : 'You need 90% or higher to pass. Please review the material and try again.';
         message.appendChild(messageParagraph);
         
         // Actions section
-        const actions = document.createElement('div');
+        var actions = document.createElement('div');
         actions.className = 'grading-actions';
         
-        const primaryButton = document.createElement('button');
+        var primaryButton = document.createElement('button');
         primaryButton.className = 'btn-primary';
         primaryButton.textContent = passed ? 'Continue' : 'Review Material';
         primaryButton.addEventListener('click', () => {
@@ -749,7 +741,7 @@ class SafetyTrainingSystem {
         actions.appendChild(primaryButton);
         
         if (!passed) {
-            const retryButton = document.createElement('button');
+            var retryButton = document.createElement('button');
             retryButton.className = 'btn-secondary';
             retryButton.textContent = 'Retry Questions';
             retryButton.addEventListener('click', () => {
@@ -775,25 +767,25 @@ class SafetyTrainingSystem {
         
         // Auto-focus on the modal
         setTimeout(() => {
-            const button = gradeElement.querySelector('button');
+            var button = gradeElement.querySelector('button');
             if (button) button.focus();
         }, 100);
     }
     
     showCelebrationEffect() {
-        const celebration = document.createElement('div');
+        var celebration = document.createElement('div');
         celebration.className = 'celebration-container';
         
         // Create confetti container
-        const confetti = document.createElement('div');
+        var confetti = document.createElement('div');
         confetti.className = 'confetti';
         
         // Create celebration message
-        const message = document.createElement('div');
+        var message = document.createElement('div');
         message.className = 'celebration-message';
         message.textContent = '🎉 Perfect Score! 🎉';
         
-        const subtitle = document.createElement('div');
+        var subtitle = document.createElement('div');
         subtitle.className = 'celebration-subtitle';
         subtitle.textContent = 'Outstanding work!';
         message.appendChild(subtitle);
@@ -813,10 +805,10 @@ class SafetyTrainingSystem {
     }
     
     createConfetti(container) {
-        const colors = ['#0891b2', '#67e8f9', '#f59e0b', '#10b981', '#f43f5e'];
+        var colors = ['#0891b2', '#67e8f9', '#f59e0b', '#10b981', '#f43f5e'];
         
-        for (let i = 0; i < 50; i++) {
-            const confetti = document.createElement('div');
+        for (var i = 0; i < 50; i++) {
+            var confetti = document.createElement('div');
             confetti.className = 'confetti-piece';
             confetti.style.cssText = `
                 position: absolute;
@@ -835,11 +827,11 @@ class SafetyTrainingSystem {
     
     retryChapter(moduleId, chapterId) {
         // Clear chapter answers
-        const module = trainingData.modules[moduleId];
+        var module = trainingData.modules[moduleId];
         if (module && module.chapters[chapterId]) {
-            const chapter = module.chapters[chapterId];
+            var chapter = module.chapters[chapterId];
             chapter.questions.forEach((question, index) => {
-                const questionId = `${moduleId}-${chapterId}-${index}`;
+                var questionId = `${moduleId}-${chapterId}-${index}`;
                 delete this.userAnswers[questionId];
             });
         }
@@ -853,7 +845,7 @@ class SafetyTrainingSystem {
         this.saveProgress();
         
         // Close grading modal
-        const modal = document.querySelector('.grading-modal');
+        var modal = document.querySelector('.grading-modal');
         if (modal) modal.remove();
         
         // Re-render chapter
@@ -871,11 +863,11 @@ class SafetyTrainingSystem {
     }
     
     getModuleProgress(moduleId) {
-        const module = trainingData.modules[moduleId];
+        var module = trainingData.modules[moduleId];
         if (!module) return 0;
         
-        const totalChapters = Object.keys(module.chapters).length;
-        const completedChapters = this.getCompletedChaptersCount(moduleId);
+        var totalChapters = Object.keys(module.chapters).length;
+        var completedChapters = this.getCompletedChaptersCount(moduleId);
         
         return totalChapters > 0 ? (completedChapters / totalChapters) * 100 : 0;
     }
@@ -883,20 +875,20 @@ class SafetyTrainingSystem {
     // ==================== URL ROUTING ====================
     
     updateURL(moduleId, chapterId) {
-        const newHash = `#/module/${moduleId}/chapter/${chapterId}`;
+        var newHash = `#/module/${moduleId}/chapter/${chapterId}`;
         if (window.location.hash !== newHash) {
             history.pushState(null, null, newHash);
         }
     }
     
     handleHashRoute() {
-        const hash = window.location.hash;
+        var hash = window.location.hash;
         
         // Parse hash route: #/module/{moduleId}/chapter/{chapterId}
-        const routeMatch = hash.match(/^#\/module\/([^\/]+)\/chapter\/(\d+)$/);
+        var routeMatch = hash.match(/^#\/module\/([^\/]+)\/chapter\/(\d+)$/);
         
         if (routeMatch) {
-            const [, moduleId, chapterId] = routeMatch;
+            var [, moduleId, chapterId] = routeMatch;
             if (trainingData.modules[moduleId] && trainingData.modules[moduleId].chapters[chapterId]) {
                 this.showModule(moduleId, parseInt(chapterId));
                 return;
@@ -915,7 +907,7 @@ class SafetyTrainingSystem {
         // Module start buttons
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('module-start-btn')) {
-                const moduleId = e.target.getAttribute('data-module');
+                var moduleId = e.target.getAttribute('data-module');
                 this.showModule(moduleId, 1);
             }
         });
@@ -943,15 +935,15 @@ class SafetyTrainingSystem {
     }
     
     exportProgress() {
-        const data = {
+        var data = {
             progress: this.progress,
             answers: this.userAnswers,
             timestamp: new Date().toISOString()
         };
         
-        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
+        var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
         a.href = url;
         a.download = `rcltd-training-progress-${new Date().toISOString().split('T')[0]}.json`;
         document.body.appendChild(a);
@@ -964,7 +956,7 @@ class SafetyTrainingSystem {
 }
 
 // Initialize the training system when the script loads
-const trainingSystem = new SafetyTrainingSystem();
+var trainingSystem = new SafetyTrainingSystem();
 
 // Make it globally available for onclick handlers
 window.trainingSystem = trainingSystem;

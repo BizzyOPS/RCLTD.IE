@@ -5,8 +5,7 @@
  * with real-time feedback and XSS prevention.
  */
 
-class FormValidator {
-    constructor() {
+function FormValidator() {
         this.validationRules = {
             // Personal information rules
             firstName: {
@@ -144,16 +143,16 @@ class FormValidator {
             // Command injection
             /(\;\s*(rm|del|format|wget|curl|python|perl|ruby|php|bash|sh|cmd|powershell))/gi
         ];
-    }
-    
-    /**
-     * Sanitize input to prevent XSS and other attacks
-     */
-    sanitizeInput(input) {
+};
+
+/**
+ * Sanitize input to prevent XSS and other attacks
+ */
+FormValidator.prototype.sanitizeInput = function(input) {
         if (typeof input !== 'string') return '';
         
         // HTML entity encoding
-        const entityMap = {
+        var entityMap = {
             '&': '&amp;',
             '<': '&lt;',
             '>': '&gt;',
@@ -164,26 +163,27 @@ class FormValidator {
             '=': '&#x3D;'
         };
         
-        return input.replace(/[&<>"'`=\/]/g, (char) => entityMap[char]);
-    }
-    
-    /**
-     * Check for malicious patterns in input
-     */
-    detectMaliciousContent(input) {
+        return input.replace(/[&<>"'`=\/]/g, function(char) { return entityMap[char]; });
+};
+
+/**
+ * Check for malicious patterns in input
+ */
+FormValidator.prototype.detectMaliciousContent = function(input) {
         if (typeof input !== 'string') return false;
         return this.securityPatterns.some(pattern => pattern.test(input));
-    }
-    
-    /**
-     * Validate a single field
-     */
-    validateField(fieldName, value, customRules = {}) {
-        const rules = { ...this.validationRules[fieldName], ...customRules };
+};
+
+/**
+ * Validate a single field
+ */
+FormValidator.prototype.validateField = function(fieldName, value, customRules) {
+        customRules = customRules || {};
+        var rules = Object.assign({}, this.validationRules[fieldName], customRules);
         if (!rules) return { isValid: true, errors: [] };
         
-        const errors = [];
-        const stringValue = String(value || '').trim();
+        var errors = [];
+        var stringValue = String(value || '').trim();
         
         // Security check first
         if (this.detectMaliciousContent(stringValue)) {
@@ -206,21 +206,21 @@ class FormValidator {
         
         // Length validation
         if (rules.minLength && stringValue.length < rules.minLength) {
-            errors.push(`${this.formatFieldName(fieldName)} must be at least ${rules.minLength} characters long`);
+            errors.push(this.formatFieldName(fieldName) + ' must be at least ' + rules.minLength + ' characters long');
         }
         
         if (rules.maxLength && stringValue.length > rules.maxLength) {
-            errors.push(`${this.formatFieldName(fieldName)} must be no more than ${rules.maxLength} characters long`);
+            errors.push(this.formatFieldName(fieldName) + ' must be no more than ' + rules.maxLength + ' characters long');
         }
         
         // Pattern validation
         if (rules.pattern && stringValue && !rules.pattern.test(stringValue)) {
-            errors.push(rules.errorMessage || `${this.formatFieldName(fieldName)} format is invalid`);
+            errors.push(rules.errorMessage || (this.formatFieldName(fieldName) + ' format is invalid'));
         }
         
         // Email specific validation
         if (fieldName === 'email' && stringValue) {
-            const emailValid = this.validateEmail(stringValue);
+            var emailValid = this.validateEmail(stringValue);
             if (!emailValid) {
                 errors.push('Please enter a valid email address');
             }
@@ -228,24 +228,25 @@ class FormValidator {
         
         return {
             isValid: errors.length === 0,
-            errors,
+            errors: errors,
             sanitizedValue: this.sanitizeInput(stringValue)
         };
-    }
-    
-    /**
-     * Enhanced email validation
-     */
-    validateEmail(email) {
+};
+
+/**
+ * Enhanced email validation
+ */
+FormValidator.prototype.validateEmail = function(email) {
         // Basic pattern check
-        const emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+        var emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
         if (!emailPattern.test(email)) return false;
         
         // Additional checks
-        const parts = email.split('@');
+        var parts = email.split('@');
         if (parts.length !== 2) return false;
         
-        const [localPart, domain] = parts;
+        var localPart = parts[0];
+        var domain = parts[1];
         
         // Local part checks
         if (localPart.length > 64) return false;
@@ -257,55 +258,58 @@ class FormValidator {
         if (domain.startsWith('-') || domain.endsWith('-')) return false;
         
         return true;
-    }
-    
-    /**
-     * Validate entire form
-     */
-    validateForm(formElement, customRules = {}) {
-        const results = {};
-        const allErrors = [];
-        const sanitizedData = {};
+};
+
+/**
+ * Validate entire form
+ */
+FormValidator.prototype.validateForm = function(formElement, customRules) {
+        customRules = customRules || {};
+        var results = {};
+        var allErrors = [];
+        var sanitizedData = {};
         
         // Get all input elements
-        const inputs = formElement.querySelectorAll('input, textarea, select');
+        var inputs = formElement.querySelectorAll('input, textarea, select');
+        var self = this;
         
-        inputs.forEach(input => {
-            const fieldName = input.name || input.id;
-            if (!fieldName) return;
+        for (var i = 0; i < inputs.length; i++) {
+            var input = inputs[i];
+            var fieldName = input.name || input.id;
+            if (!fieldName) continue;
             
-            const value = input.type === 'checkbox' ? input.checked : input.value;
-            const result = this.validateField(fieldName, value, customRules[fieldName]);
+            var value = input.type === 'checkbox' ? input.checked : input.value;
+            var result = self.validateField(fieldName, value, customRules[fieldName]);
             
             results[fieldName] = result;
             sanitizedData[fieldName] = result.sanitizedValue;
             
             if (!result.isValid) {
-                allErrors.push(...result.errors);
-                this.showFieldError(input, result.errors[0]);
+                allErrors = allErrors.concat(result.errors);
+                self.showFieldError(input, result.errors[0]);
             } else {
-                this.clearFieldError(input);
+                self.clearFieldError(input);
             }
-        });
+        }
         
         return {
             isValid: allErrors.length === 0,
             errors: allErrors,
-            sanitizedData,
+            sanitizedData: sanitizedData,
             fieldResults: results
         };
-    }
-    
-    /**
-     * Show error message for a field
-     */
-    showFieldError(fieldElement, message) {
+};
+
+/**
+ * Show error message for a field
+ */
+FormValidator.prototype.showFieldError = function(fieldElement, message) {
         this.clearFieldError(fieldElement);
         
         fieldElement.classList.add('invalid');
         
         // Create error message element
-        const errorElement = document.createElement('div');
+        var errorElement = document.createElement('div');
         errorElement.className = 'field-error';
         errorElement.textContent = message;
         errorElement.setAttribute('role', 'alert');
@@ -316,38 +320,39 @@ class FormValidator {
         
         // Announce error to screen readers
         this.announceError(message);
-    }
-    
-    /**
-     * Clear error message for a field
-     */
-    clearFieldError(fieldElement) {
+};
+
+/**
+ * Clear error message for a field
+ */
+FormValidator.prototype.clearFieldError = function(fieldElement) {
         fieldElement.classList.remove('invalid');
         
-        const existingError = fieldElement.parentNode.querySelector('.field-error');
+        var existingError = fieldElement.parentNode.querySelector('.field-error');
         if (existingError) {
             existingError.remove();
         }
-    }
-    
-    /**
-     * Announce error to screen readers
-     */
-    announceError(message) {
-        const announcer = document.getElementById('error-announcer') || this.createErrorAnnouncer();
+};
+
+/**
+ * Announce error to screen readers
+ */
+FormValidator.prototype.announceError = function(message) {
+        var announcer = document.getElementById('error-announcer') || this.createErrorAnnouncer();
         announcer.textContent = message;
         
         // Clear after a short delay
-        setTimeout(() => {
+        var self = this;
+        setTimeout(function() {
             announcer.textContent = '';
         }, 1000);
-    }
-    
-    /**
-     * Create hidden element for screen reader announcements
-     */
-    createErrorAnnouncer() {
-        const announcer = document.createElement('div');
+};
+
+/**
+ * Create hidden element for screen reader announcements
+ */
+FormValidator.prototype.createErrorAnnouncer = function() {
+        var announcer = document.createElement('div');
         announcer.id = 'error-announcer';
         announcer.className = 'sr-only';
         announcer.setAttribute('aria-live', 'assertive');
@@ -355,13 +360,13 @@ class FormValidator {
         announcer.style.cssText = 'position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden;';
         document.body.appendChild(announcer);
         return announcer;
-    }
-    
-    /**
-     * Format field name for display
-     */
-    formatFieldName(fieldName) {
-        const nameMap = {
+};
+
+/**
+ * Format field name for display
+ */
+FormValidator.prototype.formatFieldName = function(fieldName) {
+        var nameMap = {
             firstName: 'First name',
             lastName: 'Last name',
             postalCode: 'Postal code',
@@ -372,71 +377,77 @@ class FormValidator {
         };
         
         return nameMap[fieldName] || fieldName.charAt(0).toUpperCase() + fieldName.slice(1);
-    }
-    
-    /**
-     * Set up real-time validation for a form
-     */
-    setupFormValidation(formElement, options = {}) {
-        const {
-            validateOnBlur = true,
-            validateOnInput = false,
-            showSuccessIndicators = true,
-            customRules = {}
-        } = options;
+};
+
+/**
+ * Set up real-time validation for a form
+ */
+FormValidator.prototype.setupFormValidation = function(formElement, options) {
+        options = options || {};
+        var validateOnBlur = options.validateOnBlur !== undefined ? options.validateOnBlur : true;
+        var validateOnInput = options.validateOnInput !== undefined ? options.validateOnInput : false;
+        var showSuccessIndicators = options.showSuccessIndicators !== undefined ? options.showSuccessIndicators : true;
+        var customRules = options.customRules || {};
         
-        const inputs = formElement.querySelectorAll('input, textarea, select');
+        var inputs = formElement.querySelectorAll('input, textarea, select');
+        var self = this;
         
-        inputs.forEach(input => {
+        for (var i = 0; i < inputs.length; i++) {
+            var input = inputs[i];
+            
             // Validation on blur
             if (validateOnBlur) {
-                input.addEventListener('blur', () => {
-                    const fieldName = input.name || input.id;
-                    if (fieldName) {
-                        const value = input.type === 'checkbox' ? input.checked : input.value;
-                        const result = this.validateField(fieldName, value, customRules[fieldName]);
-                        
-                        if (!result.isValid) {
-                            this.showFieldError(input, result.errors[0]);
-                        } else {
-                            this.clearFieldError(input);
-                            if (showSuccessIndicators && input.value.trim()) {
+                input.addEventListener('blur', (function(input) {
+                    return function() {
+                        var fieldName = input.name || input.id;
+                        if (fieldName) {
+                            var value = input.type === 'checkbox' ? input.checked : input.value;
+                            var result = self.validateField(fieldName, value, customRules[fieldName]);
+                            
+                            if (!result.isValid) {
+                                self.showFieldError(input, result.errors[0]);
+                            } else {
+                                self.clearFieldError(input);
+                                if (showSuccessIndicators && input.value.trim()) {
+                                    input.classList.add('valid');
+                                }
+                            }
+                        }
+                    };
+                })(input));
+            }
+            
+            // Clear errors on input
+            input.addEventListener('input', (function(input) {
+                return function() {
+                    self.clearFieldError(input);
+                    input.classList.remove('valid', 'invalid');
+                    
+                    // Immediate validation for certain fields
+                    if (validateOnInput) {
+                        var fieldName = input.name || input.id;
+                        if (fieldName) {
+                            var value = input.type === 'checkbox' ? input.checked : input.value;
+                            var result = self.validateField(fieldName, value, customRules[fieldName]);
+                            
+                            if (value.trim() && result.isValid && showSuccessIndicators) {
                                 input.classList.add('valid');
                             }
                         }
                     }
-                });
-            }
-            
-            // Clear errors on input
-            input.addEventListener('input', () => {
-                this.clearFieldError(input);
-                input.classList.remove('valid', 'invalid');
-                
-                // Immediate validation for certain fields
-                if (validateOnInput) {
-                    const fieldName = input.name || input.id;
-                    if (fieldName) {
-                        const value = input.type === 'checkbox' ? input.checked : input.value;
-                        const result = this.validateField(fieldName, value, customRules[fieldName]);
-                        
-                        if (value.trim() && result.isValid && showSuccessIndicators) {
-                            input.classList.add('valid');
-                        }
-                    }
-                }
-            });
-        });
+                };
+            })(input));
+        }
         
         // Form submission validation
-        formElement.addEventListener('submit', (e) => {
+        formElement.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const validation = this.validateForm(formElement, customRules);
+            var validation = self.validateForm(formElement, customRules);
             
             if (validation.isValid) {
                 // Trigger custom submission handler
-                const submitEvent = new CustomEvent('validSubmit', {
+                var submitEvent = new CustomEvent('validSubmit', {
                     detail: {
                         sanitizedData: validation.sanitizedData,
                         originalForm: formElement
@@ -445,84 +456,97 @@ class FormValidator {
                 formElement.dispatchEvent(submitEvent);
             } else {
                 // Focus first invalid field
-                const firstInvalidField = formElement.querySelector('.invalid');
+                var firstInvalidField = formElement.querySelector('.invalid');
                 if (firstInvalidField) {
                     firstInvalidField.focus();
                 }
                 
                 // Announce validation failure
-                this.announceError(`Form validation failed. Please check ${validation.errors.length} field${validation.errors.length > 1 ? 's' : ''}.`);
+                self.announceError('Form validation failed. Please check ' + validation.errors.length + ' field' + (validation.errors.length > 1 ? 's' : '') + '.');
             }
         });
-    }
-    
-    /**
-     * Format card number with spaces
-     */
-    formatCardNumber(input) {
-        let value = input.value.replace(/\s/g, '').replace(/[^0-9]/g, '');
-        let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+};
+
+/**
+ * Format card number with spaces
+ */
+FormValidator.prototype.formatCardNumber = function(input) {
+        var value = input.value.replace(/\s/g, '').replace(/[^0-9]/g, '');
+        var match = value.match(/.{1,4}/g);
+        var formattedValue = match ? match.join(' ') : value;
         
         if (formattedValue.length > 19) {
             formattedValue = formattedValue.substr(0, 19);
         }
         
         input.value = formattedValue;
-    }
-    
-    /**
-     * Format expiry date
-     */
-    formatExpiryDate(input) {
-        let value = input.value.replace(/\D/g, '');
+};
+
+/**
+ * Format expiry date
+ */
+FormValidator.prototype.formatExpiryDate = function(input) {
+        var value = input.value.replace(/\D/g, '');
         
         if (value.length >= 2) {
             value = value.substring(0, 2) + '/' + value.substring(2, 4);
         }
         
         input.value = value;
-    }
-    
-    /**
-     * Format CVV
-     */
-    formatCVV(input) {
-        let value = input.value.replace(/\D/g, '');
+};
+
+/**
+ * Format CVV
+ */
+FormValidator.prototype.formatCVV = function(input) {
+        var value = input.value.replace(/\D/g, '');
         input.value = value.substring(0, 4);
-    }
-}
+};
 
 // Global form validator instance
 window.formValidator = new FormValidator();
 
 // Auto-initialize validation for forms with data-validate attribute
-document.addEventListener('DOMContentLoaded', () => {
-    const formsToValidate = document.querySelectorAll('form[data-validate]');
+document.addEventListener('DOMContentLoaded', function() {
+    var formsToValidate = document.querySelectorAll('form[data-validate]');
     
-    formsToValidate.forEach(form => {
-        const options = {};
+    for (var i = 0; i < formsToValidate.length; i++) {
+        var form = formsToValidate[i];
+        var options = {};
         
         // Parse options from data attributes
         if (form.dataset.validateOnInput === 'true') options.validateOnInput = true;
         if (form.dataset.showSuccess === 'false') options.showSuccessIndicators = false;
         
         formValidator.setupFormValidation(form, options);
-    });
+    }
     
     // Set up card number formatting
-    document.querySelectorAll('input[name="cardNumber"], input[id*="card-number"]').forEach(input => {
-        input.addEventListener('input', () => formValidator.formatCardNumber(input));
-    });
+    var cardNumberInputs = document.querySelectorAll('input[name="cardNumber"], input[id*="card-number"]');
+    for (var j = 0; j < cardNumberInputs.length; j++) {
+        var input = cardNumberInputs[j];
+        input.addEventListener('input', (function(input) {
+            return function() { formValidator.formatCardNumber(input); };
+        })(input));
+    }
     
     // Set up expiry date formatting
-    document.querySelectorAll('input[name="cardExpiry"], input[id*="expiry"]').forEach(input => {
-        input.addEventListener('input', () => formValidator.formatExpiryDate(input));
-    });
+    var cardExpiryInputs = document.querySelectorAll('input[name="cardExpiry"], input[id*="expiry"]');
+    for (var k = 0; k < cardExpiryInputs.length; k++) {
+        var input = cardExpiryInputs[k];
+        input.addEventListener('input', (function(input) {
+            return function() { formValidator.formatExpiryDate(input); };
+        })(input));
+    }
     
     // Set up CVV formatting
-    document.querySelectorAll('input[name="cardCvv"], input[id*="cvv"]').forEach(input => {
-        input.addEventListener('input', () => formValidator.formatCVV(input));
-    });
+    var cardCvvInputs = document.querySelectorAll('input[name="cardCvv"], input[id*="cvv"]');
+    for (var l = 0; l < cardCvvInputs.length; l++) {
+        var input = cardCvvInputs[l];
+        input.addEventListener('input', (function(input) {
+            return function() { formValidator.formatCVV(input); };
+        })(input));
+    }
 });
 
 // Export for module usage

@@ -1,144 +1,157 @@
 // Popup Tooltip System for Robotics & Control Ltd Homepage
-class PopupTooltips {
-    constructor() {
-        this.tooltips = new Map();
-        this.shownTooltips = new Set();
-        this.popupContainer = null;
-        this.init();
+function PopupTooltips() {
+    this.tooltips = {}; // IE11 doesn't support Map, use object instead
+    this.shownTooltips = {}; // IE11 doesn't support Set, use object instead
+    this.popupContainer = null;
+    this.init();
+}
+
+PopupTooltips.prototype.init = function() {
+    var self = this;
+    this.createPopupContainer();
+    this.setupTooltipContent();
+    this.bindEvents();
+    
+    // Show tooltips after page loads with a delay
+    setTimeout(function() {
+        self.showInitialTooltips();
+    }, 2000);
+};
+
+PopupTooltips.prototype.createPopupContainer = function() {
+    this.popupContainer = document.createElement('div');
+    this.popupContainer.id = 'popup-tooltips-container';
+    document.body.appendChild(this.popupContainer);
+};
+
+PopupTooltips.prototype.setupTooltipContent = function() {
+    this.tooltips['safety-info'] = {
+        title: '🛡️ Machine Safety Excellence',
+        content: 'CE marking compliance, risk assessments, and safety system validation for pharmaceutical and industrial environments.',
+        position: 'top-left',
+        priority: 1
+    };
+
+    this.tooltips['electrical-info'] = {
+        title: '⚡ Advanced Electrical Design',
+        content: 'CAD design, PLC programming, and electrical system optimization using the latest industry tools and methodologies.',
+        position: 'top-right',
+        priority: 2
+    };
+
+    this.tooltips['panel-info'] = {
+        title: '🔧 Custom Panel Building',
+        content: 'From design to manufacturing - electrical panels built to your exact specifications and industry standards.',
+        position: 'bottom-left',
+        priority: 3
+    };
+
+    this.tooltips['automation-info'] = {
+        title: '🤖 Smart Automation Solutions',
+        content: 'Robotic systems, factory automation, and process control solutions that boost productivity by up to 40%.',
+        position: 'bottom-right',
+        priority: 4
+    };
+
+    this.tooltips['training-info'] = {
+        title: '📚 Interactive Safety Training',
+        content: 'Comprehensive safety courses with 90% pass requirement and real-world scenarios for industrial environments.',
+        position: 'right',
+        priority: 5
+    };
+
+    this.tooltips['expertise-info'] = {
+        title: '🏆 50+ Years Combined Experience',
+        content: 'Our team brings decades of expertise across pharmaceutical, automotive, food & beverage, and industrial sectors.',
+        position: 'left',
+        priority: 6
+    };
+};
+
+PopupTooltips.prototype.showInitialTooltips = function() {
+    var self = this;
+    // Show tooltips in order of priority with delays - IE11 compatible
+    var sortedTooltips = [];
+    
+    // Convert object to array and sort by priority
+    for (var key in this.tooltips) {
+        if (this.tooltips.hasOwnProperty(key)) {
+            sortedTooltips.push([key, this.tooltips[key]]);
+        }
     }
+    
+    sortedTooltips.sort(function(a, b) {
+        return a[1].priority - b[1].priority;
+    });
 
-    init() {
-        this.createPopupContainer();
-        this.setupTooltipContent();
-        this.bindEvents();
-        
-        // Show tooltips after page loads with a delay
-        setTimeout(() => {
-            this.showInitialTooltips();
-        }, 2000);
-    }
-
-    createPopupContainer() {
-        this.popupContainer = document.createElement('div');
-        this.popupContainer.id = 'popup-tooltips-container';
-        document.body.appendChild(this.popupContainer);
-    }
-
-    setupTooltipContent() {
-        this.tooltips.set('safety-info', {
-            title: '🛡️ Machine Safety Excellence',
-            content: 'CE marking compliance, risk assessments, and safety system validation for pharmaceutical and industrial environments.',
-            position: 'top-left',
-            priority: 1
-        });
-
-        this.tooltips.set('electrical-info', {
-            title: '⚡ Advanced Electrical Design',
-            content: 'CAD design, PLC programming, and electrical system optimization using the latest industry tools and methodologies.',
-            position: 'top-right',
-            priority: 2
-        });
-
-        this.tooltips.set('panel-info', {
-            title: '🔧 Custom Panel Building',
-            content: 'From design to manufacturing - electrical panels built to your exact specifications and industry standards.',
-            position: 'bottom-left',
-            priority: 3
-        });
-
-        this.tooltips.set('automation-info', {
-            title: '🤖 Smart Automation Solutions',
-            content: 'Robotic systems, factory automation, and process control solutions that boost productivity by up to 40%.',
-            position: 'bottom-right',
-            priority: 4
-        });
-
-        this.tooltips.set('training-info', {
-            title: '📚 Interactive Safety Training',
-            content: 'Comprehensive safety courses with 90% pass requirement and real-world scenarios for industrial environments.',
-            position: 'right',
-            priority: 5
-        });
-
-        this.tooltips.set('expertise-info', {
-            title: '🏆 50+ Years Combined Experience',
-            content: 'Our team brings decades of expertise across pharmaceutical, automotive, food & beverage, and industrial sectors.',
-            position: 'left',
-            priority: 6
-        });
-    }
-
-    showInitialTooltips() {
-        // Show tooltips in order of priority with delays
-        const sortedTooltips = Array.from(this.tooltips.entries())
-            .sort((a, b) => a[1].priority - b[1].priority);
-
-        sortedTooltips.forEach(([id, config], index) => {
-            const element = document.querySelector(`[data-popup-tooltip="${id}"]`);
-            if (element && this.isElementVisible(element)) {
-                setTimeout(() => {
-                    this.showTooltip(id, element, config);
+    for (var i = 0; i < sortedTooltips.length; i++) {
+        (function(id, config, index) {
+            var element = document.querySelector('[data-popup-tooltip="' + id + '"]');
+            if (element && self.isElementVisible(element)) {
+                setTimeout(function() {
+                    self.showTooltip(id, element, config);
                 }, index * 800); // Stagger the appearance
             }
-        });
+        })(sortedTooltips[i][0], sortedTooltips[i][1], i);
     }
+};
 
-    showTooltip(id, element, config) {
-        if (this.shownTooltips.has(id)) return;
+PopupTooltips.prototype.showTooltip = function(id, element, config) {
+    var self = this;
+    if (this.shownTooltips[id]) return;
 
-        const tooltip = this.createTooltipElement(id, config);
-        const position = this.calculatePosition(element, config.position);
+    var tooltip = this.createTooltipElement(id, config);
+    var position = this.calculatePosition(element, config.position);
+    
+    tooltip.style.left = position.x + 'px';
+    tooltip.style.top = position.y + 'px';
+    
+    this.popupContainer.appendChild(tooltip);
+    this.shownTooltips[id] = true; // Use object instead of Set
+
+    // Animate in
+    setTimeout(function() {
+        tooltip.classList.add('popup-tooltip-show');
+    }, 50);
+
+    // Auto-dismiss after 8 seconds if not manually dismissed
+    setTimeout(function() {
+        self.hideTooltip(id);
+    }, 8000);
+};
+
+PopupTooltips.prototype.createTooltipElement = function(id, config) {
+    var tooltip = document.createElement('div');
+    tooltip.className = 'popup-tooltip';
+    tooltip.dataset.tooltipId = id;
+    
+    // IE11 compatible string concatenation instead of template literals
+    tooltip.innerHTML = '<div class="popup-tooltip-header">' +
+        '<h4 class="popup-tooltip-title">' + config.title + '</h4>' +
+        '<button class="popup-tooltip-close" data-tooltip-id="' + id + '" aria-label="Dismiss tooltip">' +
+        '<svg width="16" height="16" viewBox="0 0 16 16" fill="none">' +
+        '<path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
+        '</svg>' +
+        '</button>' +
+        '</div>' +
+        '<div class="popup-tooltip-content">' +
+        '<p>' + config.content + '</p>' +
+        '</div>' +
+        '<div class="popup-tooltip-arrow ' + config.position + '"></div>';
+
+    return tooltip;
+};
+
+PopupTooltips.prototype.calculatePosition = function(element, preferredPosition) {
+    var rect = element.getBoundingClientRect();
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
         
-        tooltip.style.left = position.x + 'px';
-        tooltip.style.top = position.y + 'px';
-        
-        this.popupContainer.appendChild(tooltip);
-        this.shownTooltips.add(id);
+        var tooltipWidth = 300;
+        var tooltipHeight = 120;
+        var offset = 20;
 
-        // Animate in
-        setTimeout(() => {
-            tooltip.classList.add('popup-tooltip-show');
-        }, 50);
-
-        // Auto-dismiss after 8 seconds if not manually dismissed
-        setTimeout(() => {
-            this.hideTooltip(id);
-        }, 8000);
-    }
-
-    createTooltipElement(id, config) {
-        const tooltip = document.createElement('div');
-        tooltip.className = 'popup-tooltip';
-        tooltip.dataset.tooltipId = id;
-        
-        tooltip.innerHTML = `
-            <div class="popup-tooltip-header">
-                <h4 class="popup-tooltip-title">${config.title}</h4>
-                <button class="popup-tooltip-close" data-tooltip-id="${id}" aria-label="Dismiss tooltip">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </button>
-            </div>
-            <div class="popup-tooltip-content">
-                <p>${config.content}</p>
-            </div>
-            <div class="popup-tooltip-arrow ${config.position}"></div>
-        `;
-
-        return tooltip;
-    }
-
-    calculatePosition(element, preferredPosition) {
-        const rect = element.getBoundingClientRect();
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-        
-        const tooltipWidth = 300;
-        const tooltipHeight = 120;
-        const offset = 20;
-
-        let x, y;
+        var x, y;
 
         switch (preferredPosition) {
             case 'top-left':
@@ -174,102 +187,105 @@ class PopupTooltips {
         x = Math.max(10, Math.min(x, window.innerWidth - tooltipWidth - 10));
         y = Math.max(10, y);
 
-        return { x, y };
-    }
+        return { x: x, y: y };
+    };
 
-    hideTooltip(id) {
-        const tooltip = document.querySelector(`[data-tooltip-id="${id}"]`);
-        if (tooltip) {
-            tooltip.classList.remove('popup-tooltip-show');
-            setTimeout(() => {
-                if (tooltip.parentNode) {
-                    tooltip.parentNode.removeChild(tooltip);
-                }
-            }, 300);
-        }
-    }
-
-    isElementVisible(element) {
-        const rect = element.getBoundingClientRect();
-        return rect.top < window.innerHeight && rect.bottom > 0;
-    }
-
-    bindEvents() {
-        // Handle close button clicks
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('popup-tooltip-close') || 
-                e.target.closest('.popup-tooltip-close')) {
-                const button = e.target.closest('.popup-tooltip-close');
-                const tooltipId = button && button.dataset ? button.dataset.tooltipId : null;
-                if (tooltipId) {
-                    this.hideTooltip(tooltipId);
-                }
+PopupTooltips.prototype.hideTooltip = function(id) {
+    var tooltip = document.querySelector('[data-tooltip-id="' + id + '"]');
+    if (tooltip) {
+        tooltip.classList.remove('popup-tooltip-show');
+        setTimeout(function() {
+            if (tooltip.parentNode) {
+                tooltip.parentNode.removeChild(tooltip);
             }
-        });
-
-        // Hide tooltips on scroll to avoid cluttering
-        let scrollTimer;
-        window.addEventListener('scroll', () => {
-            clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(() => {
-                this.hideAllTooltips();
-            }, 100);
-        });
-
-        // Hide tooltips when clicking elsewhere
-        document.addEventListener('click', (e) => {
-            if (e.target && 
-                !e.target.closest('.popup-tooltip') && 
-                !e.target.closest('[data-popup-tooltip]')) {
-                this.hideAllTooltips();
-            }
-        });
-
-        // Show tooltip on hover for elements that haven't been shown yet
-        document.addEventListener('mouseenter', (e) => {
-            try {
-                const tooltipId = e.target && e.target.dataset ? e.target.dataset.popupTooltip : null;
-                if (tooltipId && !this.shownTooltips.has(tooltipId)) {
-                    const config = this.tooltips.get(tooltipId);
-                    if (config) {
-                        this.showTooltip(tooltipId, e.target, config);
-                    }
-                }
-            } catch (error) {
-                // Silently handle tooltip errors to prevent blocking other scripts
-                console.debug('Tooltip error:', error);
-            }
-        }, true);
+        }, 300);
     }
+};
 
-    hideAllTooltips() {
-        const allTooltips = document.querySelectorAll('.popup-tooltip');
-        allTooltips.forEach(tooltip => {
-            const tooltipId = tooltip && tooltip.dataset ? tooltip.dataset.tooltipId : null;
+PopupTooltips.prototype.isElementVisible = function(element) {
+    var rect = element.getBoundingClientRect();
+    return rect.top < window.innerHeight && rect.bottom > 0;
+};
+
+PopupTooltips.prototype.bindEvents = function() {
+    var self = this;
+    var scrollTimer;
+    
+    // Handle close button clicks
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('popup-tooltip-close') || 
+            e.target.closest('.popup-tooltip-close')) {
+            var button = e.target.closest('.popup-tooltip-close');
+            var tooltipId = button && button.dataset ? button.dataset.tooltipId : null;
             if (tooltipId) {
-                this.hideTooltip(tooltipId);
+                self.hideTooltip(tooltipId);
             }
-        });
-    }
+        }
+    });
 
-    // Public method to manually show a tooltip
-    showTooltipById(id) {
-        const element = document.querySelector(`[data-popup-tooltip="${id}"]`);
-        const config = this.tooltips.get(id);
-        if (element && config) {
-            this.showTooltip(id, element, config);
+    // Hide tooltips on scroll to avoid cluttering
+    window.addEventListener('scroll', function() {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function() {
+            self.hideAllTooltips();
+        }, 100);
+    });
+
+    // Hide tooltips when clicking elsewhere
+    document.addEventListener('click', function(e) {
+        if (e.target && 
+            !e.target.closest('.popup-tooltip') && 
+            !e.target.closest('[data-popup-tooltip]')) {
+            self.hideAllTooltips();
+        }
+    });
+
+    // Show tooltip on hover for elements that haven't been shown yet
+    document.addEventListener('mouseenter', function(e) {
+        try {
+            var tooltipId = e.target && e.target.dataset ? e.target.dataset.popupTooltip : null;
+            if (tooltipId && !self.shownTooltips[tooltipId]) {
+                var config = self.tooltips[tooltipId];
+                if (config) {
+                    self.showTooltip(tooltipId, e.target, config);
+                }
+            }
+        } catch (error) {
+            // Silently handle tooltip errors to prevent blocking other scripts
+            console.debug('Tooltip error:', error);
+        }
+    }, true);
+};
+
+PopupTooltips.prototype.hideAllTooltips = function() {
+    var self = this;
+    var allTooltips = document.querySelectorAll('.popup-tooltip');
+    for (var i = 0; i < allTooltips.length; i++) {
+        var tooltip = allTooltips[i];
+        var tooltipId = tooltip && tooltip.dataset ? tooltip.dataset.tooltipId : null;
+        if (tooltipId) {
+            self.hideTooltip(tooltipId);
         }
     }
+};
 
-    // Public method to reset shown tooltips
-    resetTooltips() {
-        this.shownTooltips.clear();
-        this.hideAllTooltips();
+// Public method to manually show a tooltip
+PopupTooltips.prototype.showTooltipById = function(id) {
+    var element = document.querySelector('[data-popup-tooltip="' + id + '"]');
+    var config = this.tooltips[id];
+    if (element && config) {
+        this.showTooltip(id, element, config);
     }
-}
+};
+
+// Public method to reset shown tooltips
+PopupTooltips.prototype.resetTooltips = function() {
+    this.shownTooltips = {}; // Reset object instead of using .clear()
+    this.hideAllTooltips();
+};
 
 // Initialize when DOM is ready - only on desktop
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
     // Only initialize tooltips on desktop to prevent mobile interference
     if (window.innerWidth > 768) {
         try {

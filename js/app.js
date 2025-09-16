@@ -1,15 +1,15 @@
 // PARTICLES COMPLETELY DISABLED - NO PARTICLE CODE SHOULD EXECUTE
 // Override all particle functions before any code runs
 if (typeof window !== 'undefined') {
-    window.tsParticles = { load: () => Promise.resolve(), loadFull: () => Promise.resolve() };
-    window.particlesJS = () => {};
+    window.tsParticles = { load: function() { return Promise.resolve(); }, loadFull: function() { return Promise.resolve(); } };
+    window.particlesJS = function() {};
     
     // Block any tsParticles script loading
-    const originalCreateElement = document.createElement;
+    var originalCreateElement = document.createElement;
     document.createElement = function(tagName) {
-        const element = originalCreateElement.call(document, tagName);
+        var element = originalCreateElement.call(document, tagName);
         if (tagName.toLowerCase() === 'script') {
-            const originalSetAttribute = element.setAttribute;
+            var originalSetAttribute = element.setAttribute;
             element.setAttribute = function(name, value) {
                 if (name === 'src' && value && value.includes('tsparticles')) {
                     return; // Block tsParticles loading
@@ -25,11 +25,16 @@ if (typeof window !== 'undefined') {
 function initHeroCarousel() {
     // Hero background cycling is now handled by CSS keyframes animation
     // Check for reduced motion preference to respect user accessibility settings
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var prefersReducedMotion = false;
+    
+    // Feature detection for matchMedia (IE10+)
+    if (window.matchMedia) {
+        prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
     
     if (prefersReducedMotion) {
         // Disable CSS animation for users who prefer reduced motion
-        const heroElement = document.querySelector('.hero-cover-image');
+        var heroElement = document.querySelector ? document.querySelector('.hero-cover-image') : null;
         if (heroElement) {
             heroElement.style.animation = 'none';
             heroElement.style.backgroundImage = "url('images/hero-electrical-control.png')";
@@ -39,11 +44,14 @@ function initHeroCarousel() {
 
 // Hero Video initialization with reduced motion support
 function initHeroVideo() {
-    const heroVideo = document.querySelector('.hero-robot-video');
+    var heroVideo = document.querySelector ? document.querySelector('.hero-robot-video') : null;
     
     if (heroVideo) {
         // Check for reduced motion preference
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var prefersReducedMotion = false;
+        if (window.matchMedia) {
+            prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        }
         
         if (prefersReducedMotion) {
             // Disable autoplay and loop for users who prefer reduced motion
@@ -61,40 +69,76 @@ function initHeroVideo() {
             heroVideo.setAttribute('tabindex', '0');
             
             // Allow manual play on click or Enter key
-            const playVideo = () => {
+            var playVideo = function() {
                 if (heroVideo.paused) {
-                    heroVideo.play().catch(e => {
-                    });
+                    if (heroVideo.play) {
+                        var playPromise = heroVideo.play();
+                        if (playPromise && playPromise.catch) {
+                            playPromise.catch(function(e) {
+                                // Handle autoplay restrictions
+                            });
+                        }
+                    }
                 } else {
                     heroVideo.pause();
                 }
             };
             
             heroVideo.addEventListener('click', playVideo);
-            heroVideo.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    playVideo();
-                }
-            });
+            // IE-compatible event handling
+            if (heroVideo.addEventListener) {
+                heroVideo.addEventListener('keydown', function(e) {
+                    var key = e.key || e.keyCode;
+                    if (key === 'Enter' || key === ' ' || key === 13 || key === 32) {
+                        if (e.preventDefault) e.preventDefault();
+                        playVideo();
+                    }
+                });
+            } else if (heroVideo.attachEvent) {
+                // IE8 fallback
+                heroVideo.attachEvent('onkeydown', function(e) {
+                    if (e.keyCode === 13 || e.keyCode === 32) {
+                        e.returnValue = false;
+                        playVideo();
+                    }
+                });
+            }
         } else {
             // For users who don't prefer reduced motion, ensure autoplay works
             heroVideo.setAttribute('autoplay', '');
             heroVideo.setAttribute('loop', '');
             
             // Try to play the video (browsers may still block autoplay)
-            heroVideo.play().catch(e => {
-            });
+            if (heroVideo.play) {
+                var playPromise = heroVideo.play();
+                if (playPromise && playPromise.catch) {
+                    playPromise.catch(function(e) {
+                        // Handle autoplay restrictions
+                    });
+                }
+            }
         }
         
-        // Add error handling
-        heroVideo.addEventListener('error', (e) => {
-            // Hide video container if there's an error
-            const videoContainer = heroVideo.closest('.hero-visual');
-            if (videoContainer) {
-                videoContainer.style.display = 'none';
-            }
-        });
+        // Add error handling with IE compatibility
+        if (heroVideo.addEventListener) {
+            heroVideo.addEventListener('error', function(e) {
+                // Hide video container if there's an error
+                var videoContainer = heroVideo.closest ? heroVideo.closest('.hero-visual') : null;
+                if (videoContainer) {
+                    videoContainer.style.display = 'none';
+                }
+            });
+        } else if (heroVideo.attachEvent) {
+            heroVideo.attachEvent('onerror', function(e) {
+                var videoContainer = heroVideo.parentNode;
+                while (videoContainer && !videoContainer.classList.contains('hero-visual')) {
+                    videoContainer = videoContainer.parentNode;
+                }
+                if (videoContainer) {
+                    videoContainer.style.display = 'none';
+                }
+            });
+        }
     }
 }
 
@@ -112,9 +156,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Navigation functionality
 function initNavigation() {
-    const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    const header = document.querySelector('.header');
+    var navToggle = document.querySelector ? document.querySelector('.nav-toggle') : null;
+    var navMenu = document.querySelector ? document.querySelector('.nav-menu') : null;
+    var header = document.querySelector ? document.querySelector('.header') : null;
     
     // Mobile menu toggle
     if (navToggle && navMenu) {
@@ -123,22 +167,50 @@ function initNavigation() {
         navToggle.setAttribute('aria-controls', 'nav-menu');
         navMenu.setAttribute('id', 'nav-menu');
         
-        navToggle.addEventListener('click', function() {
-            const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
-            navToggle.classList.toggle('active');
-            navMenu.classList.toggle('mobile-open');
-            navToggle.setAttribute('aria-expanded', !isExpanded);
-        });
+        // IE-compatible event handling
+        if (navToggle.addEventListener) {
+            navToggle.addEventListener('click', function() {
+                var isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+                navToggle.classList.toggle('active');
+                navMenu.classList.toggle('mobile-open');
+                navToggle.setAttribute('aria-expanded', !isExpanded);
+            });
+        } else if (navToggle.attachEvent) {
+            navToggle.attachEvent('onclick', function() {
+                var isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+                // IE8/9 classList fallback
+                if (navToggle.className.indexOf('active') > -1) {
+                    navToggle.className = navToggle.className.replace(' active', '');
+                } else {
+                    navToggle.className += ' active';
+                }
+                if (navMenu.className.indexOf('mobile-open') > -1) {
+                    navMenu.className = navMenu.className.replace(' mobile-open', '');
+                } else {
+                    navMenu.className += ' mobile-open';
+                }
+                navToggle.setAttribute('aria-expanded', !isExpanded);
+            });
+        }
         
         // Close mobile menu when clicking on a link
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navToggle.classList.remove('active');
-                navMenu.classList.remove('mobile-open');
-                navToggle.setAttribute('aria-expanded', 'false');
-            });
-        });
+        var navLinks = document.querySelectorAll ? document.querySelectorAll('.nav-link') : [];
+        for (var i = 0; i < navLinks.length; i++) {
+            var link = navLinks[i];
+            if (link.addEventListener) {
+                link.addEventListener('click', function() {
+                    navToggle.classList.remove('active');
+                    navMenu.classList.remove('mobile-open');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                });
+            } else if (link.attachEvent) {
+                link.attachEvent('onclick', function() {
+                    navToggle.className = navToggle.className.replace(' active', '');
+                    navMenu.className = navMenu.className.replace(' mobile-open', '');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                });
+            }
+        }
         
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(e) {
@@ -161,10 +233,11 @@ function initNavigation() {
     }
     
     // Dropdown functionality
-    const dropdowns = document.querySelectorAll('.nav-dropdown');
-    dropdowns.forEach(dropdown => {
-        const toggle = dropdown.querySelector('.nav-dropdown-toggle');
-        const menu = dropdown.querySelector('.nav-dropdown-menu');
+    var dropdowns = document.querySelectorAll('.nav-dropdown');
+    for (var d = 0; d < dropdowns.length; d++) {
+        var dropdown = dropdowns[d];
+        var toggle = dropdown.querySelector('.nav-dropdown-toggle');
+        var menu = dropdown.querySelector('.nav-dropdown-menu');
         
         if (toggle && menu) {
             // Handle toggle button clicks
@@ -173,20 +246,22 @@ function initNavigation() {
                 e.stopPropagation();
                 
                 // Close other dropdowns
-                dropdowns.forEach(otherDropdown => {
+                for (var j = 0; j < dropdowns.length; j++) {
+                    var otherDropdown = dropdowns[j];
                     if (otherDropdown !== dropdown) {
                         otherDropdown.classList.remove('open');
                     }
-                });
+                }
                 
                 // Toggle current dropdown
                 dropdown.classList.toggle('open');
             });
             
             // Close dropdown when clicking on dropdown links
-            const dropdownLinks = menu.querySelectorAll('.nav-link');
-            dropdownLinks.forEach(link => {
-                link.addEventListener('click', () => {
+            var dropdownLinks = menu.querySelectorAll('.nav-link');
+            for (var l = 0; l < dropdownLinks.length; l++) {
+                var link = dropdownLinks[l];
+                link.addEventListener('click', function() {
                     dropdown.classList.remove('open');
                     // Also close mobile menu if open
                     if (navToggle && navMenu) {
@@ -195,40 +270,51 @@ function initNavigation() {
                         navToggle.setAttribute('aria-expanded', 'false');
                     }
                 });
-            });
+            }
         }
-    });
+    }
     
     // Close all dropdowns when clicking outside
     document.addEventListener('click', function(e) {
-        if (!e.target.closest('.nav-dropdown')) {
-            dropdowns.forEach(dropdown => {
-                dropdown.classList.remove('open');
-            });
+        var target = e.target;
+        var closestDropdown = null;
+        // IE11 doesn't support closest, so we traverse manually
+        while (target && !closestDropdown) {
+            if (target.classList && target.classList.contains('nav-dropdown')) {
+                closestDropdown = target;
+            }
+            target = target.parentNode;
+        }
+        if (!closestDropdown) {
+            for (var d = 0; d < dropdowns.length; d++) {
+                dropdowns[d].classList.remove('open');
+            }
         }
     });
     
     // Close dropdowns on escape key
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            dropdowns.forEach(dropdown => {
-                dropdown.classList.remove('open');
-            });
+        var key = e.key || e.keyCode;
+        if (key === 'Escape' || key === 27) {
+            for (var d = 0; d < dropdowns.length; d++) {
+                dropdowns[d].classList.remove('open');
+            }
         }
     });
     
     // Header scroll effect - improved to prevent flickering
     if (header) {
-        let lastScrollY = window.scrollY;
+        var lastScrollY = window.scrollY || window.pageYOffset;
         
         window.addEventListener('scroll', function() {
-            const currentScrollY = window.scrollY;
+            var currentScrollY = window.scrollY || window.pageYOffset;
             
             // Determine if we're on a dark or light section
-            const isDarkSection = currentScrollY < window.innerHeight * 0.6;
+            var isDarkSection = currentScrollY < window.innerHeight * 0.6;
             
             // Remove any existing theme classes
-            header.classList.remove('on-dark', 'on-light');
+            header.classList.remove('on-dark');
+            header.classList.remove('on-light');
             
             // Add appropriate theme class based on scroll position
             if (isDarkSection) {
@@ -245,7 +331,8 @@ function initNavigation() {
         });
         
         // Initialize header state on page load
-        const initialIsDarkSection = window.scrollY < window.innerHeight * 0.6;
+        var initialScrollY = window.scrollY || window.pageYOffset;
+        var initialIsDarkSection = initialScrollY < window.innerHeight * 0.6;
         if (initialIsDarkSection) {
             header.classList.add('on-dark');
         } else {
@@ -257,58 +344,81 @@ function initNavigation() {
 // Scroll effects and animations
 function initScrollEffects() {
     // Smooth scrolling for anchor links
-    const anchorLinks = document.querySelectorAll('a[href^="#"]');
-    anchorLinks.forEach(link => {
+    var anchorLinks = document.querySelectorAll('a[href^="#"]');
+    for (var i = 0; i < anchorLinks.length; i++) {
+        var link = anchorLinks[i];
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
+            var targetId = this.getAttribute('href').substring(1);
+            var targetElement = document.getElementById(targetId);
             
             if (targetElement) {
-                const header = document.querySelector('.header');
-                const headerHeight = header ? header.offsetHeight : 0;
-                const targetPosition = targetElement.offsetTop - headerHeight - 20;
+                var header = document.querySelector('.header');
+                var headerHeight = header ? header.offsetHeight : 0;
+                var targetPosition = targetElement.offsetTop - headerHeight - 20;
                 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
+                // IE11 doesn't support behavior: smooth, so we use fallback
+                if (window.scrollTo && window.scrollTo.length > 1) {
+                    try {
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    } catch (e) {
+                        window.scrollTo(0, targetPosition);
+                    }
+                } else {
+                    window.scrollTo(0, targetPosition);
+                }
             }
         });
-    });
+    }
     
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
+    // Intersection Observer for scroll animations - with IE11 fallback
+    if (window.IntersectionObserver) {
+        var observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        var observer = new IntersectionObserver(function(entries) {
+            for (var i = 0; i < entries.length; i++) {
+                var entry = entries[i];
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
             }
-        });
-    }, observerOptions);
-    
-    // Observe elements for animation
-    const animateElements = document.querySelectorAll('.service-card, .about-content, .cta-content');
-    animateElements.forEach(el => {
-        observer.observe(el);
-    });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        var animateElements = document.querySelectorAll('.service-card, .about-content, .cta-content');
+        for (var i = 0; i < animateElements.length; i++) {
+            observer.observe(animateElements[i]);
+        }
+    } else {
+        // Fallback for browsers without IntersectionObserver
+        var animateElements = document.querySelectorAll('.service-card, .about-content, .cta-content');
+        for (var i = 0; i < animateElements.length; i++) {
+            animateElements[i].classList.add('animate-in');
+        }
+    }
 }
 
 // Contact form functionality
 function initContactForm() {
-    const contactForm = document.querySelector('#contact-form');
+    var contactForm = document.querySelector('#contact-form');
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Form validation
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData);
+            // Form validation - IE11 compatible
+            var formData = new FormData(contactForm);
+            var data = {};
+            // IE11 doesn't support Object.fromEntries, so we iterate manually
+            for (var pair of formData.entries()) {
+                data[pair[0]] = pair[1];
+            }
             
             if (validateForm(data)) {
                 // Show success message
@@ -320,30 +430,32 @@ function initContactForm() {
         });
         
         // Real-time validation
-        const inputs = contactForm.querySelectorAll('input, textarea');
-        inputs.forEach(input => {
+        var inputs = contactForm.querySelectorAll('input, textarea');
+        for (var i = 0; i < inputs.length; i++) {
+            var input = inputs[i];
             input.addEventListener('blur', function() {
-                validateField(input);
+                validateField(this);
             });
             
             input.addEventListener('input', function() {
-                clearFieldError(input);
+                clearFieldError(this);
             });
-        });
+        }
     }
 }
 
 // Form validation functions
 function validateForm(data) {
-    let isValid = true;
+    var isValid = true;
     
     // Required fields
-    const requiredFields = ['name', 'email', 'message'];
-    requiredFields.forEach(field => {
+    var requiredFields = ['name', 'email', 'message'];
+    for (var i = 0; i < requiredFields.length; i++) {
+        var field = requiredFields[i];
         if (!data[field] || data[field].trim() === '') {
             isValid = false;
         }
-    });
+    }
     
     // Email validation
     if (data.email && !isValidEmail(data.email)) {
@@ -354,8 +466,8 @@ function validateForm(data) {
 }
 
 function validateField(field) {
-    const value = field.value.trim();
-    const fieldName = field.name;
+    var value = field.value.trim();
+    var fieldName = field.name;
     
     // Remove existing error
     clearFieldError(field);
@@ -377,13 +489,13 @@ function showFieldError(field, message) {
     field.classList.add('error');
     
     // Remove existing error message
-    const existingError = field.parentNode.querySelector('.error-message');
+    var existingError = field.parentNode.querySelector('.error-message');
     if (existingError) {
         existingError.remove();
     }
     
     // Add new error message
-    const errorElement = document.createElement('span');
+    var errorElement = document.createElement('span');
     errorElement.className = 'error-message';
     errorElement.textContent = message;
     field.parentNode.appendChild(errorElement);
@@ -391,7 +503,7 @@ function showFieldError(field, message) {
 
 function clearFieldError(field) {
     field.classList.remove('error');
-    const errorMessage = field.parentNode.querySelector('.error-message');
+    var errorMessage = field.parentNode.querySelector('.error-message');
     if (errorMessage) {
         errorMessage.remove();
     }
@@ -399,35 +511,36 @@ function clearFieldError(field) {
 
 function showFormMessage(message, type) {
     // Remove existing message
-    const existingMessage = document.querySelector('.form-message');
+    var existingMessage = document.querySelector('.form-message');
     if (existingMessage) {
         existingMessage.remove();
     }
     
     // Create new message
-    const messageElement = document.createElement('div');
-    messageElement.className = `form-message ${type}`;
+    var messageElement = document.createElement('div');
+    messageElement.className = 'form-message ' + type;
     messageElement.textContent = message;
     
-    const form = document.querySelector('#contact-form');
+    var form = document.querySelector('#contact-form');
     form.parentNode.insertBefore(messageElement, form);
     
     // Auto-remove after 5 seconds
-    setTimeout(() => {
+    setTimeout(function() {
         messageElement.remove();
     }, 5000);
 }
 
 function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
 
 // Animation and interaction effects
 function initAnimations() {
     // Service card hover effects
-    const serviceCards = document.querySelectorAll('.service-card');
-    serviceCards.forEach(card => {
+    var serviceCards = document.querySelectorAll('.service-card');
+    for (var i = 0; i < serviceCards.length; i++) {
+        var card = serviceCards[i];
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-8px)';
         });
@@ -435,10 +548,10 @@ function initAnimations() {
         card.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(-4px)';
         });
-    });
+    }
     
     // Partner logo carousel
-    const partnerTrack = document.querySelector('.partners-track');
+    var partnerTrack = document.querySelector('.partners-track');
     if (partnerTrack) {
         // Pause animation on hover
         partnerTrack.addEventListener('mouseenter', function() {
@@ -451,8 +564,9 @@ function initAnimations() {
     }
     
     // Button hover effects
-    const buttons = document.querySelectorAll('.btn-primary, .btn-secondary');
-    buttons.forEach(button => {
+    var buttons = document.querySelectorAll('.btn-primary, .btn-secondary');
+    for (var i = 0; i < buttons.length; i++) {
+        var button = buttons[i];
         button.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-2px)';
         });
@@ -460,16 +574,17 @@ function initAnimations() {
         button.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0)';
         });
-    });
+    }
 }
 
 // Utility functions
 function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
+    var timeout;
+    return function executedFunction() {
+        var args = Array.prototype.slice.call(arguments);
+        var later = function() {
             clearTimeout(timeout);
-            func(...args);
+            func.apply(null, args);
         };
         clearTimeout(timeout);
         timeout = setTimeout(later, wait);
@@ -477,55 +592,57 @@ function debounce(func, wait) {
 }
 
 function throttle(func, limit) {
-    let inThrottle;
+    var inThrottle;
     return function() {
-        const args = arguments;
-        const context = this;
+        var args = arguments;
+        var context = this;
         if (!inThrottle) {
             func.apply(context, args);
             inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
+            setTimeout(function() { inThrottle = false; }, limit);
         }
-    }
+    };
 }
 
 // Performance optimizations
 window.addEventListener('load', function() {
     // Lazy load images
     if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
+        var imageObserver = new IntersectionObserver(function(entries, observer) {
+            for (var i = 0; i < entries.length; i++) {
+                var entry = entries[i];
                 if (entry.isIntersecting) {
-                    const img = entry.target;
-                    if (img.dataset.src) {
+                    var img = entry.target;
+                    if (img.dataset && img.dataset.src) {
                         img.src = img.dataset.src;
                         img.classList.remove('lazy');
                         imageObserver.unobserve(img);
                     }
                 }
-            });
+            }
         });
         
-        document.querySelectorAll('img[data-src]').forEach(img => {
-            imageObserver.observe(img);
-        });
+        var lazyImages = document.querySelectorAll('img[data-src]');
+        for (var i = 0; i < lazyImages.length; i++) {
+            imageObserver.observe(lazyImages[i]);
+        }
     }
 });
 
 // GDPR Cookie Consent functionality
 function initGDPR() {
-    const gdprBanner = document.getElementById('gdpr-banner');
-    const acceptBtn = document.getElementById('gdpr-accept');
-    const settingsBtn = document.getElementById('gdpr-settings');
+    var gdprBanner = document.getElementById('gdpr-banner');
+    var acceptBtn = document.getElementById('gdpr-accept');
+    var settingsBtn = document.getElementById('gdpr-settings');
     
     if (!gdprBanner) return;
     
     // Check if user has already given consent
-    const hasConsent = localStorage.getItem('rcltd-cookie-consent');
+    var hasConsent = localStorage.getItem('rcltd-cookie-consent');
     
     if (!hasConsent) {
         // Show banner after a short delay
-        setTimeout(() => {
+        setTimeout(function() {
             gdprBanner.classList.add('show');
         }, 2000);
     }
@@ -558,7 +675,7 @@ function initGDPR() {
     
     function hideBanner() {
         gdprBanner.classList.remove('show');
-        setTimeout(() => {
+        setTimeout(function() {
             gdprBanner.style.display = 'none';
         }, 300);
     }
@@ -566,28 +683,33 @@ function initGDPR() {
 
 // Advanced Page Loading Animation with Progress and Technical Messages
 function initPageLoader() {
-    const pageLoader = document.getElementById('page-loader');
+    var pageLoader = document.getElementById('page-loader');
     
     if (!pageLoader) return;
     
     // Check for reduced motion preference
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var prefersReducedMotion = false;
+    if (window.matchMedia) {
+        prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
     
     // Get or create progress elements with retry mechanism
     function findLoaderElements() {
-        const progressCounter = pageLoader.querySelector('.progress-counter');
-        const progressBar = pageLoader.querySelector('.progress-bar');
-        return { progressCounter, progressBar };
+        var progressCounter = pageLoader.querySelector('.progress-counter');
+        var progressBar = pageLoader.querySelector('.progress-bar');
+        return { progressCounter: progressCounter, progressBar: progressBar };
     }
     
     // Try to find elements with multiple retry attempts
-    let attempts = 0;
-    const maxAttempts = 5;
-    const retryDelay = 50;
+    var attempts = 0;
+    var maxAttempts = 5;
+    var retryDelay = 50;
     
     function attemptToFindElements() {
         attempts++;
-        const { progressCounter, progressBar } = findLoaderElements();
+        var loaderElements = findLoaderElements();
+        var progressCounter = loaderElements.progressCounter;
+        var progressBar = loaderElements.progressBar;
         
         if (progressCounter && progressBar) {
             startAdvancedLoader(progressCounter, progressBar, pageLoader);
@@ -603,7 +725,9 @@ function initPageLoader() {
     }
     
     // Initial attempt
-    const { progressCounter, progressBar } = findLoaderElements();
+    var initialLoaderElements = findLoaderElements();
+    var progressCounter = initialLoaderElements.progressCounter;
+    var progressBar = initialLoaderElements.progressBar;
     if (progressCounter && progressBar) {
         startAdvancedLoader(progressCounter, progressBar, pageLoader);
     } else {
@@ -613,30 +737,33 @@ function initPageLoader() {
 
 function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
     // Check for reduced motion preference
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var prefersReducedMotion = false;
+    if (window.matchMedia) {
+        prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
     
     // Store pageLoader reference to ensure it's accessible throughout the function
-    const loaderElement = pageLoader;
+    var loaderElement = pageLoader;
     
     // Simplified loader without tech messages
     
-    let currentProgress = 0;
-    let loaderStartTime = Date.now();
-    const minLoadTime = prefersReducedMotion ? 800 : 2500; // Shorter for reduced motion
-    const maxLoadTime = prefersReducedMotion ? 1500 : 4000;
+    var currentProgress = 0;
+    var loaderStartTime = Date.now();
+    var minLoadTime = prefersReducedMotion ? 800 : 2500; // Shorter for reduced motion
+    var maxLoadTime = prefersReducedMotion ? 1500 : 4000;
     
     // Initialize display
     progressCounter.textContent = '0%';
     progressBar.style.width = '0%';
     
     // Animation timing
-    const progressUpdateInterval = prefersReducedMotion ? 50 : 80;
+    var progressUpdateInterval = prefersReducedMotion ? 50 : 80;
     
     // Progress animation function
     function updateProgress() {
         if (currentProgress < 100) {
             // Variable speed progression for more natural feel
-            let increment;
+            var increment;
             if (currentProgress < 20) {
                 increment = Math.random() * 3 + 1; // 1-4% increments early
             } else if (currentProgress < 80) {
@@ -655,7 +782,7 @@ function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
             setTimeout(updateProgress, progressUpdateInterval);
         } else {
             // Progress complete - show final message briefly then hide
-            setTimeout(() => {
+            setTimeout(function() {
                 completeLoader();
             }, prefersReducedMotion ? 200 : 500);
         }
@@ -665,15 +792,15 @@ function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
     
     // Complete loader function
     function completeLoader() {
-        const elapsedTime = Date.now() - loaderStartTime;
-        const remainingTime = Math.max(0, minLoadTime - elapsedTime);
+        var elapsedTime = Date.now() - loaderStartTime;
+        var remainingTime = Math.max(0, minLoadTime - elapsedTime);
         
-        setTimeout(() => {
+        setTimeout(function() {
             if (loaderElement) {
                 loaderElement.classList.add('hidden');
                 
                 // Remove loader from DOM after animation completes
-                setTimeout(() => {
+                setTimeout(function() {
                     if (loaderElement.parentNode) {
                         loaderElement.parentNode.removeChild(loaderElement);
                     }
@@ -697,8 +824,8 @@ function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
     window.addEventListener('load', function pageLoadHandler() {
         // If page loads before animation completes, speed up to finish
         if (currentProgress < 100) {
-            const remainingProgress = 100 - currentProgress;
-            const speedUpInterval = 30;
+            var remainingProgress = 100 - currentProgress;
+            var speedUpInterval = 30;
             
             function speedUpProgress() {
                 if (currentProgress < 100) {
@@ -718,10 +845,10 @@ function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
     });
     
     // Fallback: Force hide loader after maximum time
-    const fallbackTimeout = setTimeout(() => {
+    var fallbackTimeout = setTimeout(function() {
         if (loaderElement && !loaderElement.classList.contains('hidden')) {
             loaderElement.classList.add('hidden');
-            setTimeout(() => {
+            setTimeout(function() {
                 if (loaderElement && loaderElement.parentNode) {
                     loaderElement.parentNode.removeChild(loaderElement);
                 }
@@ -737,14 +864,14 @@ function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
 
 // Simple fallback loader for when elements are missing
 function initSimpleLoader() {
-    const pageLoader = document.getElementById('page-loader');
+    var pageLoader = document.getElementById('page-loader');
     if (!pageLoader) return;
     
     // Hide loader after page is fully loaded
     window.addEventListener('load', function() {
-        setTimeout(() => {
+        setTimeout(function() {
             pageLoader.classList.add('hidden');
-            setTimeout(() => {
+            setTimeout(function() {
                 if (pageLoader.parentNode) {
                     pageLoader.parentNode.removeChild(pageLoader);
                 }
@@ -753,10 +880,10 @@ function initSimpleLoader() {
     });
     
     // Fallback timer
-    setTimeout(() => {
+    setTimeout(function() {
         if (pageLoader && !pageLoader.classList.contains('hidden')) {
             pageLoader.classList.add('hidden');
-            setTimeout(() => {
+            setTimeout(function() {
                 if (pageLoader.parentNode) {
                     pageLoader.parentNode.removeChild(pageLoader);
                 }
@@ -766,8 +893,8 @@ function initSimpleLoader() {
 }
 
 // CSS animations
-const style = document.createElement('style');
-style.textContent = `
+var style = document.createElement('style');
+style.textContent = '
     .animate-in {
         animation: slideInUp 0.6s ease-out forwards;
     }
@@ -823,123 +950,123 @@ document.head.appendChild(style);
 
 
 // Dynamic Header Glass Effect with Background Detection
-class DynamicHeaderManager {
-    constructor() {
-        this.header = document.querySelector('.header');
-        this.heroSection = document.querySelector('.hero');
-        this.servicesSection = document.querySelector('.services, #services');
-        this.lastScrollY = window.scrollY;
-        this.ticking = false;
-        
-        if (this.header) {
-            this.init();
-        }
-    }
+function DynamicHeaderManager() {
+    this.header = document.querySelector('.header');
+    this.heroSection = document.querySelector('.hero');
+    this.servicesSection = document.querySelector('.services, #services');
+    this.lastScrollY = window.scrollY;
+    this.ticking = false;
     
-    init() {
-        // Set initial state
-        this.updateHeaderState();
-        
-        // Listen for scroll events with throttling
-        window.addEventListener('scroll', () => {
-            this.lastScrollY = window.scrollY;
-            this.requestTick();
-        });
-        
-        // Listen for resize events
-        window.addEventListener('resize', () => {
-            this.updateHeaderState();
-        });
-        
-        // Initial state after load
-        window.addEventListener('load', () => {
-            setTimeout(() => this.updateHeaderState(), 100);
-        });
-    }
-    
-    requestTick() {
-        if (!this.ticking) {
-            requestAnimationFrame(() => this.updateHeaderState());
-            this.ticking = true;
-        }
-    }
-    
-    updateHeaderState() {
-        this.ticking = false;
-        
-        if (!this.header) return;
-        
-        const scrollY = this.lastScrollY;
-        const headerHeight = this.header.offsetHeight;
-        
-        // Calculate the transition point more accurately
-        let transitionPoint = 400; // fallback minimum
-        
-        if (this.heroSection) {
-            // Get hero section bounds with buffer for smoother transition
-            const heroRect = this.heroSection.getBoundingClientRect();
-            const heroBottom = heroRect.bottom + scrollY - headerHeight - 30;
-            transitionPoint = Math.max(heroBottom, 400);
-        }
-        
-        // Determine if header is over dark or light background
-        const isOverDark = scrollY < transitionPoint;
-        
-        // Force remove both classes first to prevent conflicts
-        this.header.classList.remove('on-dark', 'on-light');
-        
-        // Add the appropriate class in the next frame for smooth transition
-        requestAnimationFrame(() => {
-            if (isOverDark) {
-                this.header.classList.add('on-dark');
-            } else {
-                this.header.classList.add('on-light');
-            }
-        });
-        
-        // Ensure no conflicting inline styles
-        this.header.style.backdropFilter = 'none';
-        this.header.style.webkitBackdropFilter = 'none';
-        this.header.style.background = '';
-        this.header.style.borderBottom = '';
-        this.header.style.boxShadow = '';
-    }
-}
-
-// Scroll to Top Functionality
-class ScrollToTopManager {
-    constructor() {
-        this.scrollButton = document.getElementById('scroll-to-top');
+    if (this.header) {
         this.init();
     }
-
-    init() {
-        if (!this.scrollButton) return;
-
-        // Show/hide button based on scroll position
-        window.addEventListener('scroll', () => this.toggleVisibility());
-        
-        // Smooth scroll to top when clicked
-        this.scrollButton.addEventListener('click', () => this.scrollToTop());
-    }
-
-    toggleVisibility() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > 300) {
-            this.scrollButton.classList.add('visible');
-        } else {
-            this.scrollButton.classList.remove('visible');
-        }
-    }
-
-    scrollToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
 }
+
+DynamicHeaderManager.prototype.init = function() {
+    // Set initial state
+    this.updateHeaderState();
+    
+    var self = this;
+    // Listen for scroll events with throttling
+    window.addEventListener('scroll', function() {
+        self.lastScrollY = window.scrollY;
+        self.requestTick();
+    });
+    
+    // Listen for resize events
+    window.addEventListener('resize', function() {
+        self.updateHeaderState();
+    });
+    
+    // Initial state after load
+    window.addEventListener('load', function() {
+        setTimeout(function() { self.updateHeaderState(); }, 100);
+    });
+};
+
+DynamicHeaderManager.prototype.requestTick = function() {
+    if (!this.ticking) {
+        var self = this;
+        requestAnimationFrame(function() { self.updateHeaderState(); });
+        this.ticking = true;
+    }
+};
+
+DynamicHeaderManager.prototype.updateHeaderState = function() {
+    this.ticking = false;
+    
+    if (!this.header) return;
+    
+    var scrollY = this.lastScrollY;
+    var headerHeight = this.header.offsetHeight;
+    
+    // Calculate the transition point more accurately
+    var transitionPoint = 400; // fallback minimum
+    
+    if (this.heroSection) {
+        // Get hero section bounds with buffer for smoother transition
+        var heroRect = this.heroSection.getBoundingClientRect();
+        var heroBottom = heroRect.bottom + scrollY - headerHeight - 30;
+        transitionPoint = Math.max(heroBottom, 400);
+    }
+    
+    // Determine if header is over dark or light background
+    var isOverDark = scrollY < transitionPoint;
+    
+    // Force remove both classes first to prevent conflicts
+    this.header.classList.remove('on-dark', 'on-light');
+    
+    // Add the appropriate class in the next frame for smooth transition
+    var self = this;
+    requestAnimationFrame(function() {
+        if (isOverDark) {
+            self.header.classList.add('on-dark');
+        } else {
+            self.header.classList.add('on-light');
+        }
+    });
+    
+    // Ensure no conflicting inline styles
+    this.header.style.backdropFilter = 'none';
+    this.header.style.webkitBackdropFilter = 'none';
+    this.header.style.background = '';
+    this.header.style.borderBottom = '';
+    this.header.style.boxShadow = '';
+};
+
+// Scroll to Top Functionality
+function ScrollToTopManager() {
+    this.scrollButton = document.getElementById('scroll-to-top');
+    this.init();
+}
+
+ScrollToTopManager.prototype.init = function() {
+    if (!this.scrollButton) return;
+
+    var self = this;
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', function() { self.toggleVisibility(); });
+    
+    // Smooth scroll to top when clicked
+    this.scrollButton.addEventListener('click', function() { self.scrollToTop(); });
+};
+
+ScrollToTopManager.prototype.toggleVisibility = function() {
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop > 300) {
+        this.scrollButton.classList.add('visible');
+    } else {
+        this.scrollButton.classList.remove('visible');
+    }
+};
+
+ScrollToTopManager.prototype.scrollToTop = function() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+};
 
 // Force scroll to top on page load
 function forceScrollToTop() {
@@ -952,19 +1079,19 @@ function forceScrollToTop() {
     }
     
     // Ensure scroll position is reset after a short delay in case of any conflicts
-    setTimeout(() => {
+    setTimeout(function() {
         window.scrollTo(0, 0);
     }, 100);
 }
 
 // Initialize all managers and force scroll to top
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
     forceScrollToTop();
     window.headerManager = new DynamicHeaderManager();
     window.scrollToTopManager = new ScrollToTopManager();
 });
 
 // Also force scroll to top on page show (handles browser back/forward)
-window.addEventListener('pageshow', () => {
+window.addEventListener('pageshow', function() {
     forceScrollToTop();
 });

@@ -1,63 +1,63 @@
 // E-commerce Store Functionality for Robotics & Control Ltd
-class RCStore {
-    constructor() {
+function RCStore() {
         this.cart = JSON.parse(localStorage.getItem('rcltd_cart')) || [];
         this.products = [];
         this.currentPage = 1;
         this.productsPerPage = 12;
         this.init();
-    }
+}
 
-    init() {
+RCStore.prototype.init = function() {
         this.updateCartDisplay();
         this.bindEvents();
         this.loadProducts();
-    }
+};
 
-    bindEvents() {
+RCStore.prototype.bindEvents = function() {
         // Cart sidebar elements (for pages that have cart sidebar)
-        const cartSidebar = document.getElementById('cart-sidebar');
-        const cartOverlay = document.getElementById('cart-overlay');
-        const cartClose = document.getElementById('cart-close');
+        var cartSidebar = document.getElementById('cart-sidebar');
+        var cartOverlay = document.getElementById('cart-overlay');
+        var cartClose = document.getElementById('cart-close');
+        var self = this;
 
         // Note: cart-toggle is no longer used - cart icon now links to cart.html
         // But we still need cart sidebar functionality for "Add to Cart" actions
 
         if (cartClose) {
-            cartClose.addEventListener('click', () => this.closeCart());
+            cartClose.addEventListener('click', function() { self.closeCart(); });
         }
 
         if (cartOverlay) {
-            cartOverlay.addEventListener('click', () => this.closeCart());
+            cartOverlay.addEventListener('click', function() { self.closeCart(); });
         }
 
         // Search functionality
-        const searchInput = document.getElementById('product-search');
+        var searchInput = document.getElementById('product-search');
         if (searchInput) {
-            searchInput.addEventListener('input', (e) => this.searchProducts(e.target.value));
+            searchInput.addEventListener('input', function(e) { self.searchProducts(e.target.value); });
         }
 
         // Filter functionality
-        const categoryFilter = document.getElementById('category-filter');
-        const sortFilter = document.getElementById('sort-filter');
+        var categoryFilter = document.getElementById('category-filter');
+        var sortFilter = document.getElementById('sort-filter');
 
         if (categoryFilter) {
-            categoryFilter.addEventListener('change', () => this.filterProducts());
+            categoryFilter.addEventListener('change', function() { self.filterProducts(); });
         }
 
         if (sortFilter) {
-            sortFilter.addEventListener('change', () => this.sortProducts());
+            sortFilter.addEventListener('change', function() { self.sortProducts(); });
         }
 
         // Load more products
-        const loadMoreBtn = document.getElementById('load-more');
+        var loadMoreBtn = document.getElementById('load-more');
         if (loadMoreBtn) {
-            loadMoreBtn.addEventListener('click', () => this.loadMoreProducts());
+            loadMoreBtn.addEventListener('click', function() { self.loadMoreProducts(); });
         }
 
         // Billing address toggle
-        const sameAsShipping = document.getElementById('same-as-shipping');
-        const billingFields = document.getElementById('billing-fields');
+        var sameAsShipping = document.getElementById('same-as-shipping');
+        var billingFields = document.getElementById('billing-fields');
 
         if (sameAsShipping && billingFields) {
             sameAsShipping.addEventListener('change', function() {
@@ -66,39 +66,39 @@ class RCStore {
         }
 
         // Payment method toggle
-        const paymentMethods = document.querySelectorAll('input[name="payment"]');
-        paymentMethods.forEach(method => {
-            method.addEventListener('change', () => this.togglePaymentFields());
-        });
-    }
+        var paymentMethods = document.querySelectorAll('input[name="payment"]');
+        for (var i = 0; i < paymentMethods.length; i++) {
+            paymentMethods[i].addEventListener('change', function() { self.togglePaymentFields(); });
+        }
+};
 
-    // Cart Management
-    addToCart(product, quantity = 1) {
-        const existingItem = this.cart.find(item => item.id === product.id);
+// Cart Management
+RCStore.prototype.addToCart = function(product, quantity) {
+        quantity = quantity || 1;
+        var existingItem = this.cart.find(function(item) { return item.id === product.id; });
         
         if (existingItem) {
             existingItem.quantity += quantity;
         } else {
-            this.cart.push({
-                ...product,
-                quantity: quantity
-            });
+            var newItem = Object.assign({}, product);
+            newItem.quantity = quantity;
+            this.cart.push(newItem);
         }
 
         this.saveCart();
         this.updateCartDisplay();
         this.showCartNotification('Product added to cart!');
-    }
+};
 
-    removeFromCart(productId) {
-        this.cart = this.cart.filter(item => item.id !== productId);
+RCStore.prototype.removeFromCart = function(productId) {
+        this.cart = this.cart.filter(function(item) { return item.id !== productId; });
         this.saveCart();
         this.updateCartDisplay();
         this.renderCartItems();
-    }
+};
 
-    updateCartQuantity(productId, quantity) {
-        const item = this.cart.find(item => item.id === productId);
+RCStore.prototype.updateCartQuantity = function(productId, quantity) {
+        var item = this.cart.find(function(item) { return item.id === productId; });
         if (item) {
             if (quantity <= 0) {
                 this.removeFromCart(productId);
@@ -116,11 +116,11 @@ class RCStore {
     }
 
     updateCartDisplay() {
-        const cartCount = document.getElementById('cart-count');
-        const cartTotal = document.getElementById('cart-total');
+        var cartCount = document.getElementById('cart-count');
+        var cartTotal = document.getElementById('cart-total');
         
-        const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
-        const totalAmount = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        var totalItems = this.cart.reduce(function(sum, item) { return sum + item.quantity; }, 0);
+        var totalAmount = this.cart.reduce(function(sum, item) { return sum + (item.price * item.quantity); }, 0);
 
         if (cartCount) {
             cartCount.textContent = totalItems;
@@ -128,7 +128,7 @@ class RCStore {
         }
 
         if (cartTotal) {
-            cartTotal.textContent = `€${totalAmount.toFixed(2)}`;
+            cartTotal.textContent = '€' + totalAmount.toFixed(2);
         }
 
         // Update cart sidebar
@@ -136,12 +136,12 @@ class RCStore {
     }
 
     renderCartItems() {
-        const cartItems = document.getElementById('cart-items');
-        const cartItemsList = document.getElementById('cart-items-list');
+        var cartItems = document.getElementById('cart-items');
+        var cartItemsList = document.getElementById('cart-items-list');
         
         if (!cartItems && !cartItemsList) return;
 
-        const container = cartItems || cartItemsList;
+        var container = cartItems || cartItemsList;
         
         if (this.cart.length === 0) {
             container.innerHTML = `
@@ -153,7 +153,7 @@ class RCStore {
             return;
         }
 
-        const itemsHtml = this.cart.map(item => `
+        var itemsHtml = this.cart.map(item => `
             <div class="cart-item" data-id="${item.id}">
                 <div class="cart-item-image">
                     <img src="${item.image || 'images/placeholder-product.png'}" alt="${item.name}">
@@ -181,13 +181,13 @@ class RCStore {
     }
 
     updateCartTotals() {
-        const subtotal = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        const shipping = subtotal > 500 ? 0 : 25; // Free shipping over €500
-        const vat = (subtotal + shipping) * 0.23; // 23% VAT
-        const total = subtotal + shipping + vat;
+        var subtotal = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        var shipping = subtotal > 500 ? 0 : 25; // Free shipping over €500
+        var vat = (subtotal + shipping) * 0.23; // 23% VAT
+        var total = subtotal + shipping + vat;
 
         // Update all total displays
-        const elements = {
+        var elements = {
             'cart-subtotal': subtotal,
             'cart-shipping': shipping,
             'cart-vat': vat,
@@ -199,7 +199,7 @@ class RCStore {
         };
 
         Object.entries(elements).forEach(([id, value]) => {
-            const element = document.getElementById(id);
+            var element = document.getElementById(id);
             if (element) {
                 element.textContent = `€${value.toFixed(2)}`;
             }
@@ -207,8 +207,8 @@ class RCStore {
     }
 
     toggleCart() {
-        const cartSidebar = document.getElementById('cart-sidebar');
-        const cartOverlay = document.getElementById('cart-overlay');
+        var cartSidebar = document.getElementById('cart-sidebar');
+        var cartOverlay = document.getElementById('cart-overlay');
         
         if (cartSidebar && cartOverlay) {
             cartSidebar.classList.toggle('active');
@@ -218,8 +218,8 @@ class RCStore {
     }
 
     closeCart() {
-        const cartSidebar = document.getElementById('cart-sidebar');
-        const cartOverlay = document.getElementById('cart-overlay');
+        var cartSidebar = document.getElementById('cart-sidebar');
+        var cartOverlay = document.getElementById('cart-overlay');
         
         if (cartSidebar && cartOverlay) {
             cartSidebar.classList.remove('active');
@@ -233,7 +233,7 @@ class RCStore {
         this.toggleCart();
         
         // Create and show a toast notification
-        const notification = document.createElement('div');
+        var notification = document.createElement('div');
         notification.className = 'cart-notification';
         notification.textContent = message;
         document.body.appendChild(notification);
@@ -256,7 +256,7 @@ class RCStore {
     }
 
     renderProducts() {
-        const container = document.getElementById('products-container');
+        var container = document.getElementById('products-container');
         if (!container) return;
 
         if (this.products.length === 0) {
@@ -272,7 +272,7 @@ class RCStore {
         }
 
         // Render products when available
-        const productsHtml = this.products.map(product => this.renderProductCard(product)).join('');
+        var productsHtml = this.products.map(product => this.renderProductCard(product)).join('');
         container.innerHTML = productsHtml;
     }
 
@@ -309,12 +309,12 @@ class RCStore {
 
     filterProducts() {
         // Implement product filtering
-        const category = document.getElementById('category-filter').value;
+        var category = document.getElementById('category-filter').value;
     }
 
     sortProducts() {
         // Implement product sorting
-        const sortBy = document.getElementById('sort-filter').value;
+        var sortBy = document.getElementById('sort-filter').value;
     }
 
     loadMoreProducts() {
@@ -324,10 +324,10 @@ class RCStore {
 
     // Payment Methods
     togglePaymentFields() {
-        const selectedPayment = document.querySelector('input[name="payment"]:checked').value;
-        const cardFields = document.getElementById('card-fields');
-        const bankFields = document.getElementById('bank-fields');
-        const quoteFields = document.getElementById('quote-fields');
+        var selectedPayment = document.querySelector('input[name="payment"]:checked').value;
+        var cardFields = document.getElementById('card-fields');
+        var bankFields = document.getElementById('bank-fields');
+        var quoteFields = document.getElementById('quote-fields');
 
         // Hide all payment fields
         if (cardFields) cardFields.style.display = 'none';
@@ -351,9 +351,9 @@ class RCStore {
     // Product Management Methods (for future use)
     addProduct(product) {
         // Apply 40% markup as requested
-        const markedUpPrice = product.originalPrice * 1.4;
+        var markedUpPrice = product.originalPrice * 1.4;
         
-        const processedProduct = {
+        var processedProduct = {
             ...product,
             price: markedUpPrice,
             originalPrice: product.originalPrice
@@ -376,7 +376,7 @@ class RCStore {
 }
 
 // Initialize store when DOM is loaded
-let store;
-document.addEventListener('DOMContentLoaded', () => {
+var store;
+document.addEventListener('DOMContentLoaded', function() {
     store = new RCStore();
 });
