@@ -496,7 +496,8 @@ body {
     font-size: var(--font-size-base);
     line-height: 1.6;
     color: var(--text-primary);
-    background-color: var(--surface);
+    background: linear-gradient(to bottom, var(--background-dark) 0%, var(--background-medium) 50%, var(--background-light) 100%);
+    min-height: 100vh;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -506,6 +507,26 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--spacing-4);
+}
+
+/* Section backgrounds for proper contrast with gradient */
+.services, .overview-section, .automation-services, .about, .partners, .footer {
+    background: rgba(255, 255, 255, 0.95);
+    margin: 2rem 0;
+    border-radius: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.page-hero {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    margin: 1rem 0;
+    border-radius: 1rem;
+}
+
+.page-hero .page-title,
+.page-hero .page-subtitle {
+    color: white;
 }
 
 @media (min-width: 768px) {
