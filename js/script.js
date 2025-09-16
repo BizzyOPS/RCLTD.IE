@@ -1,112 +1,5 @@
 // Modern JavaScript for RCLtd Website
 
-// Particles initialization with performance optimizations
-function initParticles() {
-    if (typeof tsParticles !== 'undefined') {
-        // Check for reduced motion preference
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        
-        // Responsive particle configuration based on screen size
-        // Adjusted mobile detection to better handle development environments
-        const isMobile = window.innerWidth < 480; // Reduced from 768 to 480 for better dev experience
-        const isTablet = window.innerWidth < 768; // Reduced from 1024 to 768
-        
-        // Debug logging for development
-        console.log('Particles init - Width:', window.innerWidth, 'isMobile:', isMobile, 'isTablet:', isTablet);
-        
-        // If user prefers reduced motion, disable particles entirely
-        if (prefersReducedMotion) {
-            console.log('Particles disabled - user prefers reduced motion');
-            return;
-        }
-        
-        // Adaptive settings based on device capability
-        const particleCount = isMobile ? 15 : isTablet ? 25 : 30;
-        const fpsLimit = isMobile ? 30 : 45;
-        const linksEnabled = !isMobile; // Disable links on mobile for better performance
-        
-        // Disable interactions in production to keep particles subtle and non-distracting
-        const isProduction = window.location.hostname !== 'localhost' && !window.location.hostname.includes('replit');
-        const interactiveMode = isProduction ? false : !isMobile; // Disabled in production, enabled in development
-        
-        console.log('Loading tsParticles with interactive mode:', interactiveMode);
-        
-        tsParticles.load('tsparticles', {
-            background: {
-                color: {
-                    value: 'transparent'
-                }
-            },
-            fpsLimit: fpsLimit,
-            interactivity: {
-                events: {
-                    onClick: {
-                        enable: interactiveMode,
-                        mode: 'push'
-                    },
-                    onHover: {
-                        enable: interactiveMode,
-                        mode: 'repulse'
-                    },
-                    resize: true
-                },
-                modes: {
-                    push: {
-                        quantity: isMobile ? 1 : 2
-                    },
-                    repulse: {
-                        distance: isMobile ? 100 : 150,
-                        duration: 0.3
-                    }
-                }
-            },
-            particles: {
-                color: {
-                    value: ['#0891b2', '#67e8f9', '#6b7280', '#ffffff']
-                },
-                links: {
-                    color: '#0891b2',
-                    distance: isMobile ? 0 : 120,
-                    enable: linksEnabled,
-                    opacity: 0.2,
-                    width: 1
-                },
-                collisions: {
-                    enable: false // Disabled for better performance
-                },
-                move: {
-                    direction: 'none',
-                    enable: true,
-                    outModes: {
-                        default: 'out'
-                    },
-                    random: false,
-                    speed: isMobile ? 1 : 1.5,
-                    straight: false
-                },
-                number: {
-                    density: {
-                        enable: true,
-                        area: isMobile ? 400 : 800
-                    },
-                    value: particleCount
-                },
-                opacity: {
-                    value: isMobile ? 0.3 : 0.4
-                },
-                shape: {
-                    type: isMobile ? ['circle'] : ['circle', 'triangle', 'star']
-                },
-                size: {
-                    value: { min: 1, max: isMobile ? 3 : 4 }
-                }
-            },
-            detectRetina: true,
-            pauseOnBlur: true,
-            pauseOnOutsideViewport: true
-        });
-    }
-}
 
 // Hero Carousel initialization
 function initHeroCarousel() {
@@ -253,7 +146,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initAnimations();
     initGDPR();
     initPageLoader();
-    initParticles();
     initHeroCarousel();
     initHeroVideo();
 });

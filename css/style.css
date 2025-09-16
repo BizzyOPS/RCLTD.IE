@@ -174,10 +174,6 @@
         opacity: 0 !important;
     }
     
-    /* Disable particles background animations */
-    #tsparticles {
-        display: none !important;
-    }
     
     /* Disable floating and rotating elements */
     .service-card,
@@ -766,16 +762,6 @@ body {
     transform: none !important;
 }
 
-/* Particles Background - Limited to navy blue area only */
-#tsparticles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 70%; /* Limit particles to upper 70% of hero section */
-    z-index: 1;
-    pointer-events: none;
-}
 
 
 

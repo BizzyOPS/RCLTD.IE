@@ -6,6 +6,9 @@ This is a static website for Robotics & Control Ltd, an Irish technology company
 
 ## Recent Changes
 
+**September 16, 2025**
+- **Particle Animation Removal**: Completely removed flying particle animations from all pages for a more professional, business-focused appearance suitable for enterprise deployment
+
 **September 14, 2025**
 - **Professional Background Redesign**: Removed unprofessional circuit board traces ("black lines") above main heading and replaced with clean professional gradient background featuring Black → Dark Blue → Navy Blue → Grey → White color blending for enhanced visual appeal
 - **Mobile Navigation Fix**: Resolved navigation menu glitching and scrollability issues by disabling all animation effects on navigation elements and implementing 80vh height with smooth touch scrolling for access to all pages
@@ -38,7 +41,7 @@ This is a static website for Robotics & Control Ltd, an Irish technology company
 - **Extended Dark Background**: Extended electric background coverage from 60% to 75% with seamless fade to white
 - **SEO-Optimized Animations**: Maintained semantic HTML structure while adding impressive visual effects
 - **Footer Certifications**: Added professional certifications and partnerships section to footer across all pages with integrated color scheme
-- **Interactive Particles**: Added moving particles animation with multiple colors and shapes for visual engagement
+- **Interactive Particles**: ~~Added moving particles animation with multiple colors and shapes for visual engagement~~ (Removed September 16, 2025 for professional appearance)
 - **Image Carousel**: Integrated responsive carousel with autoplay, navigation controls, and touch/swipe support
 - **Accessibility Features**: Full reduced motion support and ARIA compliance for inclusive user experience
 - **Performance Optimization**: Responsive particle settings and efficient animations for all device types
