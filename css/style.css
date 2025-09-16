@@ -12,6 +12,7 @@
 .hero {
     position: relative;
     min-height: 80vh;
+    margin-top: 80px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -484,9 +485,9 @@ body {
     /* No default background - let theme classes handle it */
 }
 
-/* Header on dark background - semi-transparent black to show carousel behind */
+/* Header on dark background - solid black since cover images are now below */
 .header.on-dark {
-    background: rgba(0, 0, 0, 0.7) !important;
+    background: #000000 !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4) !important;
 }
