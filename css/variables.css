@@ -76,6 +76,12 @@
 }
 
 /* Responsive header heights for mobile devices */
+@media (max-width: 1024px) and (min-width: 769px) {
+    :root {
+        --header-height: 75px; /* Large tablet header height */
+    }
+}
+
 @media (max-width: 768px) {
     :root {
         --header-height: 70px; /* Tablet header height */

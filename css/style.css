@@ -35,6 +35,26 @@ main {
     overflow: hidden;
     margin-bottom: var(--spacing-16);
 }
+
+/* Tablet hero adjustments */
+@media (max-width: 1024px) and (min-width: 768px) {
+    .hero,
+    .page-hero,
+    .store-hero {
+        min-height: 60vh;
+        padding: var(--spacing-12) 0;
+    }
+}
+
+/* Mobile hero adjustments */
+@media (max-width: 767px) {
+    .hero,
+    .page-hero,
+    .store-hero {
+        min-height: 50vh;
+        padding: var(--spacing-8) 0;
+    }
+}
 .hero-cover-image {
     background-size: cover;
     background-position: center;
@@ -650,14 +670,82 @@ section + section {
     margin-top: var(--spacing-16);
     padding-top: var(--spacing-16);
 }
+/* Tablet specific responsive styles */
+@media (max-width: 1024px) and (min-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-6);
+        max-width: 90%;
+    }
+    
+    .page-title {
+        font-size: var(--font-size-4xl);
+        line-height: 1.2;
+    }
+    
+    .page-subtitle {
+        font-size: var(--font-size-xl);
+        line-height: 1.4;
+    }
+    
+    .section-title {
+        font-size: var(--font-size-3xl);
+    }
+    
+    .nav-logo {
+        width: 100px;
+        height: auto;
+    }
+    
+    .nav-phone {
+        font-size: var(--font-size-sm);
+    }
+    
+    .btn-primary {
+        padding: var(--spacing-3) var(--spacing-5);
+        font-size: var(--font-size-base);
+    }
+}
+
+/* Mobile responsive styles */
+@media (max-width: 767px) {
+    .container {
+        padding: 0 var(--spacing-4);
+    }
+    
+    .page-title {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .page-subtitle {
+        font-size: var(--font-size-base);
+    }
+    
+    .section-title {
+        font-size: var(--font-size-xl);
+    }
+}
+
 @media (min-width: 768px) {
     .container {
         padding: 0 var(--spacing-6);
     }
 }
+
 @media (min-width: 1024px) {
     .container {
         padding: 0 var(--spacing-8);
+    }
+    
+    .page-title {
+        font-size: var(--font-size-4xl);
+    }
+    
+    .page-subtitle {
+        font-size: var(--font-size-xl);
+    }
+    
+    .section-title {
+        font-size: var(--font-size-3xl);
     }
 }
 /* Buttons */
