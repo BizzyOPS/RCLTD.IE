@@ -200,6 +200,18 @@
     .nav-phone {
         font-size: 0.9rem;
     }
+    
+    /* Mobile header compensation */
+    .store-hero {
+        padding-top: calc(5rem + 100px); /* Mobile padding + header height */
+    }
+}
+
+@media (max-width: 480px) {
+    /* Small mobile header compensation */
+    .store-hero {
+        padding-top: calc(4rem + 90px); /* Small mobile padding + header height */
+    }
 }
 /* High DPI / Retina Display Support */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
@@ -692,6 +704,11 @@ body {
     z-index: 1000;
     transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     /* No default background - let theme classes handle it */
+}
+
+/* Fixed header compensation for store-hero sections */
+.store-hero {
+    padding-top: calc(6rem + 120px); /* Original padding + header height */
 }
 /* Header with white background */
 .header.on-dark {
