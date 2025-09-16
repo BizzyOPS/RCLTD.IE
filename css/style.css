@@ -13,7 +13,7 @@ html {
 }
 
 main {
-    padding-top: var(--header-height);
+    /* Header compensation handled individually by hero sections */
 }
 /* Hero Section with Cover Image Background */
 .hero {
@@ -33,7 +33,7 @@ main {
     justify-content: flex-start;
     color: white;
     overflow: hidden;
-    margin-bottom: var(--spacing-16);
+    padding-top: calc(var(--header-height) + var(--spacing-6));
 }
 
 /* Tablet hero adjustments */
@@ -4134,11 +4134,10 @@ section + section {
 .store-hero {
     background: linear-gradient(135deg, #1a2332 0%, #2d3748 25%, #4a5568 50%, #718096 75%, #e2e8f0 100%);
     color: white;
-    padding: 6rem 0 4rem;
+    padding: calc(var(--header-height) + var(--spacing-8)) 0 4rem;
     text-align: center;
     position: relative;
     overflow: hidden;
-    margin-bottom: var(--spacing-16);
 }
 .store-hero::before {
     content: '';
@@ -5777,13 +5776,12 @@ section + section {
 }
 /* Page Hero Section */
 .page-hero {
-    padding: calc(80px + var(--spacing-16)) 0 var(--spacing-16);
+    padding: calc(var(--header-height) + var(--spacing-8)) 0 var(--spacing-16);
     background: linear-gradient(135deg, #1a2332 0%, #2d3748 25%, #4a5568 50%, #718096 75%, #e2e8f0 100%);
     color: white;
     text-align: center;
     position: relative;
     overflow: hidden;
-    margin-bottom: var(--spacing-16);
 }
 
 /* Services Page Specific Background */
