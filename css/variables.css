@@ -70,6 +70,22 @@
     --transition-fast: 150ms ease-in-out;
     --transition-normal: 300ms ease-in-out;
     --transition-slow: 500ms ease-in-out;
+    
+    /* === HEADER HEIGHT === */
+    --header-height: 80px; /* Desktop header height */
+}
+
+/* Responsive header heights for mobile devices */
+@media (max-width: 768px) {
+    :root {
+        --header-height: 70px; /* Tablet header height */
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --header-height: 60px; /* Mobile header height */
+    }
 }
 
 /* ==================================================

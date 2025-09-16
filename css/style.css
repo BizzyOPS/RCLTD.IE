@@ -6,11 +6,19 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+/* Global Header Offset - Apply to all pages */
+html {
+    scroll-padding-top: var(--header-height);
+}
+
+main {
+    padding-top: var(--header-height);
+}
 /* Hero Section with Cover Image Background */
 .hero {
     position: relative;
     min-height: 80vh;
-    margin-top: 80px;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -145,7 +153,6 @@
 @media (max-width: 768px) {
     .hero {
         min-height: 70vh;
-        margin-top: 70px;
     }
     .hero-main-title {
         font-size: 2.5rem;
@@ -171,7 +178,6 @@
 @media (max-width: 480px) {
     .hero {
         min-height: 60vh;
-        margin-top: 60px;
     }
     .hero-main-title {
         font-size: 2rem;
@@ -201,17 +207,11 @@
         font-size: 0.9rem;
     }
     
-    /* Mobile header compensation */
-    .store-hero {
-        padding-top: calc(5rem + 100px); /* Mobile padding + header height */
-    }
+    /* Mobile header compensation - removed, handled by global solution */
 }
 
 @media (max-width: 480px) {
-    /* Small mobile header compensation */
-    .store-hero {
-        padding-top: calc(4rem + 90px); /* Small mobile padding + header height */
-    }
+    /* Small mobile header compensation - removed, handled by global solution */
 }
 /* High DPI / Retina Display Support */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
@@ -706,9 +706,9 @@ body {
     /* No default background - let theme classes handle it */
 }
 
-/* Fixed header compensation for store-hero sections */
+/* Store hero section styling - no additional padding needed with global main padding */
 .store-hero {
-    padding-top: calc(6rem + 120px); /* Original padding + header height */
+    /* padding-top removed - handled by global main padding */
 }
 /* Header with white background */
 .header.on-dark {
