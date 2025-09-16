@@ -552,6 +552,13 @@ body {
     box-shadow: var(--shadow-md);
 }
 
+.btn-compact {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    min-width: auto;
+}
+
 .btn-secondary {
     display: inline-flex;
     align-items: center;
