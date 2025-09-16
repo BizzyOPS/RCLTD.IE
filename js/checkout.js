@@ -54,8 +54,10 @@ CheckoutManager.prototype.renderCheckoutItems = function() {
         var container = document.getElementById('checkout-items');
         if (!container) return;
 
-        // Clear container safely
-        container.replaceChildren();
+        // Clear container safely (IE-compatible)
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
 
         if (this.cart.length === 0) {
             var emptyDiv = document.createElement('div');
@@ -112,7 +114,7 @@ CheckoutManager.prototype.renderCheckoutItems = function() {
         }
     }
 
-    updateCheckoutTotals() {
+CheckoutManager.prototype.updateCheckoutTotals = function() {
         var subtotal = this.cart.reduce(function(sum, item) { return sum + (item.price * item.quantity); }, 0);
         var shipping = subtotal > 500 ? 0 : 25; // Free shipping over €500
         var vat = (subtotal + shipping) * 0.23; // 23% VAT
@@ -133,7 +135,7 @@ CheckoutManager.prototype.renderCheckoutItems = function() {
         }
     }
 
-    togglePaymentFields() {
+CheckoutManager.prototype.togglePaymentFields = function() {
         var selectedPaymentEl = document.querySelector('input[name="payment"]:checked');
         var selectedPayment = selectedPaymentEl ? selectedPaymentEl.value : null;
         var cardFields = document.getElementById('card-fields');
@@ -160,7 +162,7 @@ CheckoutManager.prototype.renderCheckoutItems = function() {
         }
     }
 
-    toggleBillingFields() {
+CheckoutManager.prototype.toggleBillingFields = function() {
         var sameAsShipping = document.getElementById('same-as-shipping');
         var billingFields = document.getElementById('billing-fields');
         
@@ -169,7 +171,7 @@ CheckoutManager.prototype.renderCheckoutItems = function() {
         }
     }
 
-    formatCardNumber(e) {
+CheckoutManager.prototype.formatCardNumber = function(e) {
         var value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
         var matches = value.match(/.{1,4}/g);
         var formattedValue = matches ? matches.join(' ') : value;
@@ -181,7 +183,7 @@ CheckoutManager.prototype.renderCheckoutItems = function() {
         e.target.value = formattedValue;
     }
 
-    formatExpiry(e) {
+CheckoutManager.prototype.formatExpiry = function(e) {
         var value = e.target.value.replace(/\D/g, '');
         
         if (value.length >= 2) {
@@ -191,12 +193,12 @@ CheckoutManager.prototype.renderCheckoutItems = function() {
         e.target.value = value;
     }
 
-    formatCVV(e) {
+CheckoutManager.prototype.formatCVV = function(e) {
         var value = e.target.value.replace(/\D/g, '');
         e.target.value = value.substring(0, 4);
     }
 
-    initFormValidation() {
+CheckoutManager.prototype.initFormValidation = function() {
         var form = document.getElementById('checkout-form');
         if (!form) return;
 
@@ -210,7 +212,7 @@ CheckoutManager.prototype.renderCheckoutItems = function() {
         }
     }
 
-    validateField(field) {
+CheckoutManager.prototype.validateField = function(field) {
         var isValid = field.checkValidity();
         
         field.classList.toggle('invalid', !isValid);
@@ -219,11 +221,11 @@ CheckoutManager.prototype.renderCheckoutItems = function() {
         return isValid;
     }
 
-    clearFieldError(field) {
+CheckoutManager.prototype.clearFieldError = function(field) {
         field.classList.remove('invalid');
     }
 
-    validateForm() {
+CheckoutManager.prototype.validateForm = function() {
         var form = document.getElementById('checkout-form');
         if (!form) return false;
 
@@ -260,7 +262,7 @@ CheckoutManager.prototype.renderCheckoutItems = function() {
         return isValid;
     }
 
-    async handleCheckoutSubmit(e) {
+CheckoutManager.prototype.handleCheckoutSubmit = function(e) {
         e.preventDefault();
 
         if (!this.validateForm()) {
@@ -276,16 +278,29 @@ CheckoutManager.prototype.renderCheckoutItems = function() {
         var formData = new FormData(e.target);
         var orderData = this.collectOrderData(formData);
 
-        try {
-            await this.processOrder(orderData);
-        } catch (error) {
-            this.showError('There was an error processing your order. Please try again.');
-        }
+        var self = this;
+        this.processOrder(orderData)
+            .then(function() {
+                // Order processed successfully
+            })
+            .catch(function(error) {
+                self.showError('There was an error processing your order. Please try again.');
+            });
     }
 
-    collectOrderData(formData) {
+CheckoutManager.prototype.collectOrderData = function(formData) {
         var data = {};
-        for (var pair of formData.entries()) {
+        var entries = [];
+        if (formData.entries) {
+            var iterator = formData.entries();
+            var entry = iterator.next();
+            while (!entry.done) {
+                entries.push(entry.value);
+                entry = iterator.next();
+            }
+        }
+        for (var i = 0; i < entries.length; i++) {
+            var pair = entries[i];
             data[pair[0]] = pair[1];
         }
         var paymentMethodEl = document.querySelector('input[name="payment"]:checked');
@@ -315,15 +330,11 @@ CheckoutManager.prototype.renderCheckoutItems = function() {
             },
             payment: {
                 method: paymentMethod,
-                ...(paymentMethod === 'card' && {
-                    cardNumber: data.cardNumber,
-                    expiry: data.expiry,
-                    cvv: data.cvv,
-                    cardName: data.cardName
-                }),
-                ...(paymentMethod === 'quote' && {
-                    notes: data.quoteNotes
-                })
+                cardNumber: (paymentMethod === 'card' ? data.cardNumber : undefined),
+                expiry: (paymentMethod === 'card' ? data.expiry : undefined),
+                cvv: (paymentMethod === 'card' ? data.cvv : undefined),
+                cardName: (paymentMethod === 'card' ? data.cardName : undefined),
+                notes: (paymentMethod === 'quote' ? data.quoteNotes : undefined)
             },
             items: this.cart,
             totals: this.calculateTotals(),
@@ -332,7 +343,7 @@ CheckoutManager.prototype.renderCheckoutItems = function() {
         };
     }
 
-    calculateTotals() {
+CheckoutManager.prototype.calculateTotals = function() {
         var subtotal = this.cart.reduce(function(sum, item) { return sum + (item.price * item.quantity); }, 0);
         var shipping = subtotal > 500 ? 0 : 25;
         var vat = (subtotal + shipping) * 0.23;
@@ -341,7 +352,7 @@ CheckoutManager.prototype.renderCheckoutItems = function() {
         return { subtotal: subtotal, shipping: shipping, vat: vat, total: total };
     }
 
-    processOrder(orderData) {
+CheckoutManager.prototype.processOrder = function(orderData) {
         var self = this;
         var submitBtn = document.querySelector('button[type="submit"]');
         var originalText = submitBtn.textContent;
@@ -352,33 +363,36 @@ CheckoutManager.prototype.renderCheckoutItems = function() {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Processing...';
 
-        try {
             // Simulate order processing
             self.simulateOrderProcessing(orderData).then(function() {
-            
-            // Clear cart and redirect to confirmation
-            localStorage.removeItem('rcltd_cart');
-            localStorage.setItem('rcltd_last_order', JSON.stringify(orderData));
-            
-            window.location.href = 'order-confirmation.html';
-            
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalText;
-        }
-    }
+                // Clear cart and redirect to confirmation
+                localStorage.removeItem('rcltd_cart');
+                localStorage.setItem('rcltd_last_order', JSON.stringify(orderData));
+                
+                window.location.href = 'order-confirmation.html';
+                resolve();
+            }).catch(function(error) {
+                reject(error);
+            }).finally(function() {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            });
+        });
 
-    async simulateOrderProcessing(orderData) {
+CheckoutManager.prototype.simulateOrderProcessing = function(orderData) {
         // Simulate API call delay
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        
-        // Log order for development
-        
-        // Here you would integrate with real payment processing
-        // and order management systems
+        return new Promise(function(resolve) {
+            setTimeout(function() {
+                // Log order for development
+                
+                // Here you would integrate with real payment processing
+                // and order management systems
+                resolve();
+            }, 2000);
+        });
     }
 
-    showError(message) {
+CheckoutManager.prototype.showError = function(message) {
         // Create error notification safely using DOM methods
         var notification = document.createElement('div');
         notification.className = 'checkout-error';
@@ -423,7 +437,7 @@ CheckoutManager.prototype.renderCheckoutItems = function() {
         }, 5000);
     }
 
-    showSuccess(message) {
+CheckoutManager.prototype.showSuccess = function(message) {
         // Create success notification safely using DOM methods
         var notification = document.createElement('div');
         notification.className = 'checkout-success';
@@ -446,18 +460,18 @@ CheckoutManager.prototype.renderCheckoutItems = function() {
         document.body.appendChild(notification);
 
         // Show notification
-        setTimeout(() => notification.classList.add('show'), 100);
+        setTimeout(function() { notification.classList.add('show'); }, 100);
 
         // Auto hide after 3 seconds
-        setTimeout(() => {
+        setTimeout(function() {
             notification.classList.remove('show');
-            setTimeout(() => document.body.removeChild(notification), 300);
+            setTimeout(function() { document.body.removeChild(notification); }, 300);
         }, 3000);
     }
 }
 
 // Initialize checkout when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('checkout-form')) {
         new CheckoutManager();
     }

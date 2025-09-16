@@ -213,7 +213,8 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
     
     // ==================== MODULE AND CHAPTER NAVIGATION ====================
     
-    showModule(moduleId, chapterId = 1) {
+SafetyTrainingSystem.prototype.showModule = function(moduleId, chapterId) {
+        chapterId = chapterId || 1;
         var module = trainingData.modules[moduleId];
         if (!module) {
             return;
@@ -222,70 +223,65 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
         this.currentModule = moduleId;
         this.currentChapter = parseInt(chapterId);
         
-        var moduleHTML = `
-            <div class="container">
-                <div class="training-breadcrumb">
-                    <button class="breadcrumb-btn" onclick="trainingSystem.showModuleSelection()" 
-                            aria-label="Return to module selection">
-                        ← All Modules
-                    </button>
-                    <span class="breadcrumb-separator">›</span>
-                    <span class="breadcrumb-current">${this.escapeHtml(module.title)}</span>
-                </div>
-                
-                <div class="module-header-section">
-                    <h2 class="module-title">${this.escapeHtml(module.title)}</h2>
-                    <p class="module-description">${this.escapeHtml(module.description)}</p>
-                    <div class="module-meta">
-                        <span class="meta-item">📅 ${this.escapeHtml(module.duration)}</span>
-                        <span class="meta-item">📈 ${this.escapeHtml(module.difficulty)}</span>
-                        <span class="meta-item">✅ ${this.getCompletedChaptersCount(moduleId)}/${Object.keys(module.chapters).length} Chapters</span>
-                    </div>
-                </div>
-                
-                <div class="training-content">
-                    <div class="chapter-navigation">
-                        <h3>Chapters</h3>
-                        <div class="chapter-list" role="list">
-                            ${Object.values(module.chapters).map((chapter, index) => {
-                                var chapterNum = index + 1;
-                                var isCompleted = this.isChapterCompleted(moduleId, chapterNum);
-                                var isCurrent = chapterNum === this.currentChapter;
+        var self = this;
+        var moduleHTML = '<div class="container">' +
+            '<div class="training-breadcrumb">' +
+                '<button class="breadcrumb-btn" onclick="trainingSystem.showModuleSelection()" ' +
+                        'aria-label="Return to module selection">' +
+                    '← All Modules' +
+                '</button>' +
+                '<span class="breadcrumb-separator">›</span>' +
+                '<span class="breadcrumb-current">' + this.escapeHtml(module.title) + '</span>' +
+            '</div>' +
+            '<div class="module-header-section">' +
+                '<h2 class="module-title">' + this.escapeHtml(module.title) + '</h2>' +
+                '<p class="module-description">' + this.escapeHtml(module.description) + '</p>' +
+                '<div class="module-meta">' +
+                    '<span class="meta-item">📅 ' + this.escapeHtml(module.duration) + '</span>' +
+                    '<span class="meta-item">📈 ' + this.escapeHtml(module.difficulty) + '</span>' +
+                    '<span class="meta-item">✅ ' + this.getCompletedChaptersCount(moduleId) + '/' + Object.keys(module.chapters).length + ' Chapters</span>' +
+                '</div>' +
+            '</div>' +
+            '<div class="training-content">' +
+                '<div class="chapter-navigation">' +
+                    '<h3>Chapters</h3>' +
+                    '<div class="chapter-list" role="list">' +
+                        Object.values(module.chapters).map(function(chapter, index) {
+                            var chapterNum = index + 1;
+                            var isCompleted = self.isChapterCompleted(moduleId, chapterNum);
+                            var isCurrent = chapterNum === self.currentChapter;
                                 
-                                return `
-                                    <button class="chapter-item ${isCurrent ? 'current' : ''} ${isCompleted ? 'completed' : ''}"
-                                            onclick="trainingSystem.showChapter('${this.escapeAttr(moduleId)}', ${chapterNum})"
-                                            role="listitem"
-                                            aria-current="${isCurrent ? 'page' : 'false'}"
-                                            aria-describedby="chapter-${chapterNum}-status">
-                                        <div class="chapter-number">${chapterNum}</div>
-                                        <div class="chapter-info">
-                                            <h4 class="chapter-title">${this.escapeHtml(chapter.title)}</h4>
-                                            <div class="chapter-status" id="chapter-${chapterNum}-status">
-                                                ${isCompleted ? '✓ Completed' : 'Not started'}
-                                            </div>
-                                        </div>
-                                    </button>
-                                `;
-                            }).join('')}
-                        </div>
-                    </div>
+                            return '<button class="chapter-item ' + (isCurrent ? 'current' : '') + ' ' + (isCompleted ? 'completed' : '') + '"' +
+                                        'onclick="trainingSystem.showChapter(\'' + self.escapeAttr(moduleId) + '\', ' + chapterNum + ')"' +
+                                        'role="listitem"' +
+                                        'aria-current="' + (isCurrent ? 'page' : 'false') + '"' +
+                                        'aria-describedby="chapter-' + chapterNum + '-status">' +
+                                    '<div class="chapter-number">' + chapterNum + '</div>' +
+                                    '<div class="chapter-info">' +
+                                        '<h4 class="chapter-title">' + self.escapeHtml(chapter.title) + '</h4>' +
+                                        '<div class="chapter-status" id="chapter-' + chapterNum + '-status">' +
+                                            (isCompleted ? '✓ Completed' : 'Not started') +
+                                        '</div>' +
+                                    '</div>' +
+                                '</button>';
+                        }).join('') +
+                    '</div>' +
+                '</div>' +
                     
-                    <div class="chapter-content">
-                        ${this.renderChapter(moduleId, this.currentChapter)}
-                    </div>
-                </div>
-            </div>
-        `;
+                    '<div class="chapter-content">' +
+                        self.renderChapter(moduleId, self.currentChapter) +
+                    '</div>' +
+                '</div>' +
+            '</div>';
         
         this.trainingContainer.innerHTML = moduleHTML;
         this.updateURL(moduleId, this.currentChapter);
-        this.announce(`${module.title} module loaded. Currently viewing chapter ${this.currentChapter}.`);
+        this.announce(module.title + ' module loaded. Currently viewing chapter ' + this.currentChapter + '.');
     }
     
-    showChapter(moduleId, chapterId) {
+SafetyTrainingSystem.prototype.showChapter = function(moduleId, chapterId) {
         var module = trainingData.modules[moduleId];
-        var chapter = module?.chapters[chapterId];
+        var chapter = module && module.chapters ? module.chapters[chapterId] : null;
         
         if (!chapter) {
             return;
@@ -297,7 +293,7 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
         this.showModule(moduleId, chapterId);
     }
     
-    renderChapter(moduleId, chapterId) {
+SafetyTrainingSystem.prototype.renderChapter = function(moduleId, chapterId) {
         var module = trainingData.modules[moduleId];
         var chapter = module.chapters[chapterId];
         
@@ -308,73 +304,64 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
         var nextChapter = module.chapters[chapterId + 1];
         var prevChapter = module.chapters[chapterId - 1];
         
-        return `
-            <div class="chapter-container">
-                <div class="chapter-header">
-                    <h3 class="chapter-title">Chapter ${chapterId}: ${chapter.title}</h3>
-                    <div class="learning-objectives">
-                        <h4>Learning Objectives</h4>
-                        <ul>
-                            ${chapter.learningObjectives.map(obj => `<li>${obj}</li>`).join('')}
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="chapter-content-text">
-                    ${chapter.content}
-                </div>
-                
-                <div class="chapter-questions">
-                    <h4>Knowledge Check</h4>
-                    <p>Test your understanding of the concepts covered in this chapter.</p>
-                    ${chapter.questions.map((question, index) => 
-                        this.renderQuestion(moduleId, chapterId, index, question)
-                    ).join('')}
-                </div>
-                
-                <div class="chapter-navigation-footer">
-                    <div class="nav-buttons">
-                        ${prevChapter ? `
-                            <button class="btn-secondary training-nav-btn" 
-                                    onclick="trainingSystem.showChapter('${moduleId}', ${chapterId - 1})"
-                                    aria-label="Go to previous chapter: ${prevChapter.title}">
-                                ← Previous: ${prevChapter.title}
-                            </button>
-                        ` : ''}
-                        
-                        <button class="btn-primary complete-chapter-btn training-nav-btn"
-                                onclick="trainingSystem.completeChapter('${moduleId}', ${chapterId})"
-                                ${this.isChapterCompleted(moduleId, chapterId) ? 'disabled' : ''}
-                                aria-describedby="complete-chapter-help">
-                            ${this.isChapterCompleted(moduleId, chapterId) ? '✓ Chapter Completed' : 'Mark Complete'}
-                        </button>
-                        
-                        ${nextChapter ? `
-                            <button class="btn-secondary training-nav-btn" 
-                                    onclick="trainingSystem.showChapter('${moduleId}', ${chapterId + 1})"
-                                    aria-label="Go to next chapter: ${nextChapter.title}">
-                                Next: ${nextChapter.title} →
-                            </button>
-                        ` : `
-                            <button class="btn-primary training-nav-btn" 
-                                    onclick="trainingSystem.showModuleSelection()"
-                                    aria-label="Return to module selection">
-                                Back to Modules →
-                            </button>
-                        `}
-                    </div>
-                    <div id="complete-chapter-help" class="help-text">
-                        Complete all questions above before marking this chapter as complete.
-                    </div>
-                </div>
-            </div>
-        `;
+        var self = this;
+        return '<div class="chapter-container">' +
+            '<div class="chapter-header">' +
+                '<h3 class="chapter-title">Chapter ' + chapterId + ': ' + chapter.title + '</h3>' +
+                '<div class="learning-objectives">' +
+                    '<h4>Learning Objectives</h4>' +
+                    '<ul>' +
+                        chapter.learningObjectives.map(function(obj) { return '<li>' + obj + '</li>'; }).join('') +
+                    '</ul>' +
+                '</div>' +
+            '</div>' +
+            '<div class="chapter-content-text">' +
+                chapter.content +
+            '</div>' +
+            '<div class="chapter-questions">' +
+                '<h4>Knowledge Check</h4>' +
+                '<p>Test your understanding of the concepts covered in this chapter.</p>' +
+                chapter.questions.map(function(question, index) {
+                    return self.renderQuestion(moduleId, chapterId, index, question);
+                }).join('') +
+            '</div>' +
+            '<div class="chapter-navigation-footer">' +
+                '<div class="nav-buttons">' +
+                    (prevChapter ? 
+                        '<button class="btn-secondary training-nav-btn" ' +
+                                'onclick="trainingSystem.showChapter(\'' + moduleId + '\', ' + (chapterId - 1) + ')" ' +
+                                'aria-label="Go to previous chapter: ' + prevChapter.title + '">' +
+                            '← Previous: ' + prevChapter.title +
+                        '</button>' : '') +
+                    '<button class="btn-primary complete-chapter-btn training-nav-btn" ' +
+                            'onclick="trainingSystem.completeChapter(\'' + moduleId + '\', ' + chapterId + ')" ' +
+                            (this.isChapterCompleted(moduleId, chapterId) ? 'disabled' : '') + ' ' +
+                            'aria-describedby="complete-chapter-help">' +
+                        (this.isChapterCompleted(moduleId, chapterId) ? '✓ Chapter Completed' : 'Mark Complete') +
+                    '</button>' +
+                    (nextChapter ? 
+                        '<button class="btn-secondary training-nav-btn" ' +
+                                'onclick="trainingSystem.showChapter(\'' + moduleId + '\', ' + (chapterId + 1) + ')" ' +
+                                'aria-label="Go to next chapter: ' + nextChapter.title + '">' +
+                            'Next: ' + nextChapter.title + ' →' +
+                        '</button>' : 
+                        '<button class="btn-primary training-nav-btn" ' +
+                                'onclick="trainingSystem.showModuleSelection()" ' +
+                                'aria-label="Return to module selection">' +
+                            'Back to Modules →' +
+                        '</button>') +
+                '</div>' +
+                '<div id="complete-chapter-help" class="help-text">' +
+                    'Complete all questions above before marking this chapter as complete.' +
+                '</div>' +
+            '</div>' +
+        '</div>';
     }
     
     // ==================== QUESTION RENDERING AND HANDLING ====================
     
-    renderQuestion(moduleId, chapterId, questionIndex, question) {
-        var questionId = `${moduleId}-${chapterId}-${questionIndex}`;
+SafetyTrainingSystem.prototype.renderQuestion = function(moduleId, chapterId, questionIndex, question) {
+        var questionId = moduleId + '-' + chapterId + '-' + questionIndex;
         var userAnswer = this.userAnswers[questionId];
         var isAnswered = userAnswer !== undefined;
         
@@ -387,7 +374,8 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
         return '';
     }
     
-    renderMultipleChoice(questionId, question, userAnswer, isAnswered) {
+SafetyTrainingSystem.prototype.renderMultipleChoice = function(questionId, question, userAnswer, isAnswered) {
+        var self = this;
         return `
             <div class="question-container multiple-choice" data-question-id="${questionId}">
                 <div class="question-header">
@@ -444,7 +432,7 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
         `;
     }
     
-    renderFillInBlank(questionId, question, userAnswer, isAnswered) {
+SafetyTrainingSystem.prototype.renderFillInBlank = function(questionId, question, userAnswer, isAnswered) {
         var blanks = question.blanks;
         var userBlanks = userAnswer || [];
         
@@ -512,7 +500,7 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
     
     // ==================== ANSWER HANDLING ====================
     
-    handleMultipleChoiceAnswer(questionId, selectedOption) {
+SafetyTrainingSystem.prototype.handleMultipleChoiceAnswer = function(questionId, selectedOption) {
         this.userAnswers[questionId] = selectedOption;
         this.saveUserAnswers();
         
@@ -531,7 +519,7 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
         }
     }
     
-    handleFillInBlankInput(questionId, blankIndex, value) {
+SafetyTrainingSystem.prototype.handleFillInBlankInput = function(questionId, blankIndex, value) {
         if (!this.userAnswers[questionId]) {
             this.userAnswers[questionId] = [];
         }
@@ -539,7 +527,7 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
         this.saveUserAnswers();
     }
     
-    checkFillInBlankAnswer(questionId) {
+SafetyTrainingSystem.prototype.checkFillInBlankAnswer = function(questionId) {
         var [moduleId, chapterId, questionIndex] = questionId.split('-');
         var module = trainingData.modules[moduleId];
         var question = module.chapters[chapterId].questions[questionIndex];
@@ -563,7 +551,8 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
         }
     }
     
-    checkBlankAnswer(userAnswer, correctAnswer, flexibleAnswers = []) {
+SafetyTrainingSystem.prototype.checkBlankAnswer = function(userAnswer, correctAnswer, flexibleAnswers) {
+        flexibleAnswers = flexibleAnswers || [];
         if (!userAnswer || !correctAnswer) return false;
         
         var normalizedUser = userAnswer.trim().toLowerCase();
@@ -584,7 +573,7 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
         return false;
     }
     
-    isAllBlanksCorrect(questionId, question) {
+SafetyTrainingSystem.prototype.isAllBlanksCorrect = function(questionId, question) {
         var userBlanks = this.userAnswers[questionId] || [];
         return question.blanks.every((correctAnswer, index) => 
             this.checkBlankAnswer(userBlanks[index], correctAnswer, question.flexibleAnswers)
@@ -593,7 +582,7 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
     
     // ==================== PROGRESS TRACKING ====================
     
-    loadProgress() {
+SafetyTrainingSystem.prototype.loadProgress = function() {
         try {
             var saved = localStorage.getItem('rcltd-training-progress');
             return saved ? JSON.parse(saved) : {};
@@ -602,14 +591,14 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
         }
     }
     
-    saveProgress() {
+SafetyTrainingSystem.prototype.saveProgress = function() {
         try {
             localStorage.setItem('rcltd-training-progress', JSON.stringify(this.progress));
         } catch (e) {
         }
     }
     
-    loadUserAnswers() {
+SafetyTrainingSystem.prototype.loadUserAnswers = function() {
         try {
             var saved = localStorage.getItem('rcltd-training-answers');
             return saved ? JSON.parse(saved) : {};
@@ -618,14 +607,14 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
         }
     }
     
-    saveUserAnswers() {
+SafetyTrainingSystem.prototype.saveUserAnswers = function() {
         try {
             localStorage.setItem('rcltd-training-answers', JSON.stringify(this.userAnswers));
         } catch (e) {
         }
     }
     
-    completeChapter(moduleId, chapterId) {
+SafetyTrainingSystem.prototype.completeChapter = function(moduleId, chapterId) {
         if (!this.progress[moduleId]) {
             this.progress[moduleId] = {};
         }
@@ -642,7 +631,7 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
         this.announce(`Chapter ${chapterId} completed with ${score}% score!`);
     }
     
-    calculateChapterScore(moduleId, chapterId) {
+SafetyTrainingSystem.prototype.calculateChapterScore = function(moduleId, chapterId) {
         var module = trainingData.modules[moduleId];
         if (!module || !module.chapters[chapterId]) return 0;
         
@@ -673,7 +662,7 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
         return Math.round((correctAnswers / questions.length) * 100);
     }
     
-    showGradingResults(moduleId, chapterId, score) {
+SafetyTrainingSystem.prototype.showGradingResults = function(moduleId, chapterId, score) {
         var passed = score >= 90;
         var gradeElement = document.createElement('div');
         gradeElement.className = `grading-modal ${passed ? 'passed' : 'failed'}`;
@@ -776,7 +765,7 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
         }, 100);
     }
     
-    showCelebrationEffect() {
+SafetyTrainingSystem.prototype.showCelebrationEffect = function() {
         var celebration = document.createElement('div');
         celebration.className = 'celebration-container';
         
@@ -808,7 +797,7 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
         }, 4000);
     }
     
-    createConfetti(container) {
+SafetyTrainingSystem.prototype.createConfetti = function(container) {
         var colors = ['#0891b2', '#67e8f9', '#f59e0b', '#10b981', '#f43f5e'];
         
         for (var i = 0; i < 50; i++) {
@@ -829,7 +818,7 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
         }
     }
     
-    retryChapter(moduleId, chapterId) {
+SafetyTrainingSystem.prototype.retryChapter = function(moduleId, chapterId) {
         // Clear chapter answers
         var module = trainingData.modules[moduleId];
         if (module && module.chapters[chapterId]) {
@@ -857,16 +846,16 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
         this.announce('Chapter reset. You can now retry the questions.');
     }
     
-    isChapterCompleted(moduleId, chapterId) {
+SafetyTrainingSystem.prototype.isChapterCompleted = function(moduleId, chapterId) {
         return !!(this.progress[moduleId] && this.progress[moduleId][chapterId] === true);
     }
     
-    getCompletedChaptersCount(moduleId) {
+SafetyTrainingSystem.prototype.getCompletedChaptersCount = function(moduleId) {
         if (!this.progress[moduleId]) return 0;
         return Object.values(this.progress[moduleId]).filter(Boolean).length;
     }
     
-    getModuleProgress(moduleId) {
+SafetyTrainingSystem.prototype.getModuleProgress = function(moduleId) {
         var module = trainingData.modules[moduleId];
         if (!module) return 0;
         
@@ -878,14 +867,14 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
     
     // ==================== URL ROUTING ====================
     
-    updateURL(moduleId, chapterId) {
+SafetyTrainingSystem.prototype.updateURL = function(moduleId, chapterId) {
         var newHash = `#/module/${moduleId}/chapter/${chapterId}`;
         if (window.location.hash !== newHash) {
             history.pushState(null, null, newHash);
         }
     }
     
-    handleHashRoute() {
+SafetyTrainingSystem.prototype.handleHashRoute = function() {
         var hash = window.location.hash;
         
         // Parse hash route: #/module/{moduleId}/chapter/{chapterId}
@@ -907,7 +896,7 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
     
     // ==================== EVENT LISTENERS ====================
     
-    setupEventListeners() {
+SafetyTrainingSystem.prototype.setupEventListeners = function() {
         // Module start buttons
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('module-start-btn')) {
@@ -927,7 +916,7 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
     
     // ==================== UTILITY METHODS ====================
     
-    resetProgress() {
+SafetyTrainingSystem.prototype.resetProgress = function() {
         if (confirm('Are you sure you want to reset all training progress? This action cannot be undone.')) {
             this.progress = {};
             this.userAnswers = {};
@@ -938,7 +927,7 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
         }
     }
     
-    exportProgress() {
+SafetyTrainingSystem.prototype.exportProgress = function() {
         var data = {
             progress: this.progress,
             answers: this.userAnswers,
@@ -957,7 +946,6 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
         
         this.announce('Training progress exported successfully.');
     }
-}
 
 // Initialize the training system when the script loads
 var trainingSystem = new SafetyTrainingSystem();

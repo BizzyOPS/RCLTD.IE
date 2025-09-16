@@ -597,7 +597,7 @@ ControllerBot.prototype.renderMessage = function(message) {
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
-    formatMessage(content) {
+ControllerBot.prototype.formatMessage = function(content) {
         // Convert markdown-like formatting to HTML with navigation links (bot messages only)
         // First escape any existing HTML to prevent injection
         return this.escapeHtml(content)
@@ -615,14 +615,14 @@ ControllerBot.prototype.renderMessage = function(message) {
             // Note: \n already converted to <br> by escapeHtml
     }
 
-    escapeHtml(text) {
+ControllerBot.prototype.escapeHtml = function(text) {
         // Escape HTML in user messages to prevent XSS
         var div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML.replace(/\n/g, '<br>');
     }
 
-    showTypingIndicator() {
+ControllerBot.prototype.showTypingIndicator = function() {
         this.isTyping = true;
         var messagesContainer = document.getElementById('chatbot-messages');
         
@@ -643,14 +643,13 @@ ControllerBot.prototype.renderMessage = function(message) {
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
-    hideTypingIndicator() {
+ControllerBot.prototype.hideTypingIndicator = function() {
         this.isTyping = false;
         var typingIndicator = document.getElementById('typing-indicator');
         if (typingIndicator) {
             typingIndicator.remove();
         }
     }
-}
 
 // Initialize Controller Bot when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {

@@ -144,44 +144,42 @@ RCStore.prototype.renderCartItems = function() {
         var container = cartItems || cartItemsList;
         
         if (this.cart.length === 0) {
-            container.innerHTML = `
-                <div class="cart-empty">
-                    <p>Your cart is empty</p>
-                    <p class="cart-empty-subtitle">Add some products to get started</p>
-                </div>
-            `;
+            container.innerHTML = '<div class="cart-empty">' +
+                '<p>Your cart is empty</p>' +
+                '<p class="cart-empty-subtitle">Add some products to get started</p>' +
+                '</div>';
             return;
         }
 
-        var itemsHtml = this.cart.map(item => `
-            <div class="cart-item" data-id="${item.id}">
-                <div class="cart-item-image">
-                    <img src="${item.image || 'images/placeholder-product.png'}" alt="${item.name}">
-                </div>
-                <div class="cart-item-details">
-                    <h4 class="cart-item-name">${item.name}</h4>
-                    <p class="cart-item-price">€${item.price.toFixed(2)}</p>
-                    <div class="cart-item-controls">
-                        <div class="quantity-controls">
-                            <button class="qty-btn minus" onclick="store.updateCartQuantity('${item.id}', ${item.quantity - 1})">-</button>
-                            <span class="quantity">${item.quantity}</span>
-                            <button class="qty-btn plus" onclick="store.updateCartQuantity('${item.id}', ${item.quantity + 1})">+</button>
-                        </div>
-                        <button class="remove-btn" onclick="store.removeFromCart('${item.id}')">Remove</button>
-                    </div>
-                </div>
-                <div class="cart-item-total">
-                    €${(item.price * item.quantity).toFixed(2)}
-                </div>
-            </div>
-        `).join('');
+        var itemsHtml = this.cart.map(function(item) {
+            return '<div class="cart-item" data-id="' + item.id + '">' +
+                '<div class="cart-item-image">' +
+                    '<img src="' + (item.image || 'images/placeholder-product.png') + '" alt="' + item.name + '">' +
+                '</div>' +
+                '<div class="cart-item-details">' +
+                    '<h4 class="cart-item-name">' + item.name + '</h4>' +
+                    '<p class="cart-item-price">€' + item.price.toFixed(2) + '</p>' +
+                    '<div class="cart-item-controls">' +
+                        '<div class="quantity-controls">' +
+                            '<button class="qty-btn minus" onclick="store.updateCartQuantity(\'' + item.id + '\', ' + (item.quantity - 1) + ')">-</button>' +
+                            '<span class="quantity">' + item.quantity + '</span>' +
+                            '<button class="qty-btn plus" onclick="store.updateCartQuantity(\'' + item.id + '\', ' + (item.quantity + 1) + ')">+</button>' +
+                        '</div>' +
+                        '<button class="remove-btn" onclick="store.removeFromCart(\'' + item.id + '\')'>Remove</button>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="cart-item-total">' +
+                    '€' + (item.price * item.quantity).toFixed(2) +
+                '</div>' +
+            '</div>';
+        }).join('');
 
         container.innerHTML = itemsHtml;
         this.updateCartTotals();
     }
 
-    updateCartTotals() {
-        var subtotal = this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+RCStore.prototype.updateCartTotals = function() {
+        var subtotal = this.cart.reduce(function(sum, item) { return sum + (item.price * item.quantity); }, 0);
         var shipping = subtotal > 500 ? 0 : 25; // Free shipping over €500
         var vat = (subtotal + shipping) * 0.23; // 23% VAT
         var total = subtotal + shipping + vat;
@@ -198,15 +196,16 @@ RCStore.prototype.renderCartItems = function() {
             'checkout-total': total
         };
 
-        Object.entries(elements).forEach(([id, value]) => {
+        for (var id in elements) {
+            var value = elements[id];
             var element = document.getElementById(id);
             if (element) {
-                element.textContent = `€${value.toFixed(2)}`;
+                element.textContent = '€' + value.toFixed(2);
             }
-        });
+        }
     }
 
-    toggleCart() {
+RCStore.prototype.toggleCart = function() {
         var cartSidebar = document.getElementById('cart-sidebar');
         var cartOverlay = document.getElementById('cart-overlay');
         
@@ -217,7 +216,7 @@ RCStore.prototype.renderCartItems = function() {
         }
     }
 
-    closeCart() {
+RCStore.prototype.closeCart = function() {
         var cartSidebar = document.getElementById('cart-sidebar');
         var cartOverlay = document.getElementById('cart-overlay');
         
@@ -228,7 +227,7 @@ RCStore.prototype.renderCartItems = function() {
         }
     }
 
-    showCartNotification(message) {
+RCStore.prototype.showCartNotification = function(message) {
         // Show cart sidebar when items are added
         this.toggleCart();
         
@@ -239,23 +238,23 @@ RCStore.prototype.renderCartItems = function() {
         document.body.appendChild(notification);
 
         // Show notification
-        setTimeout(() => notification.classList.add('show'), 100);
+        setTimeout(function() { notification.classList.add('show'); }, 100);
 
         // Hide and remove notification
-        setTimeout(() => {
+        setTimeout(function() {
             notification.classList.remove('show');
-            setTimeout(() => document.body.removeChild(notification), 300);
+            setTimeout(function() { document.body.removeChild(notification); }, 300);
         }, 3000);
     }
 
     // Product Management
-    loadProducts() {
+RCStore.prototype.loadProducts = function() {
         // This will be populated when products are loaded from external source
         // For now, we'll show the empty state
         this.renderProducts();
     }
 
-    renderProducts() {
+RCStore.prototype.renderProducts = function() {
         var container = document.getElementById('products-container');
         if (!container) return;
 
@@ -276,7 +275,7 @@ RCStore.prototype.renderCartItems = function() {
         container.innerHTML = productsHtml;
     }
 
-    renderProductCard(product) {
+RCStore.prototype.renderProductCard = function(product) {
         return `
             <div class="product-card" data-id="${product.id}">
                 <div class="product-image">
@@ -303,27 +302,27 @@ RCStore.prototype.renderCartItems = function() {
         `;
     }
 
-    searchProducts(query) {
+RCStore.prototype.searchProducts = function(query) {
         // Implement product search functionality
     }
 
-    filterProducts() {
+RCStore.prototype.filterProducts = function() {
         // Implement product filtering
         var category = document.getElementById('category-filter').value;
     }
 
-    sortProducts() {
+RCStore.prototype.sortProducts = function() {
         // Implement product sorting
         var sortBy = document.getElementById('sort-filter').value;
     }
 
-    loadMoreProducts() {
+RCStore.prototype.loadMoreProducts = function() {
         // Implement pagination
         this.currentPage++;
     }
 
     // Payment Methods
-    togglePaymentFields() {
+RCStore.prototype.togglePaymentFields = function() {
         var selectedPayment = document.querySelector('input[name="payment"]:checked').value;
         var cardFields = document.getElementById('card-fields');
         var bankFields = document.getElementById('bank-fields');
@@ -349,7 +348,7 @@ RCStore.prototype.renderCartItems = function() {
     }
 
     // Product Management Methods (for future use)
-    addProduct(product) {
+RCStore.prototype.addProduct = function(product) {
         // Apply 40% markup as requested
         var markedUpPrice = product.originalPrice * 1.4;
         
@@ -363,7 +362,7 @@ RCStore.prototype.renderCartItems = function() {
         this.renderProducts();
     }
 
-    loadProductsFromSource(products) {
+RCStore.prototype.loadProductsFromSource = function(products) {
         // Process products with 40% markup
         this.products = products.map(product => ({
             ...product,
