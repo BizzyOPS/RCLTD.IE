@@ -510,7 +510,7 @@ body {
     /* Specifically disable problematic animations */
     .hero {
         animation: none !important;
-        background: linear-gradient(to bottom, #000000 0%, #666666 50%, #ffffff 100%) !important;
+        background: white !important;
     }
     .hero::before,
     .hero::after {
@@ -1079,9 +1079,9 @@ body {
     overflow: hidden;
 }
 
-/* Hero gradient for all pages except homepage */
+/* Hero background for all pages - clean white */
 .hero:not(.home-hero) {
-    background: linear-gradient(to bottom, #000000 0%, #1e3a8a 30%, #666666 70%, #ffffff 100%);
+    background: white;
 }
 .hero::before {
     content: '';
@@ -6006,7 +6006,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
 }
 /* Modern Contact Page Hero */
 .page-hero {
-    background: linear-gradient(to bottom, #000000 0%, #1e3a8a 30%, #666666 70%, #ffffff 100%);
+    background: white;
     padding: var(--spacing-16) 0 var(--spacing-12);
     position: relative;
     overflow: hidden;
@@ -6014,7 +6014,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
 
 .page-hero .page-title,
 .page-hero .page-subtitle {
-    color: white;
+    color: var(--text-primary);
 }
 .page-hero::before {
     content: '';
