@@ -1,4 +1,4 @@
-// Modern JavaScript for RCLtd Website
+// Particles completely disabled - clean version
 
 
 // Hero Carousel initialization
