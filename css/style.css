@@ -3979,10 +3979,7 @@ body {
 }
 /* E-commerce Store Styles */
 .store-hero {
-    background-image: url('../images/hero-industrial-background.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: linear-gradient(135deg, #1a2332 0%, #2d3748 25%, #4a5568 50%, #718096 75%, #e2e8f0 100%);
     color: white;
     padding: 6rem 0 4rem;
     text-align: center;
@@ -5627,14 +5624,20 @@ body {
 /* Page Hero Section */
 .page-hero {
     padding: calc(80px + var(--spacing-16)) 0 var(--spacing-16);
-    background-image: url('../images/hero-industrial-background.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: linear-gradient(135deg, #1a2332 0%, #2d3748 25%, #4a5568 50%, #718096 75%, #e2e8f0 100%);
     color: white;
     text-align: center;
     position: relative;
     overflow: hidden;
+}
+
+/* Services Page Specific Background */
+body.services-page .page-hero,
+body.services-page .store-hero {
+    background-image: url('../images/services-hero-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .page-hero::before {
     content: '';
@@ -6961,10 +6964,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
 }
 /* Modern Contact Page Hero */
 .page-hero {
-    background-image: url('../images/hero-industrial-background.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: linear-gradient(135deg, #1a2332 0%, #2d3748 25%, #4a5568 50%, #718096 75%, #e2e8f0 100%);
     padding: var(--spacing-16) 0 var(--spacing-12);
     position: relative;
     overflow: hidden;
