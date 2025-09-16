@@ -8,53 +8,46 @@
     box-sizing: border-box;
 }
 
-/* New Hero Section Styles - Noreside Inspired */
+/* Hero Section with Cover Image Background */
 .hero {
     position: relative;
     min-height: 80vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
+    justify-content: flex-start;
     color: white;
     overflow: hidden;
 }
 
-.hero-background {
+.hero-cover-image {
+    background-image: url('../images/hero-electrical-control.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero-cover-image::before {
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -2;
-}
-
-.hero-background-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: -1;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
 }
 
 .hero-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
-    z-index: 1;
+    z-index: 2;
+    position: relative;
 }
 
-.hero-content-center {
-    max-width: 800px;
-    margin: 0 auto;
+.hero-content-left {
+    max-width: 600px;
+    text-align: left;
 }
 
 .hero-main-title {
@@ -63,6 +56,10 @@
     line-height: 1.1;
     margin-bottom: 1.5rem;
     color: white;
+}
+
+.title-accent {
+    color: #ff6b35;
 }
 
 .hero-main-subtitle {
