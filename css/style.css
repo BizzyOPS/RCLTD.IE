@@ -37,7 +37,7 @@ main {
 }
 
 /* Tablet hero adjustments */
-@media (max-width: 1024px) and (min-width: 768px) {
+@media (max-width: 1024px) and (min-width: 769px) {
     .hero,
     .page-hero,
     .store-hero {
@@ -47,7 +47,7 @@ main {
 }
 
 /* Mobile hero adjustments */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .hero,
     .page-hero,
     .store-hero {
@@ -671,24 +671,24 @@ section + section {
     padding-top: var(--spacing-16);
 }
 /* Tablet specific responsive styles */
-@media (max-width: 1024px) and (min-width: 768px) {
+@media (max-width: 1024px) and (min-width: 769px) {
     .container {
         padding: 0 var(--spacing-6);
         max-width: 90%;
     }
     
     .page-title {
-        font-size: var(--font-size-4xl);
+        font-size: var(--font-size-4xl) !important;
         line-height: 1.2;
     }
     
     .page-subtitle {
-        font-size: var(--font-size-xl);
+        font-size: var(--font-size-xl) !important;
         line-height: 1.4;
     }
     
     .section-title {
-        font-size: var(--font-size-3xl);
+        font-size: var(--font-size-3xl) !important;
     }
     
     .nav-logo {
@@ -707,21 +707,21 @@ section + section {
 }
 
 /* Mobile responsive styles */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .container {
         padding: 0 var(--spacing-4);
     }
     
     .page-title {
-        font-size: var(--font-size-2xl);
+        font-size: var(--font-size-2xl) !important;
     }
     
     .page-subtitle {
-        font-size: var(--font-size-base);
+        font-size: var(--font-size-base) !important;
     }
     
     .section-title {
-        font-size: var(--font-size-xl);
+        font-size: var(--font-size-xl) !important;
     }
 }
 
@@ -1181,7 +1181,6 @@ section + section {
 .header.on-dark .nav-dropdown-menu .nav-link:hover {
     color: #67e8f9;
     background: rgba(255, 255, 255, 0.1);
-}
     margin: 0 var(--spacing-2);
     white-space: nowrap;
 }
