@@ -47,12 +47,15 @@
     }
     </script>
     
-    <!-- Force no cache -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <!-- AGGRESSIVE CACHE PREVENTION -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
+    <meta name="cache-control" content="no-cache">
+    <meta name="expires" content="0">
+    <meta name="pragma" content="no-cache">
     
-    <link rel="stylesheet" href="css/style.css?v=1726487655&bust=force-refresh">
+    <link rel="stylesheet" href="css/style.css?v=1758021605&nocache=true&hero=new&bust=force">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -488,26 +491,44 @@
     </button>
 
 
-    <!-- Clean particle blocking without infinite reload -->
+    <!-- FORCE CACHE CLEAR AND RELOAD -->
     <script>
-    // Block particles without causing reload loops
-    window.tsParticles = { load: () => Promise.resolve(), loadFull: () => Promise.resolve() };
-    window.particlesJS = () => {};
-    
-    // Clear service workers and caches once
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(registrations => {
-            registrations.forEach(registration => registration.unregister());
-        });
-    }
-    if (window.caches) {
-        caches.keys().then(keys => keys.forEach(key => caches.delete(key)));
-    }
+    // Complete cache destruction
+    (function() {
+        // Block particles immediately
+        window.tsParticles = { load: () => Promise.resolve(), loadFull: () => Promise.resolve() };
+        window.particlesJS = () => {};
+        
+        // Clear all storage and caches
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(registrations => {
+                registrations.forEach(registration => registration.unregister());
+            });
+        }
+        if (window.caches) {
+            caches.keys().then(keys => keys.forEach(key => caches.delete(key)));
+        }
+        
+        // Clear storage
+        try {
+            localStorage.clear();
+            sessionStorage.clear();
+        } catch(e) {}
+        
+        // Force reload if first visit with new timestamp
+        const reloadKey = 'hero_reload_1758021605';
+        if (!sessionStorage.getItem(reloadKey)) {
+            sessionStorage.setItem(reloadKey, 'true');
+            setTimeout(() => {
+                window.location.reload(true);
+            }, 100);
+        }
+    })();
     </script>
     
-    <script src="js/app.js?v=1726487655&bust=force-refresh"></script>
-    <script src="js/chatbot.js?v=1726487655&bust=force-refresh"></script>
-    <script src="js/tooltips.js?v=1726487655&bust=force-refresh"></script>
-    <script src="js/popup-tooltips.js?v=1726487655&bust=force-refresh"></script>
+    <script src="js/app.js?v=1758021605&nocache=true&hero=new&bust=force"></script>
+    <script src="js/chatbot.js?v=1758021605&nocache=true&hero=new&bust=force"></script>
+    <script src="js/tooltips.js?v=1758021605&nocache=true&hero=new&bust=force"></script>
+    <script src="js/popup-tooltips.js?v=1758021605&nocache=true&hero=new&bust=force"></script>
 </body>
 </html>
