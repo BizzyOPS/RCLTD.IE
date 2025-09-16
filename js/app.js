@@ -581,9 +581,7 @@ function initPageLoader() {
     function findLoaderElements() {
         const progressCounter = pageLoader.querySelector('.progress-counter');
         const progressBar = pageLoader.querySelector('.progress-bar');
-        // tech-status removed, using fallback loader
-        const techStatus = null;
-        return { progressCounter, progressBar, techStatus };
+        return { progressCounter, progressBar };
     }
     
     // Try to find elements with multiple retry attempts
@@ -593,10 +591,10 @@ function initPageLoader() {
     
     function attemptToFindElements() {
         attempts++;
-        const { progressCounter, progressBar, techStatus } = findLoaderElements();
+        const { progressCounter, progressBar } = findLoaderElements();
         
-        if (progressCounter && progressBar && techStatus) {
-            startAdvancedLoader(progressCounter, progressBar, techStatus, pageLoader);
+        if (progressCounter && progressBar) {
+            startAdvancedLoader(progressCounter, progressBar, pageLoader);
             return;
         }
         
@@ -609,38 +607,24 @@ function initPageLoader() {
     }
     
     // Initial attempt
-    const { progressCounter, progressBar, techStatus } = findLoaderElements();
-    if (progressCounter && progressBar && techStatus) {
-        startAdvancedLoader(progressCounter, progressBar, techStatus, pageLoader);
+    const { progressCounter, progressBar } = findLoaderElements();
+    if (progressCounter && progressBar) {
+        startAdvancedLoader(progressCounter, progressBar, pageLoader);
     } else {
         attemptToFindElements();
     }
 }
 
-function startAdvancedLoader(progressCounter, progressBar, techStatus, pageLoader) {
+function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
     // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
     // Store pageLoader reference to ensure it's accessible throughout the function
     const loaderElement = pageLoader;
     
-    // Technical loading messages for robotics/automation
-    const techMessages = [
-        'Initializing robotic systems...',
-        'Connecting to PLC networks...',
-        'Loading safety protocols...',
-        'Calibrating automation sensors...',
-        'Establishing machine control...',
-        'Synchronizing industrial networks...',
-        'Validating safety systems...',
-        'Optimizing control algorithms...',
-        'Loading panel configurations...',
-        'Finalizing system integration...',
-        'Systems ready for operation...'
-    ];
+    // Simplified loader without tech messages
     
     let currentProgress = 0;
-    let currentMessageIndex = 0;
     let loaderStartTime = Date.now();
     const minLoadTime = prefersReducedMotion ? 800 : 2500; // Shorter for reduced motion
     const maxLoadTime = prefersReducedMotion ? 1500 : 4000;
@@ -648,11 +632,9 @@ function startAdvancedLoader(progressCounter, progressBar, techStatus, pageLoade
     // Initialize display
     progressCounter.textContent = '0%';
     progressBar.style.width = '0%';
-    techStatus.textContent = techMessages[0];
     
     // Animation timing
     const progressUpdateInterval = prefersReducedMotion ? 50 : 80;
-    const messageChangeInterval = prefersReducedMotion ? 400 : 600;
     
     // Progress animation function
     function updateProgress() {
@@ -683,20 +665,7 @@ function startAdvancedLoader(progressCounter, progressBar, techStatus, pageLoade
         }
     }
     
-    // Message rotation function
-    function updateMessage() {
-        if (currentProgress < 95) {
-            currentMessageIndex = (currentMessageIndex + 1) % techMessages.length;
-            techStatus.style.opacity = '0';
-            
-            setTimeout(() => {
-                techStatus.textContent = techMessages[currentMessageIndex];
-                techStatus.style.opacity = '1';
-            }, 200);
-            
-            setTimeout(updateMessage, messageChangeInterval);
-        }
-    }
+    // Progress bar animation only (no messages)
     
     // Complete loader function
     function completeLoader() {
@@ -720,13 +689,11 @@ function startAdvancedLoader(progressCounter, progressBar, techStatus, pageLoade
     // Start animations
     if (!prefersReducedMotion) {
         setTimeout(updateProgress, 300); // Slight delay for visual effect
-        setTimeout(updateMessage, messageChangeInterval);
     } else {
         // Simplified version for reduced motion
         currentProgress = 100;
         progressCounter.textContent = '100%';
         progressBar.style.width = '100%';
-        techStatus.textContent = 'Systems ready for operation...';
         setTimeout(completeLoader, 800);
     }
     
