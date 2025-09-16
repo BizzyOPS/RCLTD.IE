@@ -4200,6 +4200,7 @@ body {
 .page-loader.hidden {
     opacity: 0;
     visibility: hidden;
+    display: none;
 }
 .loader-container {
     display: flex;
