@@ -647,7 +647,7 @@ body {
 }
 
 .nav-logo {
-    height: 120px;
+    height: 100px; /* Tablet size: 768-1023px */
     width: auto;
 }
 
@@ -668,25 +668,22 @@ body {
     opacity: 0.8;
 }
 
-/* Mobile responsive logo sizing - much larger */
-@media (max-width: 768px) {
+/* Desktop responsive logo sizing */
+@media (min-width: 1024px) {
     .nav-logo {
-        height: 100px;
-        max-width: 60vw;
+        height: 120px; /* Desktop size: ≥1024px */
     }
 }
 
-@media (max-width: 480px) {
+/* Mobile responsive logo sizing */
+@media (max-width: 767px) {
     .nav-logo {
-        height: 80px;
+        height: 80px; /* Mobile size: <768px */
         max-width: 70vw;
     }
-    
-    .nav-brand {
-        flex: 1;
-        max-width: 70%;
-    }
 }
+
+/* Removed redundant 480px media query - mobile sizing now handled by 767px breakpoint */
 
 .nav-menu {
     display: none;
@@ -695,7 +692,7 @@ body {
 }
 
 .nav-link {
-    color: #10b981;
+    color: #047857;
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
@@ -703,17 +700,17 @@ body {
 }
 
 .header.on-light .nav-link {
-    color: #10b981;
+    color: #047857;
 }
 
 .nav-link:hover,
 .nav-link.active {
-    color: #059669;
+    color: #065f46;
 }
 
 .header.on-light .nav-link:hover,
 .header.on-light .nav-link.active {
-    color: #059669;
+    color: #065f46;
 }
 
 .nav-link.active::after {
@@ -723,7 +720,7 @@ body {
     left: 0;
     right: 0;
     height: 2px;
-    background-color: #10b981;
+    background-color: #047857;
     border-radius: 1px;
 }
 
@@ -759,12 +756,12 @@ body {
 .hamburger {
     width: 24px;
     height: 2px;
-    background-color: #ff6b35;
+    background-color: #D4571F;
     transition: all 0.3s ease;
 }
 
 .header.on-light .hamburger {
-    background-color: #ff6b35;
+    background-color: #D4571F;
 }
 
 .nav-toggle.active .hamburger:nth-child(1) {

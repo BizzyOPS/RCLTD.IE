@@ -7,6 +7,10 @@ This is a static website for Robotics & Control Ltd, an Irish technology company
 ## Recent Changes
 
 **September 16, 2025**
+- **Comprehensive Theme Rollout**: Applied new theme design across all 17 HTML pages featuring enlarged logo (120px desktop), orange hamburger menu (#ff6b35), teal navigation links (#10b981), and orange Quote buttons (#ff6b35) for consistent branding
+- **Header Streamlining**: Removed duplicate company text from all page headers, creating clean logo-only navigation design across entire website
+- **Quote Button Standardization**: Unified all Quote button text and styling across 16 pages to match homepage design with consistent orange theme color
+- **Mobile Navigation Enhancement**: Orange hamburger menu ensures visibility on all devices, complementing enlarged logo that scales responsively (100px tablet, 80px mobile)
 - **Particle Animation Removal**: Completely removed flying particle animations from all pages for a more professional, business-focused appearance suitable for enterprise deployment
 
 **September 14, 2025**
