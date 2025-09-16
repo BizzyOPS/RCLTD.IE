@@ -24,73 +24,16 @@ if (typeof window !== 'undefined') {
 
 // Hero Carousel initialization
 function initHeroCarousel() {
-    if (typeof EmblaCarousel !== 'undefined') {
-        const emblaNode = document.querySelector('#hero-embla');
-        const viewportNode = emblaNode;
-        const prevBtn = document.querySelector('.embla__prev');
-        const nextBtn = document.querySelector('.embla__next');
-        const dotsContainer = document.querySelector('.embla__dots');
-        
-        if (emblaNode && viewportNode) {
-            // Check for reduced motion preference
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            
-            // Only enable autoplay if user doesn't prefer reduced motion
-            const autoplay = (!prefersReducedMotion && typeof EmblaCarouselAutoplay !== 'undefined') ? 
-                EmblaCarouselAutoplay({ delay: 4000, stopOnInteraction: false }) : null;
-            
-            const plugins = autoplay ? [autoplay] : [];
-            
-            const embla = EmblaCarousel(viewportNode, {
-                loop: true,
-                dragFree: false,
-                containScroll: 'trimSnaps'
-            }, plugins);
-            
-            // Navigation buttons
-            if (prevBtn && nextBtn) {
-                prevBtn.addEventListener('click', () => embla.scrollPrev());
-                nextBtn.addEventListener('click', () => embla.scrollNext());
-                
-                const updateButtonStates = () => {
-                    prevBtn.disabled = !embla.canScrollPrev();
-                    nextBtn.disabled = !embla.canScrollNext();
-                };
-                
-                embla.on('select', updateButtonStates);
-                updateButtonStates();
-            }
-            
-            // Dots navigation
-            if (dotsContainer) {
-                const slides = embla.slideNodes();
-                
-                slides.forEach((_, index) => {
-                    const dot = document.createElement('button');
-                    dot.className = 'embla__dot';
-                    dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
-                    dot.addEventListener('click', () => embla.scrollTo(index));
-                    dotsContainer.appendChild(dot);
-                });
-                
-                const updateDots = () => {
-                    const selectedIndex = embla.selectedScrollSnap();
-                    const dots = dotsContainer.querySelectorAll('.embla__dot');
-                    dots.forEach((dot, index) => {
-                        const isSelected = index === selectedIndex;
-                        dot.classList.toggle('embla__dot--selected', isSelected);
-                        // Improve accessibility with aria-current
-                        if (isSelected) {
-                            dot.setAttribute('aria-current', 'true');
-                        } else {
-                            dot.removeAttribute('aria-current');
-                        }
-                    });
-                };
-                
-                embla.on('select', updateDots);
-                updateDots();
-            }
+    // Hero background cycling is now handled by CSS keyframes animation
+    // Check for reduced motion preference to respect user accessibility settings
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReducedMotion) {
+        // Disable CSS animation for users who prefer reduced motion
+        const heroElement = document.querySelector('.hero-cover-image');
+        if (heroElement) {
+            heroElement.style.animation = 'none';
+            heroElement.style.backgroundImage = "url('images/hero-electrical-control.png')";
         }
     }
 }
@@ -638,7 +581,8 @@ function initPageLoader() {
     function findLoaderElements() {
         const progressCounter = pageLoader.querySelector('.progress-counter');
         const progressBar = pageLoader.querySelector('.progress-bar');
-        const techStatus = pageLoader.querySelector('.tech-status');
+        // tech-status removed, using fallback loader
+        const techStatus = null;
         return { progressCounter, progressBar, techStatus };
     }
     
@@ -659,7 +603,7 @@ function initPageLoader() {
         if (attempts < maxAttempts) {
             setTimeout(attemptToFindElements, retryDelay);
         } else {
-            console.warn('Loader elements not found in DOM after multiple retries - falling back to simple loader');
+            // Using simple loader - this is expected behavior
             initSimpleLoader();
         }
     }

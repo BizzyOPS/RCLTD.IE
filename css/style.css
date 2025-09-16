@@ -126,6 +126,114 @@
     box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
 }
 
+/* Hero Section Responsive Design */
+@media (max-width: 768px) {
+    .hero {
+        min-height: 70vh;
+        margin-top: 70px;
+    }
+    
+    .hero-main-title {
+        font-size: 2.5rem;
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-main-subtitle {
+        font-size: 1.1rem;
+        padding: 0.8rem;
+        margin-bottom: 2rem;
+    }
+    
+    .hero-container {
+        padding: 0 1rem;
+    }
+    
+    .hero-content-left {
+        max-width: 100%;
+        text-align: center;
+    }
+    
+    .hero-cover-image::after {
+        height: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        min-height: 60vh;
+        margin-top: 60px;
+    }
+    
+    .hero-main-title {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+    
+    .hero-main-subtitle {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    
+    .btn-hero {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+    
+    .hero-cover-image::after {
+        height: 80px;
+    }
+}
+
+/* Header Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        padding: 0.5rem 0;
+    }
+    
+    .nav-contact {
+        display: none;
+    }
+    
+    .nav-phone {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-brand-text {
+        display: none;
+    }
+    
+    .nav-logo {
+        height: 35px;
+    }
+}
+
+/* High DPI / Retina Display Support */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero-cover-image {
+        background-size: cover;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: optimize-contrast;
+    }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: 100vh;
+    }
+    
+    .hero-main-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-main-subtitle {
+        font-size: 1rem;
+    }
+}
+
 /* Services Divisions Section */
 .services-divisions {
     padding: 4rem 0;
@@ -233,22 +341,18 @@
     }
 }
 
-/* Loading Screen Logo Styles */
-.loader-logo {
-    margin-top: 2rem;
-    text-align: center;
+/* Additional CSS optimizations for better cross-browser support */
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-.loading-logo {
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
-    animation: logoFade 2s ease-in-out infinite alternate;
-}
-
-@keyframes logoFade {
-    0% { opacity: 0.6; }
-    100% { opacity: 1; }
+/* Improved text rendering across devices */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 /* Animated Background Keyframes */
