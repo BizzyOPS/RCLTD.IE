@@ -6,6 +6,12 @@ This is a static website for Robotics & Control Ltd, an Irish technology company
 
 ## Recent Changes
 
+**September 16, 2025 - Updated**
+- **Loading Screen Functionality Restored**: Fixed critical loading screen getting stuck on other pages by replacing broken `js/script.js` references with correct JavaScript files (`js/app.js`, `js/chatbot.js`, `js/tooltips.js`, `js/popup-tooltips.js`) across 16 HTML pages, eliminating 404 errors that prevented proper loading animation from 0% to 100%
+- **Page Background Reverted**: Changed body background from gradient back to clean white background for professional enterprise appearance across all pages
+- **Hero Section Gradient Implementation**: Applied Black → Dark Blue → Grey → White gradient specifically to hero sections on all pages except homepage (index.html), creating visual distinction while maintaining homepage's original design
+- **Cross-Browser JavaScript Compatibility**: Maintained ES6 to ES5 conversion and polyfill support for IE11 compatibility throughout all script fixes
+
 **September 16, 2025**
 - **Comprehensive Theme Rollout**: Applied new theme design across all 17 HTML pages featuring enlarged logo (120px desktop), orange hamburger menu (#ff6b35), teal navigation links (#10b981), and orange Quote buttons (#ff6b35) for consistent branding
 - **Header Streamlining**: Removed duplicate company text from all page headers, creating clean logo-only navigation design across entire website

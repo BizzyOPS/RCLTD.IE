@@ -555,8 +555,7 @@ body {
     line-height: 1.6;
     color: #111827;
     color: var(--text-primary);
-    background: linear-gradient(to bottom, #000000 0%, #666666 50%, #ffffff 100%);
-    background: linear-gradient(to bottom, var(--background-dark) 0%, var(--background-medium) 50%, var(--background-light) 100%);
+    background: white;
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -567,23 +566,10 @@ body {
     margin: 0 auto;
     padding: 0 var(--spacing-4);
 }
-/* Section backgrounds for proper contrast with gradient */
+/* Section backgrounds restored to normal since page background is now white */
 .services, .overview-section, .automation-services, .about, .partners, .footer {
-    background: rgba(255, 255, 255, 0.95);
+    background: transparent;
     margin: 2rem 0;
-    border-radius: 1rem;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-}
-.page-hero {
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    margin: 1rem 0;
-    border-radius: 1rem;
-}
-.page-hero .page-title,
-.page-hero .page-subtitle {
-    color: white;
 }
 @media (min-width: 768px) {
     .container {
@@ -1089,9 +1075,13 @@ body {
 /* Hero Section */
 .hero {
     padding: calc(80px + var(--spacing-20)) 0 calc(var(--spacing-20) * 2);
-    background: linear-gradient(to bottom, #000000 0%, #666666 50%, #ffffff 100%);
     position: relative;
     overflow: hidden;
+}
+
+/* Hero gradient for all pages except homepage */
+.hero:not(.home-hero) {
+    background: linear-gradient(to bottom, #000000 0%, #1e3a8a 30%, #666666 70%, #ffffff 100%);
 }
 .hero::before {
     content: '';
@@ -6016,13 +6006,15 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
 }
 /* Modern Contact Page Hero */
 .page-hero {
-    background: linear-gradient(135deg, 
-        var(--dark-bg) 0%, 
-        #1e293b 50%, 
-        var(--secondary-color) 100%);
+    background: linear-gradient(to bottom, #000000 0%, #1e3a8a 30%, #666666 70%, #ffffff 100%);
     padding: var(--spacing-16) 0 var(--spacing-12);
     position: relative;
     overflow: hidden;
+}
+
+.page-hero .page-title,
+.page-hero .page-subtitle {
+    color: white;
 }
 .page-hero::before {
     content: '';
