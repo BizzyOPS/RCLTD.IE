@@ -163,6 +163,42 @@
                 </video>
                 <div class="hero-overlay"></div>
             </div>
+
+            <!-- Hero Carousel for Cover Images -->
+            <div class="embla" id="hero-embla">
+                <div class="embla__container">
+                    <div class="embla__slide">
+                        <img src="images/hero-robotics-assembly.png" alt="Robotics Assembly" class="hero-carousel-image">
+                    </div>
+                    <div class="embla__slide">
+                        <img src="images/hero-electrical-control.png" alt="Electrical Control Systems" class="hero-carousel-image">
+                    </div>
+                    <div class="embla__slide">
+                        <img src="images/hero-orange-robot.png" alt="Industrial Robotics" class="hero-carousel-image">
+                    </div>
+                    <div class="embla__slide">
+                        <img src="images/hero-white-robot.png" alt="Advanced Automation" class="hero-carousel-image">
+                    </div>
+                    <div class="embla__slide">
+                        <img src="images/hero-company-logo.png" alt="Robotics & Control Ltd" class="hero-carousel-image">
+                    </div>
+                </div>
+                
+                <!-- Navigation Controls -->
+                <button class="embla__prev" aria-label="Previous slide">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <button class="embla__next" aria-label="Next slide">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                
+                <!-- Dots Navigation -->
+                <div class="embla__dots"></div>
+            </div>
             
             <div class="hero-container">
                 <div class="hero-content-center">
@@ -179,56 +215,6 @@
             </div>
         </section>
 
-        <!-- Services Divisions Section -->
-        <section class="services-divisions">
-            <div class="container">
-                <h2 class="divisions-title">Select A Service:</h2>
-                <div class="divisions-grid">
-                    <a href="automation.html" class="division-card">
-                        <div class="division-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.46 9-11V7l-10-5z"/>
-                                <path d="M9 12l2 2 4-4"/>
-                            </svg>
-                        </div>
-                        <h3 class="division-title">Automation & Robotics</h3>
-                        <p class="division-description">Advanced automation and robotic systems for enhanced productivity and efficiency</p>
-                    </a>
-                    
-                    <a href="safety.html" class="division-card">
-                        <div class="division-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                            </svg>
-                        </div>
-                        <h3 class="division-title">Safety Solutions</h3>
-                        <p class="division-description">Comprehensive machine safety and functional safety services for industrial environments</p>
-                    </a>
-                    
-                    <a href="design.html" class="division-card">
-                        <div class="division-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-                            </svg>
-                        </div>
-                        <h3 class="division-title">Electrical Design</h3>
-                        <p class="division-description">Professional electrical design and engineering services for complex industrial projects</p>
-                    </a>
-                    
-                    <a href="panel.html" class="division-card">
-                        <div class="division-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                                <line x1="8" y1="21" x2="16" y2="21"/>
-                                <line x1="12" y1="17" x2="12" y2="21"/>
-                            </svg>
-                        </div>
-                        <h3 class="division-title">Panel Building</h3>
-                        <p class="division-description">Custom electrical panel design and manufacturing to industry standards</p>
-                    </a>
-                </div>
-            </div>
-        </section>
 
         <!-- Services Section -->
         <section id="services" class="services">

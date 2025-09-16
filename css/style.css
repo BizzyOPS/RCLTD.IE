@@ -472,11 +472,11 @@ body {
     /* No default background - let theme classes handle it */
 }
 
-/* Header on dark background - merges with dark blue hero */
+/* Header on dark background - black with more black styling */
 .header.on-dark {
-    background: #0a0f1c !important;
+    background: #000000 !important;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4) !important;
 }
 
 /* Header on light background - solid white */
