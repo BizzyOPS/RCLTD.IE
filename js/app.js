@@ -12,7 +12,6 @@ if (typeof window !== 'undefined') {
             const originalSetAttribute = element.setAttribute;
             element.setAttribute = function(name, value) {
                 if (name === 'src' && value && value.includes('tsparticles')) {
-                    console.log('BLOCKED: tsParticles script loading attempt');
                     return; // Block tsParticles loading
                 }
                 return originalSetAttribute.call(this, name, value);
@@ -65,7 +64,6 @@ function initHeroVideo() {
             const playVideo = () => {
                 if (heroVideo.paused) {
                     heroVideo.play().catch(e => {
-                        console.log('Video play failed:', e);
                     });
                 } else {
                     heroVideo.pause();
@@ -86,13 +84,11 @@ function initHeroVideo() {
             
             // Try to play the video (browsers may still block autoplay)
             heroVideo.play().catch(e => {
-                console.log('Autoplay prevented by browser:', e);
             });
         }
         
         // Add error handling
         heroVideo.addEventListener('error', (e) => {
-            console.error('Video loading error:', e);
             // Hide video container if there's an error
             const videoContainer = heroVideo.closest('.hero-visual');
             if (videoContainer) {

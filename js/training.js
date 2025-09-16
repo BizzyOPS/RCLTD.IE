@@ -30,7 +30,6 @@ class SafetyTrainingSystem {
         // Handle browser back/forward
         window.addEventListener('hashchange', () => this.handleHashRoute());
         
-        console.log('Safety Training System initialized');
     }
     
     // ==================== SECURITY UTILITIES ====================
@@ -119,7 +118,6 @@ class SafetyTrainingSystem {
         // Find the course grid section to replace with training interface
         const courseSection = document.querySelector('.automation-services');
         if (!courseSection) {
-            console.error('Could not find course section to replace');
             return;
         }
         
@@ -222,7 +220,6 @@ class SafetyTrainingSystem {
     showModule(moduleId, chapterId = 1) {
         const module = trainingData.modules[moduleId];
         if (!module) {
-            console.error(`Module ${moduleId} not found`);
             return;
         }
         
@@ -295,7 +292,6 @@ class SafetyTrainingSystem {
         const chapter = module?.chapters[chapterId];
         
         if (!chapter) {
-            console.error(`Chapter ${chapterId} not found in module ${moduleId}`);
             return;
         }
         
@@ -606,7 +602,6 @@ class SafetyTrainingSystem {
             const saved = localStorage.getItem('rcltd-training-progress');
             return saved ? JSON.parse(saved) : {};
         } catch (e) {
-            console.warn('Failed to load progress from localStorage:', e);
             return {};
         }
     }
@@ -615,7 +610,6 @@ class SafetyTrainingSystem {
         try {
             localStorage.setItem('rcltd-training-progress', JSON.stringify(this.progress));
         } catch (e) {
-            console.warn('Failed to save progress to localStorage:', e);
         }
     }
     
@@ -624,7 +618,6 @@ class SafetyTrainingSystem {
             const saved = localStorage.getItem('rcltd-training-answers');
             return saved ? JSON.parse(saved) : {};
         } catch (e) {
-            console.warn('Failed to load answers from localStorage:', e);
             return {};
         }
     }
@@ -633,7 +626,6 @@ class SafetyTrainingSystem {
         try {
             localStorage.setItem('rcltd-training-answers', JSON.stringify(this.userAnswers));
         } catch (e) {
-            console.warn('Failed to save answers to localStorage:', e);
         }
     }
     

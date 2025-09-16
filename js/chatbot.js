@@ -219,7 +219,6 @@ How can I assist you today?`,
             this.renderMessage(botMessage);
             
         } catch (error) {
-            console.error('Chatbot error:', error);
             this.hideTypingIndicator();
             
             const errorMessage = {

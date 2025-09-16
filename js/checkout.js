@@ -272,7 +272,6 @@ class CheckoutManager {
         try {
             await this.processOrder(orderData);
         } catch (error) {
-            console.error('Checkout error:', error);
             this.showError('There was an error processing your order. Please try again.');
         }
     }
@@ -360,7 +359,6 @@ class CheckoutManager {
         await new Promise(resolve => setTimeout(resolve, 2000));
         
         // Log order for development
-        console.log('Order processed:', orderData);
         
         // Here you would integrate with real payment processing
         // and order management systems

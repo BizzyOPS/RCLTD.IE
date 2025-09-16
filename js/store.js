@@ -305,25 +305,21 @@ class RCStore {
 
     searchProducts(query) {
         // Implement product search functionality
-        console.log('Searching for:', query);
     }
 
     filterProducts() {
         // Implement product filtering
         const category = document.getElementById('category-filter').value;
-        console.log('Filtering by category:', category);
     }
 
     sortProducts() {
         // Implement product sorting
         const sortBy = document.getElementById('sort-filter').value;
-        console.log('Sorting by:', sortBy);
     }
 
     loadMoreProducts() {
         // Implement pagination
         this.currentPage++;
-        console.log('Loading page:', this.currentPage);
     }
 
     // Payment Methods
