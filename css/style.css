@@ -2340,20 +2340,20 @@ body {
     right: 2rem;
     width: 60px;
     height: 60px;
-    background: var(--primary);
+    background: #ff6b35;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 4px 20px rgba(8, 145, 178, 0.3);
+    box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
     transition: all var(--transition-fast);
     z-index: 1001;
     border: 3px solid rgba(255, 255, 255, 0.1);
 }
 .chatbot-toggle:hover {
     transform: scale(1.1);
-    box-shadow: 0 6px 25px rgba(8, 145, 178, 0.4);
+    box-shadow: 0 6px 25px rgba(255, 107, 53, 0.4);
 }
 .chatbot-toggle.hidden {
     opacity: 0;
@@ -5882,7 +5882,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
     border-radius: 50%;
     margin-right: var(--spacing-4);
     flex-shrink: 0;
-    box-shadow: 0 4px 20px rgba(8, 145, 178, 0.3);
+    box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
     transition: all 0.3s ease;
 }
 .contact-method:hover .contact-icon {
