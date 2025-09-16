@@ -5634,7 +5634,7 @@ body {
 /* Services Page Specific Background */
 body.services-page .page-hero,
 body.services-page .store-hero {
-    background-image: url('../images/services-hero-bg.png');
+    background-image: url('../images/hero-electrical-control.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
