@@ -20,7 +20,7 @@ ControllerBot.prototype.createChatInterface = function() {
     var chatbotHTML = [
         '            <!-- Chatbot Toggle Button -->',
         '            <div id="chatbot-toggle" class="chatbot-toggle" title="Chat with Controller Bot">',
-        '                <img src="images/logo.png" alt="Controller Bot" class="chatbot-icon">',
+        '                <img src="images/roundlogo.png" alt="Controller Bot" class="chatbot-icon">',
         '                <div class="chatbot-pulse"></div>',
         '            </div>',
         '',
@@ -28,7 +28,7 @@ ControllerBot.prototype.createChatInterface = function() {
         '            <div id="chatbot-container" class="chatbot-container">',
         '                <div class="chatbot-header">',
         '                    <div class="chatbot-header-info">',
-        '                        <img src="images/logo.png" alt="Controller Bot" class="chatbot-avatar">',
+        '                        <img src="images/roundlogo.png" alt="Controller Bot" class="chatbot-avatar">',
         '                        <div class="chatbot-header-text">',
         '                            <h3>Controller Bot</h3>',
         '                            <span class="chatbot-status">Online • Ready to help</span>',
