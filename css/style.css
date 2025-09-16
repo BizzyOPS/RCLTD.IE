@@ -4668,39 +4668,17 @@ body {
 /* Page Hero Section */
 .page-hero {
     padding: calc(80px + var(--spacing-16)) 0 var(--spacing-16);
-    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--text-primary) 50%, #1e293b 100%);
-    background-size: 400% 400%;
-    animation: gradientMove 15s ease infinite;
-    color: white;
+    background: white;
+    color: var(--text-primary);
     text-align: center;
     position: relative;
     overflow: hidden;
 }
 .page-hero::before {
-    content: '';
-    position: absolute;
-    top: 20%;
-    right: 8%;
-    width: 100px;
-    height: 100px;
-    background: radial-gradient(circle, var(--primary-light) 0%, transparent 60%);
-    border-radius: 50%;
-    opacity: 0.08;
-    animation: pulse 8s ease-in-out infinite;
-    z-index: 1;
+    display: none;
 }
 .page-hero::after {
-    content: '';
-    position: absolute;
-    bottom: 15%;
-    left: 12%;
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(45deg, var(--primary-color) 0%, transparent 50%);
-    border-radius: 25%;
-    opacity: 0.1;
-    animation: float 18s ease-in-out infinite reverse;
-    z-index: 1;
+    display: none;
 }
 .page-hero-content {
     max-width: 800px;
