@@ -200,15 +200,6 @@
     }
 }
 
-@media (max-width: 480px) {
-    .nav-brand-text {
-        display: none;
-    }
-    
-    .nav-logo {
-        height: 35px;
-    }
-}
 
 /* High DPI / Retina Display Support */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
@@ -656,7 +647,7 @@ body {
 }
 
 .nav-logo {
-    height: 40px;
+    height: 60px;
     width: auto;
 }
 
@@ -677,20 +668,16 @@ body {
     opacity: 0.8;
 }
 
-/* Mobile and Tablet: Show abbreviated name */
-@media (max-width: 1024px) {
-    .nav-brand-text {
-        font-size: 0; /* Hide original text */
-        position: relative;
+/* Mobile responsive logo sizing */
+@media (max-width: 768px) {
+    .nav-logo {
+        height: 50px;
     }
-    
-    .nav-brand-text::after {
-        content: "R&C LTD";
-        font-size: 1rem;
-        line-height: 1;
-        display: inline;
-        font-weight: 600;
-        color: inherit;
+}
+
+@media (max-width: 480px) {
+    .nav-logo {
+        height: 45px;
     }
 }
 
