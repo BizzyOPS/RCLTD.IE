@@ -58,6 +58,7 @@ Preferred communication style: Simple, everyday language.
 **September 17, 2025**
 - **Hero Image Duplication Fix**: Fixed cover photo duplication issue by switching to single pseudo-element system, eliminating overlapping background images that caused visual duplicates
 - **Hero Image Stretching Fix**: Resolved image stretching and distortion by changing background-size from 'cover' to 'contain', ensuring proper aspect ratios are maintained without cropping or stretching
+- **Hero Cover Photo Duplication Fix**: Fixed cover photo duplication issue by removing background properties from the main hero element, ensuring only the pseudo-element displays the cycling background images
 - **Hero Statistics Professional Enhancement**: Removed unprofessional white boxes around statistics text and improved readability with white text and strong shadow effects for optimal visibility against any background color
 - **Hero Image Timing Refinement**: Slowed hero image cycling from 25s to 40s for more elegant, professional transitions between background images
 - **Hero Image Cycling Enhancement**: Fixed visual splits/seams in background image transitions by implementing improved dual pseudo-element system with overlapping opacity fades, linear timing functions, and optimized keyframe sequences to ensure seamless crossfades between the 5 hero images without blackout periods
