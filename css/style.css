@@ -294,10 +294,10 @@ main {
     background-position: center center;
     background-repeat: no-repeat;
     background-image: url('../images/hero-electrical-control.png');
-    -webkit-animation: heroImageCyclePrimary 25s infinite linear;
-    -moz-animation: heroImageCyclePrimary 25s infinite linear;
-    -ms-animation: heroImageCyclePrimary 25s infinite linear;
-    animation: heroImageCyclePrimary 25s infinite linear;
+    -webkit-animation: heroImageCyclePrimary 40s infinite linear;
+    -moz-animation: heroImageCyclePrimary 40s infinite linear;
+    -ms-animation: heroImageCyclePrimary 40s infinite linear;
+    animation: heroImageCyclePrimary 40s infinite linear;
     z-index: 2;
     will-change: opacity;
 }
@@ -314,10 +314,10 @@ main {
     background-position: center center;
     background-repeat: no-repeat;
     background-image: url('../images/hero-robotics-assembly.png');
-    -webkit-animation: heroImageCycleSecondary 25s infinite linear;
-    -moz-animation: heroImageCycleSecondary 25s infinite linear;
-    -ms-animation: heroImageCycleSecondary 25s infinite linear;
-    animation: heroImageCycleSecondary 25s infinite linear;
+    -webkit-animation: heroImageCycleSecondary 40s infinite linear;
+    -moz-animation: heroImageCycleSecondary 40s infinite linear;
+    -ms-animation: heroImageCycleSecondary 40s infinite linear;
+    animation: heroImageCycleSecondary 40s infinite linear;
     z-index: 1;
     will-change: opacity;
 }
@@ -2879,12 +2879,10 @@ section + section {
 
 .stat-label {
     font-size: var(--font-size-sm);
-    color: #1f2937;
+    color: white;
     margin-top: var(--spacing-2);
-    font-weight: 600;
-    background: rgba(255, 255, 255, 0.9);
-    padding: var(--spacing-1) var(--spacing-2);
-    border-radius: var(--radius-sm);
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 1px 1px 3px rgba(0, 0, 0, 0.9);
     display: inline-block;
 }
 

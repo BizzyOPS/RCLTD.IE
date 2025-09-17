@@ -56,6 +56,8 @@ Preferred communication style: Simple, everyday language.
 ## Recent Changes
 
 **September 17, 2025**
+- **Hero Statistics Professional Enhancement**: Removed unprofessional white boxes around statistics text and improved readability with white text and strong shadow effects for optimal visibility against any background color
+- **Hero Image Timing Refinement**: Slowed hero image cycling from 25s to 40s for more elegant, professional transitions between background images
 - **Hero Image Cycling Enhancement**: Fixed visual splits/seams in background image transitions by implementing improved dual pseudo-element system with overlapping opacity fades, linear timing functions, and optimized keyframe sequences to ensure seamless crossfades between the 5 hero images without blackout periods
 - **Statistics Text Visibility Fix**: Fixed hero statistics labels (Projects Completed, Years Experience, On-Time Delivery) that were invisible against light backgrounds by changing from transparent white text to dark text on white badge backgrounds, improving contrast and readability
 - **Badge Visibility Fix**: Fixed hero badge (ISO 9001:2015 Certified / 15+ Years Excellence) invisible against white backgrounds by changing from transparent white background to dark semi-transparent (rgba(0,0,0,0.7)) with enhanced contrast, proper shadow effects, and orange highlight styling for optimal visibility
