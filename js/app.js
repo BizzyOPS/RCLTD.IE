@@ -784,15 +784,15 @@ function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
     
     var currentProgress = 0;
     var loaderStartTime = Date.now();
-    var minLoadTime = prefersReducedMotion ? 800 : 2500; // Shorter for reduced motion
-    var maxLoadTime = prefersReducedMotion ? 1500 : 4000;
+    var minLoadTime = prefersReducedMotion ? 800 : 5000; // Shorter for reduced motion - increased for debugging
+    var maxLoadTime = prefersReducedMotion ? 1500 : 7000; // Increased for debugging
     
     // Initialize display
     progressCounter.textContent = '0%';
     progressBar.style.width = '0%';
     
-    // Animation timing
-    var progressUpdateInterval = prefersReducedMotion ? 50 : 80;
+    // Animation timing - slowed down for debugging
+    var progressUpdateInterval = prefersReducedMotion ? 50 : 120;
     
     // Progress animation function
     function updateProgress() {
@@ -815,9 +815,15 @@ function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
             
             // Show logo at 60% progress and keep it visible
             if (currentProgress >= 60) {
-                var logo = pageLoader.querySelector('.loader-logo');
+                var logo = loaderElement.querySelector('.loader-logo');
+                console.log('Looking for logo element...', !!logo);
                 if (logo && !logo.classList.contains('show')) {
                     logo.classList.add('show');
+                    console.log('Logo should now be visible at', Math.floor(currentProgress) + '%');
+                } else if (logo && logo.classList.contains('show')) {
+                    console.log('Logo already visible at', Math.floor(currentProgress) + '%');
+                } else if (!logo) {
+                    console.error('Logo element not found in loader!');
                 }
             }
             

@@ -6059,9 +6059,8 @@ section + section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--text-primary) 50%, var(--secondary-color) 100%);
-    background-size: 400% 400%;
-    animation: loaderBackgroundShift 8s ease-in-out infinite;
+    background: #ffffff;
+    /* White background for professional appearance */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6076,8 +6075,8 @@ section + section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 30% 20%, rgba(8, 145, 178, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(103, 232, 249, 0.1) 0%, transparent 50%);
+    background: radial-gradient(circle at 30% 20%, rgba(255, 107, 53, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(8, 145, 178, 0.05) 0%, transparent 50%);
     animation: ambientGlow 6s ease-in-out infinite alternate;
 }
 .page-loader.hidden {
@@ -6119,12 +6118,11 @@ section + section {
     height: auto;
     display: block;
 }
-/* Rotating Gear Elements */
+/* Rotating Gear Elements with Brand Colors */
 .gear {
     position: absolute;
     border-radius: 50%;
-    border: 3px solid var(--primary-color);
-    opacity: 0.6;
+    opacity: 0.8;
 }
 .gear::before {
     content: '';
@@ -6132,39 +6130,53 @@ section + section {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    border: 2px dashed var(--primary-light);
     top: -2px;
     left: -2px;
     animation: inherit;
 }
+/* Orange Gear */
 .gear-1 {
     width: 60px;
     height: 60px;
     top: 20px;
     right: 20px;
+    border: 3px solid var(--brand-orange);
     animation: rotateClockwise 8s linear infinite;
 }
+.gear-1::before {
+    border: 2px dashed rgba(255, 107, 53, 0.6);
+}
+/* Teal Blue Gear */  
 .gear-2 {
     width: 40px;
     height: 40px;
     bottom: 30px;
     left: 30px;
+    border: 3px solid var(--primary-color);
     animation: rotateCounterClockwise 12s linear infinite;
 }
+.gear-2::before {
+    border: 2px dashed rgba(8, 145, 178, 0.6);
+}
+/* Teal Green Gear */
 .gear-3 {
     width: 30px;
     height: 30px;
     top: 40px;
     left: 10px;
+    border: 3px solid var(--brand-teal);
     animation: rotateClockwise 6s linear infinite;
+}
+.gear-3::before {
+    border: 2px dashed rgba(16, 185, 129, 0.6);
 }
 /* Circuit Board Pattern */
 .circuit-pattern {
     position: absolute;
     width: 100%;
     height: 100%;
-    opacity: 0.2;
-    background: linear-gradient(90deg, transparent 45%, var(--primary-color) 50%, transparent 55%),
+    opacity: 0.1;
+    background: linear-gradient(90deg, transparent 45%, var(--brand-orange) 50%, transparent 55%),
                 linear-gradient(0deg, transparent 45%, var(--primary-color) 50%, transparent 55%);
     background-size: 40px 40px;
     animation: circuitPulse 3s ease-in-out infinite;
