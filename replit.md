@@ -112,6 +112,11 @@ Preferred communication style: Simple, everyday language.
 - **SEO Tools**: Structured data markup for search engine optimization
 
 ### Assets and Media
-- **Images**: Logo and potentially service-related images stored in `/images/` directory
+- **Images**: Logo and service-related hero images stored in `/images/` directory
+- **Hero Image Specifications**: 
+  - Generate at 1920×1080 pixels (or higher) for optimal responsive coverage
+  - Keep all important content within center 1440×720px "safe zone"
+  - Top/bottom 180px and side margins (240px each) may be cropped on different screen ratios
+  - Background fills use `background-size: cover` for automatic responsive scaling
 - **Icons**: Custom hamburger menu implementation, likely additional icons for services
 - **Favicons**: Standard favicon setup expected for brand consistency
