@@ -3,10 +3,9 @@ function setHeaderOffset() {
     const header = document.querySelector('.header');
     if (!header) return;
     const h = Math.ceil(header.getBoundingClientRect().height);
-    // Add significant buffer to ensure header is clearly above content
-    const offset = h + 40; // Add 40px buffer for clear separation
-    document.documentElement.style.setProperty('--header-height', offset + 'px');
-    console.log('Header height set to:', offset + 'px', '(actual:', h + 'px + 40px buffer)');
+    // Use exact header height for seamless professional look
+    document.documentElement.style.setProperty('--header-height', h + 'px');
+    console.log('Header height set to exact:', h + 'px');
 }
 
 // Apply header offset on load and resize
