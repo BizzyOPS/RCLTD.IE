@@ -63,6 +63,15 @@ function initHeroCarousel() {
             heroElement.style.backgroundImage = "url('images/hero-electrical-control.png')";
         }
     }
+    
+    // Skip background manipulation for fixed background elements
+    var storeHeroElements = document.querySelectorAll ? document.querySelectorAll('.store-hero') : [];
+    for (var i = 0; i < storeHeroElements.length; i++) {
+        if (storeHeroElements[i].getAttribute('data-bg-fixed') === 'true') {
+            // Skip this element - it has a fixed background that shouldn't be changed
+            continue;
+        }
+    }
 }
 
 // Hero Video initialization with reduced motion support
