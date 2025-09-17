@@ -60,11 +60,17 @@ main {
         min-height: 50vh;
         padding: var(--spacing-8) 0;
     }
+    .hero-cover-image {
+        background-size: cover !important;
+        background-position: center center !important;
+        background-attachment: scroll !important;
+    }
 }
 .hero-cover-image {
-    background-size: cover;
-    background-position: center;
+    background-size: cover !important;
+    background-position: center center !important;
     background-repeat: no-repeat;
+    background-attachment: scroll;
     -webkit-animation: heroImageCycle 20s infinite;
     -moz-animation: heroImageCycle 20s infinite;
     -ms-animation: heroImageCycle 20s infinite;
@@ -106,7 +112,7 @@ main {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.15);
     z-index: 1;
 }
 .hero-cover-image::after {
@@ -251,7 +257,8 @@ main {
 /* High DPI / Retina Display Support */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .hero-cover-image {
-        background-size: cover;
+        background-size: cover !important;
+        background-position: center center !important;
         image-rendering: -webkit-optimize-contrast;
         image-rendering: optimize-contrast;
     }
@@ -550,7 +557,6 @@ body {
     /* Specifically disable problematic animations */
     .hero {
         animation: none !important;
-        background: white !important;
     }
     .hero::before,
     .hero::after {
