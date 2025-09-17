@@ -1157,10 +1157,12 @@ section + section {
     border-radius: 1px;
 }
 .nav-contact {
-    display: none;
+    display: flex;
     align-items: center;
     gap: 1rem;
     gap: var(--spacing-4);
+    position: relative;
+    z-index: 100;
 }
 .nav-phone {
     font-weight: 500;
@@ -1206,7 +1208,7 @@ section + section {
         display: flex;
     }
     .nav-contact {
-        display: flex;
+        display: flex !important;
     }
     .nav-toggle {
         display: none;
