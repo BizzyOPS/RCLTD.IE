@@ -195,6 +195,16 @@ ProTooltip.prototype.positionTooltip = function(tooltip, element, position, even
         tooltip.style.transform = 'scale(0.95)';
     }
 
+ProTooltip.prototype.escapeHtml = function(text) {
+    if (typeof text !== 'string') return text;
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+};
+
 ProTooltip.prototype.formatTooltipContent = function(text, type) {
     switch (type) {
         case 'success':
