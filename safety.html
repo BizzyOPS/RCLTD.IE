@@ -13,7 +13,8 @@
     <meta name="msapplication-TileImage" content="images/roundlogo.png">
     <meta name="msapplication-TileColor" content="#0891b2">
     
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=1758065856&tablet=fixed&cache=bust">
+    <link rel="stylesheet" href="css/variables.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -101,75 +102,85 @@
     </header>
 
     <main>
-        <!-- Page Hero -->
+        <!-- Enhanced Hero Section -->
         <section class="store-hero">
             <div class="container">
                 <div class="store-hero-content">
-                    <h1 class="page-title">Machine Safety Services</h1>
-                    <p class="page-subtitle">Functional safety services through comprehensive assessments, design, build, program, and validation processes ensuring compliance with international safety standards.</p>
+                    <div class="hero-badge">
+                        <span class="badge-text">TÜV Certified</span>
+                        <span class="badge-highlight">Functional Safety</span>
+                    </div>
+                    <h1 class="page-title">Machine Safety & Compliance Solutions</h1>
+                    <p class="page-subtitle">Comprehensive functional safety services ensuring machinery compliance with international standards. From risk assessment to validation, we protect your workforce while maintaining operational efficiency and regulatory compliance.</p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">200+</span>
+                            <span class="stat-label">Safety Assessments</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Compliance Rate</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Years Expertise</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Safety Overview -->
-        <section class="overview-section">
+        <section class="company-intro">
             <div class="container">
-                <div class="overview-grid">
-                    <div class="overview-content">
-                        <h2 class="section-title">Comprehensive Functional Safety</h2>
-                        <p class="overview-description">
+                <div class="intro-grid">
+                    <div class="intro-content">
+                        <div class="intro-badge">
+                            <span>Safety Leader</span>
+                        </div>
+                        <h2 class="intro-title">Comprehensive Functional Safety</h2>
+                        <p class="intro-text">
                             Our machine safety expertise ensures your equipment meets the highest safety standards while maintaining operational efficiency. We provide end-to-end safety solutions from initial risk assessment to final validation and certification.
                         </p>
-                        <p class="overview-description">
+                        <p class="intro-text">
                             With extensive experience in functional safety standards including ISO 13849, IEC 62061, and machinery directive compliance, we help protect your workforce and ensure regulatory compliance.
                         </p>
                         
-                        <div class="overview-features">
-                            <div class="feature-item">
-                                <div class="feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path d="M9 12l2 2 4-4"/>
-                                        <path d="M21 12c.552 0 1-.448 1-1V5c0-.552-.448-1-1-1H3c-.552 0-1 .448-1 1v6c0 .552.448 1 1 1h18z"/>
-                                    </svg>
-                                </div>
-                                <div class="feature-content">
-                                    <h3>Risk Assessment</h3>
-                                    <p>Comprehensive hazard identification and risk evaluation</p>
+                        <div class="intro-highlights">
+                            <div class="highlight-item">
+                                <div class="highlight-content">
+                                    <h4>Risk Assessment Excellence</h4>
+                                    <p>TÜV-certified functional safety expertise ensures machinery compliance with IEC 61508/61511, machinery directive 2006/42/EC, and pharmaceutical GAMP guidelines for regulated industries</p>
                                 </div>
                             </div>
-                            
-                            <div class="feature-item">
-                                <div class="feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.46 9-11V7l-10-5z"/>
-                                    </svg>
-                                </div>
-                                <div class="feature-content">
-                                    <h3>Safety System Design</h3>
-                                    <p>Custom safety circuits and system architecture</p>
-                                </div>
-                            </div>
-                            
-                            <div class="feature-item">
-                                <div class="feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                        <polyline points="14,2 14,8 20,8"/>
-                                        <line x1="16" y1="13" x2="8" y2="13"/>
-                                        <line x1="16" y1="17" x2="8" y2="17"/>
-                                        <polyline points="10,9 9,9 8,9"/>
-                                    </svg>
-                                </div>
-                                <div class="feature-content">
-                                    <h3>Compliance Validation</h3>
-                                    <p>Testing and certification for regulatory compliance</p>
+                            <div class="highlight-item">
+                                <div class="highlight-content">
+                                    <h4>Compliance Leadership</h4>
+                                    <p>Comprehensive safety lifecycle management from concept to validation, ensuring full regulatory compliance and workforce protection across all industrial applications</p>
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="intro-cta">
+                            <a href="contact.html" class="btn-primary">Get Safety Assessment</a>
+                            <a href="services.html" class="btn-outline">Explore Services</a>
+                        </div>
                     </div>
                     
-                    <div class="overview-visual">
-                        <img src="images/Machine-Safety-Services.png" alt="Machine Safety Services" class="overview-image">
+                    <div class="intro-visual">
+                        <div class="visual-container">
+                            <div class="visual-bg"></div>
+                            <div class="company-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">TÜV</span>
+                                    <span class="metric-label">Certified</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">200+</span>
+                                    <span class="metric-label">Assessments</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -179,6 +190,7 @@
         <section class="automation-services">
             <div class="container">
                 <div class="section-header">
+                    <div class="section-badge">Safety Services</div>
                     <h2 class="section-title">Our Safety Services</h2>
                     <p class="section-subtitle">Complete safety lifecycle management from concept to validation</p>
                 </div>
@@ -278,6 +290,7 @@
         <section class="industries-modern">
             <div class="container">
                 <div class="section-header">
+                    <div class="section-badge">Compliance Standards</div>
                     <h2 class="section-title">Standards & Compliance</h2>
                     <p class="section-subtitle">Expert knowledge of international safety standards and regulations</p>
                 </div>

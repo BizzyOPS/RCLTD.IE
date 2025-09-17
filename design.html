@@ -13,7 +13,8 @@
     <meta name="msapplication-TileImage" content="images/roundlogo.png">
     <meta name="msapplication-TileColor" content="#0891b2">
     
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=1758065856&tablet=fixed&cache=bust">
+    <link rel="stylesheet" href="css/variables.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -101,73 +102,85 @@
     </header>
 
     <main>
-        <!-- Page Hero -->
+        <!-- Enhanced Hero Section -->
         <section class="store-hero">
             <div class="container">
                 <div class="store-hero-content">
-                    <h1 class="page-title">Electrical Design Services</h1>
-                    <p class="page-subtitle">Latest electrical design tools and methodologies for comprehensive development and optimization processes, delivering innovative solutions for industrial and commercial applications.</p>
+                    <div class="hero-badge">
+                        <span class="badge-text">CAD Certified</span>
+                        <span class="badge-highlight">Engineering Excellence</span>
+                    </div>
+                    <h1 class="page-title">Professional Electrical Design & Engineering</h1>
+                    <p class="page-subtitle">Advanced electrical design services using cutting-edge CAD technology and proven methodologies. From concept to completion, we deliver precise, efficient, and compliant electrical solutions for diverse industrial applications.</p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">300+</span>
+                            <span class="stat-label">Design Projects</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">99%</span>
+                            <span class="stat-label">Design Accuracy</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">48hr</span>
+                            <span class="stat-label">Quote Turnaround</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Design Overview -->
-        <section class="overview-section">
+        <section class="company-intro">
             <div class="container">
-                <div class="overview-grid">
-                    <div class="overview-content">
-                        <h2 class="section-title">Advanced Electrical Design</h2>
-                        <p class="overview-description">
+                <div class="intro-grid">
+                    <div class="intro-content">
+                        <div class="intro-badge">
+                            <span>Design Innovation</span>
+                        </div>
+                        <h2 class="intro-title">Advanced Electrical Design</h2>
+                        <p class="intro-text">
                             Our electrical design services combine cutting-edge CAD technology with decades of engineering expertise to deliver precise, efficient, and compliant electrical solutions for diverse industrial applications.
                         </p>
-                        <p class="overview-description">
+                        <p class="intro-text">
                             From concept to completion, we provide comprehensive electrical design services including schematic design, panel layouts, cable schedules, and detailed engineering documentation.
                         </p>
                         
-                        <div class="overview-features">
-                            <div class="feature-item">
-                                <div class="feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                        <circle cx="9" cy="9" r="2"/>
-                                        <path d="M21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-                                    </svg>
-                                </div>
-                                <div class="feature-content">
-                                    <h3>CAD Design</h3>
-                                    <p>Professional electrical CAD design and documentation</p>
+                        <div class="intro-highlights">
+                            <div class="highlight-item">
+                                <div class="highlight-content">
+                                    <h4>CAD Excellence</h4>
+                                    <p>Professional electrical design using AutoCAD Electrical, EPLAN Electric P8, and SolidWorks Electrical for comprehensive project development and documentation</p>
                                 </div>
                             </div>
-                            
-                            <div class="feature-item">
-                                <div class="feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-                                    </svg>
-                                </div>
-                                <div class="feature-content">
-                                    <h3>System Integration</h3>
-                                    <p>Seamless integration with existing electrical systems</p>
-                                </div>
-                            </div>
-                            
-                            <div class="feature-item">
-                                <div class="feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path d="M9 12l2 2 4-4"/>
-                                        <circle cx="12" cy="12" r="9"/>
-                                    </svg>
-                                </div>
-                                <div class="feature-content">
-                                    <h3>Standards Compliance</h3>
-                                    <p>Design compliance with international electrical standards</p>
+                            <div class="highlight-item">
+                                <div class="highlight-content">
+                                    <h4>Standards Compliance</h4>
+                                    <p>Design compliance with international electrical standards ensuring optimal performance, safety, and regulatory adherence across all industrial applications</p>
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="intro-cta">
+                            <a href="contact.html" class="btn-primary">Get Design Quote</a>
+                            <a href="services.html" class="btn-outline">View All Services</a>
+                        </div>
                     </div>
                     
-                    <div class="overview-visual">
-                        <img src="images/Electrical-Design-Services.png" alt="Electrical Design Services" class="overview-image">
+                    <div class="intro-visual">
+                        <div class="visual-container">
+                            <div class="visual-bg"></div>
+                            <div class="company-metrics">
+                                <div class="metric">
+                                    <span class="metric-value">CAD</span>
+                                    <span class="metric-label">Certified</span>
+                                </div>
+                                <div class="metric">
+                                    <span class="metric-value">300+</span>
+                                    <span class="metric-label">Designs</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -177,6 +190,7 @@
         <section class="automation-services">
             <div class="container">
                 <div class="section-header">
+                    <div class="section-badge">Design Services</div>
                     <h2 class="section-title">Our Design Capabilities</h2>
                     <p class="section-subtitle">Comprehensive electrical design services from concept to implementation</p>
                 </div>
@@ -278,6 +292,7 @@
         <section class="industries-modern">
             <div class="container">
                 <div class="section-header">
+                    <div class="section-badge">Technology Stack</div>
                     <h2 class="section-title">Design Tools & Technologies</h2>
                     <p class="section-subtitle">Latest software and methodologies for professional electrical design</p>
                 </div>
