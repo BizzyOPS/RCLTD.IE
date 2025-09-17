@@ -3197,7 +3197,7 @@ section + section {
 }
 
 .industry-card-modern p {
-    color: #374151;
+    color: var(--text-primary);
     line-height: 1.6;
     margin-bottom: var(--spacing-4);
 }
@@ -7796,7 +7796,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
 }
 
 .spotlight-content p {
-    color: var(--text-secondary);
+    color: var(--text-primary);
     line-height: 1.6;
 }
 
