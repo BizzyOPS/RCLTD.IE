@@ -2045,8 +2045,8 @@ section + section {
 }
 /* Modern About Page Styles */
 .company-intro {
-    padding: var(--spacing-20) 0;
-    background: transparent;
+    padding: var(--spacing-8) 0;
+    background: #ffffff;
     position: relative;
     overflow: hidden;
 }
@@ -2074,14 +2074,14 @@ section + section {
 .intro-title {
     font-size: var(--font-size-4xl);
     font-weight: 800;
-    color: var(--text-primary);
+    color: #111827;
     line-height: 1.1;
     margin-bottom: var(--spacing-6);
 }
 
 .intro-text {
     font-size: var(--font-size-lg);
-    color: var(--text-secondary);
+    color: #374151;
     line-height: 1.7;
     margin-bottom: var(--spacing-8);
 }
@@ -2113,12 +2113,12 @@ section + section {
 .highlight-content h4 {
     font-size: var(--font-size-lg);
     font-weight: 600;
-    color: var(--text-primary);
+    color: #111827;
     margin-bottom: var(--spacing-2);
 }
 
 .highlight-content p {
-    color: var(--text-secondary);
+    color: #374151;
     line-height: 1.6;
 }
 
@@ -2289,7 +2289,7 @@ section + section {
 
 /* Modern Timeline */
 .company-timeline {
-    padding: var(--spacing-24) 0;
+    padding: var(--spacing-8) 0;
     background: #f8fafc;
     position: relative;
 }
@@ -2379,12 +2379,12 @@ section + section {
 .timeline-content h3 {
     font-size: var(--font-size-xl);
     font-weight: 700;
-    color: var(--text-primary);
+    color: #111827;
     margin-bottom: var(--spacing-3);
 }
 
 .timeline-content p {
-    color: var(--text-secondary);
+    color: #374151;
     line-height: 1.6;
     margin-bottom: var(--spacing-4);
 }
@@ -2406,8 +2406,8 @@ section + section {
 
 /* Modern Team Section */
 .team-section {
-    padding: var(--spacing-24) 0;
-    background: transparent;
+    padding: var(--spacing-8) 0;
+    background: #ffffff;
 }
 
 .team-grid {
@@ -2472,7 +2472,7 @@ section + section {
 .member-name {
     font-size: var(--font-size-xl);
     font-weight: 700;
-    color: var(--text-primary);
+    color: #111827;
     margin-bottom: var(--spacing-2);
     text-align: center;
 }
@@ -2486,7 +2486,7 @@ section + section {
 }
 
 .member-bio {
-    color: var(--text-secondary);
+    color: #374151;
     line-height: 1.6;
     text-align: center;
     margin-bottom: var(--spacing-6);
@@ -2501,7 +2501,7 @@ section + section {
 
 .skill-tag {
     background: #f1f5f9;
-    color: var(--text-primary);
+    color: #111827;
     padding: var(--spacing-1) var(--spacing-3);
     border-radius: 50px;
     font-size: var(--font-size-sm);
@@ -2518,18 +2518,18 @@ section + section {
 .team-cta h3 {
     font-size: var(--font-size-2xl);
     font-weight: 700;
-    color: var(--text-primary);
+    color: #111827;
     margin-bottom: var(--spacing-4);
 }
 
 .team-cta p {
-    color: var(--text-secondary);
+    color: #374151;
     margin-bottom: var(--spacing-6);
 }
 
 /* Modern Values Section */
 .values-section {
-    padding: var(--spacing-24) 0;
+    padding: var(--spacing-8) 0;
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
 }
 
@@ -2575,12 +2575,12 @@ section + section {
 .value-card h3 {
     font-size: var(--font-size-xl);
     font-weight: 700;
-    color: var(--text-primary);
+    color: #111827;
     margin-bottom: var(--spacing-4);
 }
 
 .value-card p {
-    color: var(--text-secondary);
+    color: #374151;
     line-height: 1.6;
     margin-bottom: var(--spacing-6);
 }
@@ -2601,8 +2601,8 @@ section + section {
 
 /* Modern Industries Section */
 .industries-modern {
-    padding: var(--spacing-24) 0;
-    background: transparent;
+    padding: var(--spacing-8) 0;
+    background: #ffffff;
 }
 
 .industries-showcase {
@@ -2723,11 +2723,11 @@ section + section {
 .card-header h4 {
     font-size: var(--font-size-lg);
     font-weight: 600;
-    color: var(--text-primary);
+    color: #111827;
 }
 
 .industry-card-modern p {
-    color: var(--text-secondary);
+    color: #374151;
     line-height: 1.6;
     margin-bottom: var(--spacing-4);
 }
