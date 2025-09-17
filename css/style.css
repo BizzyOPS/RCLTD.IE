@@ -273,9 +273,9 @@ main {
 }
 
 @media (max-width: 768px) {
-    .hero-cover-image {
+    .hero-cover-image::before {
         background-attachment: scroll !important;
-        background-size: contain !important;
+        background-size: cover !important;
     }
 }
 
@@ -301,120 +301,7 @@ main {
 .hero-cover-image::after {
     display: none;
 }
-/* Primary Layer Animation - Cycles through images 1, 3, 5, 2, 4 */
-@-webkit-keyframes heroImageCyclePrimary {
-    0%, 18% { 
-        background-image: url('../images/hero-electrical-control.png'); 
-        opacity: 1; 
-    }
-    19%, 20% { 
-        opacity: 0; 
-    }
-    21%, 38% { 
-        background-image: url('../images/hero-orange-robot.png'); 
-        opacity: 1; 
-    }
-    39%, 40% { 
-        opacity: 0; 
-    }
-    41%, 58% { 
-        background-image: url('../images/hero-company-logo.png'); 
-        opacity: 1; 
-    }
-    59%, 60% { 
-        opacity: 0; 
-    }
-    61%, 78% { 
-        background-image: url('../images/hero-robotics-assembly.png'); 
-        opacity: 1; 
-    }
-    79%, 80% { 
-        opacity: 0; 
-    }
-    81%, 98% { 
-        background-image: url('../images/hero-white-robot.png'); 
-        opacity: 1; 
-    }
-    99%, 100% { 
-        opacity: 0; 
-    }
-}
-
-@-moz-keyframes heroImageCyclePrimary {
-    0%, 18% { 
-        background-image: url('../images/hero-electrical-control.png'); 
-        opacity: 1; 
-    }
-    19%, 20% { 
-        opacity: 0; 
-    }
-    21%, 38% { 
-        background-image: url('../images/hero-orange-robot.png'); 
-        opacity: 1; 
-    }
-    39%, 40% { 
-        opacity: 0; 
-    }
-    41%, 58% { 
-        background-image: url('../images/hero-company-logo.png'); 
-        opacity: 1; 
-    }
-    59%, 60% { 
-        opacity: 0; 
-    }
-    61%, 78% { 
-        background-image: url('../images/hero-robotics-assembly.png'); 
-        opacity: 1; 
-    }
-    79%, 80% { 
-        opacity: 0; 
-    }
-    81%, 98% { 
-        background-image: url('../images/hero-white-robot.png'); 
-        opacity: 1; 
-    }
-    99%, 100% { 
-        opacity: 0; 
-    }
-}
-
-@-ms-keyframes heroImageCyclePrimary {
-    0%, 18% { 
-        background-image: url('../images/hero-electrical-control.png'); 
-        opacity: 1; 
-    }
-    19%, 20% { 
-        opacity: 0; 
-    }
-    21%, 38% { 
-        background-image: url('../images/hero-orange-robot.png'); 
-        opacity: 1; 
-    }
-    39%, 40% { 
-        opacity: 0; 
-    }
-    41%, 58% { 
-        background-image: url('../images/hero-company-logo.png'); 
-        opacity: 1; 
-    }
-    59%, 60% { 
-        opacity: 0; 
-    }
-    61%, 78% { 
-        background-image: url('../images/hero-robotics-assembly.png'); 
-        opacity: 1; 
-    }
-    79%, 80% { 
-        opacity: 0; 
-    }
-    81%, 98% { 
-        background-image: url('../images/hero-white-robot.png'); 
-        opacity: 1; 
-    }
-    99%, 100% { 
-        opacity: 0; 
-    }
-}
+/* Legacy keyframes removed to prevent duplication conflicts */
 
 @keyframes heroImageCycleClean {
     0%, 20% { 
@@ -434,8 +321,8 @@ main {
     }
 }
 
-/* Secondary Layer Animation - Fills in between primary layer */
-@-webkit-keyframes heroImageCycleSecondary {
+/* All secondary animations removed - using single clean cycle */
+@-webkit-keyframes heroImageCycleSecondary-DISABLED {
     0%, 19% { 
         opacity: 0; 
     }
@@ -470,7 +357,7 @@ main {
     }
 }
 
-@-moz-keyframes heroImageCycleSecondary {
+@-moz-keyframes heroImageCycleSecondary-DISABLED {
     0%, 19% { 
         opacity: 0; 
     }
@@ -505,7 +392,7 @@ main {
     }
 }
 
-@-ms-keyframes heroImageCycleSecondary {
+@-ms-keyframes heroImageCycleSecondary-DISABLED {
     0%, 19% { 
         opacity: 0; 
     }
