@@ -56,6 +56,8 @@ Preferred communication style: Simple, everyday language.
 ## Recent Changes
 
 **September 17, 2025**
+- **Store Page E-commerce Removal**: Completely transformed store page from e-commerce functionality to product showcase format where customers call to order. Removed shopping cart button, cart sidebar, cart overlay, and all checkout processes. Deleted unnecessary files (cart.html, checkout.html, js/store.js, js/checkout.js) and cleaned up all related CSS styling. Updated hero messaging and call-to-action buttons to encourage phone orders (+353 52 7443258) and email inquiries instead of online purchasing. Fixed JavaScript regex error in training system for clean page loading
+**September 17, 2025**
 - **Hero Image Duplication Fix**: Fixed cover photo duplication issue by switching to single pseudo-element system, eliminating overlapping background images that caused visual duplicates
 - **Hero Image Stretching Fix**: Resolved image stretching and distortion by changing background-size from 'cover' to 'contain', ensuring proper aspect ratios are maintained without cropping or stretching
 - **Hero Cover Photo Duplication Fix**: Fixed cover photo duplication issue by removing background properties from the main hero element, ensuring only the pseudo-element displays the cycling background images
