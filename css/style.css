@@ -7985,7 +7985,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
 }
 
 .highlight-content p {
-    color: var(--text-secondary);
+    color: var(--text-primary);
     line-height: 1.5;
 }
 
@@ -8188,7 +8188,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
 }
 
 .timeline-content p {
-    color: var(--text-secondary);
+    color: var(--text-primary);
     line-height: 1.6;
     margin-bottom: var(--spacing-4);
 }
@@ -8326,7 +8326,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
 }
 
 .member-bio {
-    color: var(--text-secondary);
+    color: var(--text-primary);
     line-height: 1.6;
     margin-bottom: var(--spacing-6);
 }
