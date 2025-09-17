@@ -13,7 +13,6 @@ html {
 }
 
 html, body {
-    padding-top: var(--header-height);
     background: #ffffff !important;
     background-color: #ffffff !important;
     min-height: 100vh;
@@ -25,6 +24,16 @@ html, body {
 main {
     position: relative;
     z-index: 1;
+}
+
+/* Homepage hero should be flush with header */
+body.home main {
+    padding-top: 0;
+}
+
+/* Other pages need padding to avoid overlap with fixed header */
+body:not(.home) {
+    padding-top: var(--header-height);
 }
 /* Homepage Hero Section with Cover Image Background */
 
