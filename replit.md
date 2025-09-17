@@ -6,6 +6,9 @@ This is a static website for Robotics & Control Ltd, an Irish technology company
 
 ## Recent Changes
 
+**September 17, 2025**
+- **Timeline Section Professional Layout Fix**: Completely restructured about page timeline from broken flex layout to clean grid-based system (1fr 120px 1fr) with proper container sizing, larger timeline markers (120px), consistent spacing (--spacing-20), and professional hover effects, eliminating overlapping content and messy appearance
+
 **September 16, 2025 - Updated**
 - **Loading Screen Functionality Restored**: Fixed critical loading screen getting stuck on other pages by replacing broken `js/script.js` references with correct JavaScript files (`js/app.js`, `js/chatbot.js`, `js/tooltips.js`, `js/popup-tooltips.js`) across 16 HTML pages, eliminating 404 errors that prevented proper loading animation from 0% to 100%
 - **Page Background Reverted**: Changed body background from gradient back to clean white background for professional enterprise appearance across all pages
