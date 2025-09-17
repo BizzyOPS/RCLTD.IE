@@ -89,18 +89,6 @@
                 <div class="nav-contact">
                     <span class="nav-phone">+353 (0) 52 7443258</span>
                     <div class="nav-actions">
-                        <a href="cart.html" class="cart-button" 
-                           data-tooltip="View shopping cart"
-                           data-tooltip-type="info"
-                           data-tooltip-position="bottom"
-                           aria-label="View cart">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="9" cy="21" r="1"></circle>
-                                <circle cx="20" cy="21" r="1"></circle>
-                                <path d="m1 1 4 4 7.68 13.39a2 2 0 0 0 1.92 1.61h8.4a2 2 0 0 0 2-1.61L18.68 11H7"></path>
-                            </svg>
-                            <span id="cart-count" class="cart-count">0</span>
-                        </a>
                         <a href="contact.html" class="btn-primary btn-compact"
                            data-tooltip="Get a free quote for your project"
                            data-tooltip-type="success"
@@ -127,7 +115,7 @@
                         <span class="badge-highlight">Enterprise Solutions</span>
                     </div>
                     <h1 class="page-title">Industrial Automation Equipment Store</h1>
-                    <p class="page-subtitle">Professional-grade automation and control equipment sourced directly from leading manufacturers. Our certified engineers provide technical guidance and comprehensive support for all industrial automation components and systems.</p>
+                    <p class="page-subtitle">Professional-grade automation and control equipment sourced directly from leading manufacturers. Browse our showcase below and call our certified engineers for pricing, technical guidance, and personalized recommendations.</p>
                     <div class="hero-stats">
                         <div class="stat-item">
                             <span class="stat-number">500+</span>
@@ -135,11 +123,23 @@
                         </div>
                         <div class="stat-item">
                             <span class="stat-number">24h</span>
-                            <span class="stat-label">Delivery Ireland</span>
+                            <span class="stat-label">Expert Consultation</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-number">100%</span>
                             <span class="stat-label">Genuine Products</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Call to Action for Orders -->
+                    <div class="hero-cta-section">
+                        <div class="cta-text">
+                            <h3>Ready to Order? Call Our Experts</h3>
+                            <p>Browse our products below and call us for pricing, availability, and technical guidance. Our certified engineers will help you select the right components.</p>
+                        </div>
+                        <div class="cta-buttons">
+                            <a href="tel:+353527443258" class="btn-primary btn-large">📞 Call +353 (0) 52 7443258</a>
+                            <a href="contact.html" class="btn-secondary btn-large">📧 Email for Quote</a>
                         </div>
                     </div>
                 </div>
@@ -195,9 +195,12 @@
                     <!-- Products will be loaded here -->
                     <div class="store-empty-state">
                         <div class="empty-icon">📦</div>
-                        <h3>Store Catalog Coming Soon</h3>
-                        <p>Our equipment catalog is being prepared. Check back soon for professional automation and control components.</p>
-                        <a href="contact.html" class="btn-primary">Contact Us for Product Inquiries</a>
+                        <h3>Product Showcase - Call to Order</h3>
+                        <p>Browse our professional automation and control components below. Call us for pricing, availability, and technical support.</p>
+                        <div class="showcase-cta">
+                            <a href="tel:+353527443258" class="btn-primary">📞 Call for Pricing</a>
+                            <a href="contact.html" class="btn-secondary">📧 Email Inquiry</a>
+                        </div>
                     </div>
                 </div>
                 
@@ -243,10 +246,10 @@
                     </div>
                     <div class="value-card">
                         <div class="value-icon">💳</div>
-                        <h3>Enterprise Payment Solutions</h3>
-                        <p>Secure payment processing with corporate accounts, purchase orders, and flexible payment terms for enterprise clients and repeat customers.</p>
+                        <h3>Personalized Service & Consultation</h3>
+                        <p>Direct consultation with certified engineers for product selection, technical specifications, and implementation guidance tailored to your specific requirements.</p>
                         <div class="value-stats">
-                            <span class="stat-highlight">Corporate Terms</span>
+                            <span class="stat-highlight">Expert Guidance</span>
                         </div>
                     </div>
                 </div>
@@ -254,34 +257,6 @@
         </section>
     </main>
 
-    <!-- Shopping Cart Sidebar -->
-    <div id="cart-sidebar" class="cart-sidebar">
-        <div class="cart-header">
-            <h3>Shopping Cart</h3>
-            <button id="cart-close" class="cart-close">&times;</button>
-        </div>
-        <div class="cart-content">
-            <div id="cart-items" class="cart-items">
-                <!-- Cart items will be populated here -->
-                <div class="cart-empty">
-                    <p>Your cart is empty</p>
-                    <p class="cart-empty-subtitle">Add some products to get started</p>
-                </div>
-            </div>
-        </div>
-        <div class="cart-footer">
-            <div class="cart-total">
-                <span>Total: <strong id="cart-total">€0.00</strong></span>
-            </div>
-            <div class="cart-actions">
-                <a href="cart.html" class="btn-secondary btn-block">View Cart</a>
-                <a href="checkout.html" class="btn-primary btn-block">Checkout</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Cart Overlay -->
-    <div id="cart-overlay" class="cart-overlay"></div>
 
     <footer class="footer">
         <div class="container">
@@ -366,6 +341,5 @@
     <script src="js/popup-tooltips.js?v=1758021605&nocache=true&hero=new&bust=force"></script>
     <script src="js/chatbot.js"></script>
     <script src="js/tooltips.js"></script>
-    <script src="js/store.js"></script>
 </body>
 </html>

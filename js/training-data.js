@@ -479,8 +479,14 @@ var trainingData = {
                         // Check flexible answers if available
                         if (question.flexibleAnswers && question.flexibleAnswers[j]) {
                             var flexible = question.flexibleAnswers[j];
-                            if (flexible.pattern.test(providedAnswer)) {
-                                providedAnswer = flexible.replacement;
+                            if (flexible && flexible.pattern && typeof flexible.pattern.test === 'function') {
+                                try {
+                                    if (flexible.pattern.test(providedAnswer)) {
+                                        providedAnswer = flexible.replacement;
+                                    }
+                                } catch (e) {
+                                    // Skip invalid patterns to prevent blocking validation
+                                }
                             }
                         }
                         

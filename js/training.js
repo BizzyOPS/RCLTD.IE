@@ -563,9 +563,17 @@ SafetyTrainingSystem.prototype.checkBlankAnswer = function(userAnswer, correctAn
         
         // Check flexible answers if provided
         if (flexibleAnswers) {
-            for (var flexAnswer of flexibleAnswers) {
-                if (flexAnswer.pattern.test(userAnswer)) {
-                    return true;
+            for (var i = 0; i < flexibleAnswers.length; i++) {
+                var flexAnswer = flexibleAnswers[i];
+                if (flexAnswer && flexAnswer.pattern && typeof flexAnswer.pattern.test === 'function') {
+                    try {
+                        if (flexAnswer.pattern.test(userAnswer)) {
+                            return true;
+                        }
+                    } catch (e) {
+                        // Skip invalid patterns to prevent blocking other validation
+                        continue;
+                    }
                 }
             }
         }
