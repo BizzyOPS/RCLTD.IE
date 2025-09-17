@@ -6042,7 +6042,7 @@ section + section {
     color: var(--secondary-color);
 }
 /* Advanced Page Loading Animation - Robotics Theme */
-.page-loader {\n    display: none !important;\n    opacity: 0 !important;\n    visibility: hidden !important;\n    pointer-events: none !important;\n    background: transparent !important;
+.page-loader {
     position: fixed;
     top: 0;
     left: 0;
@@ -6096,10 +6096,10 @@ section + section {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80px;
+    width: 100px;
     height: auto;
     z-index: 3;
-    filter: drop-shadow(0 0 15px rgba(8, 145, 178, 0.5));
+    filter: drop-shadow(0 0 20px rgba(8, 145, 178, 0.8)) brightness(1.1);
     animation: logoFloat 4s ease-in-out infinite;
 }
 .loader-logo img {
