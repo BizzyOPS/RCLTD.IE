@@ -1,3 +1,26 @@
+// Set dynamic header height for proper spacing
+function setHeaderOffset() {
+    const header = document.querySelector('.header');
+    if (!header) return;
+    const h = Math.ceil(header.getBoundingClientRect().height);
+    document.documentElement.style.setProperty('--header-height', h + 'px');
+    // Debug log to verify
+    console.log('Header height set to:', h + 'px');
+}
+
+// Apply header offset on load and resize
+window.addEventListener('load', setHeaderOffset);
+window.addEventListener('resize', setHeaderOffset);
+
+// Watch for header content changes
+if (window.ResizeObserver) {
+    const headerObserver = new ResizeObserver(setHeaderOffset);
+    const header = document.querySelector('.header');
+    if (header) {
+        headerObserver.observe(header);
+    }
+}
+
 // PARTICLES COMPLETELY DISABLED - NO PARTICLE CODE SHOULD EXECUTE
 // Override all particle functions before any code runs
 if (typeof window !== 'undefined') {
@@ -143,6 +166,9 @@ function initHeroVideo() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Set header height immediately
+    setHeaderOffset();
+    
     // Initialize all components
     initNavigation();
     initScrollEffects();

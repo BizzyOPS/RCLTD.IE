@@ -12,7 +12,7 @@ html {
     scroll-padding-top: var(--header-height);
 }
 
-main {
+body {
     padding-top: var(--header-height);
 }
 /* Hero Section with Cover Image Background */
@@ -33,7 +33,6 @@ main {
     justify-content: flex-start;
     color: white;
     overflow: hidden;
-    padding-top: var(--spacing-6);
 }
 
 /* Tablet hero adjustments */
