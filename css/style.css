@@ -4136,6 +4136,15 @@ section + section {
         z-index: 999;
     }
 }
+/* Overview Image Styling */
+.overview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
 /* E-commerce Store Styles */
 .store-hero {
     background: linear-gradient(135deg, #1a2332 0%, #2d3748 25%, #4a5568 50%, #718096 75%, #e2e8f0 100%);
