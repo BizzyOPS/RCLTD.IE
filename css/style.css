@@ -12,9 +12,10 @@ html {
     scroll-padding-top: var(--header-height);
 }
 
-body {
+html, body {
     padding-top: var(--header-height);
-    background: var(--section-white);
+    background: #ffffff !important;
+    background-color: #ffffff !important;
     min-height: 100vh;
     font-family: var(--font-family);
     color: var(--text-primary);
@@ -4385,8 +4386,12 @@ section + section {
         display: none;
     }
 }
-/* Dark mode support */
+/* Dark mode support - but force white background on body */
 @media (prefers-color-scheme: dark) {
+    html, body {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+    }
     .popup-tooltip {
         background: linear-gradient(135deg, var(--surface-dark), var(--bg-primary));
         border-color: rgba(255, 255, 255, 0.1);
