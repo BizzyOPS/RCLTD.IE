@@ -2794,6 +2794,9 @@ section + section {
     border-radius: var(--radius-xl);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
     position: relative;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .timeline-item:nth-child(odd) .timeline-content {
@@ -2927,6 +2930,9 @@ section + section {
     line-height: 1.6;
     text-align: center;
     margin-bottom: var(--spacing-6);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .member-skills {
@@ -2984,6 +2990,9 @@ section + section {
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     border: 1px solid #f1f5f9;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .value-card:hover {
@@ -8028,6 +8037,9 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
     box-shadow: var(--shadow-md);
     border: 1px solid var(--border-color);
     position: relative;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .timeline-content::before {
@@ -8267,6 +8279,9 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
     transition: all var(--transition-normal);
     position: relative;
     overflow: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .value-card::before {
@@ -8386,6 +8401,34 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
     .hero-stats {
         grid-template-columns: 1fr;
     }
+}
+
+/* Enhanced global text overflow prevention for About page and all sections */
+p, h1, h2, h3, h4, h5, h6, span, div {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Additional text handling for specific content areas */
+.intro-text, .page-subtitle, .section-subtitle, .service-description {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+}
+
+/* Ensure long words don't overflow containers */
+.timeline-content p, .value-card p, .member-bio, .intro-content p {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
+/* Additional overflow protection for containers */
+.company-intro, .intro-content, .highlight-content, .member-info {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 /* Force cache refresh */
