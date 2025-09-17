@@ -107,8 +107,7 @@ main {
     padding: var(--spacing-16) 0 var(--spacing-8);
 }
 
-/* Override for specifically styled sections */
-.hero,
+/* Override for specifically styled sections - exclude homepage hero with cover images */
 .page-hero,
 .store-hero {
     background: var(--hero-gradient) !important;
