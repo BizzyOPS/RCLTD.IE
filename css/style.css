@@ -33,6 +33,7 @@ body {
     justify-content: flex-start;
     color: white;
     overflow: hidden;
+    margin-bottom: var(--spacing-12);
 }
 
 /* Tablet hero adjustments */
@@ -4137,6 +4138,7 @@ section + section {
     text-align: center;
     position: relative;
     overflow: hidden;
+    margin-bottom: var(--spacing-12);
 }
 .store-hero::before {
     content: '';
@@ -5781,6 +5783,7 @@ section + section {
     text-align: center;
     position: relative;
     overflow: hidden;
+    margin-bottom: var(--spacing-12);
 }
 
 /* Services Page Specific Background */
