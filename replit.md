@@ -56,6 +56,7 @@ Preferred communication style: Simple, everyday language.
 ## Recent Changes
 
 **September 17, 2025**
+- **Hero Image Duplication Fix**: Fixed cover photo duplication issue by switching to single pseudo-element system, eliminating overlapping background images that caused visual duplicates
 - **Hero Statistics Professional Enhancement**: Removed unprofessional white boxes around statistics text and improved readability with white text and strong shadow effects for optimal visibility against any background color
 - **Hero Image Timing Refinement**: Slowed hero image cycling from 25s to 40s for more elegant, professional transitions between background images
 - **Hero Image Cycling Enhancement**: Fixed visual splits/seams in background image transitions by implementing improved dual pseudo-element system with overlapping opacity fades, linear timing functions, and optimized keyframe sequences to ensure seamless crossfades between the 5 hero images without blackout periods
