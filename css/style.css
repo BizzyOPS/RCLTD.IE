@@ -2755,23 +2755,29 @@ section + section {
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-2);
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(10px);
     padding: var(--spacing-2) var(--spacing-4);
     border-radius: 50px;
     margin-bottom: var(--spacing-6);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .badge-text {
     font-size: var(--font-size-sm);
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 500;
 }
 
 .badge-highlight {
     font-size: var(--font-size-sm);
-    font-weight: 600;
-    color: white;
+    font-weight: 700;
+    color: #ff6b35;
+    background: rgba(255, 255, 255, 0.15);
+    padding: var(--spacing-1) var(--spacing-2);
+    border-radius: var(--radius-sm);
+    margin-left: var(--spacing-1);
 }
 
 /* Modern Timeline */
@@ -7832,26 +7838,29 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-2);
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
     padding: var(--spacing-2) var(--spacing-4);
-    border-radius: var(--radius-lg);
-    margin-bottom: var(--spacing-4);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    margin-bottom: var(--spacing-6);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .badge-text {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.95);
     font-size: var(--font-size-sm);
     font-weight: 500;
 }
 
 .badge-highlight {
-    background: var(--brand-orange);
-    color: white;
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    color: #ff6b35;
+    background: rgba(255, 255, 255, 0.15);
     padding: var(--spacing-1) var(--spacing-2);
     border-radius: var(--radius-sm);
-    font-size: var(--font-size-xs);
-    font-weight: 600;
+    margin-left: var(--spacing-1);
 }
 
 .hero-stats {
