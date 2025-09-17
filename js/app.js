@@ -813,6 +813,14 @@ function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
             progressCounter.textContent = Math.floor(currentProgress) + '%';
             progressBar.style.width = currentProgress + '%';
             
+            // Show logo at 60% progress and keep it visible
+            if (currentProgress >= 60) {
+                var logo = pageLoader.querySelector('.loader-logo');
+                if (logo && !logo.classList.contains('show')) {
+                    logo.classList.add('show');
+                }
+            }
+            
             // Continue animation
             setTimeout(updateProgress, progressUpdateInterval);
         } else {

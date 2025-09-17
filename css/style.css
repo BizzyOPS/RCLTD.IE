@@ -6097,7 +6097,8 @@ section + section {
     height: auto;
     z-index: 3;
     filter: drop-shadow(0 0 20px rgba(8, 145, 178, 0.8)) brightness(1.1);
-    animation: logoFloat 4s ease-in-out infinite;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
 }
 .loader-logo img {
     width: 100%;
@@ -6228,9 +6229,9 @@ section + section {
     0% { opacity: 0.3; }
     100% { opacity: 0.8; }
 }
-@keyframes logoFloat {
-    0%, 100% { transform: translate(-50%, -50%) translateY(0px) scale(1); }
-    50% { transform: translate(-50%, -50%) translateY(-10px) scale(1.05); }
+/* Logo appears at 60% progress and stays visible */
+.loader-logo.show {
+    opacity: 1;
 }
 @keyframes rotateClockwise {
     from { transform: rotate(0deg); }
