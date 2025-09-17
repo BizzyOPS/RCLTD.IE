@@ -599,7 +599,7 @@ body:not(.home) {
 /* Header Responsive Design */
 @media (max-width: 768px) {
     .header {
-        padding: 0.5rem 0;
+        padding: 0.25rem 0;
         backdrop-filter: blur(8px);
         background: transparent;
     }
@@ -1257,8 +1257,18 @@ section + section {
     left: 0;
     right: 0;
     z-index: 1000;
-    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
     /* No default background - let theme classes handle it */
+}
+
+/* Header hide/show states for scroll behavior */
+.header.header-hidden {
+    transform: translateY(-100%);
+}
+
+.header.header-visible {
+    transform: translateY(0);
 }
 
 /* Store hero section styling - no additional padding needed with global main padding */
@@ -1278,8 +1288,8 @@ section + section {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
 }
 .nav {
-    padding: 1rem 0;
-    padding: var(--spacing-4) 0;
+    padding: 0.5rem 0;
+    padding: var(--spacing-2) 0;
 }
 .nav-container {
     max-width: 1200px;

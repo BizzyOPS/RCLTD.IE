@@ -992,15 +992,23 @@ document.head.appendChild(style);
 
 
 
-// Dynamic Header Glass Effect with Background Detection
+// Dynamic Header Glass Effect with Background Detection and Scroll Hide/Show
 function DynamicHeaderManager() {
     this.header = document.querySelector('.header');
     this.heroSection = document.querySelector('.hero');
     this.servicesSection = document.querySelector('.services, #services');
     this.lastScrollY = window.scrollY;
+    this.previousScrollY = window.scrollY;
+    this.scrollDirection = 'up';
     this.ticking = false;
+    this.scrollThreshold = 60; // Minimum scroll distance before hiding header
+    this.hideHeaderWhenScrollDown = true;
+    this.isHeaderVisible = true;
     
     if (this.header) {
+        // Initialize header as visible
+        this.header.classList.add('header-visible');
+        this.header.classList.remove('header-hidden');
         this.init();
     }
 }
@@ -1043,7 +1051,44 @@ DynamicHeaderManager.prototype.updateHeaderState = function() {
     var scrollY = this.lastScrollY;
     var headerHeight = this.header.offsetHeight;
     
-    // Calculate the transition point more accurately
+    // Scroll direction detection and header hide/show logic
+    var scrollDelta = scrollY - this.previousScrollY;
+    var scrollingDown = scrollDelta > 0;
+    var scrollingUp = scrollDelta < 0;
+    var scrollDistance = Math.abs(scrollDelta);
+    
+    // Determine scroll direction
+    if (scrollDistance > 2) { // Ignore tiny scroll movements
+        this.scrollDirection = scrollingDown ? 'down' : 'up';
+    }
+    
+    // Header visibility logic
+    var shouldHideHeader = false;
+    var shouldShowHeader = false;
+    
+    if (scrollY < this.scrollThreshold) {
+        // Always show header near the top
+        shouldShowHeader = true;
+    } else if (this.scrollDirection === 'down' && scrollingDown && scrollDistance > 5) {
+        // Hide header when scrolling down significantly
+        shouldHideHeader = true;
+    } else if (this.scrollDirection === 'up' && scrollingUp && scrollDistance > 3) {
+        // Show header when scrolling up
+        shouldShowHeader = true;
+    }
+    
+    // Apply header visibility changes
+    if (shouldHideHeader && this.isHeaderVisible) {
+        this.header.classList.remove('header-visible');
+        this.header.classList.add('header-hidden');
+        this.isHeaderVisible = false;
+    } else if (shouldShowHeader && !this.isHeaderVisible) {
+        this.header.classList.remove('header-hidden');
+        this.header.classList.add('header-visible');
+        this.isHeaderVisible = true;
+    }
+    
+    // Calculate the transition point more accurately for background detection
     var transitionPoint = 400; // fallback minimum
     
     if (this.heroSection) {
@@ -1068,6 +1113,9 @@ DynamicHeaderManager.prototype.updateHeaderState = function() {
             self.header.classList.add('on-light');
         }
     });
+    
+    // Update scroll position for next iteration
+    this.previousScrollY = scrollY;
     
     // Ensure no conflicting inline styles
     this.header.style.backdropFilter = 'none';
