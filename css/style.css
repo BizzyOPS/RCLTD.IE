@@ -409,10 +409,10 @@ main {
         padding: 0.5rem 0;
     }
     .nav-contact {
-        display: none;
+        display: none !important;
     }
     .nav-phone {
-        font-size: 0.9rem;
+        display: none !important;
     }
     
     /* Mobile header compensation - removed, handled by global solution */
@@ -1231,6 +1231,12 @@ section + section {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     animation: none !important;
+}
+
+/* Ensure nav-contact and nav-phone are always hidden in mobile menu */
+.nav-menu.mobile-open .nav-contact,
+.nav-menu.mobile-open .nav-phone {
+    display: none !important;
 }
 /* Improve mobile touch targets */
 @media (max-width: 767px) {
