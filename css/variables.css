@@ -21,6 +21,16 @@
     --hero-gradient: linear-gradient(135deg, #000000 0%, #1e3a8a 25%, #374151 50%, #6b7280 75%, #ffffff 100%);
     --page-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #ffffff 100%);
     
+    /* === SECTION BACKGROUNDS === */
+    --section-white: #ffffff;                    /* Pure white sections */
+    --section-light-grey: #f8fafc;             /* Very light grey sections */
+    --section-light-teal: #f0fdfa;             /* Very light teal sections */
+    --section-light-blue: #f0f9ff;             /* Very light blue sections */
+    --section-warm-grey: #fafaf9;              /* Warm light grey sections */
+    --section-cool-grey: #f1f5f9;              /* Cool light grey sections */
+    --section-accent: #ecfdf5;                 /* Light green accent sections */
+    --section-orange-light: #fef7f0;           /* Very light orange sections */
+    
     /* === TEXT COLORS === */
     --text-primary: #111827;   /* Black text */
     --text-secondary: #6b7280; /* Medium grey text */

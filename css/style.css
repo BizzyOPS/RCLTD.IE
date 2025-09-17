@@ -14,7 +14,7 @@ html {
 
 body {
     padding-top: var(--header-height);
-    background: var(--page-gradient);
+    background: var(--section-white);
     min-height: 100vh;
     font-family: var(--font-family);
     color: var(--text-primary);
@@ -26,6 +26,112 @@ main {
     z-index: 1;
 }
 /* Homepage Hero Section with Cover Image Background */
+
+/* Section Background Colors for Visual Variety */
+.services,
+.services-overview,
+.automation-overview,
+.safety-overview,
+.design-overview,
+.panel-overview,
+.training-overview {
+    background: var(--section-light-grey);
+    padding: var(--spacing-16) 0;
+}
+
+.automation-services,
+.safety-services,
+.design-services,
+.panel-services,
+.training-content,
+.store-products {
+    background: var(--section-white);
+    padding: var(--spacing-16) 0;
+}
+
+.benefits-section,
+.features-section,
+.testimonials-section {
+    background: var(--section-light-teal);
+    padding: var(--spacing-16) 0;
+}
+
+.cta-section,
+.contact-section,
+.about-section {
+    background: var(--section-light-blue);
+    padding: var(--spacing-16) 0;
+}
+
+.expertise-section,
+.capabilities-section,
+.process-section {
+    background: var(--section-warm-grey);
+    padding: var(--spacing-16) 0;
+}
+
+.stats-section,
+.achievements-section,
+.certifications-section {
+    background: var(--section-cool-grey);
+    padding: var(--spacing-16) 0;
+}
+
+.team-section,
+.company-section,
+.history-section {
+    background: var(--section-accent);
+    padding: var(--spacing-16) 0;
+}
+
+.newsletter-section,
+.footer-cta,
+.special-offers {
+    background: var(--section-orange-light);
+    padding: var(--spacing-16) 0;
+}
+
+/* Additional Section Styling */
+.footer {
+    background: var(--secondary-color);
+    color: white;
+    padding: var(--spacing-16) 0 var(--spacing-8);
+}
+
+/* Alternating section pattern for better visual flow */
+section:nth-child(even) {
+    background: var(--section-light-grey);
+}
+
+section:nth-child(odd) {
+    background: var(--section-white);
+}
+
+/* Override for specifically styled sections */
+.hero,
+.page-hero,
+.store-hero {
+    background: var(--hero-gradient) !important;
+}
+
+/* Card sections get subtle background */
+.service-card,
+.feature-card,
+.testimonial-card {
+    background: var(--section-white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-6);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+}
+
+.service-card:hover,
+.feature-card:hover,
+.testimonial-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
 .hero {
     position: relative;
     min-height: 80vh;
@@ -7331,4 +7437,4 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
     .page-title {
         font-size: var(--font-size-2xl);
     }
-}
+}/* Force cache refresh */
