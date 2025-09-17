@@ -264,10 +264,10 @@ main {
     }
 }
 .hero-cover-image {
-    background-size: cover !important;
+    background-size: contain !important;
     background-position: center center !important;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: scroll;
     background-color: #f8fafc;
     width: 100%;
     height: 100%;
@@ -278,7 +278,7 @@ main {
 @media (max-width: 768px) {
     .hero-cover-image {
         background-attachment: scroll !important;
-        background-size: cover !important;
+        background-size: contain !important;
     }
 }
 
@@ -290,7 +290,7 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background-size: cover;
+    background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
     -webkit-animation: heroImageCycleClean 40s infinite;
