@@ -6338,6 +6338,58 @@ section + section {
         width: 200px;
     }
 }
+/* About Page Hero Video */
+.hero-video-container {
+    margin-top: var(--spacing-12);
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-xl);
+}
+
+.hero-intro-video {
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+    object-fit: cover;
+    background: var(--surface);
+    border-radius: var(--radius-xl);
+    transition: transform 0.3s ease-in-out;
+}
+
+.hero-intro-video:hover {
+    transform: scale(1.02);
+}
+
+/* Responsive video sizing */
+@media (max-width: 768px) {
+    .hero-video-container {
+        margin-top: var(--spacing-8);
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .hero-intro-video {
+        max-height: 280px;
+        border-radius: var(--radius-lg);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-video-container {
+        margin-top: var(--spacing-6);
+    }
+    
+    .hero-intro-video {
+        max-height: 200px;
+        border-radius: var(--radius-md);
+    }
+}
+
 /* Hero Robot Video */
 .hero-robot-video {
     width: 100%;
