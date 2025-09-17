@@ -6088,7 +6088,7 @@ section + section {
     position: relative;
     width: 200px;
     height: 200px;
-    margin-bottom: var(--spacing-8);
+    margin-bottom: var(--spacing-12);
 }
 /* Company Logo */
 .loader-logo {
@@ -6166,7 +6166,7 @@ section + section {
     font-weight: 700;
     color: var(--primary-color);
     text-shadow: 0 0 20px rgba(8, 145, 178, 0.3);
-    margin-bottom: var(--spacing-2);
+    margin-bottom: var(--spacing-4);
     font-family: 'JetBrains Mono', 'Consolas', monospace;
     animation: counterGlow 2s ease-in-out infinite alternate;
 }
@@ -6176,7 +6176,7 @@ section + section {
     background: rgba(107, 114, 128, 0.3);
     border-radius: 2px;
     overflow: hidden;
-    margin: var(--spacing-4) 0;
+    margin: 0;
     position: relative;
 }
 .progress-bar {
@@ -6198,12 +6198,20 @@ section + section {
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
     animation: progressShimmer 2s linear infinite;
 }
+/* Progress Section - Middle */
+.progress-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: var(--spacing-8) 0;
+}
+
 /* Technical Status Messages */
 .tech-status {
     color: var(--primary-light);
     font-size: var(--font-size-lg);
     font-weight: 500;
-    margin-top: var(--spacing-4);
+    margin-top: var(--spacing-8);
     text-align: center;
     min-height: 1.5em;
     opacity: 0;
