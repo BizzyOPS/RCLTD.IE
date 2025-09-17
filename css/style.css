@@ -1125,8 +1125,8 @@ section + section {
     height: 24px;
 }
 .header.on-light .nav-dropdown-toggle {
-    color: #6b7280;
-    color: var(--text-secondary);
+    color: #10b981;
+    color: var(--primary-color);
 }
 .nav-dropdown-toggle:hover {
     color: #67e8f9;
