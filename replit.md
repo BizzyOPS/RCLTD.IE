@@ -56,6 +56,7 @@ Preferred communication style: Simple, everyday language.
 ## Recent Changes
 
 **September 17, 2025**
+- **Statistics Text Visibility Fix**: Fixed hero statistics labels (Projects Completed, Years Experience, On-Time Delivery) that were invisible against light backgrounds by changing from transparent white text to dark text on white badge backgrounds, improving contrast and readability
 - **Badge Visibility Fix**: Fixed hero badge (ISO 9001:2015 Certified / 15+ Years Excellence) invisible against white backgrounds by changing from transparent white background to dark semi-transparent (rgba(0,0,0,0.7)) with enhanced contrast, proper shadow effects, and orange highlight styling for optimal visibility
 - **Responsive Design Overhaul**: Fixed critical picture scaling and menu responsiveness issues across all devices. Replaced problematic fixed 100vh heights with responsive calc(100vh - var(--header-height)) solution, enhanced background image scaling for mobile/tablet/desktop, improved navigation menu with better touch targets (44px minimum) and smooth animations, and implemented comprehensive cross-breakpoint responsive behavior
 - **Homepage Hero Carousel Fixes**: Fixed title disappearing during image transitions by enhancing z-index layering (hero-container: 100, hero-main-title: 101) and adding backdrop-filter blur. Eliminated rough picture transitions by removing jarring opacity drops from keyframe animations and simplifying to smooth 20% intervals with single pseudo-element system
