@@ -52,3 +52,11 @@ Preferred communication style: Simple, everyday language.
 - **Images**: Logo and service-related hero images are stored in the `/images/` directory. Hero images are designed for responsive coverage (1920×1080 pixels or higher) with a central "safe zone" for critical content.
 - **Icons**: Custom hamburger menu implementation and other service-related icons.
 - **Favicons**: Standard favicon setup for brand consistency.
+
+## Recent Changes
+
+**September 17, 2025**
+- **Badge Visibility Fix**: Fixed hero badge (ISO 9001:2015 Certified / 15+ Years Excellence) invisible against white backgrounds by changing from transparent white background to dark semi-transparent (rgba(0,0,0,0.7)) with enhanced contrast, proper shadow effects, and orange highlight styling for optimal visibility
+- **Responsive Design Overhaul**: Fixed critical picture scaling and menu responsiveness issues across all devices. Replaced problematic fixed 100vh heights with responsive calc(100vh - var(--header-height)) solution, enhanced background image scaling for mobile/tablet/desktop, improved navigation menu with better touch targets (44px minimum) and smooth animations, and implemented comprehensive cross-breakpoint responsive behavior
+- **Homepage Hero Carousel Fixes**: Fixed title disappearing during image transitions by enhancing z-index layering (hero-container: 100, hero-main-title: 101) and adding backdrop-filter blur. Eliminated rough picture transitions by removing jarring opacity drops from keyframe animations and simplifying to smooth 20% intervals with single pseudo-element system
+- **Timeline Section Professional Layout Fix**: Completely restructured about page timeline from broken flex layout to clean grid-based system (1fr 120px 1fr) with proper container sizing, larger timeline markers (120px), consistent spacing (--spacing-20), and professional hover effects, eliminating overlapping content and messy appearance
