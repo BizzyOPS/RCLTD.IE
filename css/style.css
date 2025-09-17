@@ -2741,14 +2741,20 @@ section + section {
     display: block;
     font-size: var(--font-size-3xl);
     font-weight: 800;
-    color: white;
+    color: #ff6b35;
     line-height: 1;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .stat-label {
     font-size: var(--font-size-sm);
-    color: rgba(255, 255, 255, 0.8);
+    color: #1f2937;
     margin-top: var(--spacing-2);
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.9);
+    padding: var(--spacing-1) var(--spacing-2);
+    border-radius: var(--radius-sm);
+    display: inline-block;
 }
 
 .hero-badge {
