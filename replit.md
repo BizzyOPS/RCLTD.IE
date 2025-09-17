@@ -7,6 +7,7 @@ This is a static website for Robotics & Control Ltd, an Irish technology company
 ## Recent Changes
 
 **September 17, 2025**
+- **Homepage Hero Carousel Fixes**: Fixed title disappearing during image transitions by enhancing z-index layering (hero-container: 100, hero-main-title: 101) and adding backdrop-filter blur. Eliminated rough picture transitions by removing jarring opacity drops from keyframe animations and simplifying to smooth 20% intervals with single pseudo-element system
 - **Timeline Section Professional Layout Fix**: Completely restructured about page timeline from broken flex layout to clean grid-based system (1fr 120px 1fr) with proper container sizing, larger timeline markers (120px), consistent spacing (--spacing-20), and professional hover effects, eliminating overlapping content and messy appearance
 
 **September 16, 2025 - Updated**
