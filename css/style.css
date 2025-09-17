@@ -216,9 +216,13 @@ main {
     .hero,
     .page-hero,
     .store-hero {
-        min-height: 100vh;
+        min-height: calc(100vh - var(--header-height));
         padding: var(--spacing-4) 0;
         background: var(--hero-gradient);
+    }
+    .hero-container {
+        min-height: calc(100vh - var(--header-height));
+        padding: var(--spacing-4) 1rem;
     }
     .hero-cover-image {
         background-size: cover !important;
@@ -226,7 +230,7 @@ main {
         background-attachment: scroll !important;
         width: 100% !important;
         height: 100% !important;
-        min-height: 100vh !important;
+        min-height: calc(100vh - var(--header-height)) !important;
     }
     .hero-cover-image::before,
     .hero-cover-image::after {
@@ -263,12 +267,19 @@ main {
     background-size: cover !important;
     background-position: center center !important;
     background-repeat: no-repeat;
-    background-attachment: scroll;
+    background-attachment: fixed;
     background-color: #f8fafc;
     width: 100%;
     height: 100%;
     position: relative;
     overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .hero-cover-image {
+        background-attachment: scroll !important;
+        background-size: cover !important;
+    }
 }
 
 /* Simplified smooth hero image cycling using single pseudo-element */
@@ -515,9 +526,10 @@ main {
     padding: 0 2rem;
     z-index: 100;
     position: relative;
-    height: 100vh;
+    min-height: calc(100vh - var(--header-height));
     display: flex;
     align-items: center;
+    justify-content: flex-start;
 }
 .hero-content-left {
     max-width: 600px;
@@ -582,20 +594,24 @@ main {
 /* Hero Section Responsive Design */
 @media (max-width: 768px) {
     .hero {
-        min-height: 70vh;
+        min-height: calc(100vh - var(--header-height));
     }
     .hero-main-title {
         font-size: 2.5rem;
         padding: 0.8rem;
         margin-bottom: 1rem;
+        backdrop-filter: blur(4px);
     }
     .hero-main-subtitle {
         font-size: 1.1rem;
         padding: 0.8rem;
         margin-bottom: 2rem;
+        backdrop-filter: blur(4px);
     }
     .hero-container {
-        padding: 0 1rem;
+        padding: var(--spacing-4) 1rem;
+        align-items: center;
+        justify-content: center;
     }
     .hero-content-left {
         max-width: 100%;
@@ -607,16 +623,22 @@ main {
 }
 @media (max-width: 480px) {
     .hero {
-        min-height: 100vh;
+        min-height: calc(100vh - var(--header-height));
         background-color: #f8fafc;
+    }
+    .hero-container {
+        min-height: calc(100vh - var(--header-height));
+        padding: var(--spacing-2) 1rem;
     }
     .hero-main-title {
         font-size: 2rem;
         line-height: 1.2;
+        padding: 0.8rem;
     }
     .hero-main-subtitle {
         font-size: 1rem;
         line-height: 1.5;
+        padding: 0.8rem;
     }
     .btn-hero {
         padding: 0.8rem 2rem;
@@ -639,6 +661,8 @@ main {
 @media (max-width: 768px) {
     .header {
         padding: 0.5rem 0;
+        backdrop-filter: blur(8px);
+        background: rgba(255, 255, 255, 0.95);
     }
     .nav-contact {
         display: none !important;
@@ -646,8 +670,19 @@ main {
     .nav-phone {
         display: none !important;
     }
-    
-    /* Mobile header compensation - removed, handled by global solution */
+    .nav-toggle {
+        width: 40px;
+        height: 40px;
+        border-radius: var(--radius-sm);
+        transition: background-color 0.2s ease;
+    }
+    .nav-toggle:hover {
+        background-color: rgba(8, 145, 178, 0.1);
+    }
+    .nav-logo {
+        max-height: 40px;
+        width: auto;
+    }
 }
 
 @media (max-width: 480px) {
@@ -673,13 +708,24 @@ main {
 /* Landscape orientation adjustments */
 @media (max-height: 500px) and (orientation: landscape) {
     .hero {
-        min-height: 100vh;
+        min-height: calc(100vh - var(--header-height));
+    }
+    .hero-container {
+        padding: var(--spacing-2) 2rem;
+        align-items: center;
     }
     .hero-main-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
     }
     .hero-main-subtitle {
-        font-size: 1rem;
+        font-size: 0.9rem;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    .hero-stats {
+        margin: 1rem 0;
     }
 }
 /* Services Divisions Section */
@@ -1461,16 +1507,25 @@ section + section {
     right: 0;
     background: #ffffff;
     flex-direction: column;
-    padding: 1rem 1.5rem;
     padding: var(--spacing-4) var(--spacing-6);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-    border-top: 1px solid #e5e7eb;
     border-top: 1px solid var(--border-color);
     z-index: 10001;
-    max-height: 80vh;
+    max-height: calc(100vh - var(--header-height) - 2rem);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    animation: none !important;
+    animation: slideDown 0.3s ease-out !important;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Ensure nav-contact and nav-phone are always hidden in mobile menu */
@@ -1486,18 +1541,24 @@ section + section {
     .nav-menu.mobile-open .nav-link {
         display: flex;
         padding: var(--spacing-4) var(--spacing-3);
-        min-height: 48px; /* Increased touch target for better mobile accessibility */
+        min-height: 44px;
         align-items: center;
         border-radius: var(--radius-sm);
-        transition: background-color 0.2s ease;
+        transition: background-color 0.2s ease, transform 0.1s ease;
         text-decoration: none;
         position: relative;
         z-index: 10;
         touch-action: manipulation;
+        font-size: var(--font-size-base);
+        font-weight: 500;
     }
     .nav-menu.mobile-open .nav-link:hover,
     .nav-menu.mobile-open .nav-link:active {
         background-color: rgba(8, 145, 178, 0.1);
+        transform: translateX(4px);
+    }
+    .nav-menu.mobile-open .nav-link:active {
+        transform: translateX(4px) scale(0.98);
     }
 }
 .header.on-dark .nav-menu.mobile-open {
