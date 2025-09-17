@@ -39,7 +39,7 @@ main {
     justify-content: flex-start;
     color: white;
     overflow: hidden;
-    margin-bottom: var(--spacing-12);
+    margin-bottom: var(--spacing-6);
 }
 
 /* Tablet hero adjustments */
@@ -606,14 +606,14 @@ body {
     margin: 0 auto;
     padding: 0 var(--spacing-4);
 }
-/* Universal Section Spacing */
+/* Universal Section Spacing - Reduced for compact layout */
 section {
-    padding: var(--spacing-16) 0;
-    margin-bottom: var(--spacing-8);
+    padding: var(--spacing-8) 0;
+    margin-bottom: var(--spacing-4);
 }
 
 section + section {
-    margin-top: var(--spacing-4);
+    margin-top: var(--spacing-2);
 }
 
 /* Specific section spacing */
@@ -629,8 +629,8 @@ section + section {
 .services,
 .about,
 .partners {
-    padding: var(--spacing-16) 0;
-    margin: var(--spacing-12) 0;
+    padding: var(--spacing-8) 0;
+    margin: var(--spacing-6) 0;
     background: transparent;
 }
 
@@ -4140,11 +4140,11 @@ section + section {
 .store-hero {
     background: linear-gradient(135deg, #1a2332 0%, #2d3748 25%, #4a5568 50%, #718096 75%, #e2e8f0 100%);
     color: white;
-    padding: var(--spacing-8) 0 4rem;
+    padding: var(--spacing-8) 0 3rem;
     text-align: center;
     position: relative;
     overflow: hidden;
-    margin-bottom: var(--spacing-12);
+    margin-bottom: var(--spacing-6);
 }
 .store-hero::before {
     content: '';
@@ -5783,13 +5783,13 @@ section + section {
 }
 /* Page Hero Section */
 .page-hero {
-    padding: var(--spacing-8) 0 var(--spacing-16);
+    padding: var(--spacing-8) 0 var(--spacing-12);
     background: linear-gradient(135deg, #1a2332 0%, #2d3748 25%, #4a5568 50%, #718096 75%, #e2e8f0 100%);
     color: white;
     text-align: center;
     position: relative;
     overflow: hidden;
-    margin-bottom: var(--spacing-12);
+    margin-bottom: var(--spacing-6);
 }
 
 /* Services Page Specific Background */
