@@ -4146,6 +4146,15 @@ section + section {
     overflow: hidden;
     margin-bottom: var(--spacing-6);
 }
+
+/* Override for pages with custom background images */
+.store-hero[data-bg-fixed="true"] {
+    background: none !important;
+}
+
+.store-hero[data-bg-fixed="true"]::before {
+    display: none !important;
+}
 .store-hero::before {
     content: '';
     position: absolute;
