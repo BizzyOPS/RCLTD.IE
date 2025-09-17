@@ -56,8 +56,17 @@ main {
     padding: var(--spacing-16) 0;
 }
 
-.cta-section,
-.contact-section,
+.cta-section {
+    background: var(--section-light-blue);
+    padding: var(--spacing-16) 0;
+    text-align: center;
+}
+
+.contact-section {
+    background: var(--section-light-blue);
+    padding: var(--spacing-16) 0;
+}
+
 .about-section {
     background: var(--section-light-blue);
     padding: var(--spacing-16) 0;
@@ -98,20 +107,44 @@ main {
     padding: var(--spacing-16) 0 var(--spacing-8);
 }
 
-/* Alternating section pattern for better visual flow */
-section:nth-child(even) {
-    background: var(--section-light-grey);
-}
-
-section:nth-child(odd) {
-    background: var(--section-white);
-}
-
 /* Override for specifically styled sections */
 .hero,
 .page-hero,
 .store-hero {
     background: var(--hero-gradient) !important;
+}
+
+/* Specific section backgrounds take precedence over alternation */
+.services,
+.services-overview,
+.industries-modern,
+.company-intro,
+.automation-overview,
+.safety-overview,
+.design-overview,
+.panel-overview,
+.automation-services,
+.safety-services,
+.design-services,
+.panel-services,
+.benefits-section,
+.features-section,
+.cta-section,
+.contact-section,
+.expertise-section,
+.capabilities-section,
+.stats-section,
+.certifications-section {
+    /* Background defined by individual classes above */
+}
+
+/* Zero specificity fallback - explicit section classes automatically override */
+:where(section:nth-child(even)) {
+    background: var(--section-light-grey);
+}
+
+:where(section:nth-child(odd)) {
+    background: var(--section-white);
 }
 
 /* Card sections get subtle background */
@@ -774,7 +807,6 @@ section + section {
 .partners {
     padding: var(--spacing-8) 0;
     margin: var(--spacing-6) 0;
-    background: transparent;
 }
 
 /* Content block spacing */
@@ -2038,7 +2070,6 @@ section + section {
 /* Services Section */
 .services {
     padding: var(--spacing-20) 0;
-    background: transparent;
     position: relative;
     overflow: hidden;
 }
@@ -7414,7 +7445,6 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
 /* Contact Overview Section Modern Styling */
 .overview-section {
     padding: var(--spacing-16) 0;
-    background: transparent;
     position: relative;
 }
 .overview-grid {
@@ -7782,6 +7812,57 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
     font-size: var(--font-size-xs);
     font-weight: 500;
     border: 1px solid var(--brand-teal);
+}
+
+/* Missing Section Classes - Professional Backgrounds */
+.industries-modern {
+    background: var(--section-cool-grey);
+    padding: var(--spacing-16) 0;
+}
+
+.company-intro {
+    background: var(--section-light-blue);
+    padding: var(--spacing-16) 0;
+}
+
+.services-overview {
+    background: var(--section-light-grey);
+    padding: var(--spacing-16) 0;
+}
+
+.automation-overview,
+.safety-overview,
+.design-overview,
+.panel-overview {
+    background: var(--section-light-grey);
+    padding: var(--spacing-16) 0;
+}
+
+.automation-services,
+.safety-services,
+.design-services,
+.panel-services {
+    background: var(--section-white);
+    padding: var(--spacing-16) 0;
+}
+
+.benefits-section,
+.features-section {
+    background: var(--section-light-teal);
+    padding: var(--spacing-16) 0;
+}
+
+
+.expertise-section,
+.capabilities-section {
+    background: var(--section-warm-grey);
+    padding: var(--spacing-16) 0;
+}
+
+.stats-section,
+.certifications-section {
+    background: var(--section-cool-grey);
+    padding: var(--spacing-16) 0;
 }
 
 /* Team Section Styling */
