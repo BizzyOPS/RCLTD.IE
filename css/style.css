@@ -3123,13 +3123,14 @@ section + section {
 .feature-icon {
     width: 20px;
     height: 20px;
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--primary-color);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: var(--font-size-sm);
     font-weight: 700;
+    color: white;
 }
 
 .spotlight-stats {
@@ -7776,6 +7777,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
     padding: var(--spacing-8);
     border-radius: var(--radius-xl);
     border-left: 6px solid var(--brand-orange);
+    color: var(--text-primary);
 }
 
 .spotlight-content h3 {
