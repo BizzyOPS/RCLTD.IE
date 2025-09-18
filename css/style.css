@@ -7864,6 +7864,323 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     max-width: 100%;
 }
 
+/* About Page Intro Video Container - MISSING STYLES ADDED */
+.intro-video-container {
+    width: 100%;
+    max-width: 100%;
+    margin: var(--spacing-6) 0;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    background: var(--section-light-grey);
+    position: relative;
+}
+
+.intro-video {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    display: block;
+    border-radius: var(--radius-xl);
+}
+
+/* Enhanced Mobile Responsiveness for About Page */
+@media (max-width: 768px) {
+    /* Store Hero Section Mobile Fixes */
+    .store-hero {
+        padding: var(--spacing-12) 0 var(--spacing-8);
+        min-height: auto;
+    }
+    
+    .store-hero-content {
+        text-align: center;
+        max-width: 100%;
+        padding: 0 var(--spacing-4);
+    }
+    
+    /* Hero Badge Mobile */
+    .hero-badge {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-2);
+        background: rgba(0, 0, 0, 0.8);
+        padding: var(--spacing-3) var(--spacing-4);
+        margin-bottom: var(--spacing-4);
+        font-size: var(--font-size-sm);
+    }
+    
+    .badge-text, .badge-highlight {
+        font-size: var(--font-size-xs);
+        text-align: center;
+    }
+    
+    /* Page Title Mobile */
+    .page-title {
+        font-size: var(--font-size-2xl) !important;
+        line-height: 1.3;
+        margin-bottom: var(--spacing-4);
+        padding: 0 var(--spacing-2);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    /* Page Subtitle Mobile */
+    .page-subtitle {
+        font-size: var(--font-size-base) !important;
+        line-height: 1.5;
+        margin-bottom: var(--spacing-6);
+        padding: 0 var(--spacing-2);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    /* Hero Stats Mobile - Stack Vertically */
+    .hero-stats {
+        grid-template-columns: 1fr !important;
+        gap: var(--spacing-3) !important;
+        margin-top: var(--spacing-6);
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .stat-item {
+        padding: var(--spacing-3);
+        text-align: center;
+    }
+    
+    .stat-number {
+        font-size: var(--font-size-2xl);
+        margin-bottom: var(--spacing-1);
+    }
+    
+    .stat-label {
+        font-size: var(--font-size-xs);
+    }
+    
+    /* Intro Video Mobile */
+    .intro-video-container {
+        margin: var(--spacing-4) 0;
+        border-radius: var(--radius-lg);
+    }
+    
+    .intro-video {
+        max-height: 250px;
+        border-radius: var(--radius-lg);
+    }
+    
+    /* Company Intro Grid Mobile */
+    .intro-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--spacing-6);
+    }
+    
+    .intro-visual {
+        order: -1;
+    }
+    
+    .visual-container {
+        height: 300px;
+    }
+    
+    /* Fix Value Card Text Visibility on Mobile */
+    .value-card {
+        background: white !important;
+        color: var(--text-primary) !important;
+        border: 1px solid var(--border-color);
+        margin-bottom: var(--spacing-4);
+        box-shadow: var(--shadow-sm);
+    }
+    
+    .value-card h3 {
+        color: var(--text-primary) !important;
+        font-weight: 700;
+        margin: var(--spacing-4) 0 var(--spacing-3);
+        font-size: var(--font-size-lg);
+    }
+    
+    .value-card p {
+        color: var(--text-primary) !important;
+        line-height: 1.6;
+        font-size: var(--font-size-base);
+        margin-bottom: var(--spacing-4);
+    }
+    
+    .value-icon {
+        margin-bottom: var(--spacing-4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        background: var(--section-light-teal);
+        border-radius: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* Fix Timeline Content Text Visibility */
+    .timeline-content {
+        background: white !important;
+        color: var(--text-primary) !important;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-sm);
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    .timeline-content h3 {
+        color: var(--text-primary) !important;
+        font-weight: 600;
+        margin-bottom: var(--spacing-3);
+    }
+    
+    .timeline-content p {
+        color: var(--text-primary) !important;
+        line-height: 1.6;
+        margin-bottom: var(--spacing-4);
+    }
+    
+    .timeline-year {
+        color: var(--brand-orange) !important;
+        font-weight: 700;
+    }
+    
+    /* Fix Highlight Items Text Visibility */
+    .highlight-item {
+        background: white !important;
+        color: var(--text-primary) !important;
+        border: 1px solid var(--border-color);
+        border-left: 4px solid var(--brand-orange);
+        margin-bottom: var(--spacing-4);
+    }
+    
+    .highlight-content h4 {
+        color: var(--text-primary) !important;
+        font-weight: 600;
+        margin-bottom: var(--spacing-2);
+    }
+    
+    .highlight-content p {
+        color: var(--text-primary) !important;
+        line-height: 1.5;
+    }
+    
+    /* Team Member Cards Mobile */
+    .team-grid {
+        grid-template-columns: 1fr !important;
+        gap: var(--spacing-6);
+    }
+    
+    .team-member {
+        text-align: center;
+    }
+    
+    /* Industries Mobile */
+    .industries-showcase {
+        gap: var(--spacing-6);
+    }
+}
+
+@media (max-width: 480px) {
+    /* Extra Small Mobile Adjustments */
+    .store-hero {
+        padding: var(--spacing-8) 0 var(--spacing-6);
+    }
+    
+    .store-hero-content {
+        padding: 0 var(--spacing-3);
+    }
+    
+    .page-title {
+        font-size: var(--font-size-xl) !important;
+        line-height: 1.3;
+        margin-bottom: var(--spacing-3);
+    }
+    
+    .page-subtitle {
+        font-size: var(--font-size-sm) !important;
+        line-height: 1.4;
+        margin-bottom: var(--spacing-4);
+    }
+    
+    .hero-badge {
+        padding: var(--spacing-2) var(--spacing-3);
+        margin-bottom: var(--spacing-3);
+    }
+    
+    .badge-text, .badge-highlight {
+        font-size: 0.75rem;
+    }
+    
+    .hero-stats {
+        margin-top: var(--spacing-4);
+        max-width: 250px;
+    }
+    
+    .stat-item {
+        padding: var(--spacing-2);
+    }
+    
+    .stat-number {
+        font-size: var(--font-size-xl);
+    }
+    
+    .stat-label {
+        font-size: 0.75rem;
+    }
+    
+    /* Video Extra Small Mobile */
+    .intro-video-container {
+        margin: var(--spacing-3) 0;
+        border-radius: var(--radius-md);
+    }
+    
+    .intro-video {
+        max-height: 200px;
+        border-radius: var(--radius-md);
+    }
+    
+    .visual-container {
+        height: 250px;
+    }
+    
+    /* Timeline Extra Small */
+    .timeline-item {
+        padding-left: 80px;
+        margin-bottom: var(--spacing-8);
+    }
+    
+    .timeline-marker {
+        width: 60px !important;
+        height: 60px !important;
+        left: 0;
+    }
+    
+    .timeline-line {
+        left: 30px;
+    }
+    
+    /* Value Cards Extra Small */
+    .value-card {
+        padding: var(--spacing-6);
+    }
+    
+    .value-card h3 {
+        font-size: var(--font-size-base);
+        margin: var(--spacing-3) 0 var(--spacing-2);
+    }
+    
+    .value-card p {
+        font-size: var(--font-size-sm);
+    }
+}
+
 /* Ensure long words don't overflow containers */
 .timeline-content p, .value-card p, .member-bio, .intro-content p {
     word-break: break-word;
