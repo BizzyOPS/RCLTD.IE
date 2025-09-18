@@ -90,29 +90,6 @@ function FormValidator() {
                 maxLength: 200,
                 errorMessage: 'Subject must be between 5 and 200 characters'
             },
-            // Payment fields
-            cardNumber: {
-                required: false,
-                pattern: /^\d{13,19}$/,
-                errorMessage: 'Please enter a valid card number'
-            },
-            cardExpiry: {
-                required: false,
-                pattern: /^(0[1-9]|1[0-2])\/\d{2}$/,
-                errorMessage: 'Please enter expiry date in MM/YY format'
-            },
-            cardCvv: {
-                required: false,
-                pattern: /^\d{3,4}$/,
-                errorMessage: 'Please enter a valid CVV'
-            },
-            cardName: {
-                required: false,
-                minLength: 2,
-                maxLength: 100,
-                pattern: /^[a-zA-ZÀ-ÿ\u0100-\u017F\u0180-\u024F\u1E00-\u1EFF\'\-\s]+$/,
-                errorMessage: 'Cardholder name must contain only letters, spaces, hyphens, and apostrophes'
-            },
             // Search and other fields
             search: {
                 required: false,

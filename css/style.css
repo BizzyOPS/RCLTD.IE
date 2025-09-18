@@ -4711,7 +4711,7 @@ section + section {
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-/* E-commerce Store Styles */
+/* Product Showcase Styles */
 .store-hero {
     background: linear-gradient(135deg, #1a2332 0%, #2d3748 25%, #4a5568 50%, #718096 75%, #e2e8f0 100%);
     color: white;
@@ -5260,17 +5260,6 @@ section + section {
         padding: 1rem;
         font-size: 16px; /* Prevents zoom on iOS */
         border-radius: 8px;
-    }
-    .payment-option {
-        padding: 1rem;
-        border-radius: 8px;
-        margin-bottom: 0.75rem;
-    }
-    .payment-label {
-        font-size: 0.875rem;
-    }
-    .payment-icon {
-        font-size: 1.25rem;
     }
     .btn-large {
         padding: 1rem 2rem;

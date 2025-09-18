@@ -20,8 +20,6 @@ All sensitive files have been removed for secure production deployment.
 ├── js/
 │   ├── app.js
 │   ├── chatbot.js
-│   ├── checkout.js
-│   ├── store.js
 │   ├── tooltips.js
 │   ├── training.js
 │   └── validation-client.js
