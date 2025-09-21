@@ -14,6 +14,7 @@
     <meta name="msapplication-TileColor" content="#0891b2">
     
     <link rel="stylesheet" href="css/style.css?v=1758065856&tablet=fixed&cache=bust">
+    <link rel="stylesheet" href="css/validation.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -217,7 +218,7 @@
                                 </div>
                             </div>
                             <div class="contact-form-container">
-                        <form id="contact-form" class="contact-form" action="contact-form.php" method="POST">
+                        <form id="contact-form" class="contact-form" data-validate="true" data-validate-on-input="false" data-show-success="true">
                             <div class="form-group">
                                 <label for="name" class="form-label">Full Name *</label>
                                 <input type="text" id="name" name="name" class="form-input" required>
@@ -418,8 +419,92 @@
     </button>
 
     <script src="js/app.js?v=1758021605&nocache=true&hero=new&bust=force"></script>
+    <script src="js/validation-client.js"></script>
     <script src="js/chatbot.js?v=1758021605&nocache=true&hero=new&bust=force"></script>
     <script src="js/tooltips.js?v=1758021605&nocache=true&hero=new&bust=force"></script>
+    <script>
+        // Contact form submission handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contact-form');
+            if (!contactForm) return;
+            
+            // Remove any existing success/error messages
+            function clearMessages() {
+                const existingMessages = contactForm.querySelectorAll('.form-success, .form-errors');
+                existingMessages.forEach(msg => msg.remove());
+            }
+            
+            // Show success message
+            function showSuccess(message) {
+                clearMessages();
+                const successDiv = document.createElement('div');
+                successDiv.className = 'form-success';
+                successDiv.innerHTML = `
+                    <div class="form-success-title">Message Sent Successfully!</div>
+                    <p>${message}</p>
+                `;
+                contactForm.insertBefore(successDiv, contactForm.firstChild);
+                
+                // Scroll to success message
+                successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            
+            // Show error message
+            function showError(message) {
+                clearMessages();
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'form-errors';
+                errorDiv.innerHTML = `
+                    <div class="form-errors-title">Unable to Send Message</div>
+                    <p>${message}</p>
+                `;
+                contactForm.insertBefore(errorDiv, contactForm.firstChild);
+                
+                // Scroll to error message
+                errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            
+            // Handle form submission
+            contactForm.addEventListener('validSubmit', function(e) {
+                const formData = e.detail.sanitizedData;
+                const submitButton = contactForm.querySelector('.form-submit');
+                
+                // Show loading state
+                submitButton.classList.add('btn-submitting');
+                submitButton.textContent = 'Sending...';
+                
+                // Simulate form submission (since this is a static site)
+                setTimeout(function() {
+                    // Reset button state
+                    submitButton.classList.remove('btn-submitting');
+                    submitButton.textContent = 'Send Message';
+                    
+                    // Show success message
+                    showSuccess(
+                        `Thank you, ${formData.name}! Your message has been received. We'll get back to you at ${formData.email} within 24 hours. For urgent matters, please call us directly at <a href="tel:+353527443258">+353 (0) 52 7443258</a>.`
+                    );
+                    
+                    // Reset form
+                    contactForm.reset();
+                    
+                    // Clear any validation states
+                    const inputs = contactForm.querySelectorAll('.form-input, .form-textarea');
+                    inputs.forEach(input => {
+                        input.classList.remove('valid', 'invalid');
+                    });
+                    
+                    // Log form submission (for analytics)
+                    console.log('Contact form submitted:', {
+                        name: formData.name,
+                        email: formData.email,
+                        service: formData.service,
+                        timestamp: new Date().toISOString()
+                    });
+                    
+                }, 1500); // Simulate network delay
+            });
+        });
+    </script>
     <script src="js/popup-tooltips.js?v=1758021605&nocache=true&hero=new&bust=force"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 # Robotics & Control Ltd Website
 
 ## Overview
-This static website for Robotics & Control Ltd, an Irish technology company, showcases its automation, safety, electrical design, and panel building services. It targets pharmaceutical, industrial, and automotive sectors with a professional, responsive design, featuring service pages, contact information, and company details. The project aims to establish a strong online presence, attract new clients, and provide a clear representation of the company's expertise and offerings.
+This project is a static website for Robotics & Control Ltd, an Irish technology company. Its primary purpose is to establish a strong online presence, attract new clients, and clearly represent the company's expertise in automation, safety, electrical design, and panel building services. The website targets pharmaceutical, industrial, and automotive sectors, providing a professional and responsive platform with dedicated service pages, contact information, and company details.
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.
@@ -9,74 +9,25 @@ Preferred communication style: Simple, everyday language.
 ## System Architecture
 
 ### Frontend Architecture
-- **Static HTML Structure**: Multi-page website with dedicated pages for each service area (automation, safety, design, panel building, blog, contact).
-- **CSS Framework**: Custom CSS with a modern design system utilizing CSS custom properties for consistent theming.
-- **Responsive Design**: Mobile-first approach with responsive navigation and layout, ensuring optimal viewing across all devices.
-- **Typography**: Uses the Inter font family from Google Fonts for a clean and professional appearance.
-- **Color System**: A modern palette based on a teal primary color (#0891b2) complemented by grey, black, and white accents.
-- **UI/UX Decisions**: Enlarged logo, orange hamburger menu, teal navigation links, and orange 'Quote' buttons for consistent branding. Professional gradient backgrounds, subtle industrial aesthetics, and professional hero images are used throughout. Particle animations have been removed for a more business-focused appearance.
+The website features a multi-page static HTML structure. It utilizes custom CSS with a modern design system, employing CSS custom properties for consistent theming and a mobile-first responsive design. Typography uses the Inter font family, and the color palette is based on a teal primary color with grey, black, and white accents. UI/UX decisions include an enlarged logo, an orange hamburger menu, teal navigation links, and orange 'Quote' buttons for branding consistency. Professional gradient backgrounds, subtle industrial aesthetics, and professional hero images are used throughout.
 
 ### Design Patterns
-- **Component-Based CSS**: Structured CSS using a BEM-like methodology for reusable components.
-- **Semantic HTML**: Proper use of semantic elements for improved accessibility and SEO.
-- **Progressive Enhancement**: Ensures base functionality works without JavaScript, with JS features adding enhancements.
-- **SEO Optimization**: Includes meta descriptions, keywords, Open Graph tags, and structured data markup.
+Key design patterns include Component-Based CSS using a BEM-like methodology, Semantic HTML for accessibility and SEO, and Progressive Enhancement. SEO optimization is integrated with meta descriptions, Open Graph tags, and structured data.
 
 ### JavaScript Architecture
-- **Vanilla JavaScript**: Utilizes modern ES6+ features without external frameworks.
-- **Loading Animation**: Professional logo-based loading animation with a fade-out effect on all pages.
-- **Module Pattern**: Functions are organized into logical modules for navigation, scroll effects, contact forms, and animations.
-- **Event-Driven**: Relies on DOM event listeners for user interactions.
-- **Accessibility**: Incorporates ARIA attributes and keyboard navigation support.
-- **AI Chatbot**: A specialized sales tool providing detailed service descriptions, industry-specific responses, and integrated navigation links.
+Built with Vanilla JavaScript (ES6+), the site features a logo-based loading animation. JavaScript is organized using the Module Pattern for navigation, scroll effects, contact forms, and animations. It is event-driven and incorporates accessibility features like ARIA attributes. An AI Chatbot serves as a specialized sales tool with detailed service descriptions and navigation links.
 
 ### Navigation System
-- **Services Dropdown Navigation**: A streamlined navigation system with a 'Services' dropdown menu encompassing all service links.
-- **Dual-Function Services**: The 'Services' text links to an overview page, while a dedicated arrow button toggles the dropdown.
-- **Responsive Navigation**: Features a mobile hamburger menu with smooth transitions and touch-friendly interactions.
-- **Active State Management**: Visual indicators for the current page and active service within the dropdown.
-- **Accessibility Features**: Includes proper ARIA labels, keyboard navigation, and focus management.
-- **Standardized Structure**: Consistent navigation across all pages for a uniform user experience.
-- **Scroll-to-Top**: A smooth scroll-to-top button appears when scrolling down, positioned at the bottom-right.
-- **Clickable Logo**: The logo and business name in the header are clickable, returning users to the homepage.
-- **Solid Header**: Implemented a solid header that merges with page colors and dynamically switches between dark/light backgrounds for optimal readability.
+A streamlined navigation system includes a 'Services' dropdown menu. The 'Services' text links to an overview page, while an arrow button toggles the dropdown. Responsive navigation features a mobile hamburger menu with smooth transitions. Active state management, accessibility features with ARIA labels and keyboard navigation, and a consistent structure across all pages are implemented. A smooth scroll-to-top button appears on scroll, and the header, including the clickable logo, is solid, merging with page colors and dynamically switching backgrounds for readability.
 
 ## External Dependencies
 
 ### Third-Party Services
-- **Google Fonts**: The Inter font family is loaded via CDN for consistent typography.
-- **Google Analytics**: Structured data markup implies integration for website analytics.
-- **Google Maps**: Integrated into contact page for location services.
+- **Google Fonts**: Inter font family loaded via CDN.
+- **Google Analytics**: Implied integration for website analytics.
+- **Google Maps**: Integrated into the contact page for location services.
 
 ### Assets and Media
-- **Images**: Logo and service-related hero images are stored in the `/images/` directory. Hero images are designed for responsive coverage (1920×1080 pixels or higher) with a central "safe zone" for critical content.
-- **Icons**: Custom hamburger menu implementation and other service-related icons.
-- **Favicons**: Standard favicon setup for brand consistency.
-
-## Recent Changes
-
-**September 17, 2025**
-- **Store Page Optimization**: Optimized store page for product showcase format where customers call to order. Enhanced hero messaging and call-to-action buttons to encourage phone orders (+353 52 7443258) and email inquiries. Fixed JavaScript regex error in training system for clean page loading
-**September 17, 2025**
-- **Hero Image Duplication Fix**: Fixed cover photo duplication issue by switching to single pseudo-element system, eliminating overlapping background images that caused visual duplicates
-- **Hero Image Stretching Fix**: Resolved image stretching and distortion by changing background-size from 'cover' to 'contain', ensuring proper aspect ratios are maintained without cropping or stretching
-- **Hero Cover Photo Duplication Fix**: Fixed cover photo duplication issue by removing background properties from the main hero element, ensuring only the pseudo-element displays the cycling background images
-- **Hero Statistics Professional Enhancement**: Removed unprofessional white boxes around statistics text and improved readability with white text and strong shadow effects for optimal visibility against any background color
-- **Hero Image Timing Refinement**: Slowed hero image cycling from 25s to 40s for more elegant, professional transitions between background images
-- **Hero Image Cycling Enhancement**: Fixed visual splits/seams in background image transitions by implementing improved dual pseudo-element system with overlapping opacity fades, linear timing functions, and optimized keyframe sequences to ensure seamless crossfades between the 5 hero images without blackout periods
-- **Statistics Text Visibility Fix**: Fixed hero statistics labels (Projects Completed, Years Experience, On-Time Delivery) that were invisible against light backgrounds by changing from transparent white text to dark text on white badge backgrounds, improving contrast and readability
-- **Badge Visibility Fix**: Fixed hero badge (ISO 9001:2015 Certified / 15+ Years Excellence) invisible against white backgrounds by changing from transparent white background to dark semi-transparent (rgba(0,0,0,0.7)) with enhanced contrast, proper shadow effects, and orange highlight styling for optimal visibility
-- **Responsive Design Overhaul**: Fixed critical picture scaling and menu responsiveness issues across all devices. Replaced problematic fixed 100vh heights with responsive calc(100vh - var(--header-height)) solution, enhanced background image scaling for mobile/tablet/desktop, improved navigation menu with better touch targets (44px minimum) and smooth animations, and implemented comprehensive cross-breakpoint responsive behavior
-- **Homepage Hero Carousel Fixes**: Fixed title disappearing during image transitions by enhancing z-index layering (hero-container: 100, hero-main-title: 101) and adding backdrop-filter blur. Eliminated rough picture transitions by removing jarring opacity drops from keyframe animations and simplifying to smooth 20% intervals with single pseudo-element system
-- **Timeline Section Professional Layout Fix**: Completely restructured about page timeline from broken flex layout to clean grid-based system (1fr 120px 1fr) with proper container sizing, larger timeline markers (120px), consistent spacing (--spacing-20), and professional hover effects, eliminating overlapping content and messy appearance
-- **Professional Loading Screen Enhancement**: Integrated roundlogo.png into the loading screen with professional styling including teal glow effects (drop-shadow 20px rgba(8,145,178,0.8)), enhanced brightness (1.1), positioned centrally within animated gear system at 100px width for optimal visibility and brand recognition during page initialization. Logo appears at 60% progress with smooth fade-in transition and remains static (no bouncing animation) until completion
-- **Loading Screen Color Scheme Redesign**: Updated loading screen to professional white background with brand-colored rotating gears (orange, teal blue, teal green), removed distracting blue circuit pattern lines, changed progress counter from blue to black for readability, and updated "Initialising" text to brand orange color matching Quote button styling
-- **Mechanical Cogs Enhancement**: Replaced all simple circular loading elements throughout the site with professional mechanical cog designs using CSS clip-path. Updated main loading screen gears, form submission spinners, button loading states, and chatbot typing indicators to feature realistic cog shapes with teeth for a more industrial, engineering-focused aesthetic matching the company's automation expertise
-- **About Page Hero Video Integration**: Added company introduction video (company-intro.mp4) to the about page hero section below all hero content. Implemented responsive video container with professional styling, hover effects, and mobile optimization. Video includes controls, metadata preloading, and company logo as poster image for optimal user experience across all devices
-- **About Page Video Repositioning**: Moved company introduction video from hero section to the "Strategic Technology Partner for Enterprise Operations" section with autoplay enabled (muted for browser compliance). Video now plays automatically when users reach the company introduction section, providing better contextual placement and enhanced user engagement
-- **Header Improvements & Scroll Behavior**: Implemented comprehensive header standardization across all 15+ pages using index.html as master template. Added scroll-based hide/show functionality (header disappears on scroll down, reappears on scroll up) with smooth transitions. Removed hardcoded telephone numbers from headers. Reduced header padding by 50% (from 132-133px to 116-117px height) while maintaining responsiveness and accessibility. All pages now have consistent navigation structure, logo usage (images/logo.png), and professional scroll behavior
-- **Professional Loading Screen Standardization**: Completely redesigned and standardized loading screens across all 11 major pages using new-logo.png instead of roundlogo.png. Fixed inconsistent implementation where only index.html showed logos while other pages (like about.html) had no loading screens at all. Implemented professional design with clean white background, mechanical gear animations, smooth logo fade-in effects, and brand-consistent styling. All pages now display identical, professional loading experiences that enhance rather than detract from user experience
-- **Complete E-commerce Functionality Cleanup**: Performed comprehensive final cleanup to remove ALL remaining e-commerce references across the entire website. Removed payment field validation from JavaScript files, fixed broken links to deleted e-commerce files, cleaned up remaining payment CSS styling, and updated documentation references. Website now operates purely as informational/showcase with call-to-order functionality only
-- **Complete Store Page Redesign**: Completely redesigned store.html as a clean, professional equipment showcase without any e-commerce functionality. Created authentic product listings from major manufacturers (Siemens, Allen-Bradley, Mitsubishi, SICK, Pilz, Schneider Electric) organized into four categories: PLCs & Controllers, Sensors & Actuators, Safety Equipment, and HMI & Displays. Each product card features "Call for Pricing: +353 52 7443258" and "Request Quote" buttons instead of purchase options. Implemented modern responsive grid layout with professional styling and updated navigation from "Store" to "Equipment Showcase"
-- **Professional Loading Screen Complete Redesign**: Completely transformed the loading screen from unprofessional design to sophisticated, elegant experience showcasing new-logo.png. Replaced complex gear animations with clean entrance effects, implemented brand-colored gradients (teal to orange), added responsive scaling (320px desktop, 280px tablet, 240px mobile), and ensured cross-page consistency across all 15 HTML files. Added accessibility support with reduced-motion preferences and removed all legacy elements for clean, minimal professional design
-- **About Page Mobile Responsiveness Fix**: Completely resolved mobile responsiveness issues on about.html including hero section scaling problems, video container sizing issues, and invisible text sections. Fixed hero-badge, page-title, page-subtitle, and hero-stats to stack vertically with proper mobile font sizing. Added missing CSS for intro-video-container with proper aspect ratios and scaling constraints. Fixed text visibility issues in value-card, timeline-content, and highlight-item sections by adding explicit background colors and text contrast. Implemented comprehensive mobile media queries for 768px and 480px breakpoints ensuring optimal mobile user experience. Removed 24/7 and ISO metrics cards from video section as requested, then fixed excessive whitespace between video and timeline sections by reducing stacked padding from var(--spacing-20) to var(--spacing-12) on both sections (40% reduction for balanced professional spacing). Fixed remaining text visibility issues where white text was invisible on light backgrounds by changing checkmark icons (.feature-icon) to solid teal backgrounds with white checkmarks and ensuring all industry spotlight text uses dark text (var(--text-primary)) on light backgrounds
+- **Images**: Logo and service-related hero images are stored in `/images/` and are designed for responsive coverage.
+- **Icons**: Custom hamburger menu implementation and service-related icons.
+- **Favicons**: Standard favicon setup.

@@ -2598,6 +2598,21 @@ section + section {
     overflow: hidden;
 }
 
+/* Contact form specific visual container - allow overflow for form */
+.company-intro .visual-container {
+    height: auto;
+    min-height: 500px;
+    overflow: visible;
+}
+
+/* Contact form container styling */
+.contact-form-container {
+    position: relative;
+    z-index: 10;
+    margin-top: var(--spacing-8);
+    padding: var(--spacing-4);
+}
+
 .visual-bg {
     position: absolute;
     inset: 0;
@@ -7175,6 +7190,21 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
     }
     .contact-form {
         padding: var(--spacing-6);
+    }
+    
+    .contact-form-container {
+        margin-top: var(--spacing-6);
+        padding: var(--spacing-2);
+    }
+    
+    .company-intro .visual-container {
+        min-height: auto;
+        padding-bottom: var(--spacing-4);
+    }
+    
+    .intro-visual {
+        height: auto;
+        min-height: 400px;
     }
     .page-title {
         font-size: var(--font-size-2xl);
