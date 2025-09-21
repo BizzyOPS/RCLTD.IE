@@ -7927,72 +7927,375 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     
     .store-hero-content {
         text-align: center;
-        max-width: 100%;
-        padding: 0 var(--spacing-4);
     }
     
-    /* Hero Badge Mobile */
     .hero-badge {
         display: flex;
         flex-direction: column;
-        align-items: center;
         gap: var(--spacing-2);
-        background: rgba(0, 0, 0, 0.8);
-        padding: var(--spacing-3) var(--spacing-4);
-        margin-bottom: var(--spacing-4);
-        font-size: var(--font-size-sm);
+        align-items: center;
+        margin-bottom: var(--spacing-6);
     }
     
-    .badge-text, .badge-highlight {
-        font-size: var(--font-size-xs);
+    .page-title {
+        font-size: 2rem;
+        line-height: 1.2;
+        margin-bottom: var(--spacing-4);
+    }
+    
+    .page-subtitle {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: var(--spacing-6);
+    }
+    
+    .hero-stats {
+        flex-direction: column;
+        gap: var(--spacing-4);
+        align-items: center;
+    }
+    
+    .stat-item {
+        text-align: center;
+        min-width: auto;
+    }
+    
+    /* Contact Section Mobile Responsiveness */
+    .company-intro {
+        padding: var(--spacing-8) 0;
+    }
+    
+    .intro-content {
+        margin-bottom: var(--spacing-8);
+    }
+    
+    .intro-title {
+        font-size: 1.75rem;
+        line-height: 1.3;
+        margin-bottom: var(--spacing-4);
+    }
+    
+    .intro-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: var(--spacing-6);
+    }
+    
+    .intro-highlights {
+        flex-direction: column;
+        gap: var(--spacing-4);
+    }
+    
+    .highlight-item {
+        margin-bottom: var(--spacing-4);
+    }
+    
+    .contact-info-section {
+        margin-top: var(--spacing-6);
+    }
+    
+    .contact-method {
+        padding: var(--spacing-4);
+        margin-bottom: var(--spacing-4);
+    }
+    
+    .contact-details h3 {
+        font-size: 1.1rem;
+    }
+    
+    .contact-details p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    
+    .contact-details span {
+        font-size: 0.8rem;
+    }
+    
+    /* Visual container - use flexbox for mobile reordering - FIXED: Apply to correct parent */
+    .visual-container {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-6);
+    }
+    
+    /* CRITICAL: Move metrics below form on mobile using order */
+    .company-metrics {
+        order: 2; /* This moves metrics after form */
+        margin-top: var(--spacing-6);
+        justify-content: center;
+        gap: var(--spacing-6);
+    }
+    
+    .contact-form-container {
+        order: 1; /* This keeps form at top */
+    }
+    
+    .metric {
         text-align: center;
     }
     
-    /* Page Title Mobile */
-    .page-title {
-        font-size: var(--font-size-2xl) !important;
+    .metric-value {
+        font-size: 1.25rem;
+    }
+    
+    .metric-label {
+        font-size: 0.8rem;
+    }
+    
+    /* Services Grid Mobile Responsiveness */
+    .automation-services {
+        padding: var(--spacing-8) 0;
+    }
+    
+    .section-title {
+        font-size: 1.75rem;
         line-height: 1.3;
         margin-bottom: var(--spacing-4);
-        padding: 0 var(--spacing-2);
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        hyphens: auto;
     }
     
-    /* Page Subtitle Mobile */
-    .page-subtitle {
-        font-size: var(--font-size-base) !important;
-        line-height: 1.5;
+    .section-subtitle {
+        font-size: 0.95rem;
+        line-height: 1.6;
         margin-bottom: var(--spacing-6);
-        padding: 0 var(--spacing-2);
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        hyphens: auto;
     }
     
-    /* Hero Stats Mobile - Stack Vertically */
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-4);
+    }
+    
+    .service-card {
+        padding: var(--spacing-6);
+        text-align: center;
+    }
+    
+    .service-title {
+        font-size: 1.1rem;
+        margin-bottom: var(--spacing-3);
+    }
+    
+    .service-description {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: var(--spacing-4);
+    }
+    
+    /* Industries Grid Mobile Responsiveness */
+    .industries-modern {
+        padding: var(--spacing-8) 0;
+    }
+    
+    .industries-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-4);
+    }
+    
+    .industry-card {
+        padding: var(--spacing-6);
+        text-align: center;
+    }
+    
+    .industry-title {
+        font-size: 1.1rem;
+        margin-bottom: var(--spacing-3);
+    }
+    
+    .industry-description {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    /* Footer Mobile Responsiveness */
+    .footer {
+        padding: var(--spacing-8) 0 var(--spacing-6);
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-6);
+        text-align: center;
+    }
+    
+    .footer-brand {
+        margin-bottom: var(--spacing-6);
+    }
+    
+    .footer-description {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    .footer-title {
+        font-size: 1.1rem;
+        margin-bottom: var(--spacing-3);
+    }
+    
+    .footer-list li {
+        margin-bottom: var(--spacing-2);
+    }
+    
+    .footer-list a {
+        font-size: 0.9rem;
+    }
+    
+    .footer-contact p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: var(--spacing-2);
+    }
+}
+
+/* Small Mobile Devices - Extra responsive adjustments */
+@media (max-width: 480px) {
+    /* Hero Section - Extra Small Mobile */
+    .store-hero {
+        padding: var(--spacing-8) 0 var(--spacing-6);
+    }
+    
+    .page-title {
+        font-size: 1.75rem;
+        line-height: 1.3;
+    }
+    
+    .page-subtitle {
+        font-size: 0.95rem;
+    }
+    
     .hero-stats {
-        grid-template-columns: 1fr !important;
-        gap: var(--spacing-3) !important;
-        margin-top: var(--spacing-6);
-        max-width: 300px;
-        margin-left: auto;
-        margin-right: auto;
+        gap: var(--spacing-3);
     }
     
     .stat-item {
         padding: var(--spacing-3);
-        text-align: center;
     }
     
     .stat-number {
-        font-size: var(--font-size-2xl);
-        margin-bottom: var(--spacing-1);
+        font-size: 1.5rem;
     }
     
     .stat-label {
-        font-size: var(--font-size-xs);
+        font-size: 0.8rem;
     }
+    
+    /* Contact Section - Extra Small Mobile */
+    .company-intro {
+        padding: var(--spacing-6) 0;
+    }
+    
+    .intro-title {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+    
+    .intro-text {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    
+    .contact-method {
+        padding: var(--spacing-3);
+    }
+    
+    .contact-details h3 {
+        font-size: 1rem;
+    }
+    
+    .contact-details p {
+        font-size: 0.85rem;
+    }
+    
+    .contact-details span {
+        font-size: 0.75rem;
+    }
+    
+    /* Metrics - Extra Small Mobile */
+    .company-metrics {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-4);
+        margin-top: var(--spacing-4);
+    }
+    
+    .metric {
+        min-width: 120px;
+    }
+    
+    .metric-value {
+        font-size: 1.1rem;
+    }
+    
+    .metric-label {
+        font-size: 0.75rem;
+    }
+    
+    /* Services Section - Extra Small Mobile */
+    .automation-services {
+        padding: var(--spacing-6) 0;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+    
+    .section-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .service-card {
+        padding: var(--spacing-4);
+    }
+    
+    .service-title {
+        font-size: 1rem;
+    }
+    
+    .service-description {
+        font-size: 0.85rem;
+    }
+    
+    /* Industries Section - Extra Small Mobile */
+    .industries-modern {
+        padding: var(--spacing-6) 0;
+    }
+    
+    .industry-card {
+        padding: var(--spacing-4);
+    }
+    
+    .industry-title {
+        font-size: 1rem;
+    }
+    
+    .industry-description {
+        font-size: 0.85rem;
+    }
+    
+    /* Footer - Extra Small Mobile */
+    .footer {
+        padding: var(--spacing-6) 0 var(--spacing-4);
+    }
+    
+    .footer-grid {
+        gap: var(--spacing-4);
+    }
+    
+    .footer-title {
+        font-size: 1rem;
+    }
+    
+    .footer-description,
+    .footer-list a,
+    .footer-contact p {
+        font-size: 0.85rem;
+    }
+    
+    /* Container adjustments for extra small screens */
+    .container {
+        padding: 0 var(--spacing-3);
+    }
+}
     
     /* Intro Video Mobile */
     .intro-video-container {
@@ -8312,6 +8615,58 @@ p, h1, h2, h3, h4, h5, h6, span, div {
         grid-template-columns: 1fr;
         gap: var(--spacing-3);
         padding: var(--spacing-4);
+    }
+    
+    /* Enhanced typography scaling for very small screens */
+    .page-title {
+        font-size: 1.75rem !important;
+        line-height: 1.1;
+    }
+    
+    .page-subtitle {
+        font-size: 0.9rem !important;
+        line-height: 1.4;
+    }
+    
+    .section-title {
+        font-size: 1.5rem !important;
+        line-height: 1.2;
+    }
+    
+    /* Proper container padding to prevent edge-to-edge text */
+    .container {
+        padding: 0 var(--spacing-3);
+    }
+    
+    /* Fine-tuned spacing for very small screens */
+    .hero-stats {
+        gap: var(--spacing-3);
+        margin-top: var(--spacing-4);
+    }
+    
+    .stat-item {
+        padding: var(--spacing-3);
+    }
+    
+    .contact-form-container {
+        padding: var(--spacing-3);
+    }
+    
+    .company-metrics {
+        margin-top: var(--spacing-4);
+        gap: var(--spacing-4);
+    }
+    
+    .metric {
+        padding: var(--spacing-2);
+    }
+    
+    .metric-value {
+        font-size: 1.1rem;
+    }
+    
+    .metric-label {
+        font-size: 0.75rem;
     }
 }
 
