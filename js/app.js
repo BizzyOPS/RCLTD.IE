@@ -771,6 +771,8 @@ function initPageLoader() {
 }
 
 function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
+    console.log('Starting advanced loader with elements:', !!progressCounter, !!progressBar, !!pageLoader);
+    
     // Check for reduced motion preference
     var prefersReducedMotion = false;
     if (window.matchMedia) {
@@ -780,50 +782,51 @@ function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
     // Store pageLoader reference to ensure it's accessible throughout the function
     var loaderElement = pageLoader;
     
-    // Simplified loader without tech messages
-    
     var currentProgress = 0;
     var loaderStartTime = Date.now();
-    var minLoadTime = prefersReducedMotion ? 800 : 5000; // Shorter for reduced motion - increased for debugging
-    var maxLoadTime = prefersReducedMotion ? 1500 : 7000; // Increased for debugging
+    var minLoadTime = prefersReducedMotion ? 500 : 3000; // Reduced timing for better UX
+    var maxLoadTime = prefersReducedMotion ? 1000 : 4500; // Reduced timing for better UX
     
     // Initialize display
     progressCounter.textContent = '0%';
     progressBar.style.width = '0%';
+    progressBar.style.transition = 'width 0.3s ease';
     
-    // Animation timing - slowed down for debugging
-    var progressUpdateInterval = prefersReducedMotion ? 50 : 120;
+    // Animation timing
+    var progressUpdateInterval = prefersReducedMotion ? 30 : 60;
+    
+    console.log('Starting progress animation...');
     
     // Progress animation function
     function updateProgress() {
+        console.log('Progress update called, current:', currentProgress);
+        
         if (currentProgress < 100) {
             // Variable speed progression for more natural feel
             var increment;
-            if (currentProgress < 20) {
-                increment = Math.random() * 3 + 1; // 1-4% increments early
-            } else if (currentProgress < 80) {
-                increment = Math.random() * 2 + 0.5; // 0.5-2.5% increments middle
+            if (currentProgress < 25) {
+                increment = Math.random() * 4 + 2; // 2-6% increments early (faster start)
+            } else if (currentProgress < 75) {
+                increment = Math.random() * 3 + 1; // 1-4% increments middle
             } else {
-                increment = Math.random() * 1 + 0.2; // 0.2-1.2% increments near end
+                increment = Math.random() * 2 + 0.5; // 0.5-2.5% increments near end
             }
             
             currentProgress = Math.min(100, currentProgress + increment);
             
             // Update display
-            progressCounter.textContent = Math.floor(currentProgress) + '%';
+            var displayProgress = Math.floor(currentProgress);
+            progressCounter.textContent = displayProgress + '%';
             progressBar.style.width = currentProgress + '%';
+            
+            console.log('Progress updated to:', displayProgress + '%');
             
             // Show logo at 60% progress and keep it visible
             if (currentProgress >= 60) {
                 var logo = loaderElement.querySelector('.loader-logo');
-                console.log('Looking for logo element...', !!logo);
                 if (logo && !logo.classList.contains('show')) {
                     logo.classList.add('show');
-                    console.log('Logo should now be visible at', Math.floor(currentProgress) + '%');
-                } else if (logo && logo.classList.contains('show')) {
-                    console.log('Logo already visible at', Math.floor(currentProgress) + '%');
-                } else if (!logo) {
-                    console.error('Logo element not found in loader!');
+                    console.log('Logo should now be visible at', displayProgress + '%');
                 }
             }
             
@@ -831,6 +834,7 @@ function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
             setTimeout(updateProgress, progressUpdateInterval);
         } else {
             // Progress complete - show final message briefly then hide
+            console.log('Progress animation completed');
             setTimeout(function() {
                 completeLoader();
             }, prefersReducedMotion ? 200 : 500);
@@ -858,38 +862,52 @@ function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
         }, remainingTime);
     }
     
-    // Start animations
+    // Start animations immediately
+    console.log('Initializing animation start, reduced motion:', prefersReducedMotion);
+    
     if (!prefersReducedMotion) {
-        setTimeout(updateProgress, 300); // Slight delay for visual effect
+        // Start animation immediately
+        console.log('Starting updateProgress in 100ms...');
+        setTimeout(updateProgress, 100); // Minimal delay for smooth start
     } else {
         // Simplified version for reduced motion
+        console.log('Using reduced motion - fast completion');
         currentProgress = 100;
         progressCounter.textContent = '100%';
         progressBar.style.width = '100%';
-        setTimeout(completeLoader, 800);
+        setTimeout(completeLoader, 500);
     }
     
     // Page load event handler
     window.addEventListener('load', function pageLoadHandler() {
-        // If page loads before animation completes, speed up to finish
+        console.log('Page load event triggered, current progress:', currentProgress);
+        // If page loads before animation completes, ensure it reaches 100%
         if (currentProgress < 100) {
+            console.log('Speeding up progress to completion');
             var remainingProgress = 100 - currentProgress;
-            var speedUpInterval = 30;
+            var speedUpInterval = 25;
             
             function speedUpProgress() {
                 if (currentProgress < 100) {
-                    currentProgress = Math.min(100, currentProgress + (remainingProgress / 10));
-                    progressCounter.textContent = Math.floor(currentProgress) + '%';
+                    currentProgress = Math.min(100, currentProgress + Math.max(5, remainingProgress / 8));
+                    var displayProgress = Math.floor(currentProgress);
+                    progressCounter.textContent = displayProgress + '%';
                     progressBar.style.width = currentProgress + '%';
+                    
+                    console.log('Speed up progress:', displayProgress + '%');
                     
                     if (currentProgress < 100) {
                         setTimeout(speedUpProgress, speedUpInterval);
                     } else {
-                        setTimeout(completeLoader, 300);
+                        console.log('Speed up completed, hiding loader');
+                        setTimeout(completeLoader, 200);
                     }
                 }
             }
             speedUpProgress();
+        } else {
+            console.log('Progress already at 100%, completing loader');
+            setTimeout(completeLoader, 200);
         }
     });
     
