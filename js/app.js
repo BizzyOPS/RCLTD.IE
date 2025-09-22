@@ -878,12 +878,20 @@ function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
         setTimeout(completeLoader, 500);
     }
     
-    // Page load event handler
+    // Page load event handler - with minimum display time to see animation
+    var pageLoadComplete = false;
+    var minDisplayTime = 2500; // Minimum 2.5 seconds to see the animation
+    
     window.addEventListener('load', function pageLoadHandler() {
         console.log('Page load event triggered, current progress:', currentProgress);
-        // If page loads before animation completes, ensure it reaches 100%
+        pageLoadComplete = true;
+        console.log('Page loaded, but waiting for minimum display time...');
+    });
+    
+    // Only allow completion after minimum display time has passed
+    setTimeout(function() {
         if (currentProgress < 100) {
-            console.log('Speeding up progress to completion');
+            console.log('Minimum display time reached, speeding up progress to completion');
             var remainingProgress = 100 - currentProgress;
             var speedUpInterval = 25;
             
@@ -909,7 +917,7 @@ function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
             console.log('Progress already at 100%, completing loader');
             setTimeout(completeLoader, 200);
         }
-    });
+    }, minDisplayTime);
     
     // Fallback: Force hide loader after maximum time
     var fallbackTimeout = setTimeout(function() {
