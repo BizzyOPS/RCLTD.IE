@@ -5524,7 +5524,7 @@ section + section {
     color: var(--primary-color);
     margin-bottom: var(--spacing-4);
     opacity: 1;
-    animation: fadeInUp 0.8s ease-out 0.2s both;
+    animation: none;
     letter-spacing: -0.02em;
 }
 
@@ -5539,7 +5539,7 @@ section + section {
     position: relative;
     margin: 0 auto var(--spacing-6);
     opacity: 1;
-    animation: fadeInUp 0.8s ease-out 0.4s both;
+    animation: none;
 }
 
 /* Smooth Progress Fill */
