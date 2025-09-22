@@ -6956,29 +6956,33 @@ img {
     }
 }
 /* Green links - only apply to text links, not buttons */
-a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link):not(.nav-brand-link):not(.social-link) {
+a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link):not(.nav-brand-link):not(.social-link):not(.service-contact) {
     color: #10b981 !important;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
 }
-a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link):not(.nav-brand-link):not(.social-link):hover {
+a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link):not(.nav-brand-link):not(.social-link):not(.service-contact):hover {
     color: #059669 !important;
     text-decoration: underline;
 }
 /* Ensure buttons keep their original styling */
 .btn,
-.btn-primary, 
-.btn-secondary,
-.btn-large {
+.btn-primary {
     color: white !important;
 }
 .btn:hover,
-.btn-primary:hover,
-.btn-secondary:hover,
-.btn-large:hover {
+.btn-primary:hover {
     color: white !important;
     text-decoration: none !important;
+}
+/* Remove white text override for btn-secondary and btn-large to allow proper dark text on light backgrounds */
+.btn-secondary:hover {
+    text-decoration: none !important;
+}
+/* Prevent btn-large secondary buttons from inheriting white text */
+.btn-secondary.btn-large {
+    color: var(--text-primary) !important;
 }
 /* Modern Contact Page Styling */
 .contact-info-section {
