@@ -5523,8 +5523,8 @@ section + section {
     font-weight: 600;
     color: var(--primary-color);
     margin-bottom: var(--spacing-4);
-    opacity: 0;
-    animation: fadeInUp 0.8s ease-out 1s forwards;
+    opacity: 1;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
     letter-spacing: -0.02em;
 }
 
@@ -5538,8 +5538,8 @@ section + section {
     overflow: hidden;
     position: relative;
     margin: 0 auto var(--spacing-6);
-    opacity: 0;
-    animation: fadeInUp 0.8s ease-out 1.2s forwards;
+    opacity: 1;
+    animation: fadeInUp 0.8s ease-out 0.4s both;
 }
 
 /* Smooth Progress Fill */
