@@ -8887,46 +8887,9 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     padding: var(--spacing-16) 0;
 }
 
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--spacing-6);
-    margin-top: var(--spacing-8);
-}
+/* REMOVED DUPLICATE SERVICE GRID - Using main definitions at lines 2362-2475 instead */
 
-.service-card {
-    background: var(--surface);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-6);
-    text-align: center;
-    transition: all var(--transition-normal);
-    box-shadow: var(--shadow-sm);
-}
-
-.service-card:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
-}
-
-.service-icon {
-    font-size: 3rem;
-    margin-bottom: var(--spacing-4);
-    display: block;
-}
-
-.service-card h3 {
-    font-size: var(--font-size-xl);
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: var(--spacing-3);
-}
-
-.service-card p {
-    color: var(--text-light);
-    line-height: 1.6;
-    margin-bottom: var(--spacing-5);
-}
+/* REMOVED DUPLICATE SERVICE CARD STYLES - Using main definitions at lines 2456-2475 instead */
 
 .service-action {
     margin-top: auto;
