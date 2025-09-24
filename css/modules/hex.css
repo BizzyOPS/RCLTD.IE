@@ -413,6 +413,132 @@
 }
 
 /* =========================
+   VALUES DETAILS LAYOUT
+   ========================= */
+
+.values-details {
+    margin-top: var(--spacing-12);
+    display: grid;
+    gap: var(--spacing-6);
+    grid-template-columns: 1fr;
+}
+
+.value-detail-card {
+    background: white;
+    border-radius: var(--radius-md);
+    padding: var(--spacing-6);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid var(--brand-teal);
+    transition: all var(--transition-normal);
+}
+
+.value-detail-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.1);
+}
+
+.value-detail-card h4 {
+    color: var(--brand-teal);
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    margin-bottom: var(--spacing-3);
+}
+
+.value-detail-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+    .values-details {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .values-details {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* =========================
+   PHARMACEUTICAL SPOTLIGHT
+   ========================= */
+
+.pharma-spotlight {
+    display: grid;
+    gap: var(--spacing-8);
+    align-items: center;
+    margin-bottom: var(--spacing-12);
+}
+
+.spotlight-content {
+    display: flex;
+    justify-content: center;
+}
+
+.spotlight-details p {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-6);
+}
+
+.spotlight-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-6);
+}
+
+.spotlight-features .feature-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    background: var(--section-light-grey);
+    padding: var(--spacing-2) var(--spacing-4);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+}
+
+.spotlight-features .feature-icon {
+    color: var(--brand-teal);
+    font-weight: 700;
+}
+
+.spotlight-stats {
+    display: flex;
+    gap: var(--spacing-6);
+    justify-content: center;
+}
+
+.spotlight-stats .stat-item {
+    text-align: center;
+}
+
+.spotlight-stats .stat-number {
+    display: block;
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--brand-teal);
+    line-height: 1;
+}
+
+.spotlight-stats .stat-label {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    margin-top: var(--spacing-1);
+}
+
+@media (min-width: 768px) {
+    .pharma-spotlight {
+        grid-template-columns: 1fr 2fr;
+        gap: var(--spacing-12);
+    }
+}
+
+/* =========================
    BACKGROUND PATTERNS
    ========================= */
 
