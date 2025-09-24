@@ -9101,3 +9101,37 @@ p, h1, h2, h3, h4, h5, h6, span, div {
         font-size: var(--font-size-xl);
     }
 }
+
+/* ========================================
+   INLINE CSS CLEANUP - PROPER CLASSES
+   ======================================== */
+
+/* Policy page content container */
+.policy-content-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Footer designer attribution link */
+.footer-designer-link {
+    color: var(--primary-light);
+    text-decoration: none;
+}
+
+/* Footer white contact links */
+.footer-contact-link {
+    color: white;
+    text-decoration: none;
+}
+
+/* Cookie notice links */
+.cookie-notice-link {
+    color: var(--primary-light);
+}
+
+/* Blog content text styling */
+.blog-meta-text {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    margin-top: 1rem;
+}
