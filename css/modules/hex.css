@@ -1,0 +1,376 @@
+/* ==================================================
+   HEXAGONAL DESIGN SYSTEM
+   Professional B2B hexagonal components with brand colors
+   ================================================== */
+
+/* =========================
+   BASE HEXAGON SYSTEM
+   ========================= */
+
+/* Base hexagon shape with clip-path */
+.hex {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    transition: all var(--transition-normal);
+    overflow: hidden;
+    border: 3px solid var(--brand-teal);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+}
+
+/* Fallback for browsers without clip-path support */
+@supports not (clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)) {
+    .hex {
+        border-radius: var(--radius-lg);
+    }
+}
+
+/* Hexagon content wrapper */
+.hex__content {
+    text-align: center;
+    padding: var(--spacing-4);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================
+   SIZE VARIATIONS
+   ========================= */
+
+.hex--sm {
+    width: 160px;
+    height: 160px;
+}
+
+.hex--md {
+    width: 220px;
+    height: 220px;
+}
+
+.hex--lg {
+    width: 280px;
+    height: 280px;
+}
+
+.hex--xl {
+    width: 340px;
+    height: 340px;
+}
+
+/* =========================
+   COLOR VARIATIONS
+   ========================= */
+
+/* Teal theme (default) */
+.hex--teal {
+    border-color: var(--brand-teal);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+}
+
+.hex--teal:hover {
+    border-color: var(--brand-orange);
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.25);
+}
+
+/* Orange theme */
+.hex--orange {
+    border-color: var(--brand-orange);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.15);
+}
+
+.hex--orange:hover {
+    border-color: var(--brand-teal);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.25);
+}
+
+/* Outline only */
+.hex--outline {
+    background: transparent;
+    border-width: 2px;
+}
+
+/* Filled background */
+.hex--filled {
+    background: var(--brand-teal);
+    color: white;
+    border-color: var(--brand-teal);
+}
+
+.hex--filled:hover {
+    background: var(--brand-orange);
+    border-color: var(--brand-orange);
+}
+
+/* Subtle background */
+.hex--subtle {
+    background: var(--section-light-grey);
+    border-color: var(--border-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.hex--subtle:hover {
+    background: white;
+    border-color: var(--brand-teal);
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.15);
+}
+
+/* =========================
+   INTERACTIVE STATES
+   ========================= */
+
+.hex:hover {
+    transform: translateY(-8px);
+    background: var(--section-light-grey);
+}
+
+.hex:focus-within {
+    outline: 3px solid var(--brand-orange);
+    outline-offset: 4px;
+}
+
+/* Ensure interactive elements have proper hit areas */
+.hex__link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    z-index: 2;
+}
+
+.hex a,
+.hex button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    z-index: 2;
+}
+
+/* =========================
+   GRID LAYOUTS
+   ========================= */
+
+.hex-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--spacing-6);
+    justify-items: center;
+    margin: var(--spacing-8) 0;
+}
+
+.hex-grid--sm {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--spacing-4);
+}
+
+.hex-grid--md {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-6);
+}
+
+.hex-grid--lg {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-8);
+}
+
+/* =========================
+   HONEYCOMB STAGGERING
+   ========================= */
+
+.hex-grid--honeycomb .hex-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Mobile staggering */
+.hex-grid--honeycomb .hex-item:nth-child(4n-1),
+.hex-grid--honeycomb .hex-item:nth-child(4n) {
+    transform: translateY(35px);
+}
+
+/* Tablet staggering */
+@media (min-width: 768px) {
+    .hex-grid--honeycomb .hex-item:nth-child(3n-1) {
+        transform: translateY(35px);
+    }
+    
+    .hex-grid--honeycomb .hex-item:nth-child(4n-1),
+    .hex-grid--honeycomb .hex-item:nth-child(4n) {
+        transform: none;
+    }
+    
+    .hex-grid--md {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .hex-grid--lg {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Desktop staggering */
+@media (min-width: 1024px) {
+    .hex-grid--honeycomb .hex-item:nth-child(4n-1),
+    .hex-grid--honeycomb .hex-item:nth-child(4n) {
+        transform: translateY(35px);
+    }
+    
+    .hex-grid--honeycomb .hex-item:nth-child(3n-1) {
+        transform: none;
+    }
+    
+    .hex-grid--lg {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* =========================
+   CONTENT COMPONENTS
+   ========================= */
+
+.hex__icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-3);
+    display: block;
+    color: var(--brand-teal);
+}
+
+.hex--filled .hex__icon {
+    color: white;
+}
+
+.hex__title {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-2);
+    line-height: 1.3;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hex--filled .hex__title {
+    color: white;
+}
+
+.hex__subtitle {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    line-height: 1.4;
+    margin-bottom: var(--spacing-2);
+}
+
+.hex--filled .hex__subtitle {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.hex__description {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    line-height: 1.4;
+    flex-grow: 1;
+}
+
+.hex--filled .hex__description {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.hex__details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+    font-size: var(--font-size-xs);
+    margin-top: var(--spacing-2);
+}
+
+.hex__badge {
+    background: var(--section-light-grey);
+    padding: var(--spacing-1) var(--spacing-2);
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    font-size: var(--font-size-xs);
+}
+
+.hex__badge--primary {
+    background: var(--brand-teal);
+    color: white;
+}
+
+.hex__badge--accent {
+    background: var(--brand-orange);
+    color: white;
+}
+
+/* =========================
+   ACCESSIBILITY
+   ========================= */
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .hex {
+        transition: none;
+    }
+    
+    .hex:hover {
+        transform: none;
+    }
+    
+    .hex-grid--honeycomb .hex-item:nth-child(n) {
+        transform: none;
+    }
+}
+
+/* Ensure sufficient contrast for focus states */
+.hex:focus-visible {
+    outline: 3px solid var(--brand-orange);
+    outline-offset: 4px;
+}
+
+/* =========================
+   BACKGROUND PATTERNS
+   ========================= */
+
+.hex-bg-pattern {
+    position: relative;
+    overflow: hidden;
+}
+
+.hex-bg-pattern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 25% 25%, var(--brand-teal) 2px, transparent 2px),
+        radial-gradient(circle at 75% 75%, var(--brand-orange) 1px, transparent 1px);
+    background-size: 60px 60px, 40px 40px;
+    opacity: 0.03;
+    z-index: 0;
+}

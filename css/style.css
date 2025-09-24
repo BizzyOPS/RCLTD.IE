@@ -1,5 +1,6 @@
 /* Import color variables from separate file for easy editing */
 /* @import url('variables.css'); - Moved to HTML link tags for better loading control */
+@import url('modules/hex.css');
 /* Reset and Base Styles */
 * {
     margin: 0;
