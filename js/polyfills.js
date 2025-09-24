@@ -1,13 +1,27 @@
-/**
- * Cross-Browser Polyfills for Robotics & Control Ltd
- * 
- * Essential polyfills for IE11 and older browser support
- * Includes polyfills for modern JavaScript features and APIs
- */
+/* ============================================================================
+   CROSS-BROWSER POLYFILLS - ROBOTICS & CONTROL LTD
+   
+   Comprehensive polyfill library providing backward compatibility for modern
+   JavaScript features and APIs. Ensures consistent functionality across all
+   supported browsers including older versions.
+   
+   Features:
+   - Array method polyfills (includes, find, forEach)
+   - Object method polyfills (assign, entries, values)
+   - Promise polyfill for asynchronous operations
+   - String method polyfills (startsWith, endsWith, includes)
+   - Element method polyfills (closest, matches, classList)
+   - Modern API polyfills for consistent behavior
+   
+   Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
+   Note: Provides compatibility shims for older browser features
+   Dependencies: None (vanilla JavaScript polyfills)
+   Load Order: Must be loaded before all other scripts
+   ============================================================================ */
 
 // ==================== ARRAY POLYFILLS ====================
 
-// Array.includes() polyfill for IE
+// Array.includes() polyfill for older browsers
 if (!Array.prototype.includes) {
     Array.prototype.includes = function(searchElement, fromIndex) {
         'use strict';
@@ -42,7 +56,7 @@ if (!Array.prototype.includes) {
     };
 }
 
-// Array.find() polyfill for IE
+// Array.find() polyfill for older browsers
 if (!Array.prototype.find) {
     Array.prototype.find = function(predicate) {
         'use strict';

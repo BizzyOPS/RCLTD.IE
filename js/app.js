@@ -1,18 +1,50 @@
-// Set dynamic header height for proper spacing
+/* ============================================================================
+   MAIN APPLICATION JAVASCRIPT - ROBOTICS & CONTROL LTD WEBSITE
+   
+   This file contains core JavaScript functionality for the website including:
+   - Dynamic header height calculation for scroll offset
+   - Hero carousel initialization and controls  
+   - Navigation functionality
+   - Loading animations and user experience enhancements
+   - Cross-browser compatibility fixes
+   
+   Dependencies: None (vanilla JavaScript)
+   Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
+   ============================================================================ */
+
+/**
+ * Set dynamic header height for proper spacing
+ * 
+ * This function calculates the actual header height and sets it as a CSS variable
+ * to ensure proper scroll padding and layout spacing across all pages.
+ * 
+ * @function setHeaderOffset
+ * @returns {void}
+ */
 function setHeaderOffset() {
     const header = document.querySelector('.header');
-    if (!header) return;
+    if (!header) return; // Exit early if header not found
+    
+    // Get actual header height rounded up to avoid sub-pixel issues
     const h = Math.ceil(header.getBoundingClientRect().height);
-    // Use exact header height for seamless professional look
+    
+    // Set CSS variable for use throughout stylesheets
     document.documentElement.style.setProperty('--header-height', h + 'px');
     console.log('Header height set to exact:', h + 'px');
 }
 
-// Apply header offset on load and resize
+/**
+ * Event listeners for header height calculation
+ * 
+ * These ensure the header height is recalculated when:
+ * - Page loads completely
+ * - Window is resized  
+ * - Header content changes (using ResizeObserver for modern browsers)
+ */
 window.addEventListener('load', setHeaderOffset);
 window.addEventListener('resize', setHeaderOffset);
 
-// Watch for header content changes
+// Modern browsers: Watch for header content changes using ResizeObserver
 if (window.ResizeObserver) {
     const headerObserver = new ResizeObserver(setHeaderOffset);
     const header = document.querySelector('.header');

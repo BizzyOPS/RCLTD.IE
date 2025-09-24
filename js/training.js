@@ -1,6 +1,32 @@
-// Interactive Safety Training System for R&C Ltd
-// Comprehensive training controller with hash routing, progress tracking, and accessibility
+/* ============================================================================
+   INTERACTIVE SAFETY TRAINING SYSTEM - ROBOTICS & CONTROL LTD
+   
+   Comprehensive safety training platform providing interactive learning
+   modules, progress tracking, and certification management for industrial
+   safety and automation training programs.
+   
+   Features:
+   - Interactive training modules with multimedia content
+   - Progress tracking and completion certificates  
+   - Hash-based routing for bookmarkable sessions
+   - Accessibility compliance with ARIA support
+   - User answer persistence and resume functionality
+   - Quiz and assessment system with scoring
+   
+   Dependencies: training-data.js for module content
+   Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
+   Standards: WCAG 2.1 AA accessibility compliance
+   ============================================================================ */
 
+/**
+ * SafetyTrainingSystem Class
+ * 
+ * Main training system controller that manages training modules, user progress,
+ * navigation, and accessibility features for the safety training platform.
+ * 
+ * @constructor
+ * @class SafetyTrainingSystem
+ */
 function SafetyTrainingSystem() {
     var self = this;
     this.currentModule = null;

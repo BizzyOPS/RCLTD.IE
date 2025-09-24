@@ -1,6 +1,36 @@
-// Comprehensive Safety Training Data for R&C Ltd
-// Professional-grade training content aligned with company services
+/* ============================================================================
+   SAFETY TRAINING DATA - ROBOTICS & CONTROL LTD
+   
+   Comprehensive training content database for the interactive safety training
+   platform. Contains structured training modules, assessments, and educational
+   content aligned with company service offerings and industry standards.
+   
+   Features:
+   - Structured training modules with learning objectives
+   - Interactive content with multimedia elements
+   - Assessment questions and explanations
+   - Industry-aligned curriculum content
+   - Progressive difficulty levels
+   - Real-world case studies and examples
+   
+   Content Organization:
+   - modules: Main training modules (automation, safety, electrical)
+   - chapters: Individual learning units within modules
+   - questions: Assessment items with explanations
+   - resources: Additional learning materials
+   
+   Dependencies: Used by training.js for content delivery
+   Content Standards: Aligned with ISO, IEC, and industry best practices
+   ============================================================================ */
 
+/**
+ * Training Data Object
+ * 
+ * Main data structure containing all training content, modules, chapters,
+ * assessments, and educational resources for the safety training platform.
+ * 
+ * @type {Object}
+ */
 var trainingData = {
     modules: {
         automation: {

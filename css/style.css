@@ -1,44 +1,79 @@
-/* Import color variables from separate file for easy editing */
-/* @import url('variables.css'); - Moved to HTML link tags for better loading control */
+/* ============================================================================
+   MAIN STYLESHEET FOR ROBOTICS & CONTROL LTD WEBSITE
+   
+   This file contains all the core styles for the website.
+   Organization:
+   1. Imports & Reset Styles
+   2. Global Base Styles  
+   3. Layout & Container Styles
+   4. Component Styles (Buttons, Cards, etc.)
+   5. Page-Specific Styles
+   6. Media Queries & Responsive Design
+   
+   Note: Color variables are loaded via HTML link tags for better loading control
+   ============================================================================ */
+
+/* ============================================================================
+   1. IMPORTS & RESET STYLES
+   ============================================================================ */
+
+/* Import hexagonal design system module */
 @import url('modules/hex.css');
-/* Reset and Base Styles */
+
+/* CSS Reset - Normalize default browser styles */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Include padding and border in element's total width/height */
 }
 
-/* Global Header Offset - Apply to all pages */
+/* ============================================================================
+   2. GLOBAL BASE STYLES
+   ============================================================================ */
+
+/* Global scroll offset to account for fixed header */
 html {
-    scroll-padding-top: var(--header-height);
+    scroll-padding-top: var(--header-height); /* Prevents content from being hidden behind fixed header when scrolling to anchors */
 }
 
+/* Base document styles */
 html, body {
-    background: #ffffff !important;
-    background-color: #ffffff !important;
-    min-height: 100vh;
-    font-family: var(--font-family);
-    color: var(--text-primary);
+    background: #ffffff !important; /* Force white background - overrides any inherited styles */
+    background-color: #ffffff !important; /* Backup declaration for older browsers */
+    min-height: 100vh; /* Ensure full viewport height coverage */
+    font-family: var(--font-family); /* Use CSS variable for consistent typography */
+    color: var(--text-primary); /* Use CSS variable for consistent text color */
 }
 
-/* Ensure main content starts below header */
+/* ============================================================================
+   3. LAYOUT & CONTAINER STYLES
+   ============================================================================ */
+
+/* Main content wrapper */
 main {
-    position: relative;
-    z-index: 1;
+    position: relative; /* Create stacking context */
+    z-index: 1; /* Ensure main content appears above background elements */
 }
 
-/* Homepage hero should be flush with header */
+/* Homepage-specific layout - hero section should be flush with header */
 body.home main {
-    padding-top: 0;
+    padding-top: 0; /* Remove top padding for homepage to allow hero to touch header */
 }
 
-/* Other pages need padding to avoid overlap with fixed header */
+/* All other pages need padding to prevent content hiding behind fixed header */
 body:not(.home) {
-    padding-top: var(--header-height);
+    padding-top: var(--header-height); /* Add space equal to header height */
 }
-/* Homepage Hero Section with Cover Image Background */
+/* ============================================================================
+   4. SECTION BACKGROUND STYLES
+   ============================================================================ */
 
-/* Section Background Colors for Visual Variety */
+/* 
+   Section backgrounds provide visual variety and help separate content areas.
+   Using CSS variables ensures consistent theming and easy maintenance.
+*/
+
+/* Light grey background sections - typically used for overview/intro content */
 .services,
 .services-overview,
 .automation-overview,
@@ -46,31 +81,34 @@ body:not(.home) {
 .design-overview,
 .panel-overview,
 .training-overview {
-    background: var(--section-light-grey);
-    padding: var(--spacing-16) 0;
+    background: var(--section-light-grey); /* Subtle grey background for content separation */
+    padding: var(--spacing-16) 0; /* Generous vertical padding for breathing room */
 }
 
+/* White background sections - used for main content areas */
 .automation-services,
 .safety-services,
 .design-services,
 .panel-services,
 .training-content,
 .store-products {
-    background: var(--section-white);
-    padding: var(--spacing-16) 0;
+    background: var(--section-white); /* Clean white background for main content */
+    padding: var(--spacing-16) 0; /* Consistent vertical spacing */
 }
 
+/* Light teal background sections - used for highlights and testimonials */
 .benefits-section,
 .features-section,
 .testimonials-section {
-    background: var(--section-light-teal);
-    padding: var(--spacing-16) 0;
+    background: var(--section-light-teal); /* Branded teal background for emphasis */
+    padding: var(--spacing-16) 0; /* Consistent vertical spacing */
 }
 
+/* Call-to-action sections - light blue background with center alignment */
 .cta-section {
-    background: var(--section-light-blue);
-    padding: var(--spacing-16) 0;
-    text-align: center;
+    background: var(--section-light-blue); /* Light blue background for CTAs */
+    padding: var(--spacing-16) 0; /* Consistent vertical spacing */
+    text-align: center; /* Center-align CTA content */
 }
 
 .contact-section {
@@ -7969,40 +8007,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
     padding: var(--spacing-16) 0;
 }
 
-.automation-overview,
-.safety-overview,
-.design-overview,
-.panel-overview {
-    background: var(--section-light-grey);
-    padding: var(--spacing-16) 0;
-}
-
-.automation-services,
-.safety-services,
-.design-services,
-.panel-services {
-    background: var(--section-white);
-    padding: var(--spacing-16) 0;
-}
-
-.benefits-section,
-.features-section {
-    background: var(--section-light-teal);
-    padding: var(--spacing-16) 0;
-}
-
-
-.expertise-section,
-.capabilities-section {
-    background: var(--section-warm-grey);
-    padding: var(--spacing-16) 0;
-}
-
-.stats-section,
-.certifications-section {
-    background: var(--section-cool-grey);
-    padding: var(--spacing-16) 0;
-}
+/* DUPLICATE SECTION REMOVED - These styles were already defined above in the main section background styles */
 
 /* Team Section Styling */
 .team-section {

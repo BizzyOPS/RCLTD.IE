@@ -1,8 +1,38 @@
-// Professional Tooltip System for Robotics & Control Ltd
+/* ============================================================================
+   PROFESSIONAL TOOLTIP SYSTEM - ROBOTICS & CONTROL LTD
+   
+   Advanced tooltip system providing contextual help and information throughout
+   the website. Features professional styling, accessibility support, and
+   cross-browser compatibility for enhanced user experience.
+   
+   Features:
+   - Multiple tooltip types (info, success, warning, error)
+   - Configurable positioning (top, bottom, left, right)  
+   - Touch device support with tap-to-show functionality
+   - Accessibility compliance with ARIA attributes
+   - Modern browser compatibility with graceful fallbacks
+   - Automatic tooltip scanning and initialization
+   
+   Usage: Add data-tooltip attributes to HTML elements
+   Example: <button data-tooltip="Help text" data-tooltip-type="info">
+   
+   Dependencies: None (vanilla JavaScript)
+   Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
+   ============================================================================ */
+
+/**
+ * ProTooltip Class
+ * 
+ * Main tooltip system constructor that manages tooltip creation, display,
+ * and interaction handling across the website.
+ * 
+ * @constructor
+ * @class ProTooltip
+ */
 function ProTooltip() {
-    this.tooltips = {}; // IE11 doesn't support Map, use object instead
-    this.activeTooltip = null;
-    this.init();
+    this.tooltips = {}; // Cross-browser compatible object storage
+    this.activeTooltip = null; // Track currently displayed tooltip
+    this.init(); // Initialize the tooltip system
 }
 
 ProTooltip.prototype.init = function() {

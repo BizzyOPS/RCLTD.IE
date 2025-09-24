@@ -1,9 +1,37 @@
-// Popup Tooltip System for Robotics & Control Ltd Homepage
+/* ============================================================================
+   POPUP TOOLTIP SYSTEM - ROBOTICS & CONTROL LTD
+   
+   Interactive popup tooltip system that displays contextual information and
+   service highlights on the homepage. Provides engaging user experience with
+   timed reveals and smart positioning.
+   
+   Features:
+   - Automatic tooltip timing and display management
+   - Smart positioning (top-left, top-right, bottom-left, bottom-right)
+   - Service-specific content with engaging copy
+   - Cross-browser compatibility with fallbacks
+   - Non-intrusive user experience with dismiss functionality
+   - Priority-based tooltip sequencing
+   
+   Usage: Automatically initializes on homepage load
+   Dependencies: None (vanilla JavaScript)
+   Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
+   ============================================================================ */
+
+/**
+ * PopupTooltips Class
+ * 
+ * Main popup tooltip system that manages display timing, positioning,
+ * and content for homepage service highlights.
+ * 
+ * @constructor
+ * @class PopupTooltips
+ */
 function PopupTooltips() {
-    this.tooltips = {}; // IE11 doesn't support Map, use object instead
-    this.shownTooltips = {}; // IE11 doesn't support Set, use object instead
-    this.popupContainer = null;
-    this.init();
+    this.tooltips = {}; // IE-compatible object storage for tooltip configs
+    this.shownTooltips = {}; // IE-compatible object for tracking shown tooltips  
+    this.popupContainer = null; // DOM container for all tooltips
+    this.init(); // Initialize the system
 }
 
 PopupTooltips.prototype.init = function() {

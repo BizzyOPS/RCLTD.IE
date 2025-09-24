@@ -1,12 +1,37 @@
-// Controller Bot - AI Chatbot for Robotics & Control Ltd
-// Using OpenAI integration - referenced from blueprint:javascript_openai
-// the newest OpenAI model is "gpt-5" which was released August 7, 2025. do not change this unless explicitly requested by the user
+/* ============================================================================
+   CONTROLLER BOT - AI CHATBOT FOR ROBOTICS & CONTROL LTD
+   
+   Professional chatbot interface providing customer support and lead generation 
+   for automation services. Features service-specific content and intelligent
+   navigation to help users find relevant information and contact options.
+   
+   Features:
+   - Professional service information and navigation interface
+   - Lead qualification and contact form integration  
+   - Responsive design for all devices
+   - Accessibility-compliant interface
+   - Real-time typing indicators for user experience
+   - Service-specific content and recommendations
+   
+   Dependencies: None (standalone vanilla JavaScript system)
+   Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
+   Note: Demonstration chatbot interface for customer engagement
+   ============================================================================ */
 
+/**
+ * ControllerBot Class
+ * 
+ * Main chatbot constructor that initializes the chat interface and handles
+ * all user interactions with the AI assistant.
+ * 
+ * @constructor
+ * @class ControllerBot
+ */
 function ControllerBot() {
-    this.isOpen = false;
-    this.messages = [];
-    this.isTyping = false;
-    this.init();
+    this.isOpen = false; // Track chat window state
+    this.messages = []; // Store conversation history
+    this.isTyping = false; // Track bot typing state
+    this.init(); // Initialize the chatbot
 }
 
 ControllerBot.prototype.init = function() {

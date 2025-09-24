@@ -1,8 +1,21 @@
-/* ==================================================
-   EASY COLOR EDITING FILE
-   This file contains all colors and variables.
-   Edit colors here without touching the main CSS.
-   ================================================== */
+/* ============================================================================
+   CSS VARIABLES - ROBOTICS & CONTROL LTD DESIGN SYSTEM
+   
+   Centralized design tokens and CSS variables for consistent theming across
+   the entire website. This file serves as the single source of truth for
+   colors, typography, spacing, and other design properties.
+   
+   Organization:
+   1. Brand Colors (Primary teal #10b981, Orange #ff6b35)
+   2. Background Colors (Sections, gradients, surfaces)  
+   3. Typography (Font families, sizes, weights)
+   4. Spacing & Layout (Margins, padding, borders)
+   5. Animations & Transitions
+   6. Component-specific variables
+   
+   Usage: Reference variables using var(--variable-name) in CSS
+   Benefits: Easy theme updates, consistent branding, maintainable code
+   ============================================================================ */
 
 :root {
     /* === PRIMARY COLORS === */

@@ -1,9 +1,22 @@
-/**
- * Client-Side Validation Library for Robotics & Control Ltd
- * 
- * Comprehensive input validation and sanitization for all user-facing forms
- * with real-time feedback and XSS prevention.
- */
+/* ============================================================================
+   CLIENT-SIDE VALIDATION LIBRARY - ROBOTICS & CONTROL LTD
+   
+   Comprehensive form validation and sanitization system providing real-time
+   input validation, XSS prevention, and user feedback for all contact forms
+   and user-facing form elements throughout the website.
+   
+   Features:
+   - Real-time validation with immediate feedback
+   - Comprehensive input sanitization and XSS prevention
+   - Multiple validation rules (required, pattern, length limits)
+   - Custom error messages for user guidance
+   - Cross-browser compatible validation logic
+   - ARIA accessibility compliance for screen readers
+   
+   Dependencies: Works with css/validation.css for styling
+   Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
+   Security: Input sanitization, pattern validation, length limits
+   ============================================================================ */
 
 function FormValidator() {
         this.validationRules = {

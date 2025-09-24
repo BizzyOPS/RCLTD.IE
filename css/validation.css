@@ -1,8 +1,22 @@
-/**
- * Validation Styles for Robotics & Control Ltd
- * 
- * Styles for form validation feedback, error states, and success indicators
- */
+/* ============================================================================
+   FORM VALIDATION STYLES - ROBOTICS & CONTROL LTD
+   
+   Professional form validation styling system providing visual feedback for
+   user input validation. Includes error states, success indicators, loading
+   states, and accessibility-compliant styling.
+   
+   Features:
+   - Real-time validation feedback styling
+   - Error and success state indicators
+   - Professional color-coded validation states
+   - Accessibility-compliant contrast ratios
+   - Smooth animations for state transitions
+   - Cross-browser compatible styling
+   
+   Usage: Applied automatically by validation-client.js
+   Dependencies: Works with FormValidator JavaScript class
+   Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
+   ============================================================================ */
 
 /* ==================== FIELD VALIDATION STATES ==================== */
 

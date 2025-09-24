@@ -1,22 +1,44 @@
-/* ==================================================
-   HEXAGONAL DESIGN SYSTEM
-   Professional B2B hexagonal components with brand colors
-   ================================================== */
+/* ============================================================================
+   HEXAGONAL DESIGN SYSTEM - ROBOTICS & CONTROL LTD
+   
+   Professional B2B hexagonal components with brand colors for enterprise 
+   brochure-style layouts. This modular system provides consistent hexagonal
+   elements across all pages for a cohesive brand experience.
+   
+   Features:
+   - Multiple size variants (sm, md, lg, xl)
+   - Color themes (teal, orange, outline, filled, subtle)
+   - Accessibility-compliant focus states
+   - Responsive grid systems with honeycomb staggering
+   - Background patterns for visual depth
+   
+   Usage: Apply .hex class with size (.hex--lg) and style (.hex--teal) modifiers
+   ============================================================================ */
 
-/* =========================
-   BASE HEXAGON SYSTEM
-   ========================= */
+/* ============================================================================
+   1. BASE HEXAGON SYSTEM
+   ============================================================================ */
 
-/* Base hexagon shape with clip-path */
+/**
+ * Base hexagon shape using CSS clip-path
+ * 
+ * Creates a perfect hexagon shape with brand-consistent styling.
+ * Uses clip-path for modern browsers with graceful fallback.
+ */
 .hex {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: white;
+    position: relative; /* Create positioning context for child elements */
+    display: flex; /* Flexbox for content centering */
+    align-items: center; /* Vertical centering */
+    justify-content: center; /* Horizontal centering */
+    background: white; /* Default white background */
+    
+    /* CSS clip-path creates the hexagon shape - 6 points around center */
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    transition: all var(--transition-normal);
-    overflow: hidden;
+    
+    transition: all var(--transition-normal); /* Smooth transitions for hover effects */
+    overflow: hidden; /* Prevent content from extending beyond hex shape */
+    
+    /* Brand styling with teal border and subtle shadow */
     border: 3px solid var(--brand-teal);
     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
 }
