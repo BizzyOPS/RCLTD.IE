@@ -1,5 +1,5 @@
 /* Import color variables from separate file for easy editing */
-@import url('variables.css');
+/* @import url('variables.css'); - Moved to HTML link tags for better loading control */
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -8451,7 +8451,6 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     .industries-showcase {
         gap: var(--spacing-6);
     }
-}
 
 @media (max-width: 480px) {
     /* Extra Small Mobile Adjustments */
