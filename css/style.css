@@ -5804,9 +5804,14 @@ section + section {
 }
 /* Safety Training Page Styles */
 .safety-hero {
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    background: linear-gradient(135deg, rgba(248, 250, 252, 0.95) 0%, rgba(226, 232, 240, 0.95) 100%), url('../images/safety-training-logo.jpg');
+    background-size: cover, contain;
+    background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
+    background-attachment: scroll, scroll;
     padding: var(--spacing-16) 0 var(--spacing-12);
     border-bottom: 3px solid var(--brand-teal);
+    position: relative;
 }
 
 .hero-grid {
