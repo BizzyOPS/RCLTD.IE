@@ -18,7 +18,6 @@
    ============================================================================ */
 
 /* Import hexagonal design system module */
-@import url('modules/hex.css');
 
 /* CSS Reset - Normalize default browser styles */
 * {
@@ -196,7 +195,6 @@ body:not(.home) {
 }
 
 /* Card sections get subtle background */
-.service-card,
 .feature-card,
 .testimonial-card {
     background: var(--section-white);
@@ -207,12 +205,13 @@ body:not(.home) {
     transition: all var(--transition-normal);
 }
 
-.service-card:hover,
 .feature-card:hover,
 .testimonial-card:hover {
     box-shadow: var(--shadow-md);
     transform: translateY(-2px);
 }
+
+/* Note: .service-card now exclusively handled by Professional Box Container System */
 .hero {
     position: relative;
     min-height: 80vh;
@@ -1126,9 +1125,7 @@ section + section {
 
 .card,
 .feature-card,
-.service-card {
-    margin-bottom: var(--spacing-6);
-}
+/* Removed duplicate service-card spacing - handled by Professional Box Container System */
 
 /* Footer gets special spacing */
 .footer {
@@ -2426,35 +2423,7 @@ section + section {
     grid-template-columns: 1fr;
     gap: var(--spacing-8);
 }
-.service-card {
-    background-color: var(--surface);
-    padding: var(--spacing-8);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border-color);
-    transition: all var(--transition-normal);
-    position: relative;
-    overflow: hidden;
-}
-.service-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-xl);
-    border-color: var(--primary-color);
-}
-.service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
-    transform: scaleX(0);
-    transition: transform var(--transition-normal);
-    transform-origin: left;
-}
-.service-card:hover::before {
-    transform: scaleX(1);
-}
+/* Removed duplicate service-card definition - using Professional Box Container System instead */
 .service-icon {
     width: 50px;
     height: 50px;
@@ -9499,4 +9468,286 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     font-size: 0.875rem;
     color: var(--text-light);
     margin-top: 1rem;
+}
+
+/* ========================================
+   PROFESSIONAL BOX CONTAINER SYSTEM
+   ======================================== */
+
+/* Service cards grid layout */
+.service-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-6);
+    margin-top: var(--spacing-8);
+}
+
+/* Individual service card */
+.service-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-6);
+    border: 2px solid var(--border-color);
+    transition: all var(--transition-normal);
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.service-card:hover {
+    border-color: var(--brand-teal);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15);
+    text-decoration: none;
+    color: inherit;
+}
+
+.service-card:focus {
+    outline: 3px solid var(--brand-orange);
+    outline-offset: 2px;
+}
+
+/* Service card icon */
+.service-card__icon {
+    font-size: 2.5rem;
+    color: var(--brand-teal);
+    margin-bottom: var(--spacing-3);
+    display: block;
+    text-align: center;
+}
+
+.service-card__icon svg {
+    width: 2.5rem;
+    height: 2.5rem;
+    stroke-width: 1.5;
+}
+
+/* Service card title */
+.service-card__title {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-2);
+    text-align: center;
+    line-height: 1.3;
+}
+
+/* Service card description */
+.service-card__description {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: var(--spacing-3);
+}
+
+/* Service card badge */
+.service-card__badge {
+    display: inline-block;
+    background: var(--brand-teal);
+    color: white;
+    padding: var(--spacing-1) var(--spacing-3);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    width: fit-content;
+}
+
+.service-card__badge--accent {
+    background: var(--brand-orange);
+}
+
+.service-card__badge--outline {
+    background: transparent;
+    color: var(--brand-teal);
+    border: 1px solid var(--brand-teal);
+}
+
+/* Large service cards for main pages */
+.service-cards-grid--large .service-card {
+    padding: var(--spacing-8);
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.service-cards-grid--large .service-card__icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-4);
+}
+
+.service-cards-grid--large .service-card__icon svg {
+    width: 3rem;
+    height: 3rem;
+}
+
+.service-cards-grid--large .service-card__title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-3);
+}
+
+.service-cards-grid--large .service-card__description {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-4);
+}
+
+/* Compact service cards for secondary sections */
+.service-cards-grid--compact {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--spacing-4);
+}
+
+.service-cards-grid--compact .service-card {
+    padding: var(--spacing-4);
+}
+
+.service-cards-grid--compact .service-card__icon {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-2);
+}
+
+.service-cards-grid--compact .service-card__icon svg {
+    width: 2rem;
+    height: 2rem;
+}
+
+.service-cards-grid--compact .service-card__title {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-1);
+}
+
+.service-cards-grid--compact .service-card__description {
+    font-size: var(--font-size-xs);
+    margin-bottom: var(--spacing-2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .service-cards-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-4);
+    }
+    
+    .service-cards-grid--large {
+        grid-template-columns: 1fr;
+    }
+    
+    .service-cards-grid--compact {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    
+    .service-card {
+        padding: var(--spacing-4);
+    }
+    
+    .service-cards-grid--large .service-card {
+        padding: var(--spacing-6);
+    }
+}
+
+@media (max-width: 480px) {
+    .service-cards-grid,
+    .service-cards-grid--large,
+    .service-cards-grid--compact {
+        grid-template-columns: 1fr;
+    }
+    
+    .service-card__icon {
+        font-size: 2rem !important;
+    }
+    
+    .service-card__icon svg {
+        width: 2rem !important;
+        height: 2rem !important;
+    }
+}
+
+/* Industry showcase cards */
+.industry-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-6);
+    margin-top: var(--spacing-8);
+}
+
+.industry-card {
+    background: linear-gradient(135deg, var(--brand-teal) 0%, var(--primary-dark) 100%);
+    color: white;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-6);
+    text-align: center;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+}
+
+.industry-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+}
+
+.industry-card:hover::before {
+    opacity: 1;
+}
+
+.industry-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(16, 185, 129, 0.25);
+}
+
+.industry-card__icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-3);
+    display: block;
+}
+
+.industry-card__title {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    margin-bottom: var(--spacing-2);
+    line-height: 1.3;
+}
+
+.industry-card__description {
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+    opacity: 0.9;
+    margin-bottom: var(--spacing-3);
+}
+
+.industry-card__badge {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: var(--spacing-1) var(--spacing-3);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    display: inline-block;
+    backdrop-filter: blur(4px);
+}
+
+/* Responsive adjustments for industry cards */
+@media (max-width: 768px) {
+    .industry-cards-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-4);
+    }
+    
+    .industry-card {
+        padding: var(--spacing-4);
+    }
 }

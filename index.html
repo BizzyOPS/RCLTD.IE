@@ -223,7 +223,7 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
 
 
         <!-- Services Section -->
-        <section id="services" class="services-overview hex-bg-pattern">
+        <section id="services" class="services-overview">
             <div class="container">
                 <div class="section-header">
                     <div class="section-badge">Expert Solutions</div>
@@ -231,90 +231,65 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
                     <p class="section-subtitle">Comprehensive engineering services to advance your company's interests</p>
                 </div>
                 
-                <div class="hex-grid hex-grid--md hex-grid--honeycomb">
-                    <div class="hex-item">
-                        <div class="hex hex--lg hex--teal" data-popup-tooltip="safety-info">
-                            <a href="safety.html" class="hex__link" aria-label="Machine Safety - Learn more about our functional safety services through comprehensive assessments"></a>
-                            <div class="hex__content">
-                                <div class="hex__icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.46 9-11V7l-10-5z"/>
-                                        <path d="M9 12l2 2 4-4"/>
-                                    </svg>
-                                </div>
-                                <h3 class="hex__title">Machine Safety</h3>
-                                <p class="hex__description">Functional safety services through comprehensive assessments</p>
-                                <div class="hex__badge hex__badge--primary">ISO 13849</div>
-                            </div>
+                <div class="service-cards-grid service-cards-grid--large">
+                    <a href="safety.html" class="service-card" data-popup-tooltip="safety-info" aria-label="Machine Safety - Learn more about our functional safety services through comprehensive assessments">
+                        <div class="service-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.46 9-11V7l-10-5z"/>
+                                <path d="M9 12l2 2 4-4"/>
+                            </svg>
                         </div>
-                    </div>
+                        <h3 class="service-card__title">Machine Safety</h3>
+                        <p class="service-card__description">Functional safety services through comprehensive assessments</p>
+                        <div class="service-card__badge">ISO 13849</div>
+                    </a>
                     
-                    <div class="hex-item">
-                        <div class="hex hex--lg hex--teal" data-popup-tooltip="electrical-info">
-                            <a href="design.html" class="hex__link" aria-label="Electrical Design - Learn more about our latest design tools and methodologies for optimization"></a>
-                            <div class="hex__content">
-                                <div class="hex__icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-                                    </svg>
-                                </div>
-                                <h3 class="hex__title">Electrical Design</h3>
-                                <p class="hex__description">Latest design tools and methodologies for optimization</p>
-                                <div class="hex__badge hex__badge--primary">CAD/CAE</div>
-                            </div>
+                    <a href="design.html" class="service-card" data-popup-tooltip="electrical-info" aria-label="Electrical Design - Learn more about our latest design tools and methodologies for optimization">
+                        <div class="service-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                            </svg>
                         </div>
-                    </div>
+                        <h3 class="service-card__title">Electrical Design</h3>
+                        <p class="service-card__description">Latest design tools and methodologies for optimization</p>
+                        <div class="service-card__badge">CAD/CAE</div>
+                    </a>
                     
-                    <div class="hex-item">
-                        <div class="hex hex--lg hex--teal" data-popup-tooltip="panel-info">
-                            <a href="panel.html" class="hex__link" aria-label="Panel Building - Learn more about our electrical panel design and manufacturing to industry standards"></a>
-                            <div class="hex__content">
-                                <div class="hex__icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                                        <line x1="8" y1="21" x2="16" y2="21"/>
-                                        <line x1="12" y1="17" x2="12" y2="21"/>
-                                    </svg>
-                                </div>
-                                <h3 class="hex__title">Panel Building</h3>
-                                <p class="hex__description">Electrical panel design and manufacturing to industry standards</p>
-                                <div class="hex__badge hex__badge--primary">CE Marked</div>
-                            </div>
+                    <a href="panel.html" class="service-card" data-popup-tooltip="panel-info" aria-label="Panel Building - Learn more about our electrical panel design and manufacturing to industry standards">
+                        <div class="service-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                <line x1="8" y1="21" x2="16" y2="21"/>
+                                <line x1="12" y1="17" x2="12" y2="21"/>
+                            </svg>
                         </div>
-                    </div>
+                        <h3 class="service-card__title">Panel Building</h3>
+                        <p class="service-card__description">Electrical panel design and manufacturing to industry standards</p>
+                        <div class="service-card__badge">CE Marked</div>
+                    </a>
                     
-                    <div class="hex-item">
-                        <div class="hex hex--lg hex--teal" data-popup-tooltip="automation-info">
-                            <a href="automation.html" class="hex__link" aria-label="Automation - Learn more about our advanced automation and robotics solutions for any industry"></a>
-                            <div class="hex__content">
-                                <div class="hex__icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                                    </svg>
-                                </div>
-                                <h3 class="hex__title">Automation</h3>
-                                <p class="hex__description">Advanced automation and robotics solutions for any industry</p>
-                                <div class="hex__badge hex__badge--primary">Industry 4.0</div>
-                            </div>
+                    <a href="automation.html" class="service-card" data-popup-tooltip="automation-info" aria-label="Automation - Learn more about our advanced automation and robotics solutions for any industry">
+                        <div class="service-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                            </svg>
                         </div>
-                    </div>
+                        <h3 class="service-card__title">Automation</h3>
+                        <p class="service-card__description">Advanced automation and robotics solutions for any industry</p>
+                        <div class="service-card__badge">Industry 4.0</div>
+                    </a>
                     
-                    <div class="hex-item">
-                        <div class="hex hex--lg hex--teal" data-popup-tooltip="training-info">
-                            <a href="safety-training.html" class="hex__link" aria-label="Safety Training - Learn more about our professional on-site safety training programs for teams"></a>
-                            <div class="hex__content">
-                                <div class="hex__icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-                                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-                                    </svg>
-                                </div>
-                                <h3 class="hex__title">Safety Training</h3>
-                                <p class="hex__description">Professional on-site safety training programs for teams</p>
-                                <div class="hex__badge hex__badge--accent">11 Courses</div>
-                            </div>
+                    <a href="safety-training.html" class="service-card" data-popup-tooltip="training-info" aria-label="Safety Training - Learn more about our professional on-site safety training programs for teams">
+                        <div class="service-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                            </svg>
                         </div>
-                    </div>
+                        <h3 class="service-card__title">Safety Training</h3>
+                        <p class="service-card__description">Professional on-site safety training programs for teams</p>
+                        <div class="service-card__badge service-card__badge--accent">11 Courses</div>
+                    </a>
                 </div>
             </div>
         </section>
