@@ -98,7 +98,7 @@
     border-width: 2px;
 }
 
-/* Filled background */
+/* Filled background - ensured high contrast */
 .hex--filled {
     background: var(--brand-teal);
     color: white;
@@ -106,8 +106,20 @@
 }
 
 .hex--filled:hover {
-    background: var(--brand-orange);
-    border-color: var(--brand-orange);
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+/* High contrast filled variant for better accessibility */
+.hex--filled-dark {
+    background: var(--text-primary);
+    color: white;
+    border-color: var(--text-primary);
+}
+
+.hex--filled-dark:hover {
+    background: var(--brand-teal);
+    border-color: var(--brand-teal);
 }
 
 /* Subtle background */
@@ -137,7 +149,7 @@
     outline-offset: 4px;
 }
 
-/* Ensure interactive elements have proper hit areas */
+/* Ensure interactive elements have proper hit areas and accessibility */
 .hex__link {
     position: absolute;
     top: 0;
@@ -150,6 +162,18 @@
     text-decoration: none;
     color: inherit;
     z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0; /* Hide screen reader text */
+}
+
+.hex__link::after {
+    content: attr(aria-label);
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    opacity: 0;
 }
 
 .hex a,
@@ -349,6 +373,43 @@
 .hex:focus-visible {
     outline: 3px solid var(--brand-orange);
     outline-offset: 4px;
+}
+
+/* =========================
+   SERVICES DETAILS LAYOUT
+   ========================= */
+
+.services-details {
+    margin-top: var(--spacing-16);
+    display: grid;
+    gap: var(--spacing-8);
+}
+
+.service-detail-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-8);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 2px solid var(--border-color);
+    transition: all var(--transition-normal);
+}
+
+.service-detail-card:hover {
+    border-color: var(--brand-teal);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.1);
+}
+
+@media (min-width: 768px) {
+    .services-details {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .services-details {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 /* =========================
