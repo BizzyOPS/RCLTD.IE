@@ -122,6 +122,7 @@ body:not(.home) {
 
 .expertise-section,
 .capabilities-section,
+.coverage-section,
 .process-section {
     background: var(--section-warm-grey);
     padding: var(--spacing-16) 0;
@@ -9749,5 +9750,173 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     
     .industry-card {
         padding: var(--spacing-4);
+    }
+}
+
+/* Capabilities Section Styling */
+.capabilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-8);
+    margin-top: var(--spacing-8);
+}
+
+.capability-item {
+    background: #ffffff;
+    padding: var(--spacing-8);
+    border-radius: var(--radius-lg);
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.capability-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    border-color: var(--primary-color);
+}
+
+.capability-item h4 {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: var(--spacing-4);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: var(--spacing-2);
+}
+
+.capability-item p {
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: var(--spacing-6);
+}
+
+.tech-tags {
+    display: flex;
+    gap: var(--spacing-2);
+    flex-wrap: wrap;
+    margin-top: var(--spacing-4);
+}
+
+.tech-tag {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: white;
+    padding: var(--spacing-1) var(--spacing-3);
+    border-radius: 50px;
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Coverage Section Styling */
+.coverage-content {
+    max-width: 900px;
+    margin: var(--spacing-8) auto 0;
+}
+
+.coverage-text {
+    background: #ffffff;
+    padding: var(--spacing-10);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.coverage-text h3 {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: var(--spacing-6);
+    text-align: center;
+}
+
+.coverage-text > p {
+    font-size: var(--font-size-lg);
+    color: #374151;
+    line-height: 1.7;
+    margin-bottom: var(--spacing-8);
+    text-align: center;
+}
+
+.coverage-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-6);
+    margin-bottom: var(--spacing-8);
+}
+
+.coverage-highlight {
+    background: #f8fafc;
+    padding: var(--spacing-6);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--primary-color);
+}
+
+.coverage-highlight h4 {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: var(--spacing-3);
+}
+
+.coverage-highlight p {
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+.coverage-benefits {
+    background: #f0f9ff;
+    padding: var(--spacing-6);
+    border-radius: var(--radius-lg);
+    border: 1px solid #bae6fd;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    margin-bottom: var(--spacing-3);
+}
+
+.benefit-item:last-child {
+    margin-bottom: 0;
+}
+
+.benefit-icon {
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.benefit-item span:last-child {
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+/* Responsive adjustments for new sections */
+@media (max-width: 768px) {
+    .capabilities-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-4);
+    }
+    
+    .capability-item {
+        padding: var(--spacing-6);
+    }
+    
+    .coverage-text {
+        padding: var(--spacing-6);
+    }
+    
+    .coverage-highlights {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-4);
     }
 }
