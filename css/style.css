@@ -5793,9 +5793,70 @@ section + section {
         height: 8px;
     }
 }
+/* Footer layout improvements */
+.footer-content {
+    width: 100%;
+}
+
+.footer-certifications,
+.footer-social {
+    text-align: center;
+    margin-bottom: var(--spacing-6);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: var(--spacing-6);
+    text-align: center;
+}
+
+.footer-legal {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-4);
+    flex-wrap: wrap;
+    margin-top: var(--spacing-4);
+}
+
+.footer-legal a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.footer-legal a:hover {
+    color: var(--primary-light);
+}
+
 @media (min-width: 768px) {
     .footer-grid {
         grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+    
+    .footer-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--spacing-8);
+    }
+    
+    .footer-certifications,
+    .footer-social {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+    }
+    
+    .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        text-align: left;
+    }
+    
+    .footer-legal {
+        margin-top: 0;
     }
 }
 /* Page Hero Section */
