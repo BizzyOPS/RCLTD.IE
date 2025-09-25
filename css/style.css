@@ -4118,7 +4118,7 @@ section + section {
 }
 .chatbot-header {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    color: #D4571F;
+    color: white;
     padding: 1rem;
     display: flex;
     align-items: center;
@@ -4233,7 +4233,7 @@ section + section {
 }
 .user-message .message-text {
     background: var(--primary);
-    color: #D4571F;
+    color: white;
     border-color: var(--primary);
 }
 .message-time {
@@ -4309,7 +4309,7 @@ section + section {
     width: 44px;
     height: 44px;
     background: var(--primary);
-    color: #D4571F;
+    color: white;
     border: none;
     border-radius: 50%;
     cursor: pointer;
