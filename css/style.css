@@ -710,7 +710,7 @@ body:not(.home) {
         background-color: rgba(8, 145, 178, 0.1);
     }
     .nav-logo {
-        max-height: 40px;
+        height: 44px;
         width: auto;
     }
 }
@@ -1184,8 +1184,8 @@ section + section {
     }
     
     .nav-logo {
-        width: 100px;
-        height: auto;
+        height: 44px;
+        width: auto;
     }
     
     .nav-phone {
@@ -1434,7 +1434,7 @@ section + section {
     color: var(--text-primary);
 }
 .nav-logo {
-    height: 100px; /* Tablet size: 768-1023px */
+    height: 44px; /* Matched to burger menu size */
     width: auto;
 }
 .nav-brand-text {
@@ -1456,13 +1456,13 @@ section + section {
 /* Desktop responsive logo sizing */
 @media (min-width: 1024px) {
     .nav-logo {
-        height: 120px; /* Desktop size: ≥1024px */
+        height: 44px; /* Matched to burger menu size */
     }
 }
 /* Mobile responsive logo sizing */
 @media (max-width: 767px) {
     .nav-logo {
-        height: 80px; /* Mobile size: <768px */
+        height: 44px; /* Matched to burger menu size */
         max-width: 70vw;
     }
 }
