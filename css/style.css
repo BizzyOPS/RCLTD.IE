@@ -10816,6 +10816,11 @@ input[type="button"]:not(.btn-primary):not(.btn-hero):not(.btn-course):not([clas
     color: white !important;
 }
 
+/* ULTIMATE OVERRIDE - ALL hero section text MUST be orange */
+.brochure-hero .brochure-content .brochure-title,
+.brochure-hero .brochure-content .brochure-tagline,
+.brochure-hero .brochure-content h1,
+.brochure-hero .brochure-content p,
 /* ULTIMATE OVERRIDE - Hero section button text MUST be orange */
 .brochure-hero .brochure-cta .btn-hero-primary,
 .brochure-hero .brochure-cta .btn-hero-primary:hover,
