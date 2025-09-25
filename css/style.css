@@ -10779,3 +10779,10 @@ p, h1, h2, h3, h4, h5, h6, span, div {
         height: 48px;
     }
 }
+
+
+/* Fix loading screen progress text visibility on Safety Training page */
+body.safety-training-page .progress-counter,
+body.safety-training-page .tech-status {
+    color: white !important;
+}
