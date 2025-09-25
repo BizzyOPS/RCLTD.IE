@@ -3488,7 +3488,7 @@ section + section {
     align-items: center;
     gap: var(--spacing-2);
     background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-    color: #D4571F;
+    color: #000000;
     padding: var(--spacing-2) var(--spacing-4);
     border-radius: 50px;
     font-size: var(--font-size-sm);
@@ -8645,7 +8645,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
 .section-badge {
     display: inline-block;
     background: var(--brand-orange);
-    color: #D4571F;
+    color: #000000;
     padding: var(--spacing-2) var(--spacing-4);
     border-radius: var(--radius-lg);
     font-size: var(--font-size-sm);
