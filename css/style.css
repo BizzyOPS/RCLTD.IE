@@ -4218,7 +4218,7 @@ section + section {
     height: 32px;
     border-radius: 50%;
     background: var(--text-secondary);
-    color: #D4571F;
+    color: #2d3748;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -4235,6 +4235,11 @@ section + section {
     border: 1px solid #e2e8f0;
     line-height: 1.5;
     word-wrap: break-word;
+}
+.bot-message .message-text {
+    background: white;
+    color: #2d3748;
+    border-color: #e2e8f0;
 }
 .user-message .message-text {
     background: var(--primary);
