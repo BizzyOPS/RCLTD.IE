@@ -3958,13 +3958,7 @@ section + section {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
 }
-.footer-certifications h4 {
-    color: #D4571F;
-    font-size: var(--font-size-lg);
-    font-weight: 600;
-    margin-bottom: var(--spacing-6);
-    text-align: center;
-}
+/* Removed h4 heading styling - heading removed from footer */
 .certifications-image {
     max-width: 60%;
     height: auto;
