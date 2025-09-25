@@ -1,33 +1,64 @@
-# Robotics & Control Ltd Website
+# Overview
 
-## Overview
-This project is a static website for Robotics & Control Ltd, an Irish technology company. Its primary purpose is to establish a strong online presence, attract new clients, and clearly represent the company's expertise in automation, safety, electrical design, and panel building services. The website targets pharmaceutical, industrial, and automotive sectors, providing a professional and responsive platform with dedicated service pages, contact information, and company details.
+This project is a professional static website for Robotics & Control Ltd, an Irish technology company established in 2010. The website serves as the primary online presence for showcasing the company's industrial automation, safety solutions, electrical design, and panel building services. The site features a multi-page architecture with interactive elements including a chatbot, training platform, and comprehensive contact forms designed to generate leads and establish the company's expertise in the automation industry.
 
-## User Preferences
+# User Preferences
+
 Preferred communication style: Simple, everyday language.
 
-## System Architecture
+# System Architecture
 
-### Frontend Architecture
-The website features a multi-page static HTML structure. It utilizes custom CSS with a modern design system, employing CSS custom properties for consistent theming and a mobile-first responsive design. Typography uses the Inter font family, and the color palette is based on a teal primary color with grey, black, and white accents. UI/UX decisions include an enlarged logo, an orange hamburger menu, teal navigation links, and orange 'Quote' buttons for branding consistency. Professional gradient backgrounds, subtle industrial aesthetics, and professional hero images are used throughout.
+## Frontend Architecture
+The website is built as a static multi-page HTML application with 17 individual pages covering services, company information, and legal documentation. The architecture follows a component-based CSS methodology using BEM-like naming conventions and employs semantic HTML for accessibility and SEO optimization. The design system utilizes CSS custom properties (variables) for consistent theming across all pages, with a mobile-first responsive approach.
 
-### Design Patterns
-Key design patterns include Component-Based CSS using a BEM-like methodology, Semantic HTML for accessibility and SEO, and Progressive Enhancement. SEO optimization is integrated with meta descriptions, Open Graph tags, and structured data.
+## JavaScript Architecture
+Built with vanilla JavaScript (ES6+) organized using the Module Pattern, the site features several key interactive components:
+- **Loading Animation System**: Logo-based loading animations for professional page transitions
+- **Navigation Controller**: Responsive navigation with dropdown menus and mobile hamburger functionality
+- **Chatbot Interface**: "Controller Bot" AI assistant for customer engagement and lead qualification
+- **Training Platform**: Interactive safety training system with progress tracking and certification
+- **Form Validation**: Real-time client-side validation with XSS prevention and accessibility compliance
+- **Tooltip System**: Professional tooltip interface for contextual help and information
 
-### JavaScript Architecture
-Built with Vanilla JavaScript (ES6+), the site features a logo-based loading animation. JavaScript is organized using the Module Pattern for navigation, scroll effects, contact forms, and animations. It is event-driven and incorporates accessibility features like ARIA attributes. An AI Chatbot serves as a specialized sales tool with detailed service descriptions and navigation links.
+## Design Patterns
+The project implements several key design patterns:
+- **Progressive Enhancement**: Core functionality works without JavaScript, enhanced features layer on top
+- **Component-Based CSS**: Modular CSS architecture with reusable components
+- **Accessibility-First**: WCAG 2.1 AA compliance with ARIA attributes and keyboard navigation
+- **SEO Optimization**: Structured data, meta descriptions, and semantic markup throughout
+- **Security-by-Design**: Input sanitization, XSS prevention, and secure form handling
 
-### Navigation System
-A streamlined navigation system includes a 'Services' dropdown menu. The 'Services' text links to an overview page, while an arrow button toggles the dropdown. Responsive navigation features a mobile hamburger menu with smooth transitions. Active state management, accessibility features with ARIA labels and keyboard navigation, and a consistent structure across all pages are implemented. A smooth scroll-to-top button appears on scroll, and the header, including the clickable logo, is solid, merging with page colors and dynamically switching backgrounds for readability.
+## File Organization
+The project follows a logical directory structure:
+- `/css/` - Stylesheets with variables, main styles, and validation-specific CSS
+- `/js/` - JavaScript modules for app functionality, chatbot, validation, and training
+- `/images/` - Optimized images including logos, heroes, and service graphics
+- `/videos/` - Loading animations and promotional content
+- Root HTML files for each page with comprehensive meta tags and accessibility features
 
-## External Dependencies
+# External Dependencies
 
-### Third-Party Services
-- **Google Fonts**: Inter font family loaded via CDN.
-- **Google Analytics**: Implied integration for website analytics.
-- **Google Maps**: Integrated into the contact page for location services.
+## Third-Party Services
+- **Google Fonts**: Inter font family loaded via CDN for consistent typography
+- **Google Analytics**: Integrated for website analytics and visitor tracking
+- **Google Maps**: Embedded into the contact page for business location services
 
-### Assets and Media
-- **Images**: Logo and service-related hero images are stored in `/images/` and are designed for responsive coverage.
-- **Icons**: Custom hamburger menu implementation and service-related icons.
-- **Favicons**: Standard favicon setup.
+## Email Integration
+- **PHP Contact Forms**: Server-side form processing via `contact-form.php`
+- **Email Configuration**: Designed for Plesk hosting environment with `info@rcltd.ie` contact email
+
+## Development Tools
+- **Node.js Environment**: Package.json configured for local development and security auditing
+- **Security Auditing**: Comprehensive security tools including audit-ci, better-npm-audit, and vulnerability scanning
+- **Code Quality**: Semgrep rules for static analysis and security validation
+
+## Browser Support
+- **Modern Browsers**: Chrome 60+, Firefox 55+, Safari 12+
+- **Polyfill Support**: Cross-browser compatibility shims for older browser features
+- **Progressive Enhancement**: Core functionality works across all browsers with enhanced features for modern ones
+
+## Assets and Media
+- **Responsive Images**: Logo and hero images optimized for multiple screen sizes
+- **Video Content**: MP4 loading animations and promotional videos
+- **Icon System**: Custom favicon implementation and service-related iconography
+- **Font Loading**: Optimized web font loading with fallback font stacks
