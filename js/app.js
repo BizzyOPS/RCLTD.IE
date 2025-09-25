@@ -1248,3 +1248,8 @@ function forceScrollToTop() {
 // - forceScrollToTop()
 // - DynamicHeaderManager
 // - ScrollToTopManager
+
+// Export functions for global access
+window.forceScrollToTop = forceScrollToTop;
+
+})(); // Close IIFE (Immediately Invoked Function Expression)
