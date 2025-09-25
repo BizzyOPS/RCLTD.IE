@@ -602,8 +602,8 @@ body:not(.home) {
     background: #ef4444;
     background: var(--hero-cta-color);
     color: white;
-    padding: 1rem 2.5rem;
-    font-size: 1.1rem;
+    padding: var(--btn-padding-y-lg) var(--btn-padding-x-lg);
+    font-size: var(--btn-font-size-lg);
     font-weight: 600;
     text-decoration: none;
     border-radius: 0.5rem;
@@ -5952,11 +5952,11 @@ section + section {
 .btn-hero-primary {
     background: linear-gradient(135deg, #4CAF50, #66BB6A);
     color: white;
-    padding: var(--spacing-4) var(--spacing-8);
+    padding: var(--btn-padding-y-lg) var(--btn-padding-x-lg);
     border: none;
     border-radius: var(--radius-lg);
     font-weight: var(--font-weight-semibold);
-    font-size: var(--font-size-base);
+    font-size: var(--btn-font-size-lg);
     text-decoration: none;
     transition: all var(--transition-normal);
     display: inline-flex;
@@ -5980,11 +5980,11 @@ section + section {
 .btn-hero-secondary {
     background: transparent;
     color: white;
-    padding: var(--spacing-4) var(--spacing-8);
+    padding: var(--btn-padding-y-lg) var(--btn-padding-x-lg);
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: var(--radius-lg);
     font-weight: var(--font-weight-semibold);
-    font-size: var(--font-size-base);
+    font-size: var(--btn-font-size-lg);
     text-decoration: none;
     transition: all var(--transition-normal);
     display: inline-flex;
@@ -6052,7 +6052,7 @@ section + section {
 }
 
 .course-description {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-base);
     color: #e0e0e0 !important;
     line-height: var(--line-height-normal);
     margin-bottom: var(--spacing-6);
@@ -6138,11 +6138,11 @@ section + section {
 .btn-course {
     background: linear-gradient(135deg, #4CAF50, #66BB6A);
     color: white !important;
-    padding: var(--spacing-3) var(--spacing-6);
+    padding: var(--btn-padding-y) var(--btn-padding-x);
     border: none;
     border-radius: var(--radius-md);
     font-weight: var(--font-weight-medium);
-    font-size: var(--font-size-sm);
+    font-size: var(--btn-font-size);
     text-decoration: none;
     transition: all var(--transition-normal);
     display: inline-flex;
