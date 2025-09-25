@@ -1805,7 +1805,7 @@ section + section {
 }
 @media (min-width: 768px) {
     .nav-menu {
-        display: flex;
+        display: flex !important;
     }
     .nav-contact {
         display: flex !important;
