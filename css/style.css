@@ -1,16 +1,44 @@
 /* ============================================================================
-   MAIN STYLESHEET FOR ROBOTICS & CONTROL LTD WEBSITE
+   ROBOTICS & CONTROL LTD - MAIN STYLESHEET
    
-   This file contains all the core styles for the website.
-   Organization:
-   1. Imports & Reset Styles
-   2. Global Base Styles  
-   3. Layout & Container Styles
-   4. Component Styles (Buttons, Cards, etc.)
-   5. Page-Specific Styles
-   6. Media Queries & Responsive Design
+   This stylesheet contains all the core styles for the Robotics & Control Ltd
+   website. It has been organized for maximum readability and maintainability.
    
-   Note: Color variables are loaded via HTML link tags for better loading control
+   🗂️ QUICK NAVIGATION:
+   ==================
+   
+   📋 TABLE OF CONTENTS:
+   1.  CSS RESET & BASE STYLES .................... Line 30
+   2.  GLOBAL TYPOGRAPHY & TEXT ................... Line 80
+   3.  LAYOUT SYSTEMS & CONTAINERS ................ Line 200
+   4.  HEADER & NAVIGATION COMPONENTS ............. Line 300
+   5.  BUTTON & FORM SYSTEMS ...................... Line 800
+   6.  CARD & CONTENT COMPONENTS .................. Line 1200
+   7.  HERO SECTIONS & BANNERS .................... Line 1500
+   8.  HOMEPAGE SPECIFIC STYLING .................. Line 2500
+   9.  SERVICE PAGES & FEATURES ................... Line 4000
+   10. ABOUT & COMPANY PAGES ...................... Line 7000
+   11. TRAINING & EDUCATION SYSTEMS ............... Line 6500
+   12. SAFETY TRAINING (HEXAGONAL DARK THEME) ..... Line 5800
+   13. CONTACT FORMS & FOOTER ..................... Line 9000
+   14. LOADING ANIMATIONS & EFFECTS ............... Line 400
+   15. RESPONSIVE DESIGN & MEDIA QUERIES .......... Line 8500
+   16. UTILITY CLASSES & HELPERS .................. Line 10000
+   17. PRINT & ACCESSIBILITY STYLES ............... Line 7600
+   
+   🎯 KEY FEATURES:
+   - Dark theme Safety Training page with hexagonal course cards
+   - Responsive design optimized for all devices
+   - Professional loading animations and transitions
+   - Comprehensive form validation and accessibility
+   - SEO-optimized structure and semantic markup
+   
+   💡 USAGE NOTES:
+   - CSS variables are defined in variables.css (loaded first)
+   - All measurements use consistent spacing scale
+   - Components follow BEM-like naming conventions
+   - Mobile-first responsive approach throughout
+   
    ============================================================================ */
 
 /* ============================================================================
@@ -1310,6 +1338,25 @@ section + section {
     font-size: 1rem;
     font-size: var(--font-size-base);
 }
+/* ============================================================================
+   4. HEADER & NAVIGATION COMPONENTS
+   ============================================================================ */
+
+/*
+  Professional Site Header & Navigation System
+  
+  🏗️ STRUCTURE:
+  - Fixed header with glassmorphism effect
+  - Responsive navigation with mobile hamburger menu
+  - Company logo and contact information
+  - Smooth scroll effects and transitions
+  
+  📱 RESPONSIVE FEATURES:
+  - Collapsible mobile navigation
+  - Touch-friendly button sizes
+  - Optimized for both desktop and mobile
+*/
+
 /* Header & Navigation */
 .header {
     position: fixed;
@@ -5431,6 +5478,16 @@ section + section {
     background-color: var(--primary-light);
     color: var(--secondary-color);
 }
+/* ============================================================================
+   14. LOADING ANIMATIONS & EFFECTS
+   ============================================================================ */
+
+/*
+  Professional Page Loading System
+  Features smooth loading animation with company branding and progress tracking
+  Used across all pages for consistent user experience
+*/
+
 /* Professional Loading Screen - Clean, Elegant Design */
 .page-loader {
     position: fixed;
@@ -5802,6 +5859,36 @@ section + section {
         height: 8px;
     }
 }
+/* ============================================================================
+   12. SAFETY TRAINING (HEXAGONAL DARK THEME)
+   ============================================================================ */
+
+/*
+  🎯 SAFETY TRAINING PAGE - PREMIUM DARK THEME DESIGN
+  
+  This section contains the complete dark theme implementation for the Safety 
+  Training page, featuring:
+  
+  ✨ KEY FEATURES:
+  - Hexagonal course cards using CSS clip-path for exact brochure match
+  - Dark background (#1a1a1a) throughout entire page
+  - Green accent colors (#4CAF50) for consistent branding
+  - Professional loading animation with safety training logo
+  - Responsive design optimized for all screen sizes
+  - Complete footer and header dark theme overrides
+  
+  🔧 TECHNICAL IMPLEMENTATION:
+  - Uses body.safety-training-page class for scoped theming
+  - CSS clip-path polygon for perfect hexagonal shapes
+  - Comprehensive !important overrides for dark backgrounds
+  - Gradient effects and hover animations for premium feel
+  
+  📱 RESPONSIVE BEHAVIOR:
+  - Cards scale appropriately on mobile devices
+  - Logo sizing adapts to screen width
+  - Hover effects work on both desktop and touch devices
+*/
+
 /* Safety Training Brochure Page Styles - Exact Brochure Match */
 .brochure-hero {
     background: #2a2a2a;
