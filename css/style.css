@@ -4202,7 +4202,7 @@ section + section {
 }
 /* Removed h4 heading styling - heading removed from footer */
 .certifications-image {
-    max-width: 60%;
+    max-width: 40%;
     height: auto;
     border-radius: var(--radius-lg);
     transition: transform var(--transition-normal);
@@ -4219,17 +4219,17 @@ section + section {
         padding: var(--spacing-6) 0;
     }
     .certifications-image {
-        max-width: 70%;
+        max-width: 50%;
     }
 }
 @media (min-width: 768px) and (max-width: 1023px) {
     .certifications-image {
-        max-width: 65%;
+        max-width: 45%;
     }
 }
 @media (min-width: 1024px) {
     .certifications-image {
-        max-width: 800px;
+        max-width: 35%;
     }
 }
 /* Scroll to Top Button */
