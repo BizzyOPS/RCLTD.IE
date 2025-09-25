@@ -1885,7 +1885,7 @@ section + section {
     }
     
     .nav-menu {
-        display: none !important;
+        display: none;
     }
     
     .nav-contact {
