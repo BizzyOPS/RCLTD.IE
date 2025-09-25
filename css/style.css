@@ -4293,7 +4293,7 @@ section + section {
 .scroll-to-top svg {
     width: 24px;
     height: 24px;
-    stroke: white;
+    stroke: black;
     stroke-width: 2.5;
 }
 /* Responsive adjustments for scroll button */
