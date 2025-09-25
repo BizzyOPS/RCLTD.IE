@@ -9325,6 +9325,8 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     .footer-description {
         font-size: 0.9rem;
         line-height: 1.5;
+        text-align: center;
+        margin: 0 auto;
     }
     
     .footer-title {
@@ -9490,6 +9492,11 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     .footer-list a,
     .footer-contact p {
         font-size: 0.85rem;
+    }
+    
+    .footer-description {
+        text-align: center;
+        margin: 0 auto;
     }
     
     /* Container adjustments for extra small screens */
