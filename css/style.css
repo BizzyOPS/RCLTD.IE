@@ -10816,7 +10816,15 @@ input[type="button"]:not(.btn-primary):not(.btn-hero):not(.btn-course):not([clas
     color: white !important;
 }
 
-/* Safety training page buttons should have orange text - FORCE OVERRIDE */
+/* ULTIMATE OVERRIDE - Hero section button text MUST be orange */
+.brochure-hero .brochure-cta .btn-hero-primary,
+.brochure-hero .brochure-cta .btn-hero-primary:hover,
+.brochure-hero .brochure-cta .btn-hero-primary:focus,
+.brochure-hero .brochure-cta .btn-hero-primary:active,
+.brochure-hero .brochure-cta .btn-hero-secondary,
+.brochure-hero .brochure-cta .btn-hero-secondary:hover,
+.brochure-hero .brochure-cta .btn-hero-secondary:focus,
+.brochure-hero .brochure-cta .btn-hero-secondary:active,
 .brochure-hero .btn-hero-primary,
 .brochure-hero .btn-hero-primary:hover,
 .brochure-hero .btn-hero-secondary,
@@ -10835,4 +10843,5 @@ body.safety-training-page .btn-primary,
 body.safety-training-page .btn-primary:hover {
     color: #B8391A !important;
     text-shadow: none !important;
+    -webkit-text-fill-color: #B8391A !important;
 }
