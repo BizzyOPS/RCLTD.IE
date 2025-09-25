@@ -3950,7 +3950,7 @@ section + section {
     text-align: center;
 }
 .certifications-image {
-    max-width: 100%;
+    max-width: 60%;
     height: auto;
     border-radius: var(--radius-lg);
     transition: transform var(--transition-normal);
@@ -3967,12 +3967,12 @@ section + section {
         padding: var(--spacing-6) 0;
     }
     .certifications-image {
-        max-width: 95%;
+        max-width: 70%;
     }
 }
 @media (min-width: 768px) and (max-width: 1023px) {
     .certifications-image {
-        max-width: 90%;
+        max-width: 65%;
     }
 }
 @media (min-width: 1024px) {
