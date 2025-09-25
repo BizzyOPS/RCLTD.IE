@@ -6540,6 +6540,14 @@ body.safety-training-page .nav-link.active {
     color: #4CAF50 !important;
 }
 
+body.safety-training-page .nav-dropdown-toggle {
+    color: white !important;
+}
+
+body.safety-training-page .nav-dropdown-toggle:hover {
+    color: #4CAF50 !important;
+}
+
 /* Footer dark theme */
 body.safety-training-page .footer {
     background: #2a2a2a !important;
