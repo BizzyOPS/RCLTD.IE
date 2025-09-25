@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "stylelint-config-standard"
+  ],
+  "rules": {
+    "at-rule-no-unknown": [true, {
+      "ignoreAtRules": ["supports"]
+    }],
+    "property-no-unknown": true,
+    "declaration-block-no-duplicate-properties": true,
+    "color-hex-case": "lower",
+    "color-hex-length": "short",
+    "number-leading-zero": "always",
+    "string-quotes": "double"
+  }
+}
