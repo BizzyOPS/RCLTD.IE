@@ -10816,11 +10816,15 @@ input[type="button"]:not(.btn-primary):not(.btn-hero):not(.btn-course):not([clas
     color: white !important;
 }
 
-/* ULTIMATE OVERRIDE - ALL hero section text MUST be orange */
+/* ULTIMATE OVERRIDE - ALL hero section text MUST be WHITE */
 .brochure-hero .brochure-content .brochure-title,
 .brochure-hero .brochure-content .brochure-tagline,
 .brochure-hero .brochure-content h1,
-.brochure-hero .brochure-content p,
+.brochure-hero .brochure-content p {
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+}
+/* ULTIMATE OVERRIDE - Hero section buttons MUST be orange */
 /* ULTIMATE OVERRIDE - Hero section button text MUST be orange */
 .brochure-hero .brochure-cta .btn-hero-primary,
 .brochure-hero .brochure-cta .btn-hero-primary:hover,
@@ -10850,3 +10854,4 @@ body.safety-training-page .btn-primary:hover {
     text-shadow: none !important;
     -webkit-text-fill-color: #B8391A !important;
 }
+/* Cache bust Thu Sep 25 02:44:18 PM UTC 2025 */
