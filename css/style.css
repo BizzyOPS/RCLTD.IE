@@ -250,13 +250,13 @@ video, iframe, canvas {
 
 /* Navigation elements responsive scaling - careful not to conflict with existing nav styles */
 .nav-link {
-    /* Keep existing padding, only enhance font-size responsively */
-    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    /* Smaller desktop font size to fit logo better */
+    font-size: clamp(0.8rem, 1.2vw, 0.9rem);
 }
 
 .nav-item {
     /* Minimal responsive adjustments */
-    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    font-size: clamp(0.8rem, 1.2vw, 0.9rem);
 }
 
 /* Content list and grid items responsive scaling - scoped to avoid navigation conflicts */
@@ -1720,8 +1720,7 @@ section + section {
 .nav-menu {
     display: none;
     list-style: none;
-    gap: 2rem;
-    gap: var(--spacing-8);
+    gap: 1.25rem;
 }
 .nav-link {
     color: var(--brand-teal);
@@ -1729,6 +1728,7 @@ section + section {
     font-weight: 500;
     transition: all var(--transition-normal);
     position: relative;
+    padding: 0.5rem 0.75rem;
 }
 .header.on-light .nav-link {
     color: var(--brand-teal);
