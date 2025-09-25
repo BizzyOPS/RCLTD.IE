@@ -4209,6 +4209,7 @@ section + section {
     transition: transform var(--transition-normal);
     display: block;
     margin: 0 auto;
+    text-align: center;
 }
 .certifications-image:hover {
     transform: scale(1.02);
