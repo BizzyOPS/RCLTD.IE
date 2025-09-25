@@ -3951,6 +3951,10 @@ section + section {
     transition: transform var(--transition-normal);
     display: block;
     margin: 0 auto;
+    /* Fix for potential display issues */
+    object-fit: contain;
+    background: transparent;
+    image-rendering: auto;
 }
 .certifications-image:hover {
     transform: scale(1.02);
