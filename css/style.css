@@ -5961,7 +5961,7 @@ section + section {
 
 .btn-hero-primary {
     background: linear-gradient(135deg, #4CAF50, #66BB6A);
-    color: #B8391A;
+    color: #B8391A !important;
     padding: var(--spacing-4) var(--spacing-8);
     border: none;
     border-radius: var(--radius-lg);
@@ -5989,7 +5989,7 @@ section + section {
 
 .btn-hero-secondary {
     background: transparent;
-    color: #B8391A;
+    color: #B8391A !important;
     padding: var(--spacing-4) var(--spacing-8);
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: var(--radius-lg);
@@ -6171,7 +6171,7 @@ section + section {
 
 .btn-course {
     background: linear-gradient(135deg, #4CAF50, #66BB6A);
-    color: #D4571F !important;
+    color: #B8391A !important;
     padding: var(--btn-padding-y) var(--btn-padding-x);
     border: none;
     border-radius: var(--radius-md);
