@@ -674,7 +674,7 @@ body:not(.home) {
         font-size: 1rem;
     }
     .hero-cover-image .hero-gradient {
-        height: 80px;
+        height: 50px;
     }
     .hero-carousel {
         max-width: 300px;
@@ -710,10 +710,10 @@ body:not(.home) {
         background-color: rgba(8, 145, 178, 0.1);
     }
     .nav-logo {
-        height: 80px;
+        height: 50px;
         border-radius: 50%;
         object-fit: cover;
-        width: 80px;
+        width: 50px;
     }
 }
 
@@ -1186,10 +1186,10 @@ section + section {
     }
     
     .nav-logo {
-        height: 80px;
+        height: 50px;
         border-radius: 50%;
         object-fit: cover;
-        width: 80px;
+        width: 50px;
     }
     
     .nav-phone {
@@ -1283,7 +1283,7 @@ section + section {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
     white-space: nowrap;
-    min-width: 80px;
+    min-width: 50px;
     color: #D4571F !important;
 }
 .btn-secondary {
@@ -1438,8 +1438,8 @@ section + section {
     color: var(--text-primary);
 }
 .nav-logo {
-    height: 80px; /* Matched to burger menu size */
-    width: 80px;
+    height: 50px; /* Matched to burger menu size */
+    width: 50px;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -1462,7 +1462,7 @@ section + section {
 /* Desktop responsive logo sizing */
 @media (min-width: 1024px) {
     .nav-logo {
-        height: 80px;
+        height: 50px;
         border-radius: 50%;
         object-fit: cover; /* Matched to burger menu size */
     }
@@ -1470,10 +1470,10 @@ section + section {
 /* Mobile responsive logo sizing */
 @media (max-width: 767px) {
     .nav-logo {
-        height: 80px;
+        height: 50px;
         border-radius: 50%;
         object-fit: cover; /* Matched to burger menu size */
-        max-width: 70vw;
+        max-width: 50px;
     }
 }
 /* Removed redundant 480px media query - mobile sizing now handled by 767px breakpoint */
@@ -1542,7 +1542,7 @@ section + section {
     padding: 0.5rem;
     padding: var(--spacing-2);
     width: 44px;
-    height: 80px;
+    height: 50px;
 }
 .hamburger {
     width: 24px;
@@ -1617,7 +1617,7 @@ section + section {
     .nav-menu.mobile-open .nav-link {
         display: flex;
         padding: var(--spacing-4) var(--spacing-3);
-        min-height: 80px;
+        min-height: 50px;
         align-items: center;
         border-radius: var(--radius-sm);
         transition: background-color 0.2s ease, transform 0.1s ease;
@@ -1757,7 +1757,7 @@ section + section {
     }
     .nav-dropdown-toggle {
         min-width: 44px;
-        min-height: 80px;
+        min-height: 50px;
         padding: var(--spacing-3);
     }
     .nav-dropdown-menu {
@@ -1787,7 +1787,7 @@ section + section {
     .nav-dropdown-menu .nav-link {
         margin: var(--spacing-1) 0;
         padding: var(--spacing-3) var(--spacing-4);
-        min-height: 80px;
+        min-height: 50px;
         display: flex;
         align-items: center;
         border-radius: var(--radius-sm);
@@ -2356,7 +2356,7 @@ section + section {
     background: rgba(255, 255, 255, 0.9);
     border: none;
     width: 44px;
-    height: 80px;
+    height: 50px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -2735,7 +2735,7 @@ section + section {
 .float-element {
     position: absolute;
     width: 60px;
-    height: 80px;
+    height: 50px;
     background: transparent;
     border-radius: 50%;
     display: flex;
@@ -3023,8 +3023,8 @@ section + section {
 }
 
 .avatar-placeholder {
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
     background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
     border-radius: 50%;
     display: flex;
@@ -3151,8 +3151,8 @@ section + section {
 }
 
 .icon-bg {
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
     background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
     border-radius: 50%;
     display: flex;
@@ -3462,7 +3462,7 @@ section + section {
 .float-icon {
     position: absolute;
     width: 60px;
-    height: 80px;
+    height: 50px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -3543,8 +3543,8 @@ section + section {
         position: absolute !important;
         left: 0;
         top: 20px;
-        width: 80px;
-        height: 80px;
+        width: 50px;
+        height: 50px;
         grid-column: unset;
     }
     
@@ -3738,8 +3738,8 @@ section + section {
     position: absolute;
     top: 5%;
     left: 15%;
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
     background: radial-gradient(circle, var(--primary-light) 0%, transparent 50%);
     border-radius: 50%;
     opacity: 0.1;
@@ -3824,7 +3824,7 @@ section + section {
 }
 .footer-logo {
     height: 120px;
-    width: 80px;
+    width: 50px;
     margin-bottom: var(--spacing-4);
     display: block;
     margin-left: auto;
@@ -4054,7 +4054,7 @@ section + section {
     bottom: 2rem;
     right: 2rem;
     width: 60px;
-    height: 80px;
+    height: 50px;
     background: transparent;
     border-radius: 50%;
     display: flex;
@@ -4335,7 +4335,7 @@ section + section {
 }
 .chatbot-send-btn {
     width: 44px;
-    height: 80px;
+    height: 50px;
     background: var(--primary);
     color: white;
     border: none;
@@ -5153,7 +5153,7 @@ section + section {
         padding: 1.5rem;
     }
     .progress-line {
-        width: 80px;
+        width: 50px;
     }
 }
 /* Tablet Portrait - 480px to 767px */
@@ -5410,7 +5410,7 @@ section + section {
         position: static;
     }
     .progress-step {
-        min-width: 80px;
+        min-width: 50px;
     }
     .step-number {
         width: 30px;
@@ -6000,7 +6000,7 @@ section + section {
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-2);
-    min-height: 80px;
+    min-height: 50px;
 }
 
 .btn-hero-primary:hover {
@@ -6028,7 +6028,7 @@ section + section {
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-2);
-    min-height: 80px;
+    min-height: 50px;
 }
 
 .btn-hero-secondary:hover {
@@ -6212,7 +6212,7 @@ section + section {
     gap: var(--spacing-2);
     width: 100%;
     justify-content: center;
-    min-height: 80px;
+    min-height: 50px;
 }
 
 .btn-course:hover {
@@ -6336,7 +6336,7 @@ section + section {
 .contact-label {
     font-weight: 600;
     color: #D4571F;
-    width: 80px;
+    width: 50px;
     flex-shrink: 0;
 }
 
@@ -6691,7 +6691,7 @@ body.safety-training-page a:hover {
     position: absolute;
     bottom: -8px;
     left: 0;
-    width: 80px;
+    width: 50px;
     height: 4px;
     background: var(--brand-orange);
     border-radius: 2px;
@@ -6726,7 +6726,7 @@ body.safety-training-page a:hover {
 .contact-label {
     font-weight: 600;
     color: var(--text-primary);
-    min-width: 80px;
+    min-width: 50px;
 }
 
 .contact-value {
@@ -8102,7 +8102,7 @@ img {
     .fill-blank-input {
         display: block;
         width: 100%;
-        min-width: 80px;
+        min-width: 50px;
         max-width: none;
         margin: var(--spacing-2) 0;
         font-size: var(--font-size-sm);
@@ -8270,7 +8270,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
     align-items: center;
     justify-content: center;
     width: 60px;
-    height: 80px;
+    height: 50px;
     background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
     border-radius: 50%;
     margin-right: var(--spacing-4);
@@ -8726,8 +8726,8 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
 
 .timeline-marker {
     grid-column: 2;
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
     background: var(--brand-teal);
     border-radius: 50%;
     display: flex;
@@ -9078,8 +9078,8 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
         position: absolute !important;
         left: 0;
         top: 20px;
-        width: 80px;
-        height: 80px;
+        width: 50px;
+        height: 50px;
         grid-column: unset;
     }
     
@@ -9175,7 +9175,7 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     
     .stat-item {
         text-align: center;
-        min-width: 80px;
+        min-width: 50px;
     }
     
     /* Contact Section Mobile Responsiveness */
@@ -9576,7 +9576,7 @@ p, h1, h2, h3, h4, h5, h6, span, div {
         align-items: center;
         justify-content: center;
         width: 60px;
-        height: 80px;
+        height: 50px;
         background: var(--section-light-teal);
         border-radius: 50%;
         margin-left: auto;
