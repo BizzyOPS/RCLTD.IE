@@ -5950,17 +5950,21 @@ section + section {
     background: #333333;
     border: 2px solid #4CAF50;
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    padding: var(--spacing-8) var(--spacing-6);
+    padding: var(--spacing-10) var(--spacing-8);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
     position: relative;
-    min-height: 220px;
+    min-height: 280px;
+    max-height: none;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    color: white;
-    margin: var(--spacing-4);
+    justify-content: flex-start;
+    color: white !important;
+    margin: var(--spacing-6);
     text-align: center;
+    overflow: visible;
+    word-wrap: break-word;
+    hyphens: auto;
 }
 
 .brochure-card:hover {
@@ -5971,23 +5975,28 @@ section + section {
 }
 
 .course-title {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    color: white;
+    color: white !important;
     margin-bottom: var(--spacing-3);
-    line-height: 1.3;
+    line-height: 1.2;
     text-align: center;
     border-bottom: 2px solid #4CAF50;
     padding-bottom: var(--spacing-2);
+    word-wrap: break-word;
+    hyphens: auto;
 }
 
 .course-description {
-    font-size: 0.95rem;
-    color: #e0e0e0;
-    line-height: 1.5;
-    margin-bottom: var(--spacing-4);
+    font-size: 0.85rem;
+    color: #e0e0e0 !important;
+    line-height: 1.4;
+    margin-bottom: var(--spacing-3);
     text-align: center;
     flex-grow: 1;
+    word-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
 }
 
 .course-offerings {
@@ -6139,12 +6148,19 @@ section + section {
     }
     
     .brochure-card {
-        padding: var(--spacing-4);
-        min-height: 180px;
+        padding: var(--spacing-8) var(--spacing-6);
+        min-height: 240px;
+        margin: var(--spacing-3);
     }
     
     .course-title {
-        font-size: 1.1rem;
+        font-size: 1rem;
+        line-height: 1.1;
+    }
+    
+    .course-description {
+        font-size: 0.8rem;
+        line-height: 1.3;
     }
     
     .contact-title {
@@ -6177,6 +6193,32 @@ section + section {
     .contact-section {
         padding: var(--spacing-8) 0;
     }
+    
+    .brochure-card {
+        padding: var(--spacing-6) var(--spacing-4);
+        min-height: 200px;
+        margin: var(--spacing-2);
+    }
+    
+    .course-title {
+        font-size: 0.9rem;
+        line-height: 1.1;
+    }
+    
+    .course-description {
+        font-size: 0.75rem;
+        line-height: 1.2;
+    }
+    
+    .course-option {
+        font-size: 0.75rem;
+        padding: var(--spacing-1);
+    }
+    
+    .course-duration {
+        font-size: 0.85rem;
+        padding: var(--spacing-1) var(--spacing-2);
+    }
 }
 
 /* ============================================================================
@@ -6187,6 +6229,22 @@ section + section {
 body.safety-training-page {
     background: #1a1a1a !important;
     background-color: #1a1a1a !important;
+    color: white !important;
+}
+
+/* Ensure ALL text elements are white on safety training page */
+body.safety-training-page *,
+body.safety-training-page h1,
+body.safety-training-page h2,
+body.safety-training-page h3,
+body.safety-training-page h4,
+body.safety-training-page h5,
+body.safety-training-page h6,
+body.safety-training-page p,
+body.safety-training-page span,
+body.safety-training-page div,
+body.safety-training-page li {
+    color: white !important;
 }
 
 /* Override all section backgrounds to dark */
@@ -6232,16 +6290,25 @@ body.safety-training-page .footer .footer-contact-link:hover {
 }
 
 /* Button and Link overrides for green accents */
-body.safety-training-page .btn-primary {
+body.safety-training-page .btn,
+body.safety-training-page .btn-primary,
+body.safety-training-page button {
     background: linear-gradient(135deg, #4CAF50, #66BB6A) !important;
-    border-color: #4CAF50 !important;
+    border: 2px solid #4CAF50 !important;
     color: white !important;
+    padding: var(--spacing-3) var(--spacing-6) !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
 }
 
-body.safety-training-page .btn-primary:hover {
+body.safety-training-page .btn:hover,
+body.safety-training-page .btn-primary:hover,
+body.safety-training-page button:hover {
     background: linear-gradient(135deg, #66BB6A, #4CAF50) !important;
     border-color: #66BB6A !important;
-    transform: translateY(-2px);
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4) !important;
 }
 
 /* All content area links use green accents */
