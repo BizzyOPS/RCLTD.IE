@@ -5922,7 +5922,7 @@ section + section {
 .brochure-title {
     font-size: var(--h1-size);
     font-weight: var(--font-weight-bold);
-    color: #D4571F;
+    color: white;
     margin-bottom: var(--spacing-6);
     line-height: var(--line-height-tight);
     letter-spacing: -0.02em;
@@ -5961,7 +5961,7 @@ section + section {
 
 .btn-hero-primary {
     background: linear-gradient(135deg, #4CAF50, #66BB6A);
-    color: #D4571F;
+    color: #B8391A;
     padding: var(--spacing-4) var(--spacing-8);
     border: none;
     border-radius: var(--radius-lg);
@@ -5989,7 +5989,7 @@ section + section {
 
 .btn-hero-secondary {
     background: transparent;
-    color: #D4571F;
+    color: #B8391A;
     padding: var(--spacing-4) var(--spacing-8);
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: var(--radius-lg);
