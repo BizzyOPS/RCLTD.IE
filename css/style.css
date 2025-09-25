@@ -1257,7 +1257,7 @@ section + section {
     justify-content: center;
     padding: var(--spacing-3) var(--spacing-6);
     background-color: var(--brand-orange);
-    color: white;
+    color: white !important;
     text-decoration: none;
     border-radius: var(--radius-md);
     font-weight: 500;
@@ -1268,6 +1268,7 @@ section + section {
 }
 .btn-primary:hover {
     background-color: #e55a2b;
+    color: white !important;
     -webkit-transform: translateY(-1px);
     -moz-transform: translateY(-1px);
     -ms-transform: translateY(-1px);
@@ -1280,6 +1281,7 @@ section + section {
     font-size: 0.9rem;
     white-space: nowrap;
     min-width: auto;
+    color: white !important;
 }
 .btn-secondary {
     display: -webkit-inline-box;
