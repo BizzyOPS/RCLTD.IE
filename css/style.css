@@ -948,7 +948,7 @@ article, .article-content {
         background-color: rgba(8, 145, 178, 0.1);
     }
     .nav-logo {
-        max-height: calc(var(--header-height) - 12px);
+        max-height: 38px;
         height: auto;
         width: auto;
         object-fit: contain;
@@ -1424,7 +1424,7 @@ section + section {
     }
     
     .nav-logo {
-        max-height: calc(var(--header-height) - 12px);
+        max-height: 38px;
         height: auto;
         width: auto;
         object-fit: contain;
@@ -1676,7 +1676,7 @@ section + section {
     color: var(--text-primary);
 }
 .nav-logo {
-    max-height: calc(var(--header-height) - 12px);
+    max-height: 40px;
     height: auto;
     width: auto;
     display: block;
@@ -1700,7 +1700,7 @@ section + section {
 /* Desktop responsive logo sizing */
 @media (min-width: 1024px) {
     .nav-logo {
-        max-height: calc(var(--header-height) - 8px);
+        max-height: 45px;
         height: auto;
         width: auto;
         object-fit: contain;
@@ -1709,11 +1709,11 @@ section + section {
 /* Mobile responsive logo sizing */
 @media (max-width: 767px) {
     .nav-logo {
-        max-height: calc(var(--header-height) - 16px);
+        max-height: 35px;
         height: auto;
         width: auto;
         object-fit: contain;
-        max-width: calc(var(--header-height) - 16px);
+        max-width: 35px;
     }
 }
 /* Removed redundant 480px media query - mobile sizing now handled by 767px breakpoint */
