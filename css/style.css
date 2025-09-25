@@ -3290,17 +3290,6 @@ section + section {
     margin-bottom: var(--spacing-6);
 }
 
-.avatar-placeholder {
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto var(--spacing-3);
-}
-
 .avatar-icon {
     font-size: 2rem;
     color: white;
@@ -3985,17 +3974,6 @@ section + section {
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
 }
-.partner-placeholder {
-    color: var(--text-light);
-    font-weight: 500;
-}
-@keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-200px * 6 - var(--spacing-8) * 6)); }
-}
-/* CTA Section */
-.cta {
-    padding: var(--spacing-20) 0;
     background: transparent;
     color: var(--text-primary);
     position: relative;
@@ -9133,17 +9111,6 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
     margin-bottom: var(--spacing-6);
 }
 
-.avatar-placeholder {
-    width: 120px;
-    height: 120px;
-    background: linear-gradient(45deg, var(--brand-teal), var(--brand-orange));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    border: 4px solid white;
-    box-shadow: var(--shadow-md);
 }
 
 .avatar-icon {
@@ -10286,17 +10253,6 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     border-bottom: 1px solid var(--border-color);
 }
 
-.product-placeholder {
-    font-size: 4rem;
-    opacity: 0.6;
-}
-
-.product-info {
-    padding: var(--spacing-6);
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
 
 .product-manufacturer {
     font-size: var(--font-size-sm);
@@ -11165,3 +11121,4 @@ body.safety-training-page .btn-primary:hover {
     -webkit-text-fill-color: #B8391A !important;
 }
 /* Cache bust Thu Sep 25 02:44:18 PM UTC 2025 */
+/* CACHE BUSTED: 1758816181 */
