@@ -5853,31 +5853,34 @@ section + section {
 
 .brochure-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-6);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-2);
     margin-top: var(--spacing-8);
+    padding: var(--spacing-4);
 }
 
 .brochure-card {
     background: #333333;
     border: 2px solid #4CAF50;
-    border-radius: 12px;
-    padding: var(--spacing-6);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    padding: var(--spacing-8) var(--spacing-6);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
     position: relative;
-    min-height: 200px;
+    min-height: 220px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     color: white;
+    margin: var(--spacing-4);
+    text-align: center;
 }
 
 .brochure-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
-    border-color: #4CAF50;
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 12px 30px rgba(76, 175, 80, 0.6);
     background: #404040;
+    border-color: #66BB6A;
 }
 
 .course-title {
@@ -6086,6 +6089,109 @@ section + section {
     
     .contact-section {
         padding: var(--spacing-8) 0;
+    }
+}
+
+/* ============================================================================
+   SAFETY TRAINING PAGE - COMPLETE DARK THEME OVERRIDE
+   ============================================================================ */
+
+/* Page-wide dark theme for Safety Training */
+body.safety-training-page {
+    background: #1a1a1a !important;
+    background-color: #1a1a1a !important;
+}
+
+/* Override all section backgrounds to dark */
+body.safety-training-page section,
+body.safety-training-page :where(section:nth-child(odd)),
+body.safety-training-page :where(section:nth-child(even)),
+body.safety-training-page .contact-section {
+    background: #1a1a1a !important;
+}
+
+/* Header dark theme */
+body.safety-training-page .header {
+    background: #2a2a2a !important;
+    border-bottom: 2px solid #4CAF50;
+}
+
+body.safety-training-page .nav-link {
+    color: white !important;
+}
+
+body.safety-training-page .nav-link:hover,
+body.safety-training-page .nav-link.active {
+    color: #4CAF50 !important;
+}
+
+/* Footer dark theme */
+body.safety-training-page .footer {
+    background: #2a2a2a !important;
+    color: white;
+}
+
+body.safety-training-page .footer .footer-title,
+body.safety-training-page .footer .footer-description,
+body.safety-training-page .footer .footer-links a,
+body.safety-training-page .footer .footer-contact-link,
+body.safety-training-page .footer .footer-copyright {
+    color: white !important;
+}
+
+body.safety-training-page .footer .footer-links a:hover,
+body.safety-training-page .footer .footer-contact-link:hover {
+    color: #4CAF50 !important;
+}
+
+/* Button and Link overrides for green accents */
+body.safety-training-page .btn-primary {
+    background: linear-gradient(135deg, #4CAF50, #66BB6A) !important;
+    border-color: #4CAF50 !important;
+    color: white !important;
+}
+
+body.safety-training-page .btn-primary:hover {
+    background: linear-gradient(135deg, #66BB6A, #4CAF50) !important;
+    border-color: #66BB6A !important;
+    transform: translateY(-2px);
+}
+
+/* All content area links use green accents */
+body.safety-training-page .contact-section a,
+body.safety-training-page .contact-value,
+body.safety-training-page a {
+    color: #4CAF50 !important;
+    transition: color 0.3s ease;
+}
+
+body.safety-training-page .contact-section a:hover,
+body.safety-training-page .contact-value:hover,
+body.safety-training-page a:hover {
+    color: #66BB6A !important;
+}
+
+/* Brochure logo styling */
+.brochure-logo {
+    margin-bottom: var(--spacing-4);
+}
+
+.brochure-hero-logo {
+    max-width: 400px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+@media (max-width: 768px) {
+    .brochure-hero-logo {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .brochure-hero-logo {
+        max-width: 250px;
     }
 }
 
