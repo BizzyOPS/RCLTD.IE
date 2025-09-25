@@ -5891,152 +5891,341 @@ section + section {
 
 /* Safety Training Brochure Page Styles - Exact Brochure Match */
 .brochure-hero {
-    background: #2a2a2a;
-    background-image: linear-gradient(135deg, #3a3a3a 0%, #2a2a2a 100%);
-    padding: var(--spacing-16) 0 var(--spacing-12);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+    padding: var(--section-padding-y) 0;
     border-bottom: 3px solid #4CAF50;
     position: relative;
-    text-align: center;
     color: white;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
 }
 
 .brochure-header {
-    max-width: 800px;
-    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--spacing-12);
+    align-items: center;
+    text-align: left;
 }
 
 .brochure-title {
-    font-size: 3.5rem;
-    font-weight: 700;
+    font-size: var(--h1-size);
+    font-weight: var(--font-weight-bold);
     color: white;
-    margin-bottom: var(--spacing-2);
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    margin-bottom: var(--spacing-6);
+    line-height: var(--line-height-tight);
+    letter-spacing: -0.02em;
 }
 
 .brochure-subtitle {
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: var(--h3-size);
+    font-weight: var(--font-weight-semibold);
     color: #4CAF50;
     margin-bottom: var(--spacing-4);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.05em;
 }
 
 .brochure-tagline {
-    font-size: 1.25rem;
+    font-size: var(--font-size-base);
     color: #e0e0e0;
-    line-height: 1.6;
-    max-width: 600px;
-    margin: 0 auto;
-    font-weight: 500;
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-8);
+    font-weight: var(--font-weight-normal);
+}
+
+.brochure-content {
+    flex: 1;
+}
+
+.brochure-visual {
+    text-align: center;
+}
+
+.brochure-cta {
+    display: flex;
+    gap: var(--spacing-4);
+    margin-top: var(--spacing-8);
+}
+
+.btn-hero-primary {
+    background: linear-gradient(135deg, #4CAF50, #66BB6A);
+    color: white;
+    padding: var(--spacing-4) var(--spacing-8);
+    border: none;
+    border-radius: var(--radius-lg);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-base);
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    min-height: 44px;
+}
+
+.btn-hero-primary:hover {
+    background: linear-gradient(135deg, #66BB6A, #4CAF50);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-hero-primary:focus-visible {
+    outline: 3px solid #66BB6A !important;
+    outline-offset: 2px !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+.btn-hero-secondary {
+    background: transparent;
+    color: white;
+    padding: var(--spacing-4) var(--spacing-8);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--radius-lg);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-base);
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    min-height: 44px;
+}
+
+.btn-hero-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-hero-secondary:focus-visible {
+    outline: 3px solid white !important;
+    outline-offset: 2px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
 }
 
 /* Brochure Courses Section */
 .brochure-courses {
     padding: var(--spacing-16) 0;
-    background: #1a1a1a;
+    background: #1a1a1a !important;
 }
 
 .brochure-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--spacing-2);
-    margin-top: var(--spacing-8);
-    padding: var(--spacing-4);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-6);
+    margin-top: var(--spacing-12);
 }
 
 .brochure-card {
     background: #333333;
-    border: 2px solid #4CAF50;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-    padding: var(--spacing-10) var(--spacing-8);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-8);
+    box-shadow: var(--shadow-lg);
+    transition: all var(--transition-normal);
     position: relative;
-    min-height: 280px;
-    max-height: none;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     color: white !important;
-    margin: var(--spacing-6);
-    text-align: center;
-    overflow: visible;
-    word-wrap: break-word;
-    hyphens: auto;
+    text-align: left;
+    overflow: hidden;
+    min-height: 320px;
 }
 
 .brochure-card:hover {
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 12px 30px rgba(76, 175, 80, 0.6);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
     background: #404040;
-    border-color: #66BB6A;
+    border-color: rgba(76, 175, 80, 0.6);
 }
 
 .course-title {
-    font-size: 1.1rem;
-    font-weight: 700;
+    font-size: var(--h3-size);
+    font-weight: var(--font-weight-semibold);
     color: white !important;
-    margin-bottom: var(--spacing-3);
-    line-height: 1.2;
-    text-align: center;
+    margin-bottom: var(--spacing-4);
+    line-height: var(--line-height-snug);
     border-bottom: 2px solid #4CAF50;
-    padding-bottom: var(--spacing-2);
-    word-wrap: break-word;
-    hyphens: auto;
+    padding-bottom: var(--spacing-3);
 }
 
 .course-description {
-    font-size: 0.85rem;
+    font-size: var(--font-size-sm);
     color: #e0e0e0 !important;
-    line-height: 1.4;
-    margin-bottom: var(--spacing-3);
-    text-align: center;
+    line-height: var(--line-height-normal);
+    margin-bottom: var(--spacing-6);
     flex-grow: 1;
-    word-wrap: break-word;
-    hyphens: auto;
-    max-width: 100%;
 }
 
 .course-offerings {
-    text-align: center;
     margin-top: auto;
 }
 
-.course-option {
-    font-size: 0.9rem;
-    font-weight: 600;
+.course-offerings ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+}
+
+.course-offerings li {
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size-sm);
+    color: #e0e0e0;
+}
+
+.course-offerings li::before {
+    content: "✓";
     color: #4CAF50;
-    margin-bottom: var(--spacing-1);
-    padding: var(--spacing-1) var(--spacing-2);
-    background: rgba(76, 175, 80, 0.2);
-    border-radius: 6px;
-    display: inline-block;
-    margin: var(--spacing-1) var(--spacing-1);
+    font-weight: bold;
+    margin-right: var(--spacing-2);
+    font-size: 1.2em;
+}
+
+.course-meta {
+    display: flex;
+    gap: var(--spacing-2);
+    margin: var(--spacing-4) 0;
+    flex-wrap: wrap;
+}
+
+.course-badge {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: white;
+    padding: var(--spacing-1) var(--spacing-3);
+    background: #4CAF50;
+    border-radius: var(--radius-sm);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-1);
 }
 
 .course-duration {
-    font-size: 1rem;
-    font-weight: 700;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
     color: white;
-    margin-bottom: var(--spacing-2);
-    padding: var(--spacing-2) var(--spacing-3);
-    background: linear-gradient(135deg, #4CAF50, #66BB6A);
-    border-radius: 8px;
-    display: inline-block;
-    margin: var(--spacing-1) 0;
+    padding: var(--spacing-1) var(--spacing-3);
+    background: #666;
+    border-radius: var(--radius-sm);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-1);
 }
 
 .course-max {
-    font-size: 0.85rem;
+    font-size: var(--font-size-xs);
     color: #c0c0c0;
-    font-style: italic;
-    margin-top: var(--spacing-2);
-    padding: var(--spacing-1) var(--spacing-2);
+    padding: var(--spacing-1) var(--spacing-3);
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    display: inline-block;
+    border-radius: var(--radius-sm);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-1);
+}
+
+.course-cta {
+    margin-top: var(--spacing-6);
+    padding-top: var(--spacing-4);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-course {
+    background: linear-gradient(135deg, #4CAF50, #66BB6A);
+    color: white !important;
+    padding: var(--spacing-3) var(--spacing-6);
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-sm);
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+}
+
+.btn-course:hover {
+    background: linear-gradient(135deg, #66BB6A, #4CAF50);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-course:focus-visible {
+    outline: 3px solid #66BB6A !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 3px rgba(102,187,106,.25) !important;
+}
+
+/* Responsive Design - Mobile First Approach */
+@media (max-width: 768px) {
+    .brochure-hero {
+        min-height: 60vh;
+        padding: var(--section-padding-y-sm) 0;
+    }
+    
+    .brochure-header {
+        grid-template-columns: 1fr !important;
+        gap: var(--spacing-8);
+        text-align: center;
+    }
+    
+    .brochure-content {
+        order: 2;
+    }
+    
+    .brochure-visual {
+        order: 1;
+        text-align: center;
+    }
+    
+    .brochure-cta {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--spacing-3);
+    }
+    
+    .brochure-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-4);
+    }
+    
+    .brochure-card {
+        min-height: 280px;
+    }
+}
+
+/* Explicit responsive grid breakpoints for enterprise standards */
+@media (max-width: 480px) {
+    .brochure-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .brochure-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1279px) {
+    .brochure-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+@media (min-width: 1280px) {
+    .brochure-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
 }
 
 /* Contact Section */
@@ -6230,6 +6419,52 @@ body.safety-training-page {
     background: #1a1a1a !important;
     background-color: #1a1a1a !important;
     color: white !important;
+}
+
+/* Ensure dark theme sections override any global styles */
+body.safety-training-page .brochure-courses {
+    background: #1a1a1a !important;
+}
+
+body.safety-training-page .brochure-hero {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%) !important;
+}
+
+/* Additional enterprise-grade theming overrides */
+body.safety-training-page .brochure-courses {
+    background: #1a1a1a !important;
+    color: #f8fafc !important;
+}
+
+body.safety-training-page .brochure-courses .course-title {
+    color: #fff !important;
+}
+
+body.safety-training-page .brochure-courses .course-description,
+body.safety-training-page .brochure-courses li,
+body.safety-training-page .brochure-courses .course-meta,
+body.safety-training-page .brochure-courses .course-duration,
+body.safety-training-page .brochure-courses .course-max {
+    color: #cbd5e1 !important;
+}
+
+/* Ensure course cards have proper text contrast */
+body.safety-training-page .brochure-card {
+    color: #f8fafc !important;
+}
+
+body.safety-training-page .brochure-card * {
+    color: inherit !important;
+}
+
+/* Ensure buttons maintain proper contrast */
+body.safety-training-page .btn-course {
+    color: white !important;
+    min-height: 44px !important;
+}
+
+body.safety-training-page .brochure-courses h2 {
+    color: #ffffff !important;
 }
 
 /* Ensure ALL text elements are white on safety training page */

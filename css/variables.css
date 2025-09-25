@@ -58,9 +58,11 @@
     
     /* === TYPOGRAPHY === */
     --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    
+    /* Professional Fluid Typography Scale */
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;
-    --font-size-base: 1rem;
+    --font-size-base: clamp(1rem, 0.4vw + 0.9rem, 1.125rem);
     --font-size-lg: 1.125rem;
     --font-size-xl: 1.25rem;
     --font-size-2xl: 1.5rem;
@@ -68,21 +70,46 @@
     --font-size-4xl: 2.25rem;
     --font-size-5xl: 3rem;
     
-    /* === SPACING === */
+    /* Professional Heading Scale with Fluid Sizing */
+    --h1-size: clamp(2rem, 1.5vw + 1.5rem, 3rem);
+    --h2-size: clamp(1.5rem, 1vw + 1.25rem, 2rem);
+    --h3-size: clamp(1.25rem, 0.75vw + 1rem, 1.5rem);
+    --h4-size: clamp(1.125rem, 0.5vw + 1rem, 1.25rem);
+    
+    /* Typography Weights & Line Heights */
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    --line-height-tight: 1.25;
+    --line-height-snug: 1.375;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.625;
+    
+    /* === SPACING SYSTEM === */
     --spacing-0: 0;
-    --spacing-1: 0.25rem;
-    --spacing-2: 0.5rem;
-    --spacing-3: 0.75rem;
-    --spacing-4: 1rem;
-    --spacing-5: 1.25rem;
-    --spacing-6: 1.5rem;
-    --spacing-7: 1.75rem;
-    --spacing-8: 2rem;
-    --spacing-10: 2.5rem;
-    --spacing-12: 3rem;
-    --spacing-16: 4rem;
-    --spacing-20: 5rem;
-    --spacing-24: 6rem;
+    --spacing-1: 0.25rem;     /* 4px */
+    --spacing-2: 0.5rem;      /* 8px */
+    --spacing-3: 0.75rem;     /* 12px */
+    --spacing-4: 1rem;        /* 16px */
+    --spacing-5: 1.25rem;     /* 20px */
+    --spacing-6: 1.5rem;      /* 24px */
+    --spacing-7: 1.75rem;     /* 28px */
+    --spacing-8: 2rem;        /* 32px */
+    --spacing-10: 2.5rem;     /* 40px */
+    --spacing-12: 3rem;       /* 48px */
+    --spacing-16: 4rem;       /* 64px */
+    --spacing-20: 5rem;       /* 80px */
+    --spacing-24: 6rem;       /* 96px */
+    --spacing-32: 8rem;       /* 128px */
+    
+    /* Container and Layout */
+    --container-max-width: 1280px;
+    --container-padding: var(--spacing-6);
+    --section-padding-y: var(--spacing-16);
+    --section-padding-y-sm: var(--spacing-12);
     
     /* === SHADOWS === */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
