@@ -1895,6 +1895,7 @@ section + section {
     /* Ensure hamburger menu is positioned on the right */
     .nav-toggle {
         margin-left: auto !important;
+        margin-right: 1rem;
         order: 999;
     }
 }
