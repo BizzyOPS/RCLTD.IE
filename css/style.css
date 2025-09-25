@@ -6031,12 +6031,11 @@ section + section {
     right: 0;
     bottom: 0;
     background-image: 
-        radial-gradient(circle at 25% 25%, transparent 20%, rgba(255, 255, 255, 0.03) 21%, rgba(255, 255, 255, 0.03) 34%, transparent 35%, transparent),
         linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent),
         linear-gradient(60deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent),
         linear-gradient(-60deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent);
     background-size: 100px 173px;
-    background-position: 0 0, 0 0, 0 0, 0 0;
+    background-position: 0 0, 0 0, 0 0;
     z-index: 0;
 }
 
