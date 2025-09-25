@@ -4252,9 +4252,10 @@ section + section {
     right: 2rem;
     width: 50px;
     height: 50px;
-    background: #0f172a;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
     color: #D4571F;
-    border: 2px solid rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -4265,13 +4266,14 @@ section + section {
     transform: translateY(20px);
     transition: all var(--transition-fast);
     z-index: 1000;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 .scroll-to-top:hover {
-    background: var(--primary);
-    border-color: white;
+    background: rgba(8, 145, 178, 0.8);
+    backdrop-filter: blur(15px);
+    border-color: rgba(255, 255, 255, 0.6);
     transform: translateY(0);
-    box-shadow: 0 6px 25px rgba(8, 145, 178, 0.4);
+    box-shadow: 0 6px 25px rgba(8, 145, 178, 0.3);
 }
 .scroll-to-top.visible {
     opacity: 1;
