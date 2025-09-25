@@ -9265,7 +9265,7 @@ a:not(.btn, .btn-primary, .btn-secondary, .btn-large, .nav-link, .nav-brand-link
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(8, 145, 178, 0.15);
     border-color: var(--primary-color);
-    background: #f8fafc;
+    background: white;
 }
 
 
@@ -11890,7 +11890,7 @@ body.safety-training-page .btn-primary:hover {
 /* Professional Contact Page Styles */
 .contact-info-section {
     padding: 4rem 0 2rem;
-    background: #f8fafc;
+    background: white;
 }
 
 .contact-methods-grid {
