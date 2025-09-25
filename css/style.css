@@ -1879,13 +1879,23 @@ section + section {
 /* Mobile layout - revert to flexbox */
 @media (width <= 767px) {
     .nav-container {
-        display: flex;
+        display: flex !important;
         align-items: center;
+        justify-content: space-between;
+    }
+    
+    .nav-menu {
+        display: none !important;
+    }
+    
+    .nav-contact {
+        display: none !important;
     }
     
     /* Ensure hamburger menu is positioned on the right */
     .nav-toggle {
-        margin-left: auto;
+        margin-left: auto !important;
+        order: 999;
     }
 }
 
