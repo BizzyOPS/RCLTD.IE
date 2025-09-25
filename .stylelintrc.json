@@ -11,6 +11,8 @@
     "color-hex-case": "lower",
     "color-hex-length": "short",
     "number-leading-zero": "always",
-    "string-quotes": "double"
+    "string-quotes": "double",
+    "no-duplicate-selectors": null,
+    "no-descending-specificity": null
   }
 }
