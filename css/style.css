@@ -10816,7 +10816,15 @@ input[type="button"]:not(.btn-primary):not(.btn-hero):not(.btn-course):not([clas
     color: white !important;
 }
 
-/* Safety training page buttons should have orange text */
+/* Safety training page buttons should have orange text - FORCE OVERRIDE */
+.brochure-hero .btn-hero-primary,
+.brochure-hero .btn-hero-primary:hover,
+.brochure-hero .btn-hero-secondary,
+.brochure-hero .btn-hero-secondary:hover,
+.brochure-courses .btn-course,
+.brochure-courses .btn-course:hover,
+.contact-action .btn-primary,
+.contact-action .btn-primary:hover,
 body.safety-training-page .btn-hero,
 body.safety-training-page .btn-hero:hover,
 body.safety-training-page .btn-hero-primary,
@@ -10826,4 +10834,5 @@ body.safety-training-page .btn-course:hover,
 body.safety-training-page .btn-primary,
 body.safety-training-page .btn-primary:hover {
     color: #B8391A !important;
+    text-shadow: none !important;
 }
