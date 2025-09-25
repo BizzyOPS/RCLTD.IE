@@ -690,8 +690,7 @@ body:not(.home) {
 @media (max-width: 768px) {
     .header {
         padding: 0.25rem 0;
-        backdrop-filter: blur(8px);
-        background: transparent;
+        backdrop-filter: blur(10px);
     }
     .nav-contact {
         display: none !important;
