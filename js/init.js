@@ -130,8 +130,11 @@
                 window.controllerBot = new ControllerBot();
             }
             
-            // Initialize form validation
-            if (typeof FormValidator !== 'undefined' && window.formValidator) {
+            // Initialize form validation - create instance if needed
+            if (typeof FormValidator !== 'undefined') {
+                if (!window.formValidator) {
+                    window.formValidator = new FormValidator();
+                }
                 this.initFormValidation();
             }
             
