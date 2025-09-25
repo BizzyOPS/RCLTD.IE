@@ -700,10 +700,12 @@ body:not(.home) {
         display: none !important;
     }
     .nav-toggle {
-        width: 40px;
-        height: 40px;
+        width: 44px;
+        height: 44px;
         border-radius: var(--radius-sm);
         transition: background-color 0.2s ease;
+        justify-content: center;
+        align-items: center;
     }
     .nav-toggle:hover {
         background-color: rgba(8, 145, 178, 0.1);
@@ -1518,18 +1520,23 @@ section + section {
 .nav-toggle {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 4px;
     background: none;
     border: none;
     cursor: pointer;
     padding: 0.5rem;
     padding: var(--spacing-2);
+    width: 44px;
+    height: 44px;
 }
 .hamburger {
     width: 24px;
     height: 2px;
     background-color: #D4571F;
     transition: all 0.3s ease;
+    display: block;
 }
 .header.on-light .hamburger {
     background-color: #D4571F;
@@ -6008,6 +6015,31 @@ section + section {
 .brochure-courses {
     padding: var(--spacing-16) 0;
     background: #1a1a1a !important;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hexagonal background pattern */
+.brochure-courses::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 25% 25%, transparent 20%, rgba(255, 255, 255, 0.03) 21%, rgba(255, 255, 255, 0.03) 34%, transparent 35%, transparent),
+        linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent),
+        linear-gradient(60deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent),
+        linear-gradient(-60deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent);
+    background-size: 100px 173px;
+    background-position: 0 0, 0 0, 0 0, 0 0;
+    z-index: 0;
+}
+
+.brochure-courses > * {
+    position: relative;
+    z-index: 1;
 }
 
 .brochure-grid {
@@ -6459,8 +6491,9 @@ body.safety-training-page .brochure-card * {
 
 /* Ensure buttons maintain proper contrast */
 body.safety-training-page .btn-course {
-    color: white !important;
+    color: #ffffff !important;
     min-height: 44px !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 body.safety-training-page .brochure-courses h2 {
@@ -8135,12 +8168,14 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
 /* Ensure buttons keep their original styling */
 .btn,
 .btn-primary {
-    color: white !important;
+    color: #ffffff !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 .btn:hover,
 .btn-primary:hover {
-    color: white !important;
+    color: #ffffff !important;
     text-decoration: none !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 /* Remove white text override for btn-secondary and btn-large to allow proper dark text on light backgrounds */
 .btn-secondary:hover {
@@ -10693,5 +10728,44 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     .coverage-highlights {
         grid-template-columns: 1fr;
         gap: var(--spacing-4);
+    }
+}
+
+
+/* Course Icon Styling */
+.course-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #4CAF50, #66BB6A);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-4);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+    transition: all var(--transition-normal);
+}
+
+.course-icon svg {
+    color: white;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    transition: transform var(--transition-normal);
+}
+
+.brochure-card:hover .course-icon {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.brochure-card:hover .course-icon svg {
+    transform: scale(1.1);
+}
+
+
+/* Mobile optimization for course icons */
+@media (max-width: 480px) {
+    .course-icon {
+        width: 48px;
+        height: 48px;
     }
 }
