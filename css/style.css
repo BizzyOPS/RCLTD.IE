@@ -3807,7 +3807,7 @@ section + section {
     text-align: center;
 }
 .footer-logo {
-    height: 80px;
+    height: 120px;
     width: auto;
     margin-bottom: var(--spacing-4);
     display: block;
@@ -6566,11 +6566,15 @@ body.safety-training-page .footer {
 }
 
 body.safety-training-page .footer .footer-title,
-body.safety-training-page .footer .footer-description,
 body.safety-training-page .footer .footer-links a,
 body.safety-training-page .footer .footer-contact-link,
 body.safety-training-page .footer .footer-copyright {
     color: #D4571F !important;
+}
+
+/* Force footer description to be white on safety training page */
+body.safety-training-page .footer .footer-description {
+    color: white !important;
 }
 
 body.safety-training-page .footer .footer-links a:hover,
