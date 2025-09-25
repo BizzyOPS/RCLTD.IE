@@ -5802,17 +5802,15 @@ section + section {
         height: 8px;
     }
 }
-/* Safety Training Brochure Page Styles */
+/* Safety Training Brochure Page Styles - Exact Brochure Match */
 .brochure-hero {
-    background: linear-gradient(135deg, rgba(248, 250, 252, 0.95) 0%, rgba(226, 232, 240, 0.95) 100%), url('../images/safety-training-logo.jpg');
-    background-size: cover, contain;
-    background-position: center, center;
-    background-repeat: no-repeat, no-repeat;
-    background-attachment: scroll, scroll;
+    background: #2a2a2a;
+    background-image: linear-gradient(135deg, #3a3a3a 0%, #2a2a2a 100%);
     padding: var(--spacing-16) 0 var(--spacing-12);
-    border-bottom: 3px solid var(--brand-teal);
+    border-bottom: 3px solid #4CAF50;
     position: relative;
     text-align: center;
+    color: white;
 }
 
 .brochure-header {
@@ -5823,7 +5821,7 @@ section + section {
 .brochure-title {
     font-size: 3.5rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: white;
     margin-bottom: var(--spacing-2);
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -5832,7 +5830,7 @@ section + section {
 .brochure-subtitle {
     font-size: 1.5rem;
     font-weight: 600;
-    color: var(--brand-teal);
+    color: #4CAF50;
     margin-bottom: var(--spacing-4);
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -5840,7 +5838,7 @@ section + section {
 
 .brochure-tagline {
     font-size: 1.25rem;
-    color: var(--text-secondary);
+    color: #e0e0e0;
     line-height: 1.6;
     max-width: 600px;
     margin: 0 auto;
@@ -5850,7 +5848,7 @@ section + section {
 /* Brochure Courses Section */
 .brochure-courses {
     padding: var(--spacing-16) 0;
-    background: white;
+    background: #1a1a1a;
 }
 
 .brochure-grid {
@@ -5861,39 +5859,41 @@ section + section {
 }
 
 .brochure-card {
-    background: white;
-    border: 2px solid var(--border-light);
+    background: #333333;
+    border: 2px solid #4CAF50;
     border-radius: 12px;
     padding: var(--spacing-6);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
     position: relative;
     min-height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    color: white;
 }
 
 .brochure-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    border-color: var(--brand-teal);
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+    border-color: #4CAF50;
+    background: #404040;
 }
 
 .course-title {
     font-size: 1.25rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: white;
     margin-bottom: var(--spacing-3);
     line-height: 1.3;
     text-align: center;
-    border-bottom: 2px solid var(--brand-teal);
+    border-bottom: 2px solid #4CAF50;
     padding-bottom: var(--spacing-2);
 }
 
 .course-description {
     font-size: 0.95rem;
-    color: var(--text-secondary);
+    color: #e0e0e0;
     line-height: 1.5;
     margin-bottom: var(--spacing-4);
     text-align: center;
@@ -5908,10 +5908,10 @@ section + section {
 .course-option {
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--brand-teal);
+    color: #4CAF50;
     margin-bottom: var(--spacing-1);
     padding: var(--spacing-1) var(--spacing-2);
-    background: rgba(8, 145, 178, 0.1);
+    background: rgba(76, 175, 80, 0.2);
     border-radius: 6px;
     display: inline-block;
     margin: var(--spacing-1) var(--spacing-1);
@@ -5920,11 +5920,10 @@ section + section {
 .course-duration {
     font-size: 1rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: white;
     margin-bottom: var(--spacing-2);
     padding: var(--spacing-2) var(--spacing-3);
-    background: linear-gradient(135deg, var(--brand-teal), #0fb5d1);
-    color: white;
+    background: linear-gradient(135deg, #4CAF50, #66BB6A);
     border-radius: 8px;
     display: inline-block;
     margin: var(--spacing-1) 0;
@@ -5932,11 +5931,11 @@ section + section {
 
 .course-max {
     font-size: 0.85rem;
-    color: var(--text-muted);
+    color: #c0c0c0;
     font-style: italic;
     margin-top: var(--spacing-2);
     padding: var(--spacing-1) var(--spacing-2);
-    background: rgba(107, 114, 128, 0.1);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 4px;
     display: inline-block;
 }
@@ -5944,8 +5943,8 @@ section + section {
 /* Contact Section */
 .contact-section {
     padding: var(--spacing-12) 0;
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-    border-top: 3px solid var(--brand-teal);
+    background: linear-gradient(135deg, #3a3a3a 0%, #2a2a2a 100%);
+    border-top: 3px solid #4CAF50;
 }
 
 .contact-grid {
@@ -5958,16 +5957,17 @@ section + section {
 .contact-title {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: white;
     margin-bottom: var(--spacing-6);
     text-align: center;
 }
 
 .contact-details {
-    background: white;
+    background: #333333;
     padding: var(--spacing-6);
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border: 2px solid #4CAF50;
 }
 
 .contact-item {
@@ -5975,7 +5975,7 @@ section + section {
     align-items: center;
     margin-bottom: var(--spacing-4);
     padding: var(--spacing-3);
-    border-bottom: 1px solid var(--border-light);
+    border-bottom: 1px solid #4CAF50;
 }
 
 .contact-item:last-child {
@@ -5985,19 +5985,19 @@ section + section {
 
 .contact-label {
     font-weight: 600;
-    color: var(--text-primary);
+    color: white;
     width: 80px;
     flex-shrink: 0;
 }
 
 .contact-value {
-    color: var(--text-secondary);
+    color: #e0e0e0;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .contact-value:hover {
-    color: var(--brand-teal);
+    color: #4CAF50;
 }
 
 .contact-action {
