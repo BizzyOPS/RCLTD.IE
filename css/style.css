@@ -710,7 +710,7 @@ body:not(.home) {
         background-color: rgba(8, 145, 178, 0.1);
     }
     .nav-logo {
-        height: 60px;
+        height: 80px;
         width: auto;
     }
 }
@@ -1184,7 +1184,7 @@ section + section {
     }
     
     .nav-logo {
-        height: 60px;
+        height: 80px;
         width: auto;
     }
     
@@ -1434,7 +1434,7 @@ section + section {
     color: var(--text-primary);
 }
 .nav-logo {
-    height: 60px; /* Matched to burger menu size */
+    height: 80px; /* Matched to burger menu size */
     width: auto;
 }
 .nav-brand-text {
@@ -1456,13 +1456,13 @@ section + section {
 /* Desktop responsive logo sizing */
 @media (min-width: 1024px) {
     .nav-logo {
-        height: 60px; /* Matched to burger menu size */
+        height: 80px; /* Matched to burger menu size */
     }
 }
 /* Mobile responsive logo sizing */
 @media (max-width: 767px) {
     .nav-logo {
-        height: 60px; /* Matched to burger menu size */
+        height: 80px; /* Matched to burger menu size */
         max-width: 70vw;
     }
 }
@@ -1532,7 +1532,7 @@ section + section {
     padding: 0.5rem;
     padding: var(--spacing-2);
     width: 44px;
-    height: 60px;
+    height: 80px;
 }
 .hamburger {
     width: 24px;
@@ -1607,7 +1607,7 @@ section + section {
     .nav-menu.mobile-open .nav-link {
         display: flex;
         padding: var(--spacing-4) var(--spacing-3);
-        min-height: 60px;
+        min-height: 80px;
         align-items: center;
         border-radius: var(--radius-sm);
         transition: background-color 0.2s ease, transform 0.1s ease;
@@ -1747,7 +1747,7 @@ section + section {
     }
     .nav-dropdown-toggle {
         min-width: 44px;
-        min-height: 60px;
+        min-height: 80px;
         padding: var(--spacing-3);
     }
     .nav-dropdown-menu {
@@ -1777,7 +1777,7 @@ section + section {
     .nav-dropdown-menu .nav-link {
         margin: var(--spacing-1) 0;
         padding: var(--spacing-3) var(--spacing-4);
-        min-height: 60px;
+        min-height: 80px;
         display: flex;
         align-items: center;
         border-radius: var(--radius-sm);
@@ -2346,7 +2346,7 @@ section + section {
     background: rgba(255, 255, 255, 0.9);
     border: none;
     width: 44px;
-    height: 60px;
+    height: 80px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -2719,7 +2719,7 @@ section + section {
 .float-element {
     position: absolute;
     width: 60px;
-    height: 60px;
+    height: 80px;
     background: transparent;
     border-radius: 50%;
     display: flex;
@@ -3446,7 +3446,7 @@ section + section {
 .float-icon {
     position: absolute;
     width: 60px;
-    height: 60px;
+    height: 80px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -4038,7 +4038,7 @@ section + section {
     bottom: 2rem;
     right: 2rem;
     width: 60px;
-    height: 60px;
+    height: 80px;
     background: transparent;
     border-radius: 50%;
     display: flex;
@@ -4318,7 +4318,7 @@ section + section {
 }
 .chatbot-send-btn {
     width: 44px;
-    height: 60px;
+    height: 80px;
     background: var(--primary);
     color: white;
     border: none;
@@ -5983,7 +5983,7 @@ section + section {
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-2);
-    min-height: 60px;
+    min-height: 80px;
 }
 
 .btn-hero-primary:hover {
@@ -6011,7 +6011,7 @@ section + section {
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-2);
-    min-height: 60px;
+    min-height: 80px;
 }
 
 .btn-hero-secondary:hover {
@@ -6195,7 +6195,7 @@ section + section {
     gap: var(--spacing-2);
     width: 100%;
     justify-content: center;
-    min-height: 60px;
+    min-height: 80px;
 }
 
 .btn-course:hover {
@@ -8253,7 +8253,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
     align-items: center;
     justify-content: center;
     width: 60px;
-    height: 60px;
+    height: 80px;
     background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
     border-radius: 50%;
     margin-right: var(--spacing-4);
@@ -9559,7 +9559,7 @@ p, h1, h2, h3, h4, h5, h6, span, div {
         align-items: center;
         justify-content: center;
         width: 60px;
-        height: 60px;
+        height: 80px;
         background: var(--section-light-teal);
         border-radius: 50%;
         margin-left: auto;
