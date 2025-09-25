@@ -1,3 +1,6 @@
+(function() {
+'use strict';
+
 /* ============================================================================
    MAIN APPLICATION JAVASCRIPT - ROBOTICS & CONTROL LTD WEBSITE
    
@@ -59,14 +62,20 @@ if (typeof window !== 'undefined') {
     window.tsParticles = { load: function() { return Promise.resolve(); }, loadFull: function() { return Promise.resolve(); } };
     window.particlesJS = function() {};
     
-    // Block any tsParticles script loading
+    // Safer approach - defensive guard without hard override
+    if (typeof window.allowTsParticles === 'undefined') {
+        window.allowTsParticles = false; // Default to blocked
+    }
+    
+    // Script blocking with escape hatch
     var originalCreateElement = document.createElement;
     document.createElement = function(tagName) {
         var element = originalCreateElement.call(document, tagName);
-        if (tagName.toLowerCase() === 'script') {
+        if (tagName.toLowerCase() === 'script' && !window.allowTsParticles) {
             var originalSetAttribute = element.setAttribute;
             element.setAttribute = function(name, value) {
                 if (name === 'src' && value && value.includes('tsparticles')) {
+                    console.warn('tsParticles blocked - set window.allowTsParticles = true to enable');
                     return; // Block tsParticles loading
                 }
                 return originalSetAttribute.call(this, name, value);
@@ -1243,4 +1252,4 @@ document.addEventListener('DOMContentLoaded', function() {
 // Also force scroll to top on page show (handles browser back/forward)
 window.addEventListener('pageshow', function() {
     forceScrollToTop();
-});
+});})();

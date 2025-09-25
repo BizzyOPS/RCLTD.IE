@@ -9112,8 +9112,6 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
     margin-bottom: var(--spacing-6);
 }
 
-}
-
 .avatar-icon {
     color: #D4571F;
     font-weight: 600;
