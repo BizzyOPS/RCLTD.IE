@@ -1649,7 +1649,8 @@ section + section {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 clamp(1rem, 3vw, 2rem);
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
     align-items: center;
     box-sizing: border-box;
 }
@@ -1723,7 +1724,6 @@ section + section {
     align-items: center;
     margin: 0;
     padding: 0;
-    flex: 1;
     justify-content: center;
 }
 .nav-link {
@@ -1767,6 +1767,7 @@ section + section {
     gap: var(--spacing-4);
     position: relative;
     z-index: 100;
+    justify-content: flex-end;
 }
 .nav-phone {
     font-weight: 500;
@@ -1821,6 +1822,14 @@ section + section {
     }
     .nav-toggle {
         display: none;
+    }
+}
+
+/* Mobile layout - revert to flexbox */
+@media (max-width: 767px) {
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
     }
 }
 /* Mobile Menu */
