@@ -602,8 +602,8 @@ body:not(.home) {
     background: #ef4444;
     background: var(--hero-cta-color);
     color: white;
-    padding: var(--btn-padding-y-lg) var(--btn-padding-x-lg);
-    font-size: var(--btn-font-size-lg);
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
     font-weight: 600;
     text-decoration: none;
     border-radius: 0.5rem;
@@ -5952,11 +5952,11 @@ section + section {
 .btn-hero-primary {
     background: linear-gradient(135deg, #4CAF50, #66BB6A);
     color: white;
-    padding: var(--btn-padding-y-lg) var(--btn-padding-x-lg);
+    padding: var(--spacing-4) var(--spacing-8);
     border: none;
     border-radius: var(--radius-lg);
     font-weight: var(--font-weight-semibold);
-    font-size: var(--btn-font-size-lg);
+    font-size: var(--font-size-base);
     text-decoration: none;
     transition: all var(--transition-normal);
     display: inline-flex;
@@ -5980,11 +5980,11 @@ section + section {
 .btn-hero-secondary {
     background: transparent;
     color: white;
-    padding: var(--btn-padding-y-lg) var(--btn-padding-x-lg);
+    padding: var(--spacing-4) var(--spacing-8);
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: var(--radius-lg);
     font-weight: var(--font-weight-semibold);
-    font-size: var(--btn-font-size-lg);
+    font-size: var(--font-size-base);
     text-decoration: none;
     transition: all var(--transition-normal);
     display: inline-flex;
