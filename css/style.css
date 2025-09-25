@@ -116,10 +116,12 @@ section, article {
     padding: clamp(1rem, 3vw, 2rem) 0;
 }
 
-/* Keep header at fixed height without extra padding */
+/* Keep header at responsive height with proper centering */
 .header {
     padding: 0;
-    height: var(--header-height);
+    min-height: var(--header-height);
+    display: flex;
+    align-items: center;
 }
 
 /* Footer and nav controlled separately */
@@ -248,15 +250,11 @@ video, iframe, canvas {
     border-radius: clamp(0.5rem, 1vw, 1rem);
 }
 
-/* Navigation elements responsive scaling - careful not to conflict with existing nav styles */
-.nav-link {
-    /* Smaller desktop font size to fit logo better */
-    font-size: clamp(0.8rem, 1.2vw, 0.9rem);
-}
+/* Navigation elements responsive scaling - professional sizing removed duplicate */
 
 .nav-item {
-    /* Minimal responsive adjustments */
-    font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+    /* Consistent with nav-link sizing */
+    margin: 0;
 }
 
 /* Content list and grid items responsive scaling - scoped to avoid navigation conflicts */
@@ -1678,10 +1676,10 @@ section + section {
     color: var(--text-primary);
 }
 .nav-logo {
-    height: 50px; /* Matched to burger menu size */
-    width: 50px;
-    border-radius: 50%;
-    object-fit: cover;
+    max-height: calc(var(--header-height) - 20px);
+    height: auto;
+    width: auto;
+    display: block;
 }
 .nav-brand-text {
     /* Default text styling inherited from .nav-brand */
@@ -1720,15 +1718,23 @@ section + section {
 .nav-menu {
     display: none;
     list-style: none;
-    gap: 1.25rem;
+    gap: clamp(0.75rem, 2vw, 1.25rem);
+    align-items: center;
+    margin: 0;
+    padding: 0;
 }
 .nav-link {
     color: var(--brand-teal);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     transition: all var(--transition-normal);
     position: relative;
-    padding: 0.5rem 0.75rem;
+    padding: 0.5rem 0.25rem;
+    font-size: clamp(0.95rem, 0.9vw, 1.05rem);
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
 }
 .header.on-light .nav-link {
     color: var(--brand-teal);
@@ -1806,6 +1812,9 @@ section + section {
 @media (min-width: 768px) {
     .nav-menu {
         display: flex !important;
+        justify-content: center;
+        flex: 1;
+        margin: 0 2rem;
     }
     .nav-contact {
         display: flex !important;
