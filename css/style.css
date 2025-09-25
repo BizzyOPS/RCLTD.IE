@@ -1940,6 +1940,16 @@ section + section {
 .dropdown-arrow {
     transition: transform 0.25s ease;
 }
+
+/* Dropdown arrow color for different header states */
+.header .dropdown-arrow {
+    stroke: white;
+}
+
+.header.on-light .dropdown-arrow {
+    stroke: #10b981;
+    stroke: var(--primary-color);
+}
 .nav-dropdown.open .dropdown-arrow {
     transform: rotate(180deg);
 }
