@@ -676,7 +676,5 @@ ControllerBot.prototype.hideTypingIndicator = function() {
         }
     }
 
-// Initialize Controller Bot when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
-    window.controllerBot = new ControllerBot();
-});
+// NOTE: Initialization moved to js/init.js for centralized management
+// The ControllerBot class is still available and will be initialized by the central system

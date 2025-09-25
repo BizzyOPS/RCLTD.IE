@@ -323,7 +323,5 @@ ProTooltip.prototype.updateTooltipText = function(element, newText) {
     }
 };
 
-// Initialize tooltips when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
-    window.proTooltip = new ProTooltip();
-});
+// NOTE: Initialization moved to js/init.js for centralized management
+// The ProTooltip class is still available and will be initialized by the central system

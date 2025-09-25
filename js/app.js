@@ -1242,14 +1242,9 @@ function forceScrollToTop() {
     }, 100);
 }
 
-// Initialize all managers and force scroll to top
-document.addEventListener('DOMContentLoaded', function() {
-    forceScrollToTop();
-    window.headerManager = new DynamicHeaderManager();
-    window.scrollToTopManager = new ScrollToTopManager();
-});
-
-// Also force scroll to top on page show (handles browser back/forward)
-window.addEventListener('pageshow', function() {
-    forceScrollToTop();
-});})();
+// NOTE: Initialization moved to js/init.js for centralized management
+// This prevents duplicate DOMContentLoaded listeners and improves organization
+// The following functions are still available for the centralized initializer:
+// - forceScrollToTop()
+// - DynamicHeaderManager
+// - ScrollToTopManager
