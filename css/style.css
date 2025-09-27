@@ -1626,10 +1626,6 @@ section + section {
    HEADER & NAVIGATION - REBUILT FROM SCRATCH
    ============================================================================ */
 
-/* Temporarily hide loader for debugging */
-.page-loader {
-    display: none !important;
-}
 
 /* Header Base Styles - Mobile First */
 .header {
@@ -1645,9 +1641,13 @@ section + section {
     transition: transform 0.3s ease;
 }
 
-/* Header hide/show on scroll */
-.header.hidden {
+/* Header hide/show on scroll - using DynamicHeaderManager classes */
+.header.header-hidden {
     transform: translateY(-100%);
+}
+
+.header.header-visible {
+    transform: translateY(0);
 }
 
 .header-container {
