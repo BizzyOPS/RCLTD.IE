@@ -1626,6 +1626,11 @@ section + section {
    HEADER & NAVIGATION - REBUILT FROM SCRATCH
    ============================================================================ */
 
+/* Temporarily hide loader for debugging */
+.page-loader {
+    display: none !important;
+}
+
 /* Header Base Styles - Mobile First */
 .header {
     position: fixed;
