@@ -1896,6 +1896,21 @@ section + section {
         display: none; 
     }
     
+    /* Ensure logo is properly sized and visible on mobile */
+    .nav-brand {
+        display: flex;
+        align-items: center;
+        position: relative;
+        z-index: 1000;
+    }
+    
+    .nav-logo {
+        max-height: 35px;
+        height: auto;
+        width: auto;
+        object-fit: contain;
+    }
+    
     /* Mobile actions container for both buttons */
     .mobile-actions {
         position: absolute !important;
