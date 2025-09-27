@@ -1681,7 +1681,7 @@ section + section {
     display: block;
 }
 
-/* Desktop Navigation - Hidden on Mobile */
+/* Desktop Navigation - Show on Large Screens */
 .desktop-nav {
     display: none;
 }
