@@ -1623,9 +1623,8 @@ section + section {
 
 
 /* ============================================================================
-   HEADER & NAVIGATION - REBUILT FROM SCRATCH
+   SIMPLE MOBILE HEADER
    ============================================================================ */
-
 
 /* Header Base Styles - Mobile First */
 .header {
@@ -1633,29 +1632,13 @@ section + section {
     top: 0;
     left: 0;
     right: 0;
-    background: #fff; /* Match page background color */
+    background: #fff;
     border-bottom: 1px solid rgba(16, 185, 129, 0.1);
-    z-index: 1000; /* Below loader (9999) but above content */
-    height: var(--header-height);
-    transform: translateY(0);
-    transition: transform 0.3s ease;
-    /* Ensure header is ready during loading */
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Header hide/show on scroll - using DynamicHeaderManager classes */
-.header.header-hidden {
-    transform: translateY(-100%);
-}
-
-.header.header-visible {
-    transform: translateY(0);
+    z-index: 1000;
+    height: 60px;
 }
 
 .header-container {
-    max-width: 1200px;
-    margin: 0 auto;
     padding: 0 1rem;
     height: 100%;
     display: flex;
@@ -1663,9 +1646,9 @@ section + section {
     justify-content: space-between;
 }
 
-/* Logo Styles */
+/* Logo - Left to Middle */
 .logo {
-    flex-shrink: 0;
+    flex: 1;
 }
 
 .logo a {
@@ -1674,140 +1657,115 @@ section + section {
 }
 
 .logo img {
-    height: 45px;
+    height: 40px;
     width: auto;
     display: block;
 }
 
-/* Desktop Navigation - Show on Large Screens */
-.desktop-nav {
-    display: none;
-}
-
-/* Mobile Actions - Two Button Layout */
-.mobile-actions {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-/* Green Hamburger Button */
-.hamburger-btn {
-    width: 48px;
-    height: 48px;
-    background: #10b981;
+/* Hamburger Menu - Right */
+.hamburger-menu {
+    width: 40px;
+    height: 40px;
+    background: none;
     border: none;
-    border-radius: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
+    padding: 8px;
 }
 
-.hamburger-btn:hover {
-    background: #059669;
-    transform: translateY(-1px);
-}
-
-.hamburger-btn span {
-    width: 20px;
-    height: 2px;
-    background: white;
+.hamburger-menu span {
+    width: 24px;
+    height: 3px;
+    background: #333;
     display: block;
     margin: 2px 0;
     transition: all 0.3s ease;
 }
 
-/* Dark Blue Phone Button */
-.phone-btn {
-    width: 48px;
-    height: 48px;
-    background: #1e3a8a;
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.phone-btn:hover {
-    background: #1e40af;
-    transform: translateY(-1px);
-}
-
-.phone-btn svg {
-    width: 24px;
-    height: 24px;
-    fill: white;
-}
-
 /* Mobile Menu */
 .mobile-menu {
     position: fixed;
-    top: var(--header-height);
+    top: 60px;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(16, 185, 129, 0.1);
-    transform: translateY(-100%);
-    transition: transform 0.3s ease;
+    bottom: 0;
+    background: #fff;
     z-index: 999;
-    max-height: calc(100vh - var(--header-height));
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
     overflow-y: auto;
 }
 
 .mobile-menu.active {
-    transform: translateY(0);
+    transform: translateX(0);
 }
 
 .mobile-nav {
-    padding: 1rem;
+    padding: 2rem 1rem;
 }
 
 .mobile-nav-menu {
     list-style: none;
-    margin: 0;
     padding: 0;
+    margin: 0;
 }
 
 .mobile-nav-menu li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .mobile-nav-link {
-    display: block;
-    padding: 1rem;
-    color: var(--brand-teal);
+    color: #333;
     text-decoration: none;
-    font-weight: 600;
+    padding: 1rem;
+    display: block;
     font-size: 1.1rem;
-    border-radius: 8px;
+    font-weight: 500;
+    border-bottom: 1px solid #eee;
     transition: all 0.3s ease;
 }
 
 .mobile-nav-link:hover {
-    background: rgba(16, 185, 129, 0.1);
-    color: var(--primary-dark);
+    background: #f5f5f5;
+    color: #10b981;
 }
 
 .mobile-menu-footer {
     margin-top: 2rem;
     padding-top: 2rem;
-    border-top: 1px solid rgba(16, 185, 129, 0.1);
+    border-top: 1px solid #eee;
 }
 
 .mobile-quote-btn {
-    display: block;
-    text-align: center;
-    background: var(--brand-teal);
+    background: #10b981;
     color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.mobile-quote-btn:hover {
+    background: #059669;
+}
+
+/* Hamburger Animation */
+.hamburger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
     padding: 1rem 2rem;
     border-radius: 8px;
     text-decoration: none;

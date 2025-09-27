@@ -24,16 +24,9 @@
  * @function setHeaderOffset
  * @returns {void}
  */
+// Simple header height setting
 function setHeaderOffset() {
-    const header = document.querySelector('.header');
-    if (!header) return; // Exit early if header not found
-    
-    // Get actual header height rounded up to avoid sub-pixel issues
-    const h = Math.ceil(header.getBoundingClientRect().height);
-    
-    // Set CSS variable for use throughout stylesheets
-    document.documentElement.style.setProperty('--header-height', h + 'px');
-    console.log('Header height set to exact:', h + 'px');
+    document.documentElement.style.setProperty('--header-height', '60px');
 }
 
 /**
@@ -61,6 +54,7 @@ if (window.ResizeObserver) {
  * 
  * Handles the hamburger menu toggle functionality for mobile navigation
  */
+// Simple mobile menu toggle
 function initMobileMenu() {
     const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -72,15 +66,11 @@ function initMobileMenu() {
         const isActive = mobileMenu.classList.contains('active');
         
         if (isActive) {
-            // Close menu
             mobileMenu.classList.remove('active');
             mobileMenuToggle.classList.remove('active');
-            mobileMenuToggle.setAttribute('aria-expanded', 'false');
         } else {
-            // Open menu
             mobileMenu.classList.add('active');
             mobileMenuToggle.classList.add('active');
-            mobileMenuToggle.setAttribute('aria-expanded', 'true');
         }
     });
     
@@ -90,7 +80,6 @@ function initMobileMenu() {
         link.addEventListener('click', function() {
             mobileMenu.classList.remove('active');
             mobileMenuToggle.classList.remove('active');
-            mobileMenuToggle.setAttribute('aria-expanded', 'false');
         });
     });
     

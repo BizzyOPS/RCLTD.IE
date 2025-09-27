@@ -88,10 +88,7 @@
             // Force scroll to top on page load
             this.forceScrollToTop();
             
-            // Initialize header management
-            if (typeof DynamicHeaderManager !== 'undefined') {
-                window.headerManager = new DynamicHeaderManager();
-            }
+            // Simple mobile header - no dynamic management needed
             
             // Initialize scroll-to-top button
             if (typeof ScrollToTopManager !== 'undefined') {
