@@ -763,10 +763,6 @@ function initPageLoader() {
     
     if (!pageLoader) return;
     
-    // TEMPORARILY DISABLE LOADING ANIMATION FOR DEBUGGING
-    pageLoader.style.display = 'none';
-    return;
-    
     // Check for reduced motion preference
     var prefersReducedMotion = false;
     if (window.matchMedia) {
@@ -829,8 +825,8 @@ function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
     
     var currentProgress = 0;
     var loaderStartTime = Date.now();
-    var minLoadTime = prefersReducedMotion ? 200 : 800; // Much faster for debugging
-    var maxLoadTime = prefersReducedMotion ? 500 : 1500; // Much faster for debugging
+    var minLoadTime = prefersReducedMotion ? 500 : 3000; // Restored original timing
+    var maxLoadTime = prefersReducedMotion ? 1000 : 4500; // Restored original timing
     
     // Initialize display
     progressCounter.textContent = '0%';
@@ -925,7 +921,7 @@ function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
     
     // Page load event handler - with minimum display time to see animation
     var pageLoadComplete = false;
-    var minDisplayTime = 500; // Much faster for debugging
+    var minDisplayTime = 2500; // Restored original timing
     
     window.addEventListener('load', function pageLoadHandler() {
         console.log('Page load event triggered, current progress:', currentProgress);
@@ -935,12 +931,33 @@ function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
     
     // Only allow completion after minimum display time has passed
     setTimeout(function() {
-        console.log('Minimum display time reached, speeding up progress to completion');
-        currentProgress = 100;
-        progressCounter.textContent = '100%';
-        progressBar.style.width = '100%';
-        console.log('Speed up completed, hiding loader');
-        setTimeout(completeLoader, 100);
+        if (currentProgress < 100) {
+            console.log('Minimum display time reached, speeding up progress to completion');
+            var remainingProgress = 100 - currentProgress;
+            var speedUpInterval = 25;
+            
+            function speedUpProgress() {
+                if (currentProgress < 100) {
+                    currentProgress = Math.min(100, currentProgress + Math.max(5, remainingProgress / 8));
+                    var displayProgress = Math.floor(currentProgress);
+                    progressCounter.textContent = displayProgress + '%';
+                    progressBar.style.width = currentProgress + '%';
+                    
+                    console.log('Speed up progress:', displayProgress + '%');
+                    
+                    if (currentProgress < 100) {
+                        setTimeout(speedUpProgress, speedUpInterval);
+                    } else {
+                        console.log('Speed up completed, hiding loader');
+                        setTimeout(completeLoader, 200);
+                    }
+                }
+            }
+            speedUpProgress();
+        } else {
+            console.log('Progress already at 100%, completing loader');
+            setTimeout(completeLoader, 200);
+        }
     }, minDisplayTime);
     
     // Fallback: Force hide loader after maximum time
