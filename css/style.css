@@ -1632,11 +1632,17 @@ section + section {
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    background: #fff; /* Match page background color */
     border-bottom: 1px solid rgba(16, 185, 129, 0.1);
     z-index: 1000;
     height: var(--header-height);
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+/* Header hide/show on scroll */
+.header.hidden {
+    transform: translateY(-100%);
 }
 
 .header-container {

@@ -125,6 +125,49 @@ function initMobileMenu() {
 // Initialize mobile menu when DOM is ready
 document.addEventListener('DOMContentLoaded', initMobileMenu);
 
+/**
+ * Auto-hide Header on Scroll
+ * 
+ * Hides header when scrolling down, shows when scrolling up
+ */
+function initAutoHideHeader() {
+    const header = document.querySelector('.header');
+    if (!header) return;
+    
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+    
+    function updateHeader() {
+        const currentScrollY = window.scrollY;
+        
+        // Don't hide header at the very top of the page
+        if (currentScrollY < 100) {
+            header.classList.remove('hidden');
+        } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            // Scrolling down - hide header
+            header.classList.add('hidden');
+        } else if (currentScrollY < lastScrollY) {
+            // Scrolling up - show header
+            header.classList.remove('hidden');
+        }
+        
+        lastScrollY = currentScrollY;
+        ticking = false;
+    }
+    
+    function onScroll() {
+        if (!ticking) {
+            requestAnimationFrame(updateHeader);
+            ticking = true;
+        }
+    }
+    
+    window.addEventListener('scroll', onScroll, { passive: true });
+}
+
+// Initialize auto-hide header functionality
+document.addEventListener('DOMContentLoaded', initAutoHideHeader);
+
 // PARTICLES COMPLETELY DISABLED - NO PARTICLE CODE SHOULD EXECUTE
 // Override all particle functions before any code runs
 if (typeof window !== 'undefined') {
