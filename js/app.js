@@ -56,6 +56,69 @@ if (window.ResizeObserver) {
     }
 }
 
+/**
+ * Mobile Menu Functionality
+ * 
+ * Handles the hamburger menu toggle functionality for mobile navigation
+ */
+function initMobileMenu() {
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (!mobileMenuToggle || !mobileMenu) return;
+    
+    // Toggle mobile menu
+    mobileMenuToggle.addEventListener('click', function() {
+        const isActive = mobileMenu.classList.contains('active');
+        
+        if (isActive) {
+            // Close menu
+            mobileMenu.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        } else {
+            // Open menu
+            mobileMenu.classList.add('active');
+            mobileMenuToggle.classList.add('active');
+            mobileMenuToggle.setAttribute('aria-expanded', 'true');
+        }
+    });
+    
+    // Close menu when clicking on menu links
+    const mobileNavLinks = mobileMenu.querySelectorAll('.mobile-nav-link, .mobile-quote-btn');
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const isClickInsideMenu = mobileMenu.contains(event.target);
+        const isClickOnToggle = mobileMenuToggle.contains(event.target);
+        
+        if (!isClickInsideMenu && !isClickOnToggle && mobileMenu.classList.contains('active')) {
+            mobileMenu.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && mobileMenu.classList.contains('active')) {
+            mobileMenu.classList.remove('active');
+            mobileMenuToggle.classList.remove('active');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+}
+
+// Initialize mobile menu when DOM is ready
+document.addEventListener('DOMContentLoaded', initMobileMenu);
+
 // PARTICLES COMPLETELY DISABLED - NO PARTICLE CODE SHOULD EXECUTE
 // Override all particle functions before any code runs
 if (typeof window !== 'undefined') {
