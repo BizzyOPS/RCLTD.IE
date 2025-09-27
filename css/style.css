@@ -1626,6 +1626,11 @@ section + section {
    HEADER & NAVIGATION - REBUILT FROM SCRATCH
    ============================================================================ */
 
+/* Hide loader completely to prevent header interference */
+.page-loader,
+#page-loader {
+    display: none !important;
+}
 
 /* Header Base Styles - Mobile First */
 .header {
