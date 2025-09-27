@@ -1880,8 +1880,10 @@ section + section {
 @media (width <= 767px) {
     .nav-container {
         display: flex !important;
+        justify-content: space-between;
         align-items: center;
-        gap: 0;
+        width: 100%;
+        padding: 0 clamp(1rem, 3vw, 2rem);
     }
     
     .nav-menu {
@@ -1895,9 +1897,6 @@ section + section {
     /* Ensure hamburger menu is positioned on the right */
     .nav-toggle {
         display: flex !important;
-        margin-left: auto;
-        margin-right: 1rem;
-        order: 999;
     }
 }
 
