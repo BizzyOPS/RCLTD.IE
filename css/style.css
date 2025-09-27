@@ -1626,11 +1626,6 @@ section + section {
    HEADER & NAVIGATION - REBUILT FROM SCRATCH
    ============================================================================ */
 
-/* Hide loader completely to prevent header interference */
-.page-loader,
-#page-loader {
-    display: none !important;
-}
 
 /* Header Base Styles - Mobile First */
 .header {
@@ -1640,10 +1635,13 @@ section + section {
     right: 0;
     background: #fff; /* Match page background color */
     border-bottom: 1px solid rgba(16, 185, 129, 0.1);
-    z-index: 1000;
+    z-index: 1000; /* Below loader (9999) but above content */
     height: var(--header-height);
     transform: translateY(0);
     transition: transform 0.3s ease;
+    /* Ensure header is ready during loading */
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Header hide/show on scroll - using DynamicHeaderManager classes */

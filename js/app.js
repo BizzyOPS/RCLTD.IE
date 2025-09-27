@@ -28,12 +28,6 @@ function setHeaderOffset() {
     const header = document.querySelector('.header');
     if (!header) return; // Exit early if header not found
     
-    // Don't calculate header height while page loader is active
-    const pageLoader = document.getElementById('page-loader');
-    if (pageLoader && pageLoader.style.display !== 'none' && !pageLoader.classList.contains('hidden')) {
-        return; // Skip calculation during loading
-    }
-    
     // Get actual header height rounded up to avoid sub-pixel issues
     const h = Math.ceil(header.getBoundingClientRect().height);
     
@@ -830,8 +824,6 @@ function initGDPR() {
 
 // Advanced Page Loading Animation with Progress and Technical Messages
 function initPageLoader() {
-    // Temporarily disabled to prevent interference with header
-    return;
     var pageLoader = document.getElementById('page-loader');
     
     if (!pageLoader) return;
