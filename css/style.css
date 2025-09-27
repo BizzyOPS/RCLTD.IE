@@ -1876,7 +1876,12 @@ section + section {
     }
 }
 
-/* Mobile layout - proper right positioning for hamburger */
+/* Hide mobile actions on desktop by default */
+.mobile-actions {
+    display: none;
+}
+
+/* Mobile layout - two-button design matching screenshot */
 @media (max-width: 768px) {
     .nav-container {
         position: relative;
@@ -1891,16 +1896,80 @@ section + section {
         display: none; 
     }
     
-    /* Force hamburger menu to right side with absolute positioning */
-    .nav-toggle {
+    /* Mobile actions container for both buttons */
+    .mobile-actions {
         position: absolute !important;
+        right: 16px !important; /* Safari 12 fallback */
         right: clamp(12px, 3vw, 16px) !important;
-        left: auto !important;
         top: 50%;
         transform: translateY(-50%);
-        margin: 0 !important;
-        z-index: 1001;
         display: flex !important;
+        gap: 8px;
+        z-index: 1001;
+    }
+    
+    /* Green hamburger menu button */
+    .nav-toggle {
+        position: relative !important;
+        width: 48px !important;
+        height: 48px !important;
+        background: #4CAF50 !important;
+        border: none !important;
+        border-radius: 8px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 4px !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3) !important;
+        margin: 0 !important;
+        left: auto !important;
+        top: auto !important;
+        transform: none !important;
+    }
+    
+    .nav-toggle:hover {
+        background: #45a049 !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4) !important;
+    }
+    
+    /* White hamburger lines */
+    .hamburger {
+        width: 20px !important;
+        height: 2px !important;
+        background-color: white !important;
+        transition: all 0.3s ease !important;
+        display: block !important;
+    }
+    
+    /* Dark blue phone button */
+    .mobile-phone-button {
+        width: 48px !important;
+        height: 48px !important;
+        background: #2c3e50 !important;
+        border: none !important;
+        border-radius: 8px !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        color: white !important;
+        text-decoration: none !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 2px 8px rgba(44, 62, 80, 0.3) !important;
+    }
+    
+    .mobile-phone-button:hover {
+        background: #34495e !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 4px 12px rgba(44, 62, 80, 0.4) !important;
+    }
+    
+    .mobile-phone-button svg {
+        fill: white !important;
     }
 }
 
