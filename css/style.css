@@ -7381,7 +7381,7 @@ body.safety-training-page .footer .footer-title,
 body.safety-training-page .footer .footer-links a,
 body.safety-training-page .footer .footer-contact-link,
 body.safety-training-page .footer .footer-copyright {
-    color: #D4571F !important;
+    color: #4CAF50 !important;
 }
 
 /* Force footer description to be white on safety training page */
@@ -7422,6 +7422,13 @@ body.safety-training-page .contact-value,
 body.safety-training-page a {
     color: #4CAF50 !important;
     transition: color 0.3s ease;
+}
+
+/* Additional footer links for safety training page */
+body.safety-training-page .footer .contact-info a,
+body.safety-training-page .footer .footer-legal a,
+body.safety-training-page .footer .footer-designer-link {
+    color: #4CAF50 !important;
 }
 
 body.safety-training-page .contact-section a:hover,
