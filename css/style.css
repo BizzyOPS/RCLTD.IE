@@ -1823,16 +1823,24 @@ section + section {
 @media (min-width: 768px) {
     .header-container {
         padding: 0 2rem;
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        align-items: center;
+    }
+    
+    .logo {
+        justify-self: start;
     }
     
     .logo img {
         height: 50px;
     }
     
-    /* Show desktop navigation */
+    /* Show desktop navigation - CENTERED */
     .desktop-nav {
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 2rem;
     }
     
@@ -1878,6 +1886,7 @@ section + section {
         text-decoration: none;
         font-weight: 600;
         transition: all 0.3s ease;
+        justify-self: end;
     }
     
     .quote-btn:hover {
