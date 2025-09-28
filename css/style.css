@@ -3802,6 +3802,35 @@ section + section {
     gap: var(--spacing-8);
     margin-bottom: var(--spacing-8);
 }
+
+/* Desktop: 4-column layout */
+@media (min-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 2fr 1fr 1fr 1.5fr;
+        gap: var(--spacing-12);
+        align-items: start;
+    }
+}
+
+/* Mobile: Everything centered */
+@media (max-width: 767px) {
+    .footer-grid {
+        text-align: center;
+    }
+    
+    .footer-certifications,
+    .footer-social {
+        text-align: center;
+    }
+    
+    .footer-bottom {
+        text-align: center;
+    }
+    
+    .footer-legal {
+        justify-content: center;
+    }
+}
 .footer-brand {
     margin-bottom: var(--spacing-6);
 }
@@ -6953,23 +6982,7 @@ body.safety-training-page a:hover {
     color: var(--primary-light);
 }
 
-@media (min-width: 768px) {
-    .footer-grid {
-        grid-template-columns: 2fr 1fr 1fr 1fr;
-    }
-    
-    .footer-content {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: var(--spacing-8);
-    }
-    
-    .footer-certifications,
-    .footer-social {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        text-align: left;
+/* Removed duplicate footer-grid rules - consolidated above */
     }
     
     .footer-bottom {
@@ -9297,11 +9310,7 @@ p, h1, h2, h3, h4, h5, h6, span, div {
         padding: var(--spacing-8) 0 var(--spacing-6);
     }
     
-    .footer-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-6);
-        text-align: center;
-    }
+    /* Footer mobile centering handled in main footer-grid rules above */
     
     .footer-brand {
         margin-bottom: var(--spacing-6);
@@ -9465,6 +9474,7 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     
     .footer-grid {
         gap: var(--spacing-4);
+        text-align: center;
     }
     
     .footer-title {
