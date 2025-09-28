@@ -1709,6 +1709,8 @@ section + section {
     display: none;
     flex: 1;
     justify-content: center;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .nav-menu {
@@ -1718,6 +1720,8 @@ section + section {
     display: flex;
     align-items: center;
     gap: var(--spacing-2);
+    white-space: nowrap;
+    min-width: max-content;
 }
 
 .nav-link {
@@ -1889,8 +1893,8 @@ section + section {
 /* Tablet and Desktop Styles */
 @media (min-width: 768px) {
     .header-container {
-        padding: 0 var(--spacing-8);
-        gap: var(--spacing-6);
+        padding: 0 var(--spacing-6);
+        gap: var(--spacing-4);
     }
     
     .logo img {
@@ -1902,6 +1906,20 @@ section + section {
         display: flex;
         flex: 1;
         justify-content: center;
+        max-width: calc(100vw - 200px); /* Leave space for logo and padding */
+    }
+    
+    .nav-menu {
+        gap: var(--spacing-1);
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+    
+    .nav-link {
+        padding: var(--spacing-2) var(--spacing-3);
+        font-size: var(--font-size-xs);
+        white-space: nowrap;
+        flex-shrink: 0;
     }
     
     /* Hide hamburger menu on desktop */
@@ -1913,6 +1931,7 @@ section + section {
     .mobile-menu {
         display: none !important;
     }
+}
     
     .nav-menu {
         display: flex;
@@ -1974,15 +1993,39 @@ section + section {
 /* Large Desktop */
 @media (min-width: 1024px) {
     .header-container {
-        padding: 0 var(--spacing-12);
+        padding: 0 var(--spacing-8);
+    }
+    
+    .desktop-nav {
+        max-width: calc(100vw - 300px); /* More space for larger screens */
     }
     
     .nav-menu {
-        gap: var(--spacing-4);
+        gap: var(--spacing-2);
     }
     
     .logo img {
         height: 52px;
+    }
+    
+    .nav-link {
+        padding: var(--spacing-3) var(--spacing-4);
+        font-size: var(--font-size-sm);
+    }
+}
+
+/* Extra Large Desktop */
+@media (min-width: 1280px) {
+    .header-container {
+        padding: 0 var(--spacing-12);
+    }
+    
+    .desktop-nav {
+        max-width: none; /* Full width on very large screens */
+    }
+    
+    .nav-menu {
+        gap: var(--spacing-4);
     }
     
     .nav-link {
