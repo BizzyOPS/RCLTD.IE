@@ -125,40 +125,52 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
         </div>
     </div>
 
-    <!-- Simple Mobile Header -->
+    <!-- Header with Services Dropdown -->
     <header class="header">
-        <div class="header-container">
-            <!-- Logo -->
-            <div class="logo">
-                <a href="index.html">
-                    <img src="images/logo.png" alt="Robotics & Control Ltd Logo">
-                </a>
-            </div>
-            
-            <!-- Desktop Navigation Menu -->
-            <nav class="desktop-nav">
+        <nav class="nav">
+            <div class="nav-container">
+                <!-- Logo -->
+                <div class="nav-brand">
+                    <a href="index.html" class="nav-brand-link">
+                        <img src="images/logo.png" alt="Robotics & Control Ltd Logo" class="nav-logo">
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation Menu -->
                 <ul class="nav-menu">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="services.html" class="nav-link">Services</a></li>
-                    <li><a href="automation.html" class="nav-link">Automation</a></li>
-                    <li><a href="safety.html" class="nav-link">Safety</a></li>
-                    <li><a href="design.html" class="nav-link">Design</a></li>
-                    <li><a href="panel.html" class="nav-link">Panel Building</a></li>
-                    <li><a href="safety-training.html" class="nav-link">Safety Training</a></li>
-                    <li><a href="store.html" class="nav-link">Store</a></li>
-                    <li><a href="about.html" class="nav-link">About</a></li>
-                    <li><a href="blog.html" class="nav-link">Blog</a></li>
-                    <li><a href="contact.html" class="nav-link nav-cta">Contact</a></li>
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item nav-dropdown">
+                        <div class="nav-dropdown-container">
+                            <a href="services.html" class="nav-link">Services</a>
+                            <button class="nav-dropdown-toggle" aria-label="Toggle services menu">
+                                <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12">
+                                    <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="2.5" fill="none"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <ul class="nav-dropdown-menu">
+                            <li><a href="services.html" class="nav-link">All Services</a></li>
+                            <li><a href="automation.html" class="nav-link">Automation</a></li>
+                            <li><a href="safety.html" class="nav-link">Safety</a></li>
+                            <li><a href="design.html" class="nav-link">Design</a></li>
+                            <li><a href="panel.html" class="nav-link">Panel Building</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="safety-training.html" class="nav-link">Safety Training</a></li>
+                    <li class="nav-item"><a href="store.html" class="nav-link">Store</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link nav-cta">Contact</a></li>
                 </ul>
-            </nav>
-            
-            <!-- Hamburger Menu - Mobile Only -->
-            <button class="hamburger-menu" aria-label="Toggle menu" id="mobile-menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
+                
+                <!-- Mobile Toggle -->
+                <button class="nav-toggle" aria-label="Toggle navigation" id="mobile-menu-toggle">
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </nav>
         
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobile-menu">
