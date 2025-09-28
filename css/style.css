@@ -5961,7 +5961,7 @@ section + section {
 
 .btn-hero-primary {
     background: linear-gradient(135deg, #4CAF50, #66BB6A);
-    color: white;
+    color: #ffffff !important;
     padding: var(--spacing-4) var(--spacing-8);
     border: none;
     border-radius: var(--radius-lg);
@@ -5989,7 +5989,7 @@ section + section {
 
 .btn-hero-secondary {
     background: transparent;
-    color: white;
+    color: #ffffff !important;
     padding: var(--spacing-4) var(--spacing-8);
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: var(--radius-lg);
@@ -6573,7 +6573,7 @@ body.safety-training-page .btn-primary,
 body.safety-training-page button {
     background: linear-gradient(135deg, #4CAF50, #66BB6A) !important;
     border: 2px solid #4CAF50 !important;
-    color: white !important;
+    color: #ffffff !important;
     padding: var(--spacing-3) var(--spacing-6) !important;
     border-radius: 8px !important;
     font-weight: 600 !important;
