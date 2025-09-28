@@ -1636,7 +1636,7 @@ section + section {
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(17, 24, 39, 0.06);
     z-index: 1000;
-    height: 70px;
+    height: var(--header-height);
     transition: var(--transition-normal);
 }
 
@@ -1755,7 +1755,7 @@ section + section {
 /* Mobile Menu */
 .mobile-menu {
     position: fixed;
-    top: 70px;
+    top: var(--header-height);
     left: 0;
     right: 0;
     bottom: 0;
@@ -1888,10 +1888,6 @@ section + section {
 
 /* Tablet and Desktop Styles */
 @media (min-width: 768px) {
-    .header {
-        height: 80px;
-    }
-    
     .header-container {
         padding: 0 var(--spacing-8);
         gap: var(--spacing-6);
