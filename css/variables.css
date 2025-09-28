@@ -152,13 +152,13 @@
 
 @media (max-width: 768px) {
     :root {
-        --header-height: 80px; /* Tablet header height - increased for mobile actions */
+        --header-height: 70px; /* Tablet header height */
     }
 }
 
 @media (max-width: 480px) {
     :root {
-        --header-height: 80px; /* Mobile header height - increased for mobile actions */
+        --header-height: 60px; /* Mobile header height */
     }
 }
 

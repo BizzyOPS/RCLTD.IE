@@ -496,9 +496,48 @@ FormValidator.prototype.formatCVV = function(input) {
 // Global form validator instance
 window.formValidator = new FormValidator();
 
-// NOTE: Initialization moved to js/init.js for centralized management
-// Form validation setup and card input formatting is handled by the central initializer
-// This improves performance by avoiding duplicate event listeners
+// Auto-initialize validation for forms with data-validate attribute
+document.addEventListener('DOMContentLoaded', function() {
+    var formsToValidate = document.querySelectorAll('form[data-validate]');
+    
+    for (var i = 0; i < formsToValidate.length; i++) {
+        var form = formsToValidate[i];
+        var options = {};
+        
+        // Parse options from data attributes
+        if (form.dataset.validateOnInput === 'true') options.validateOnInput = true;
+        if (form.dataset.showSuccess === 'false') options.showSuccessIndicators = false;
+        
+        formValidator.setupFormValidation(form, options);
+    }
+    
+    // Set up card number formatting
+    var cardNumberInputs = document.querySelectorAll('input[name="cardNumber"], input[id*="card-number"]');
+    for (var j = 0; j < cardNumberInputs.length; j++) {
+        var input = cardNumberInputs[j];
+        input.addEventListener('input', (function(input) {
+            return function() { formValidator.formatCardNumber(input); };
+        })(input));
+    }
+    
+    // Set up expiry date formatting
+    var cardExpiryInputs = document.querySelectorAll('input[name="cardExpiry"], input[id*="expiry"]');
+    for (var k = 0; k < cardExpiryInputs.length; k++) {
+        var input = cardExpiryInputs[k];
+        input.addEventListener('input', (function(input) {
+            return function() { formValidator.formatExpiryDate(input); };
+        })(input));
+    }
+    
+    // Set up CVV formatting
+    var cardCvvInputs = document.querySelectorAll('input[name="cardCvv"], input[id*="cvv"]');
+    for (var l = 0; l < cardCvvInputs.length; l++) {
+        var input = cardCvvInputs[l];
+        input.addEventListener('input', (function(input) {
+            return function() { formValidator.formatCVV(input); };
+        })(input));
+    }
+});
 
 // Export for module usage
 if (typeof module !== 'undefined' && module.exports) {

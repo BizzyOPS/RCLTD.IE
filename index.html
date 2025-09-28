@@ -1,9 +1,9 @@
 <!--
 ============================================================================
-HOMEPAGE - ROBOTICS &amp; CONTROL LTD WEBSITE
+HOMEPAGE - ROBOTICS & CONTROL LTD WEBSITE
 ============================================================================
 
-This is the main homepage for Robotics &amp; Control Ltd, an Irish technology 
+This is the main homepage for Robotics & Control Ltd, an Irish technology 
 company specializing in automation, safety, electrical design, and panel 
 building services.
 
@@ -31,12 +31,12 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover, shrink-to-fit=no">
     
     <!-- SEO meta tags -->
-    <meta name="description" content="Robotics &amp; Control Ltd - Irish technology company providing advanced automation, safety, electrical design, and panel building services. Expert solutions for pharmaceutical, industrial, automotive, food &amp; beverage industries.">
+    <meta name="description" content="Robotics & Control Ltd - Irish technology company providing advanced automation, safety, electrical design, and panel building services. Expert solutions for pharmaceutical, industrial, automotive, food & beverage industries.">
     <meta name="keywords" content="automation, robotics, electrical design, panel building, machine safety, industrial control, Ireland, Tipperary">
-    <meta name="author" content="Robotics &amp; Control Ltd">
+    <meta name="author" content="Robotics & Control Ltd">
     
     <!-- Page title for SEO and browser tab -->
-    <title>Robotics &amp; Control Ltd - Advanced Automation &amp; Safety Solutions | Ireland</title>
+    <title>Robotics & Control Ltd - Advanced Automation & Safety Solutions | Ireland</title>
     
     <!-- Favicon and App Icons -->
     <link rel="icon" type="image/png" href="images/new-logo.png">
@@ -46,19 +46,20 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
     
     <!-- Cache Busting: Safety Training Added 2025-09-17 -->
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Robotics &amp; Control Ltd - Advanced Automation &amp; Safety Solutions">
+    <meta property="og:title" content="Robotics & Control Ltd - Advanced Automation & Safety Solutions">
     <meta property="og:description" content="Irish technology company providing automation, safety, electrical design, and panel building services across pharmaceutical, industrial, and automotive sectors.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://rcltd.ie">
     
     <!-- Cross-browser polyfills - Load before other scripts -->
+    <script src="js/polyfills.js" defer></script>
     
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "Robotics &amp; Control Ltd",
+        "name": "Robotics & Control Ltd",
         "url": "https://rcltd.ie",
         "logo": "https://rcltd.ie/images/new-logo.png",
         "contactPoint": {
@@ -89,10 +90,10 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
     <meta name="pragma" content="no-cache">
     
     <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/style.css?v=1758816900">
+    <link rel="stylesheet" href="css/style.css?v=1758533000&syntax=fixed&cache=bust&timestamp=new">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     
     <!-- Embla Carousel CDN -->
@@ -105,7 +106,7 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
         <div class="loader-container">
             <div class="tech-loader">
                 <div class="loader-logo">
-                    <img src="images/new-logo.png" alt="Robotics &amp; Control Ltd">
+                    <img src="images/new-logo.png" alt="Robotics & Control Ltd">
                 </div>
             </div>
             
@@ -125,26 +126,23 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
         </div>
     </div>
 
-    <!-- Header with Services Dropdown -->
     <header class="header">
         <nav class="nav">
             <div class="nav-container">
-                <!-- Logo -->
                 <div class="nav-brand">
                     <a href="index.html" class="nav-brand-link">
                         <img src="images/logo.png" alt="Robotics & Control Ltd Logo" class="nav-logo">
                     </a>
                 </div>
                 
-                <!-- Desktop Navigation Menu -->
                 <ul class="nav-menu">
-                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
                     <li class="nav-item nav-dropdown">
                         <div class="nav-dropdown-container">
                             <a href="services.html" class="nav-link">Services</a>
                             <button class="nav-dropdown-toggle" aria-label="Toggle services menu">
                                 <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12">
-                                    <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="2.5" fill="none"/>
+                                    <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="2" fill="none"/>
                                 </svg>
                             </button>
                         </div>
@@ -157,42 +155,31 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
                         </ul>
                     </li>
                     <li class="nav-item"><a href="safety-training.html" class="nav-link">Safety Training</a></li>
-                    <li class="nav-item"><a href="store.html" class="nav-link">Store</a></li>
+                    <li class="nav-item"><a href="store.html" class="nav-link"
+                                           data-tooltip="Shop professional automation equipment"
+                                           data-tooltip-type="info"
+                                           data-tooltip-position="bottom">Store</a></li>
                     <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                     <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-                    <li class="nav-item"><a href="contact.html" class="nav-link nav-cta">Contact</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
                 
-                <!-- Mobile Toggle -->
-                <button class="nav-toggle" aria-label="Toggle navigation" id="mobile-menu-toggle">
+                <div class="nav-contact">
+                    <div class="nav-actions">
+                        <a href="contact.html" class="btn-primary btn-compact"
+                           data-tooltip="Get a free quote for your project"
+                           data-tooltip-type="success"
+                           data-tooltip-position="bottom">Quote</a>
+                    </div>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Toggle navigation">
                     <span class="hamburger"></span>
                     <span class="hamburger"></span>
                     <span class="hamburger"></span>
                 </button>
             </div>
         </nav>
-        
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobile-menu">
-            <nav class="mobile-nav">
-                <ul class="mobile-nav-menu">
-                    <li><a href="index.html" class="mobile-nav-link">Home</a></li>
-                    <li><a href="services.html" class="mobile-nav-link">Services</a></li>
-                    <li><a href="automation.html" class="mobile-nav-link">Automation</a></li>
-                    <li><a href="safety.html" class="mobile-nav-link">Safety</a></li>
-                    <li><a href="design.html" class="mobile-nav-link">Design</a></li>
-                    <li><a href="panel.html" class="mobile-nav-link">Panel Building</a></li>
-                    <li><a href="safety-training.html" class="mobile-nav-link">Safety Training</a></li>
-                    <li><a href="store.html" class="mobile-nav-link">Store</a></li>
-                    <li><a href="about.html" class="mobile-nav-link">About</a></li>
-                    <li><a href="blog.html" class="mobile-nav-link">Blog</a></li>
-                    <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
-                </ul>
-                <div class="mobile-menu-footer">
-                    <a href="contact.html" class="mobile-quote-btn">Get Quote</a>
-                </div>
-            </nav>
-        </div>
     </header>
 
     <main>
@@ -207,11 +194,11 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
                         <span class="badge-highlight">15+ Years Excellence</span>
                     </div>
                     <h1 class="hero-main-title">
-                        Intelligent Mechanical &amp;<br>
+                        Intelligent Mechanical &<br>
                         <span class="title-accent">Automation</span> Solutions
                     </h1>
                     <p class="hero-main-subtitle">
-                        Delivering Turnkey Projects and Site Services to the Life Sciences, Food &amp; Beverage and Utilities sectors
+                        Delivering Turnkey Projects and Site Services to the Life Sciences, Food & Beverage and Utilities sectors
                     </p>
                     <div class="hero-stats">
                         <div class="stat-item">
@@ -247,7 +234,7 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
                 <div class="service-cards-grid service-cards-grid--large">
                     <a href="safety.html" class="service-card" data-popup-tooltip="safety-info" aria-label="Machine Safety - Learn more about our functional safety services through comprehensive assessments">
                         <div class="service-card__icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="white">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                 <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.46 9-11V7l-10-5z"/>
                                 <path d="M9 12l2 2 4-4"/>
                             </svg>
@@ -259,7 +246,7 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
                     
                     <a href="design.html" class="service-card" data-popup-tooltip="electrical-info" aria-label="Electrical Design - Learn more about our latest design tools and methodologies for optimization">
                         <div class="service-card__icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="white">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                 <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
                             </svg>
                         </div>
@@ -270,7 +257,7 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
                     
                     <a href="panel.html" class="service-card" data-popup-tooltip="panel-info" aria-label="Panel Building - Learn more about our electrical panel design and manufacturing to industry standards">
                         <div class="service-card__icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="white">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                 <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
                                 <line x1="8" y1="21" x2="16" y2="21"/>
                                 <line x1="12" y1="17" x2="12" y2="21"/>
@@ -283,7 +270,7 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
                     
                     <a href="automation.html" class="service-card" data-popup-tooltip="automation-info" aria-label="Automation - Learn more about our advanced automation and robotics solutions for any industry">
                         <div class="service-card__icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="white">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                 <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
                             </svg>
                         </div>
@@ -294,7 +281,7 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
                     
                     <a href="safety-training.html" class="service-card" data-popup-tooltip="training-info" aria-label="Safety Training - Learn more about our professional on-site safety training programs for teams">
                         <div class="service-card__icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="white">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                 <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
                                 <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
                             </svg>
@@ -315,9 +302,9 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
                         <div class="intro-badge">
                             <span>Innovation Leader</span>
                         </div>
-                        <h2 class="intro-title">About Robotics &amp; Control Ltd</h2>
+                        <h2 class="intro-title">About Robotics & Control Ltd</h2>
                         <p class="intro-text">
-                            Robotics &amp; Control Ltd is a leading Irish technology company founded in 2010, based in Cahir, Co. Tipperary. With over 50 years combined experience in industrial automation, electrical engineering, and safety systems, we deliver comprehensive solutions for automation and control of your processes across pharmaceutical, automotive, food &amp; beverage, and manufacturing industries throughout Ireland and internationally.
+                            Robotics & Control Ltd is a leading Irish technology company founded in 2010, based in Cahir, Co. Tipperary. With over 50 years combined experience in industrial automation, electrical engineering, and safety systems, we deliver comprehensive solutions for automation and control of your processes across pharmaceutical, automotive, food & beverage, and manufacturing industries throughout Ireland and internationally.
                         </p>
                         
                         <p class="intro-text">
@@ -328,7 +315,7 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
                             <div class="highlight-item">
                                 <div class="highlight-content">
                                     <h4>Expert Engineering</h4>
-                                    <p>Our expertise spans electrical design, panel manufacturing, PLC programming, and electrical safety for pharmaceutical, industrial, automotive, food &amp; beverage, and machinery businesses.</p>
+                                    <p>Our expertise spans electrical design, panel manufacturing, PLC programming, and electrical safety for pharmaceutical, industrial, automotive, food & beverage, and machinery businesses.</p>
                                 </div>
                             </div>
                             <div class="highlight-item">
@@ -348,7 +335,7 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
                     <div class="intro-visual">
                         <div class="visual-container">
                             <div class="visual-bg"></div>
-                            <img src="images/about-engineers.png" alt="Professional engineers collaborating with robotic automation equipment at Robotics &amp; Control Ltd" class="about-image-main">
+                            <img src="images/about-engineers.png" alt="Professional engineers collaborating with robotic automation equipment at Robotics & Control Ltd" class="about-image-main">
                             <div class="company-metrics">
                                 <div class="metric">
                                     <span class="metric-value">24/7</span>
@@ -391,14 +378,14 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
                     
                     <div class="industry-card">
                         <div class="industry-card__icon">🍃</div>
-                        <h3 class="industry-card__title">Food &amp; Beverage Processing</h3>
+                        <h3 class="industry-card__title">Food & Beverage Processing</h3>
                         <p class="industry-card__description">HACCP-compliant automation solutions, hygienic design principles, traceability systems, and food safety protocols for processing and packaging operations.</p>
                         <div class="industry-card__badge">HACCP Certified</div>
                     </div>
                     
                     <div class="industry-card">
                         <div class="industry-card__icon">⚡</div>
-                        <h3 class="industry-card__title">Energy &amp; Utilities</h3>
+                        <h3 class="industry-card__title">Energy & Utilities</h3>
                         <p class="industry-card__description">Critical infrastructure automation, SCADA systems, smart grid technology, renewable energy integration, and cybersecurity frameworks for utility operators.</p>
                         <div class="industry-card__badge">Smart Grid Ready</div>
                     </div>
@@ -417,7 +404,7 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
                 
                 <div class="capabilities-grid">
                     <div class="capability-item">
-                        <h4>PLC Programming &amp; SCADA Systems</h4>
+                        <h4>PLC Programming & SCADA Systems</h4>
                         <p>Expert programming in Siemens TIA Portal, Allen-Bradley Studio 5000, Schneider Unity Pro, and Mitsubishi GX Works. Advanced SCADA development with Ignition, WinCC, and FactoryTalk View for comprehensive process visualization and control.</p>
                         <div class="tech-tags">
                             <span class="tech-tag">Siemens S7-1500</span>
@@ -427,7 +414,7 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
                     </div>
                     
                     <div class="capability-item">
-                        <h4>Functional Safety &amp; CE Marking</h4>
+                        <h4>Functional Safety & CE Marking</h4>
                         <p>TÜV certified functional safety engineers providing ISO 13849 and IEC 62061 compliant safety systems. Complete CE marking services including technical documentation, risk assessments, and declaration of conformity for machinery and automation systems.</p>
                         <div class="tech-tags">
                             <span class="tech-tag">ISO 13849</span>
@@ -437,7 +424,7 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
                     </div>
                     
                     <div class="capability-item">
-                        <h4>Electrical Design &amp; Panel Manufacturing</h4>
+                        <h4>Electrical Design & Panel Manufacturing</h4>
                         <p>Advanced electrical design using Zuken E3.Series, AutoCAD Electrical, and EPLAN. Complete panel manufacturing facility with automated testing equipment, ensuring IEC 61439 compliance and professional documentation packages.</p>
                         <div class="tech-tags">
                             <span class="tech-tag">Zuken E3.Series</span>
@@ -447,7 +434,7 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
                     </div>
                     
                     <div class="capability-item">
-                        <h4>Industrial Robotics &amp; Automation</h4>
+                        <h4>Industrial Robotics & Automation</h4>
                         <p>Integration of industrial robots from ABB, KUKA, Fanuc, and Universal Robots. Advanced vision systems, collaborative robotics, and Industry 4.0 implementations including IoT connectivity and predictive maintenance systems.</p>
                         <div class="tech-tags">
                             <span class="tech-tag">ABB Robotics</span>
@@ -558,9 +545,10 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
 
     <footer class="footer">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <img src="images/new-logo.png" alt="Robotics &amp; Control Ltd" class="footer-logo">
+            <div class="footer-content">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <img src="images/logo.png" alt="Robotics & Control Ltd" class="footer-logo">
                         <p class="footer-description">
                             Leading Irish technology company providing advanced automation, safety, and electrical solutions since 2010.
                         </p>
@@ -599,7 +587,7 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
                 </div>
                 
                 <div class="footer-certifications">
-                    
+                    <h4>Certifications & Partnerships</h4>
                     <img src="images/certifications.png" alt="Professional certifications including SafetyCert, E3 Zuken Series, TÜV, Ignition Certified Integrator, and Engineering the South East membership" class="certifications-image">
                 </div>
                 
@@ -612,10 +600,11 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
                             </svg>
                         </a>
                     </div>
+                </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&amp;copy; 2025 Robotics &amp; Control Ltd. All rights reserved. | Designed by <a href="https://bizzyops.com" target="_blank" rel="noopener" class="footer-designer-link">BizzyOps</a></p>
+                <p>&copy; 2025 Robotics & Control Ltd. All rights reserved. | Designed by <a href="https://bizzyops.com" target="_blank" rel="noopener" class="footer-designer-link">BizzyOps</a></p>
                 <div class="footer-legal">
                     <a href="privacy-policy.html">Privacy Policy</a>
                     <a href="terms-of-service.html">Terms of Service</a>
@@ -644,7 +633,7 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
             data-tooltip="Scroll back to top of page"
             data-tooltip-type="help"
             data-tooltip-position="left">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M18 15l-6-6-6 6"></path>
         </svg>
     </button>
@@ -657,12 +646,9 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
     window.particlesJS = () => {};
     </script>
     
-    <script src="js/polyfills.js?v=1758816900" defer></script>
-    <script src="js/app.js?v=1758816900" defer></script>
-    <script src="js/chatbot.js?v=1758816900" defer></script>
-    <script src="js/tooltips.js?v=1758816900" defer></script>
-    <script src="js/validation-client.js?v=1758816900" defer></script>
-    <script src="js/init.js?v=1758816900" defer></script>
-    <!-- Legacy popup-tooltips.js removed - using centralized ProTooltip system -->
+    <script src="js/app.js?v=1758531000&loader=fixed&cache=fresh&bust=now"></script>
+    <script src="js/chatbot.js?v=1758021605&nocache=true&hero=new&bust=force"></script>
+    <script src="js/tooltips.js?v=1758021605&nocache=true&hero=new&bust=force"></script>
+    <script src="js/popup-tooltips.js?v=1758021605&nocache=true&hero=new&bust=force"></script>
 </body>
 </html>

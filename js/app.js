@@ -1,6 +1,3 @@
-(function() {
-'use strict';
-
 /* ============================================================================
    MAIN APPLICATION JAVASCRIPT - ROBOTICS & CONTROL LTD WEBSITE
    
@@ -24,9 +21,16 @@
  * @function setHeaderOffset
  * @returns {void}
  */
-// Simple header height setting
 function setHeaderOffset() {
-    document.documentElement.style.setProperty('--header-height', '60px');
+    const header = document.querySelector('.header');
+    if (!header) return; // Exit early if header not found
+    
+    // Get actual header height rounded up to avoid sub-pixel issues
+    const h = Math.ceil(header.getBoundingClientRect().height);
+    
+    // Set CSS variable for use throughout stylesheets
+    document.documentElement.style.setProperty('--header-height', h + 'px');
+    console.log('Header height set to exact:', h + 'px');
 }
 
 /**
@@ -49,87 +53,20 @@ if (window.ResizeObserver) {
     }
 }
 
-/**
- * Mobile Menu Functionality
- * 
- * Handles the hamburger menu toggle functionality for mobile navigation
- */
-// Simple mobile menu toggle
-function initMobileMenu() {
-    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    if (!mobileMenuToggle || !mobileMenu) return;
-    
-    // Toggle mobile menu
-    mobileMenuToggle.addEventListener('click', function() {
-        const isActive = mobileMenu.classList.contains('active');
-        
-        if (isActive) {
-            mobileMenu.classList.remove('active');
-            mobileMenuToggle.classList.remove('active');
-        } else {
-            mobileMenu.classList.add('active');
-            mobileMenuToggle.classList.add('active');
-        }
-    });
-    
-    // Close menu when clicking on menu links
-    const mobileNavLinks = mobileMenu.querySelectorAll('.mobile-nav-link, .mobile-quote-btn');
-    mobileNavLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            mobileMenu.classList.remove('active');
-            mobileMenuToggle.classList.remove('active');
-        });
-    });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', function(event) {
-        const isClickInsideMenu = mobileMenu.contains(event.target);
-        const isClickOnToggle = mobileMenuToggle.contains(event.target);
-        
-        if (!isClickInsideMenu && !isClickOnToggle && mobileMenu.classList.contains('active')) {
-            mobileMenu.classList.remove('active');
-            mobileMenuToggle.classList.remove('active');
-            mobileMenuToggle.setAttribute('aria-expanded', 'false');
-        }
-    });
-    
-    // Close menu on escape key
-    document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape' && mobileMenu.classList.contains('active')) {
-            mobileMenu.classList.remove('active');
-            mobileMenuToggle.classList.remove('active');
-            mobileMenuToggle.setAttribute('aria-expanded', 'false');
-        }
-    });
-}
-
-// Initialize mobile menu when DOM is ready
-document.addEventListener('DOMContentLoaded', initMobileMenu);
-
-// Note: Header auto-hide functionality is handled by DynamicHeaderManager in this file
-
 // PARTICLES COMPLETELY DISABLED - NO PARTICLE CODE SHOULD EXECUTE
 // Override all particle functions before any code runs
 if (typeof window !== 'undefined') {
     window.tsParticles = { load: function() { return Promise.resolve(); }, loadFull: function() { return Promise.resolve(); } };
     window.particlesJS = function() {};
     
-    // Safer approach - defensive guard without hard override
-    if (typeof window.allowTsParticles === 'undefined') {
-        window.allowTsParticles = false; // Default to blocked
-    }
-    
-    // Script blocking with escape hatch
+    // Block any tsParticles script loading
     var originalCreateElement = document.createElement;
     document.createElement = function(tagName) {
         var element = originalCreateElement.call(document, tagName);
-        if (tagName.toLowerCase() === 'script' && !window.allowTsParticles) {
+        if (tagName.toLowerCase() === 'script') {
             var originalSetAttribute = element.setAttribute;
             element.setAttribute = function(name, value) {
                 if (name === 'src' && value && value.includes('tsparticles')) {
-                    console.warn('tsParticles blocked - set window.allowTsParticles = true to enable');
                     return; // Block tsParticles loading
                 }
                 return originalSetAttribute.call(this, name, value);
@@ -879,8 +816,8 @@ function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
     
     var currentProgress = 0;
     var loaderStartTime = Date.now();
-    var minLoadTime = prefersReducedMotion ? 500 : 3000; // Restored original timing
-    var maxLoadTime = prefersReducedMotion ? 1000 : 4500; // Restored original timing
+    var minLoadTime = prefersReducedMotion ? 500 : 3000; // Reduced timing for better UX
+    var maxLoadTime = prefersReducedMotion ? 1000 : 4500; // Reduced timing for better UX
     
     // Initialize display
     progressCounter.textContent = '0%';
@@ -975,7 +912,7 @@ function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
     
     // Page load event handler - with minimum display time to see animation
     var pageLoadComplete = false;
-    var minDisplayTime = 2500; // Restored original timing
+    var minDisplayTime = 2500; // Minimum 2.5 seconds to see the animation
     
     window.addEventListener('load', function pageLoadHandler() {
         console.log('Page load event triggered, current progress:', currentProgress);
@@ -1296,14 +1233,14 @@ function forceScrollToTop() {
     }, 100);
 }
 
-// NOTE: Initialization moved to js/init.js for centralized management
-// This prevents duplicate DOMContentLoaded listeners and improves organization
-// The following functions are still available for the centralized initializer:
-// - forceScrollToTop()
-// - DynamicHeaderManager
-// - ScrollToTopManager
+// Initialize all managers and force scroll to top
+document.addEventListener('DOMContentLoaded', function() {
+    forceScrollToTop();
+    window.headerManager = new DynamicHeaderManager();
+    window.scrollToTopManager = new ScrollToTopManager();
+});
 
-// Export functions for global access
-window.forceScrollToTop = forceScrollToTop;
-
-})(); // Close IIFE (Immediately Invoked Function Expression)
+// Also force scroll to top on page show (handles browser back/forward)
+window.addEventListener('pageshow', function() {
+    forceScrollToTop();
+});
