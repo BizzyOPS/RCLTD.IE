@@ -3816,6 +3816,13 @@ section + section {
 @media (max-width: 767px) {
     .footer-grid {
         text-align: center;
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-brand,
+    .footer-links,
+    .footer-contact {
+        text-align: center;
     }
     
     .footer-certifications,
@@ -3829,6 +3836,7 @@ section + section {
     
     .footer-legal {
         justify-content: center;
+        text-align: center;
     }
 }
 .footer-brand {
