@@ -6012,6 +6012,17 @@ section + section {
     min-height: 44px;
 }
 
+/* Ensure hero buttons always have white text on safety training page */
+body.safety-training-page .btn-hero-primary {
+    color: #ffffff !important;
+    text-shadow: none !important;
+}
+
+body.safety-training-page .btn-hero-secondary {
+    color: #ffffff !important;
+    text-shadow: none !important;
+}
+
 .btn-hero-primary:hover {
     background: linear-gradient(135deg, #66BB6A, #4CAF50);
     transform: translateY(-2px);
