@@ -81,66 +81,58 @@ Accessibility: Full ARIA support, keyboard navigation, screen reader optimized
     </div>
 
     <header class="header">
-        <nav class="nav">
-            <div class="nav-container">
-                <div class="nav-brand">
-                    <a href="index.html" class="nav-brand-link">
-                        <img src="images/logo.png" alt="Robotics &amp; Control Ltd Logo" class="nav-logo">
-                    </a>
-                </div>
-                
-                <ul class="nav-menu">
-                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item nav-dropdown">
-                        <div class="nav-dropdown-container">
-                            <a href="services.html" class="nav-link">Services</a>
-                            <button class="nav-dropdown-toggle" aria-label="Toggle services menu">
-                                <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12">
-                                    <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="2.5" fill="none"/>
-                                </svg>
-                            </button>
-                        </div>
-                        <ul class="nav-dropdown-menu">
-                            <li><a href="services.html" class="nav-link">All Services</a></li>
-                            <li><a href="automation.html" class="nav-link">Automation</a></li>
-                            <li><a href="safety.html" class="nav-link">Safety</a></li>
-                            <li><a href="design.html" class="nav-link">Design</a></li>
-                            <li><a href="panel.html" class="nav-link">Panel Building</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a href="safety-training.html" class="nav-link">Safety Training</a></li>
-                    <li class="nav-item"><a href="store.html" class="nav-link"
-                                           data-tooltip="Shop professional automation equipment"
-                                           data-tooltip-type="info"
-                                           data-tooltip-position="bottom">Store</a></li>
-                    <li class="nav-item"><a href="about.html" class="nav-link active">About</a></li>
-                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-                </ul>
-                
-                <div class="nav-contact">
-                    <div class="nav-actions">
-                        <a href="contact.html" class="btn-primary btn-compact"
-                           data-tooltip="Get a free quote for your project"
-                           data-tooltip-type="success"
-                           data-tooltip-position="bottom">Quote</a>
-                    </div>
-                </div>
-                
-                <div class="mobile-actions">
-                    <button class="nav-toggle" aria-label="Toggle navigation">
-                        <span class="hamburger"></span>
-                        <span class="hamburger"></span>
-                        <span class="hamburger"></span>
-                    </button>
-                    <a href="tel:+353527443258" class="mobile-phone-button" aria-label="Call us">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                        </svg>
-                    </a>
-                </div>
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Robotics & Control Ltd Logo">
+                </a>
             </div>
-        </nav>
+            
+            <!-- Desktop Navigation Menu -->
+            <nav class="desktop-nav">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="automation.html" class="nav-link">Automation</a></li>
+                    <li><a href="safety.html" class="nav-link">Safety</a></li>
+                    <li><a href="design.html" class="nav-link">Design</a></li>
+                    <li><a href="panel.html" class="nav-link">Panel Building</a></li>
+                    <li><a href="safety-training.html" class="nav-link">Training</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="contact.html" class="nav-link nav-cta">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Hamburger Menu - Mobile Only -->
+            <button class="hamburger-menu" aria-label="Toggle menu" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <nav class="mobile-nav">
+                <ul class="mobile-nav-menu">
+                    <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+                    <li><a href="services.html" class="mobile-nav-link">Services</a></li>
+                    <li><a href="automation.html" class="mobile-nav-link">Automation</a></li>
+                    <li><a href="safety.html" class="mobile-nav-link">Safety</a></li>
+                    <li><a href="design.html" class="mobile-nav-link">Design</a></li>
+                    <li><a href="panel.html" class="mobile-nav-link">Panel Building</a></li>
+                    <li><a href="safety-training.html" class="mobile-nav-link">Safety Training</a></li>
+                    <li><a href="store.html" class="mobile-nav-link">Store</a></li>
+                    <li><a href="about.html" class="mobile-nav-link">About</a></li>
+                    <li><a href="blog.html" class="mobile-nav-link">Blog</a></li>
+                    <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+                </ul>
+                <div class="mobile-menu-footer">
+                    <a href="contact.html" class="mobile-quote-btn">Get Quote</a>
+                </div>
+            </nav>
+        </div>
     </header>
 
     <main>
