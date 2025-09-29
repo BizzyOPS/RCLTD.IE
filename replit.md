@@ -14,6 +14,7 @@ This project is a professional static website for Robotics & Control Ltd, an Iri
 - **Enhanced Visual Consistency**: Added comprehensive CSS styling for SVG icons with consistent sizing (2.5rem for service cards, 20px for feature icons, 32px for category/industry icons) and brand-consistent coloring using CSS filters
 - **Button Text Color Resolution**: Fixed critical CSS specificity and caching issue causing the "Schedule Training" button to display teal text instead of white, implementing multi-layered CSS solutions including high-specificity rules, pseudo-class overrides, inline styles, cache-busting parameters, and ID-based targeting
 - **Cross-Browser Compatibility**: Ensured all emoji-to-SVG replacements and CSS fixes work consistently across browsers with proper fallbacks and cache management
+- **Streamlined Service Page Layouts**: Successfully removed hero sections and company intro sections from all individual service pages (automation.html, safety.html, design.html, panel.html) to make section headings the first visible content, creating a cleaner, more focused user experience that immediately showcases service capabilities without introductory content
 
 # User Preferences
 
