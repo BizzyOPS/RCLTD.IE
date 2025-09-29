@@ -11638,3 +11638,321 @@ body.safety-training-page .tech-status {
         grid-template-columns: 1fr;
     }
 }
+
+/* ================================================================
+   MODERN CONTACT PAGE - CLEAN SPLIT-SCREEN DESIGN
+   ================================================================ */
+
+/* Contact Hero - Minimal */
+.contact-hero {
+    background: linear-gradient(135deg, #0f766e 0%, #10b981 50%, #14b8a6 100%);
+    padding: 6rem 0 4rem;
+    text-align: center;
+    color: white;
+}
+
+.contact-hero-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.contact-hero-content p {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.95;
+    line-height: 1.6;
+}
+
+/* Split Screen Contact Section */
+.modern-contact-section {
+    padding: 0;
+    background: #ffffff;
+}
+
+.contact-split-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 700px;
+}
+
+.contact-info-side {
+    background: #fafafa;
+    padding: 5rem 4rem;
+    display: flex;
+    align-items: center;
+}
+
+.contact-info-content h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.contact-intro {
+    font-size: 1.0625rem;
+    color: #374151;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+}
+
+/* Contact Methods List */
+.contact-methods-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.contact-method-modern {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.contact-method-modern:hover {
+    border-color: var(--brand-teal);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
+}
+
+.method-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.method-icon svg {
+    width: 24px;
+    height: 24px;
+    color: var(--brand-teal);
+}
+
+.method-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.method-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.method-value {
+    font-size: 1.0625rem;
+    color: #111827;
+    font-weight: 600;
+}
+
+/* Contact Hours */
+.contact-hours {
+    padding: 1.75rem;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+.contact-hours h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1rem;
+}
+
+.contact-hours p {
+    font-size: 0.9375rem;
+    color: #374151;
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+}
+
+.response-time {
+    color: var(--brand-teal) !important;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+/* Form Side */
+.contact-form-side {
+    background: white;
+    padding: 5rem 4rem;
+    display: flex;
+    align-items: center;
+}
+
+.modern-form-container h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 2rem;
+}
+
+.modern-contact-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.modern-contact-form .form-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.modern-contact-form .form-input,
+.modern-contact-form .form-textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    background: white;
+}
+
+.modern-contact-form .form-input:focus,
+.modern-contact-form .form-textarea:focus {
+    outline: none;
+    border-color: var(--brand-teal);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.modern-contact-form .form-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-submit-modern {
+    width: 100%;
+    padding: 1rem;
+    background: var(--brand-teal);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.form-submit-modern:hover {
+    background: #0d9488;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Trust Section */
+.trust-section {
+    padding: 5rem 0;
+    background: white;
+    text-align: center;
+}
+
+.trust-content h2 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.trust-content > p {
+    font-size: 1.0625rem;
+    color: #374151;
+    max-width: 700px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+}
+
+.trust-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.trust-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.trust-stat .stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--brand-teal);
+    line-height: 1;
+}
+
+.trust-stat .stat-label {
+    font-size: 0.9375rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .contact-split-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-info-side,
+    .contact-form-side {
+        padding: 4rem 3rem;
+    }
+    
+    .contact-hero-content h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-hero {
+        padding: 4rem 0 3rem;
+    }
+    
+    .contact-hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .contact-hero-content p {
+        font-size: 1.0625rem;
+    }
+    
+    .contact-info-side,
+    .contact-form-side {
+        padding: 3rem 1.5rem;
+    }
+    
+    .contact-info-content h2 {
+        font-size: 2rem;
+    }
+    
+    .trust-stats {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .trust-stat .stat-number {
+        font-size: 2.5rem;
+    }
+}
