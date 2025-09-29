@@ -66,7 +66,7 @@ ControllerBot.prototype.createChatInterface = function() {
         '                    </button>',
         '                </div>',
         '                ',
-        '                <div class="chatbot-messages" id="chatbot-messages" role="log" aria-live="polite" aria-label="Chat conversation">',
+        '                <div class="chatbot-messages" id="chatbot-messages" role="log" aria-live="polite" aria-relevant="additions" aria-label="Chat conversation">',
         '                    <!-- Messages will be added here dynamically -->',
         '                </div>',
         '                ',
@@ -170,11 +170,13 @@ ControllerBot.prototype.openChat = function() {
     // Store the currently focused element for restoration later
     this.previousFocus = document.activeElement;
 
-    // Add body scroll lock on mobile devices
+    // Add body scroll lock on mobile devices with position preservation
     if (window.innerWidth <= 768) {
-        document.body.style.overflow = 'hidden';
+        this.scrollY = window.scrollY;
         document.body.style.position = 'fixed';
+        document.body.style.top = '-' + this.scrollY + 'px';
         document.body.style.width = '100%';
+        document.body.style.overflow = 'hidden';
     }
 
     // Focus input after animation and ensure it stays within the chatbot
@@ -194,10 +196,16 @@ ControllerBot.prototype.closeChat = function() {
     toggle.classList.remove('hidden');
     this.isOpen = false;
 
-    // Remove body scroll lock
-    document.body.style.overflow = '';
+    // Remove body scroll lock and restore scroll position
     document.body.style.position = '';
+    document.body.style.top = '';
     document.body.style.width = '';
+    document.body.style.overflow = '';
+    
+    if (typeof this.scrollY === 'number') {
+        window.scrollTo(0, this.scrollY);
+        this.scrollY = null;
+    }
 
     // Return focus to the toggle button or previously focused element
     if (this.previousFocus && this.previousFocus.focus) {
