@@ -5021,7 +5021,7 @@ section + section {
     width: 48px;
     height: 48px;
     object-fit: contain;
-    filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%);
+    /* Remove problematic filter that was making icons black */
 }
 
 /* CSS classes for service icons */
@@ -5029,7 +5029,7 @@ section + section {
     width: 48px;
     height: 48px;
     object-fit: contain;
-    filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%);
+    /* Remove problematic filter that was making icons black */
 }
 
 .service-detail-icon-png {
