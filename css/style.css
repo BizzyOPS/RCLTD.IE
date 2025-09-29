@@ -6181,6 +6181,15 @@ html body.safety-training-page main section.brochure-hero .brochure-cta a.btn-he
     color: #ffffff !important;
 }
 
+/* Additional ID-based rule for extra specificity */
+#schedule-training-btn,
+#schedule-training-btn:visited,
+#schedule-training-btn:hover,
+#schedule-training-btn:focus,
+#schedule-training-btn:active {
+    color: #ffffff !important;
+}
+
 body.safety-training-page .btn-hero-secondary,
 body.safety-training-page .brochure-cta .btn-hero-secondary,
 body.safety-training-page a.btn-hero-secondary,
