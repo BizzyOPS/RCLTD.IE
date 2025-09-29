@@ -6279,7 +6279,7 @@ section + section {
 
 .btn-hero-primary {
     background: linear-gradient(135deg, #4CAF50, #66BB6A) !important;
-    color: #FF6F00 !important;
+    color: white !important;
     padding: var(--spacing-4) var(--spacing-8);
     border: none;
     border-radius: var(--radius-lg);
@@ -6293,7 +6293,7 @@ section + section {
     min-height: 44px;
 }
 
-/* Ensure hero buttons always have white text on safety training page */
+/* Ensure hero buttons always have WHITE text on safety training page */
 body.safety-training-page .btn-hero-primary,
 body.safety-training-page .brochure-cta .btn-hero-primary,
 body.safety-training-page a.btn-hero-primary,
@@ -6301,20 +6301,20 @@ body.safety-training-page a.btn-hero-primary,
 .brochure-cta a.btn-hero-primary,
 a.btn-hero-primary,
 .btn-hero-primary {
-    color: #FF6F00 !important;
+    color: white !important;
     text-shadow: none !important;
     background: linear-gradient(135deg, #4CAF50, #66BB6A) !important;
     border: none !important;
     font-weight: 600 !important;
 }
 
-/* Force white text with highest specificity possible for all button states */
+/* Force WHITE text with highest specificity possible for all button states */
 html body.safety-training-page main section.brochure-hero .brochure-cta a.btn-hero-primary,
 html body.safety-training-page main section.brochure-hero .brochure-cta a.btn-hero-primary:visited,
 html body.safety-training-page main section.brochure-hero .brochure-cta a.btn-hero-primary:hover,
 html body.safety-training-page main section.brochure-hero .brochure-cta a.btn-hero-primary:focus,
 html body.safety-training-page main section.brochure-hero .brochure-cta a.btn-hero-primary:active {
-    color: #FF6F00 !important;
+    color: white !important;
     font-weight: 600 !important;
 }
 
@@ -6324,7 +6324,7 @@ html body.safety-training-page main section.brochure-hero .brochure-cta a.btn-he
 #schedule-training-btn:hover,
 #schedule-training-btn:focus,
 #schedule-training-btn:active {
-    color: #FF6F00 !important;
+    color: white !important;
     font-weight: 600 !important;
 }
 
@@ -6534,7 +6534,7 @@ body.safety-training-page a.btn-hero-secondary,
 
 .btn-course {
     background: linear-gradient(135deg, #4CAF50, #66BB6A);
-    color: #FF6F00 !important;
+    color: white !important;
     padding: var(--btn-padding-y) var(--btn-padding-x);
     border: none;
     border-radius: var(--radius-md);
@@ -6689,10 +6689,17 @@ body.safety-training-page a.btn-hero-secondary,
     text-align: center;
 }
 
-.contact-action .btn-primary {
+/* Bottom Schedule Training button - burnt orange text */
+.contact-action .btn-primary,
+.contact-action .btn-primary:visited,
+.contact-action .btn-primary:hover,
+.contact-action .btn-primary:focus,
+.contact-action .btn-primary:active {
     font-size: 1.2rem;
     padding: var(--spacing-4) var(--spacing-8);
     border-radius: 12px;
+    color: #FF6F00 !important;
+    font-weight: 600 !important;
     box-shadow: 0 4px 15px rgba(8, 145, 178, 0.3);
     transition: all 0.3s ease;
 }
@@ -6854,9 +6861,9 @@ body.safety-training-page .brochure-card * {
     color: inherit !important;
 }
 
-/* Ensure buttons maintain proper contrast */
+/* Ensure buttons maintain proper contrast - WHITE text for Book Training buttons */
 body.safety-training-page .btn-course {
-    color: #FF6F00 !important;
+    color: white !important;
     min-height: 44px !important;
     text-shadow: none;
     font-weight: 600;
