@@ -2591,7 +2591,8 @@ section + section {
     gap: var(--spacing-8);
 }
 /* Removed duplicate service-card definition - using Professional Box Container System instead */
-.service-icon {
+/* NOTE: .service-icon container (with gradient background for SVG icons) */
+.service-icon-container {
     width: 50px;
     height: 50px;
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
@@ -2602,7 +2603,27 @@ section + section {
     margin-bottom: var(--spacing-6);
     color: white;
 }
-.service-icon svg {
+.service-icon-container svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+    stroke: currentColor;
+    fill: none;
+}
+
+/* Legacy .service-icon class for backward compatibility - redirects to container */
+.service-icon:not(img) {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-6);
+    color: white;
+}
+.service-icon:not(img) svg {
     width: 24px;
     height: 24px;
     stroke-width: 2;
@@ -5082,6 +5103,14 @@ section + section {
     display: inline-block;
 }
 
+/* Service icon images - Large icons when used as img elements */
+img.service-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: inline-block;
+}
+
 /* Benefits Section Styling */
 .benefits-section {
     padding: var(--spacing-16) 0;
@@ -6934,14 +6963,16 @@ body.safety-training-page .nav-item.nav-dropdown .nav-dropdown-container .nav-dr
     fill: none !important;
 }
 
-/* Course icons on Safety Training page - transparent with drop shadow for visibility on dark background */
-body.safety-training-page .course-icon-png {
-    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
-}
-
-/* Metadata icons (clock, people) - transparent with drop shadow for visibility on dark background */
-body.safety-training-page .feature-icon-png {
-    filter: drop-shadow(0 1px 4px rgba(0,0,0,0.4));
+/* All PNG icons on Safety Training page - transparent with drop shadow for visibility on dark background */
+body.safety-training-page .course-icon-png,
+body.safety-training-page .service-card-icon-png,
+body.safety-training-page .service-detail-icon-png,
+body.safety-training-page .feature-icon-png,
+body.safety-training-page .category-icon-png,
+body.safety-training-page img.service-icon,
+body.safety-training-page .industry-icon,
+body.safety-training-page img[src*="-icon.png"] {
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
 }
 
 body.safety-training-page .brochure-courses h2 {
@@ -10770,8 +10801,8 @@ p, h1, h2, h3, h4, h5, h6, span, div {
 }
 
 .service-card__icon svg {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 48px;
+    height: 48px;
     stroke-width: 1.5;
 }
 
@@ -10783,14 +10814,7 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     display: inline-block;
 }
 
-/* Feature icon PNG styling - override earlier definition with consistent sizing */
-.feature-icon-png {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-    vertical-align: middle;
-    display: inline-block;
-}
+/* Note: .feature-icon-png sizing is defined in the UNIFIED ICON SIZING SYSTEM section above */
 
 /* Category icon PNG styling - Medium icons for categories */
 .category-icon-png {
@@ -11246,14 +11270,16 @@ p, h1, h2, h3, h4, h5, h6, span, div {
 }
 
 /* Styling for colored PNG course icons - ensure consistency */
-.course-icon img,
-.course-icon-png {
+.course-icon img {
     width: 48px;
     height: 48px;
     object-fit: contain;
+    display: inline-block;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
     transition: transform var(--transition-normal);
 }
+
+/* Note: .course-icon-png styling is defined in the UNIFIED ICON SIZING SYSTEM section above */
 
 .brochure-card:hover .course-icon {
     transform: scale(1.1);
