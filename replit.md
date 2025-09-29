@@ -4,6 +4,9 @@ This project is a professional static website for Robotics & Control Ltd, an Iri
 
 ## Recent Updates (September 29, 2025)
 
+- **Social Sharing Meta Tags Implementation**: Added comprehensive Open Graph and Twitter Card meta tags to all main HTML pages (index.html, about.html, services.html, store.html, safety-training.html, contact.html, blog.html) with og:image and twitter:image pointing to new-logo.png for consistent brand presentation when sharing links on social media platforms, ensuring professional appearance across Facebook, Twitter, LinkedIn, and other social networks
+- **App Icon Consistency**: Verified all pages use new-logo.png consistently for favicon, apple-touch-icon, and msapplication-TileImage, providing unified brand experience across all devices and platforms
+- **Regular Website Architecture**: Confirmed website operates as a regular downloadable static site with no PWA functionality (no manifest.json, service workers, or PWA meta tags), ensuring traditional browser behavior and compatibility
 - **Department Contact System Implementation**: Successfully integrated department-specific email routing system with dedicated contact information for HSO (chelsey.omahony@rcltd.ie), Operations (morgan@rcltd.ie), Marketing (benedict.larkin@rcltd.ie), and General Administration (lmccormack@rcltd.ie) 
 - **Enhanced About Page**: Added professional department contact cards with SVG icons, hover effects, and clear contact information
 - **Enhanced Contact Page**: Added department contact section and dropdown selection in contact form for targeted email routing
