@@ -11166,16 +11166,13 @@ p, h1, h2, h3, h4, h5, h6, span, div {
 .benefit-icon {
     width: 32px;
     height: 32px;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    color: white;
-    border-radius: var(--radius-lg);
+    color: #10b981;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 18px;
     font-weight: 700;
     flex-shrink: 0;
-    box-shadow: 0 2px 4px 0 rgba(16, 185, 129, 0.25);
 }
 
 .benefit-item span:last-child {
