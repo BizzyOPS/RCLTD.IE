@@ -6875,6 +6875,16 @@ body.safety-training-page .dropdown-arrow {
     color: white !important;
 }
 
+/* Specifically target the SVG arrow stroke with maximum specificity */
+body.safety-training-page .nav-item.nav-dropdown .nav-dropdown-container .nav-dropdown-toggle,
+body.safety-training-page .nav-item.nav-dropdown .nav-dropdown-container .nav-dropdown-toggle svg,
+body.safety-training-page .nav-item.nav-dropdown .nav-dropdown-container .nav-dropdown-toggle svg.dropdown-arrow,
+body.safety-training-page .nav-item.nav-dropdown .nav-dropdown-container .nav-dropdown-toggle svg.dropdown-arrow path {
+    stroke: white !important;
+    color: white !important;
+    fill: none !important;
+}
+
 /* Make course icons visible on Safety Training page dark background */
 body.safety-training-page .course-icon-png {
     filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%);
@@ -6922,12 +6932,15 @@ body.safety-training-page .nav-link.active {
     color: #4CAF50 !important;
 }
 
-body.safety-training-page .nav-dropdown-toggle {
+/* Make dropdown arrow white with dark background to be visible against green Services button */
+body.safety-training-page .nav-dropdown-toggle,
+body.safety-training-page .nav-dropdown-toggle:hover,
+body.safety-training-page .nav-item.nav-dropdown:hover .nav-dropdown-toggle,
+body.safety-training-page .nav-item.nav-dropdown .nav-dropdown-toggle {
     color: white !important;
-}
-
-body.safety-training-page .nav-dropdown-toggle:hover {
-    color: #4CAF50 !important;
+    background: rgba(0,0,0,0.4) !important;
+    border-radius: 3px !important;
+    padding: 2px !important;
 }
 
 /* Footer dark theme */
