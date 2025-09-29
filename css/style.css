@@ -12165,117 +12165,6 @@ body.safety-training-page .tech-status {
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
-.contact-info-side {
-    background: #fafafa;
-    padding: 5rem 4rem;
-    display: flex;
-    align-items: center;
-}
-
-.contact-info-content h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 1rem;
-    letter-spacing: -0.02em;
-}
-
-.contact-intro {
-    font-size: 1.0625rem;
-    color: #374151;
-    margin-bottom: 3rem;
-    line-height: 1.6;
-}
-
-/* Contact Methods List */
-.contact-methods-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-}
-
-.contact-method-modern {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.25rem;
-    padding: 1.5rem;
-    background: white;
-    border-radius: 12px;
-    border: 1px solid #e5e7eb;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.contact-method-modern:hover {
-    border-color: var(--brand-teal);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
-}
-
-.method-icon {
-    width: 48px;
-    height: 48px;
-    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.method-icon svg {
-    width: 24px;
-    height: 24px;
-    color: var(--brand-teal);
-}
-
-.method-details {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-}
-
-.method-label {
-    font-size: 0.875rem;
-    color: #6b7280;
-    font-weight: 500;
-}
-
-.method-value {
-    font-size: 1.0625rem;
-    color: #111827;
-    font-weight: 600;
-}
-
-/* Contact Hours */
-.contact-hours {
-    padding: 1.75rem;
-    background: white;
-    border-radius: 12px;
-    border: 1px solid #e5e7eb;
-}
-
-.contact-hours h3 {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #111827;
-    margin-bottom: 1rem;
-}
-
-.contact-hours p {
-    font-size: 0.9375rem;
-    color: #374151;
-    line-height: 1.8;
-    margin-bottom: 0.75rem;
-}
-
-.response-time {
-    color: var(--brand-teal) !important;
-    font-weight: 600;
-    margin-top: 1rem;
-}
-
 /* Form Side */
 .contact-form-side {
     background: white;
@@ -12468,7 +12357,6 @@ body.safety-training-page .tech-status {
         gap: 1.5rem;
     }
     
-    .contact-info-side,
     .contact-form-side {
         padding: 4rem 3rem;
     }
@@ -12522,7 +12410,6 @@ body.safety-training-page .tech-status {
         font-size: 1.0625rem;
     }
     
-    .contact-info-side,
     .contact-form-side {
         padding: 3rem 1.5rem;
     }
