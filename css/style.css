@@ -5044,35 +5044,42 @@ section + section {
         z-index: 999;
     }
 }
-/* CSS class for training course icons */
+/* ========================================
+   UNIFIED ICON SIZING SYSTEM
+   Professional sizing with transparent background support
+   ======================================== */
+
+/* Training course icons - Large display icons */
 .course-icon-png {
     width: 48px;
     height: 48px;
     object-fit: contain;
-    /* Remove problematic filter that was making icons black */
+    display: inline-block;
 }
 
-/* CSS classes for service icons */
+/* Service card icons - Large prominent icons */
 .service-card-icon-png {
     width: 48px;
     height: 48px;
     object-fit: contain;
-    /* Remove problematic filter that was making icons black */
+    display: inline-block;
 }
 
+/* Service detail icons - Medium inline icons */
 .service-detail-icon-png {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    display: inline-block;
+}
+
+/* Feature icons - Small inline icons */
+.feature-icon-png {
     width: 24px;
     height: 24px;
     object-fit: contain;
-    /* Remove problematic filter that was making icons black */
-}
-
-.feature-icon-png {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
     vertical-align: middle;
-    /* Remove problematic filter that was making icons black */
+    display: inline-block;
 }
 
 /* Benefits Section Styling */
@@ -6927,20 +6934,14 @@ body.safety-training-page .nav-item.nav-dropdown .nav-dropdown-container .nav-dr
     fill: none !important;
 }
 
-/* Make course icons visible on Safety Training page dark background with white backdrop */
+/* Course icons on Safety Training page - transparent with drop shadow for visibility on dark background */
 body.safety-training-page .course-icon-png {
-    background: white;
-    border-radius: 8px;
-    padding: 4px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
 }
 
-/* Make metadata icons (clock, people) visible with smaller white backdrop */
+/* Metadata icons (clock, people) - transparent with drop shadow for visibility on dark background */
 body.safety-training-page .feature-icon-png {
-    background: white;
-    border-radius: 4px;
-    padding: 2px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    filter: drop-shadow(0 1px 4px rgba(0,0,0,0.4));
 }
 
 body.safety-training-page .brochure-courses h2 {
@@ -10776,37 +10777,43 @@ p, h1, h2, h3, h4, h5, h6, span, div {
 
 /* SVG icon styling for service cards */
 .service-card__icon .service-icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    /* Remove teal filter that was causing blue squares */
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: inline-block;
 }
 
-/* Feature icon PNG styling */
+/* Feature icon PNG styling - override earlier definition with consistent sizing */
 .feature-icon-png {
-    width: 20px;
-    height: 20px;
-    /* Remove teal filter that was causing blue squares */
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    vertical-align: middle;
+    display: inline-block;
 }
 
-/* Category icon PNG styling */
+/* Category icon PNG styling - Medium icons for categories */
 .category-icon-png {
-    width: 32px;
-    height: 32px;
-    /* Remove teal filter that was causing blue squares */
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    display: inline-block;
 }
 
 /* Service icon styling for PNG icons */
 .service-icon {
-    width: 32px;
-    height: 32px;
-    /* Remove teal filter that was causing blue squares */
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: inline-block;
 }
 
-/* Industry icon styling for PNG icons */
+/* Industry icon styling for PNG icons - Prominent industry indicators */
 .industry-icon {
-    width: 32px;
-    height: 32px;
-    /* Remove teal filter that was causing blue squares */
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: inline-block;
 }
 
 /* Service card title */
@@ -11238,11 +11245,11 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     transition: transform var(--transition-normal);
 }
 
-/* Styling for colored PNG course icons */
+/* Styling for colored PNG course icons - ensure consistency */
 .course-icon img,
 .course-icon-png {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     object-fit: contain;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
     transition: transform var(--transition-normal);
