@@ -32,6 +32,7 @@ The project adheres to:
 - **Image Optimization**: Images are optimized for multiple screen sizes.
 - **Form Handling**: Department-specific email routing system with backend validation.
 - **Page Layouts**: Streamlined service page layouts removing hero sections and intros to immediately showcase content. Hero sections are consistently applied or removed across pages for a unified user experience.
+- **Contact Page Design (Sept 2025)**: Modern split-screen B2B layout with teal gradient hero, contact information on left (methods cards + office hours), simplified 5-field form on right (name, email, phone, service, message), trust/statistics section, and conversion-optimized minimal aesthetic matching CEMBRE-inspired design system. Fully responsive with mobile stacking.
 
 # External Dependencies
 
