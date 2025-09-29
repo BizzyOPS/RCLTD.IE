@@ -11820,6 +11820,255 @@ body.safety-training-page .tech-status {
     line-height: 1.6;
 }
 
+/* ================================================================
+   MODERN SERVICES PAGE - CLEAN DESIGN
+   ================================================================ */
+
+/* Hero Content Center */
+.hero-content-center {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hero-title-large {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.hero-subtitle-large {
+    font-size: 1.35rem;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Modern Services Section */
+.services-modern {
+    padding: 6rem 0;
+    background: #ffffff;
+}
+
+.services-grid-modern {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.service-card-modern {
+    background: white;
+    border-radius: 16px;
+    padding: 2.5rem;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card-modern:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    border-color: #10b981;
+}
+
+.service-icon-wrapper {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #10b981 0%, #0f766e 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.service-card-modern:hover .service-icon-wrapper {
+    transform: scale(1.05) rotate(3deg);
+}
+
+.service-icon-modern {
+    width: 48px;
+    height: 48px;
+    filter: brightness(0) invert(1);
+}
+
+.service-title-modern {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+}
+
+.service-description-modern {
+    font-size: 1rem;
+    color: #6b7280;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.service-features-modern {
+    list-style: none;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+}
+
+.service-features-modern li {
+    padding: 0.75rem 0;
+    color: #374151;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #f3f4f6;
+    display: flex;
+    align-items: center;
+}
+
+.service-features-modern li:before {
+    content: "✓";
+    color: #10b981;
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-right: 0.75rem;
+}
+
+.service-features-modern li:last-child {
+    border-bottom: none;
+}
+
+.btn-outline-modern {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 1.75rem;
+    background: transparent;
+    color: #10b981;
+    border: 2px solid #10b981;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+
+.btn-outline-modern:hover {
+    background: #10b981;
+    color: white;
+    transform: translateX(4px);
+}
+
+/* CTA Section */
+.cta-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-title {
+    font-size: 2.75rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.cta-description {
+    font-size: 1.2rem;
+    color: #6b7280;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+}
+
+.cta-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.btn-large {
+    padding: 1.125rem 2.5rem;
+    font-size: 1.125rem;
+}
+
+.cta-contact {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cta-phone, .cta-email {
+    font-size: 1rem;
+    color: #374151;
+    font-weight: 500;
+}
+
+.cta-phone a, .cta-email a {
+    color: #10b981;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.cta-phone a:hover, .cta-email a:hover {
+    color: #0f766e;
+    text-decoration: underline;
+}
+
+/* Responsive Design for Modern Services */
+@media (max-width: 1024px) {
+    .services-grid-modern {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-title-large {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle-large {
+        font-size: 1.125rem;
+    }
+    
+    .services-modern {
+        padding: 3rem 0;
+    }
+    
+    .services-grid-modern {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .service-card-modern {
+        padding: 2rem;
+    }
+    
+    .service-title-modern {
+        font-size: 1.5rem;
+    }
+    
+    .cta-title {
+        font-size: 2rem;
+    }
+    
+    .cta-description {
+        font-size: 1.05rem;
+    }
+    
+    .cta-contact {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
 /* Split Screen Contact Section */
 .modern-contact-section {
     padding: 0;
