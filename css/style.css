@@ -10558,21 +10558,28 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(174deg) brightness(95%) contrast(97%);
 }
 
-/* Feature icon SVG styling */
-.feature-icon-svg {
+/* Feature icon PNG styling */
+.feature-icon-png {
     width: 20px;
     height: 20px;
     filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(174deg) brightness(95%) contrast(97%);
 }
 
-/* Category icon SVG styling */
-.category-icon-svg {
+/* Category icon PNG styling */
+.category-icon-png {
     width: 32px;
     height: 32px;
     filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(174deg) brightness(95%) contrast(97%);
 }
 
-/* Industry icon SVG styling */
+/* Service icon styling for PNG icons */
+.service-icon {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(174deg) brightness(95%) contrast(97%);
+}
+
+/* Industry icon styling for PNG icons */
 .industry-icon {
     width: 32px;
     height: 32px;
