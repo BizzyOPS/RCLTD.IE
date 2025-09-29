@@ -356,12 +356,15 @@ function initNavigation() {
         }
     });
     
-    // Header scroll effect - improved to prevent flickering
+    // Header scroll effect with auto-hide functionality
     if (header) {
         var lastScrollY = window.scrollY || window.pageYOffset;
+        var scrollThreshold = 10; // Minimum scroll distance to trigger hide/show
+        var scrollTimer = null;
         
         window.addEventListener('scroll', function() {
             var currentScrollY = window.scrollY || window.pageYOffset;
+            var scrollDifference = currentScrollY - lastScrollY;
             
             // Determine if we're on a dark or light section
             var isDarkSection = currentScrollY < window.innerHeight * 0.6;
@@ -377,21 +380,40 @@ function initNavigation() {
                 header.classList.add('on-light');
             }
             
+            // Header hide/show logic based on scroll direction
+            if (Math.abs(scrollDifference) > scrollThreshold) {
+                if (scrollDifference > 0 && currentScrollY > 100) {
+                    // Scrolling down and past initial threshold - hide header
+                    header.classList.add('header-hidden');
+                    header.classList.remove('header-visible');
+                } else if (scrollDifference < 0 || currentScrollY <= 100) {
+                    // Scrolling up or near top - show header
+                    header.classList.add('header-visible');
+                    header.classList.remove('header-hidden');
+                }
+                
+                lastScrollY = currentScrollY;
+            }
+            
             // Clear any inline styles that might conflict
             header.style.backgroundColor = '';
             header.style.boxShadow = '';
-            
-            lastScrollY = currentScrollY;
         });
         
         // Initialize header state on page load
         var initialScrollY = window.scrollY || window.pageYOffset;
         var initialIsDarkSection = initialScrollY < window.innerHeight * 0.6;
+        
+        // Set initial theme
         if (initialIsDarkSection) {
             header.classList.add('on-dark');
         } else {
             header.classList.add('on-light');
         }
+        
+        // Set initial visibility (always visible on load)
+        header.classList.add('header-visible');
+        header.classList.remove('header-hidden');
     }
 }
 
