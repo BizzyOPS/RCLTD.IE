@@ -9063,6 +9063,13 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
     justify-content: center;
 }
 
+.intro-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 .visual-bg {
     position: absolute;
     inset: 0;
