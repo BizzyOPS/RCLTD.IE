@@ -11155,7 +11155,7 @@ p, h1, h2, h3, h4, h5, h6, span, div {
 
 .benefit-item span:last-child {
     font-weight: 600;
-    color: var(--secondary-color);
+    color: #000000;
 }
 
 /* Responsive adjustments for new sections */
