@@ -179,6 +179,13 @@ ControllerBot.prototype.openChat = function() {
         document.body.style.overflow = 'hidden';
     }
 
+    // Make background inert for better modal semantics
+    var mainContent = document.querySelector('main') || document.body;
+    if (mainContent && mainContent !== document.body) {
+        mainContent.setAttribute('aria-hidden', 'true');
+        this.backgroundInert = mainContent;
+    }
+
     // Focus input after animation and ensure it stays within the chatbot
     var self = this;
     setTimeout(function() {
@@ -205,6 +212,12 @@ ControllerBot.prototype.closeChat = function() {
     if (typeof this.scrollY === 'number') {
         window.scrollTo(0, this.scrollY);
         this.scrollY = null;
+    }
+
+    // Restore background interactivity
+    if (this.backgroundInert) {
+        this.backgroundInert.removeAttribute('aria-hidden');
+        this.backgroundInert = null;
     }
 
     // Return focus to the toggle button or previously focused element
