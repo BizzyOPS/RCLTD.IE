@@ -54,26 +54,13 @@ if (window.ResizeObserver) {
 }
 
 // PARTICLES COMPLETELY DISABLED - NO PARTICLE CODE SHOULD EXECUTE
-// Override all particle functions before any code runs
+// Safe no-op overrides without monkey-patching
 if (typeof window !== 'undefined') {
-    window.tsParticles = { load: function() { return Promise.resolve(); }, loadFull: function() { return Promise.resolve(); } };
-    window.particlesJS = function() {};
-    
-    // Block any tsParticles script loading
-    var originalCreateElement = document.createElement;
-    document.createElement = function(tagName) {
-        var element = originalCreateElement.call(document, tagName);
-        if (tagName.toLowerCase() === 'script') {
-            var originalSetAttribute = element.setAttribute;
-            element.setAttribute = function(name, value) {
-                if (name === 'src' && value && value.includes('tsparticles')) {
-                    return; // Block tsParticles loading
-                }
-                return originalSetAttribute.call(this, name, value);
-            };
-        }
-        return element;
+    window.tsParticles = { 
+        load: function() { return Promise.resolve(); }, 
+        loadFull: function() { return Promise.resolve(); } 
     };
+    window.particlesJS = function() {};
 }
 
 // Hero Carousel initialization

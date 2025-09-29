@@ -65,11 +65,16 @@ html {
 
 /* Base document styles */
 html, body {
-    background: #ffffff !important; /* Force white background - overrides any inherited styles */
-    background-color: #ffffff !important; /* Backup declaration for older browsers */
+    background: var(--background-light); /* Use CSS variable for consistent theming */
     min-height: 100vh; /* Ensure full viewport height coverage */
     font-family: var(--font-family); /* Use CSS variable for consistent typography */
     color: var(--text-primary); /* Use CSS variable for consistent text color */
+}
+
+/* Safety training page uses dark theme */
+body.safety-training-page {
+    background: var(--background-dark);
+    color: #ffffff;
 }
 
 /* ============================================================================
