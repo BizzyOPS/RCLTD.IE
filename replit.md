@@ -19,6 +19,8 @@ This project is a professional static website for Robotics & Control Ltd, an Iri
 - **Footer Enhancement**: Improved footer visibility and professional appearance by removing "Certifications & Partnerships" headers across all pages, enlarging footer logo from 40px to responsive sizing (68px mobile, 84px tablet, 96px desktop), and optimizing certification images with consistent max-height values for better proportional design and visual hierarchy
 - **Safety Training Page Cleanup**: Removed problematic loading animation system causing unwanted visual artifacts at the bottom of the safety training page, cleaning up the training-loader.js script and associated HTML elements for a cleaner, more professional user experience
 - **Auto-Hide Header Implementation**: Enhanced header functionality to automatically disappear when scrolling down and reappear when scrolling up, maximizing page view space and improving user experience. The header uses smooth transitions and maintains theme switching while providing intelligent scroll-based hiding with a 100px threshold for optimal usability
+- **About Page Hero Section Removal**: Removed the hero section from the About page to create a cleaner, more focused layout that immediately showcases company information without introductory content
+- **About Page Video Relocation**: Moved the company introduction video from the intro section to the "Ready to Transform" section for better visual impact and engagement at the call-to-action point
 
 # User Preferences
 
