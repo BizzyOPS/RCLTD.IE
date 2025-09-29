@@ -741,6 +741,11 @@ function initPageLoader() {
     
     if (!pageLoader) return;
     
+    // Debug bypass: Check for noloader parameter
+    if (window.location.search.includes('noloader=1') || document.body.classList.contains('debug-no-loader')) {
+        pageLoader.style.display = 'none';
+        return;
+    }
     
     // Check for reduced motion preference
     var prefersReducedMotion = false;
@@ -939,9 +944,10 @@ function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
         }
     }, minDisplayTime);
     
-    // Fallback: Force hide loader after maximum time
+    // Fallback: Force hide loader after maximum time (reduced from original)
     var fallbackTimeout = setTimeout(function() {
         if (loaderElement && !loaderElement.classList.contains('hidden')) {
+            console.log('Loader fallback timeout triggered, hiding loader');
             loaderElement.classList.add('hidden');
             setTimeout(function() {
                 if (loaderElement && loaderElement.parentNode) {
@@ -949,7 +955,7 @@ function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
                 }
             }, 500);
         }
-    }, maxLoadTime);
+    }, 4000); // Always hide after 4 seconds max
     
     // Return cleanup function in case it's needed
     return function cleanup() {

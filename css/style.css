@@ -5036,7 +5036,7 @@ section + section {
     width: 24px;
     height: 24px;
     object-fit: contain;
-    filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%);
+    /* Remove problematic filter that was making icons black */
 }
 
 .feature-icon-png {
@@ -5044,7 +5044,7 @@ section + section {
     height: 20px;
     object-fit: contain;
     vertical-align: middle;
-    filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%);
+    /* Remove problematic filter that was making icons black */
 }
 
 /* Benefits Section Styling */
@@ -10736,35 +10736,35 @@ p, h1, h2, h3, h4, h5, h6, span, div {
 .service-card__icon .service-icon {
     width: 2.5rem;
     height: 2.5rem;
-    filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(174deg) brightness(95%) contrast(97%);
+    /* Remove teal filter that was causing blue squares */
 }
 
 /* Feature icon PNG styling */
 .feature-icon-png {
     width: 20px;
     height: 20px;
-    filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(174deg) brightness(95%) contrast(97%);
+    /* Remove teal filter that was causing blue squares */
 }
 
 /* Category icon PNG styling */
 .category-icon-png {
     width: 32px;
     height: 32px;
-    filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(174deg) brightness(95%) contrast(97%);
+    /* Remove teal filter that was causing blue squares */
 }
 
 /* Service icon styling for PNG icons */
 .service-icon {
     width: 32px;
     height: 32px;
-    filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(174deg) brightness(95%) contrast(97%);
+    /* Remove teal filter that was causing blue squares */
 }
 
 /* Industry icon styling for PNG icons */
 .industry-icon {
     width: 32px;
     height: 32px;
-    filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(174deg) brightness(95%) contrast(97%);
+    /* Remove teal filter that was causing blue squares */
 }
 
 /* Service card title */
