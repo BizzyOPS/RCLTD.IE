@@ -25,6 +25,7 @@ This project is a professional static website for Robotics & Control Ltd, an Iri
 - **Hero Section Addition**: Added professional hero sections to About and Blog pages matching the Store page design, featuring badge elements, page titles, and compelling subtitles for consistent user experience across all major pages
 - **About Page Video Enhancement**: Removed the teal gradient background box from the company introduction video for a cleaner, more professional presentation
 - **Unified Icon System**: Implemented comprehensive icon sizing and transparency system across all pages with professional sizing (Large 48px for prominent icons, Medium 40px for categories, Medium-Small 32px for details, Small 24px for inline icons), removed white background CSS from safety training page icons, added consistent drop-shadow effects for icons on dark backgrounds, and consolidated all icon CSS rules into a single unified system eliminating duplicate definitions
+- **Transparent Icon Replacement**: Generated and replaced 18 critical PNG icon files with new AI-generated transparent background versions including all industry icons (factory, automotive, food, electrical), service icons (automation, safety, robot), utility icons (phone, email, clock, people, analytics, gear), training course icons (forklift, fire safety, first aid), and all 5 main service card icons, eliminating visible white/colored backgrounds for professional enterprise appearance
 
 # User Preferences
 
