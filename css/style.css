@@ -715,7 +715,8 @@ body:not(.home) {
         background-color: rgba(8, 145, 178, 0.1);
     }
     .nav-logo {
-        max-height: 40px;
+        height: 45px; /* Consistent with mobile breakpoint */
+        max-width: 50vw; /* Prevent overflow */
         width: auto;
     }
 }
@@ -1189,8 +1190,9 @@ section + section {
     }
     
     .nav-logo {
-        width: 100px;
-        height: auto;
+        height: 90px; /* Maintain proportion for medium tablets */
+        width: auto;
+        max-width: 45vw;
     }
     
     .nav-phone {
@@ -1416,6 +1418,8 @@ section + section {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    min-height: 80px; /* Ensure consistent header height */
+    position: relative; /* For proper positioning context */
 }
 .nav-brand {
     display: flex;
@@ -1458,17 +1462,60 @@ section + section {
 .nav-brand-link:hover {
     opacity: 0.8;
 }
-/* Desktop responsive logo sizing */
-@media (min-width: 1024px) {
+/* Responsive logo sizing - improved scalability */
+.nav-logo {
+    height: 100px; /* Base tablet size: 768-1023px */
+    width: auto;
+    max-width: none; /* Allow natural width scaling */
+    object-fit: contain; /* Maintain aspect ratio */
+    transition: all 0.3s ease; /* Smooth scaling transitions */
+}
+
+/* Large desktop responsive logo sizing */
+@media (min-width: 1200px) {
     .nav-logo {
-        height: 120px; /* Desktop size: ≥1024px */
+        height: 120px; /* Large desktop size */
     }
 }
-/* Mobile responsive logo sizing */
+
+/* Desktop responsive logo sizing */
+@media (min-width: 1024px) and (max-width: 1199px) {
+    .nav-logo {
+        height: 110px; /* Standard desktop size */
+    }
+}
+
+/* Tablet responsive logo sizing */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .nav-logo {
+        height: 100px; /* Tablet size */
+    }
+}
+
+/* Mobile responsive logo sizing - prevent squashing */
 @media (max-width: 767px) {
     .nav-logo {
-        height: 80px; /* Mobile size: <768px */
-        max-width: 70vw;
+        height: 70px; /* Smaller mobile size */
+        max-width: 60vw; /* Prevent logo from taking too much width */
+        min-height: 50px; /* Maintain minimum readable size */
+    }
+}
+
+/* Small mobile responsive logo sizing */
+@media (max-width: 480px) {
+    .nav-logo {
+        height: 60px; /* Very small mobile */
+        max-width: 55vw; /* Ensure menu has space */
+        min-height: 45px; /* Maintain legibility */
+    }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 360px) {
+    .nav-logo {
+        height: 55px;
+        max-width: 50vw;
+        min-height: 40px;
     }
 }
 /* Removed redundant 480px media query - mobile sizing now handled by 767px breakpoint */
@@ -1534,10 +1581,23 @@ section + section {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.5rem;
     padding: var(--spacing-2);
-    width: 44px;
-    height: 44px;
+    width: 48px; /* Improved touch target */
+    height: 48px;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+    position: relative;
+    z-index: 1001; /* Ensure toggle stays above other elements */
+}
+
+.nav-toggle:hover {
+    background-color: rgba(8, 145, 178, 0.1);
+    transform: scale(1.05);
+}
+
+.nav-toggle:focus {
+    outline: 2px solid rgba(8, 145, 178, 0.5);
+    outline-offset: 2px;
 }
 .hamburger {
     width: 24px;
@@ -1569,23 +1629,27 @@ section + section {
         display: none;
     }
 }
-/* Mobile Menu */
+/* Enhanced Mobile Menu - Scalable & Responsive */
 .nav-menu.mobile-open {
     display: flex;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
     flex-direction: column;
     padding: var(--spacing-4) var(--spacing-6);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
     border-top: 1px solid var(--border-color);
     z-index: 10001;
-    max-height: calc(100vh - var(--header-height) - 2rem);
+    max-height: calc(100vh - 80px); /* Dynamic viewport-relative height */
+    min-height: auto;
     overflow-y: auto;
+    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
-    animation: slideDown 0.3s ease-out !important;
+    animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transform-origin: top center;
 }
 
 @keyframes slideDown {
@@ -1604,32 +1668,72 @@ section + section {
 .nav-menu.mobile-open .nav-phone {
     display: none !important;
 }
-/* Improve mobile touch targets */
+/* Enhanced mobile touch targets - scalable across devices */
 @media (max-width: 767px) {
+    .nav-menu.mobile-open {
+        max-height: calc(100vh - 70px); /* Adjust for smaller mobile headers */
+        padding: var(--spacing-3) var(--spacing-5);
+    }
+    
     .nav-menu.mobile-open .nav-item {
         margin: var(--spacing-1) 0;
+        border-radius: var(--radius-sm);
+        overflow: hidden; /* Contain hover effects */
     }
+    
     .nav-menu.mobile-open .nav-link {
         display: flex;
         padding: var(--spacing-4) var(--spacing-3);
-        min-height: 44px;
+        min-height: 48px; /* Improved touch target size */
         align-items: center;
         border-radius: var(--radius-sm);
-        transition: background-color 0.2s ease, transform 0.1s ease;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         text-decoration: none;
         position: relative;
         z-index: 10;
         touch-action: manipulation;
         font-size: var(--font-size-base);
         font-weight: 500;
+        color: var(--text-primary);
+        user-select: none; /* Prevent text selection on mobile */
     }
+    
     .nav-menu.mobile-open .nav-link:hover,
-    .nav-menu.mobile-open .nav-link:active {
-        background-color: rgba(8, 145, 178, 0.1);
+    .nav-menu.mobile-open .nav-link:focus {
+        background-color: rgba(8, 145, 178, 0.08);
         transform: translateX(4px);
+        outline: none;
     }
+    
     .nav-menu.mobile-open .nav-link:active {
+        background-color: rgba(8, 145, 178, 0.15);
         transform: translateX(4px) scale(0.98);
+        transition: all 0.1s ease;
+    }
+}
+
+/* Small mobile optimizations */
+@media (max-width: 480px) {
+    .nav-menu.mobile-open {
+        max-height: calc(100vh - 60px);
+        padding: var(--spacing-2) var(--spacing-4);
+    }
+    
+    .nav-menu.mobile-open .nav-link {
+        min-height: 52px; /* Larger touch targets on small screens */
+        font-size: 1.1rem; /* Slightly larger text for better readability */
+    }
+}
+
+/* Extra small mobile optimizations */
+@media (max-width: 360px) {
+    .nav-menu.mobile-open {
+        max-height: calc(100vh - 55px);
+    }
+    
+    .nav-menu.mobile-open .nav-link {
+        min-height: 56px; /* Even larger touch targets */
+        padding: var(--spacing-5) var(--spacing-3);
     }
 }
 .header.on-dark .nav-menu.mobile-open {
