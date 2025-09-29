@@ -4134,12 +4134,8 @@ section + section {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    width: min(380px, calc(100vw - 4rem));
-    height: min(600px, calc(100vh - 8rem));
-    max-width: 420px;
-    max-height: 700px;
-    min-width: 280px;
-    min-height: 400px;
+    width: clamp(280px, min(380px, calc(100vw - 4rem)), 420px);
+    height: clamp(400px, min(600px, calc(100dvh - 8rem)), 700px);
     background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
     border: 1px solid rgba(226, 232, 240, 0.8);
     border-radius: 16px;
@@ -4153,6 +4149,7 @@ section + section {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1002;
     overflow: hidden;
+    overscroll-behavior: contain;
 }
 .chatbot-container.open {
     transform: translateY(0) scale(1);
@@ -4233,7 +4230,8 @@ section + section {
     -webkit-overflow-scrolling: touch; /* Better mobile scrolling */
     scrollbar-width: thin;
     scrollbar-color: rgba(8, 145, 178, 0.3) transparent;
-    max-height: calc(100% - 140px); /* Reserve space for header and input */
+    max-height: min(65dvh, 520px);
+    overscroll-behavior: contain;
 }
 
 /* Custom scrollbar for webkit browsers */
@@ -4443,15 +4441,16 @@ section + section {
 @media (max-width: 768px) {
     .chatbot-container {
         width: min(90vw, 400px);
-        height: min(85vh, 650px);
+        height: min(85dvh, 650px);
         bottom: 1rem;
-        right: 50%;
-        left: auto;
-        transform: translateX(50%) translateY(100%) scale(0.8);
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%) translateY(100%) scale(0.8);
         border-radius: 12px;
+        padding-bottom: env(safe-area-inset-bottom, 0);
     }
     .chatbot-container.open {
-        transform: translateX(50%) translateY(0) scale(1);
+        transform: translateX(-50%) translateY(0) scale(1);
     }
     .chatbot-toggle {
         bottom: 1.5rem;
@@ -4478,16 +4477,17 @@ section + section {
 @media (max-width: 480px) {
     .chatbot-container {
         width: calc(100vw - 1rem);
-        height: min(90vh, 600px);
+        height: min(90dvh, 600px);
         bottom: 0.5rem;
-        right: 0.5rem;
-        left: 0.5rem;
-        transform: translateY(100%) scale(0.8);
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%) translateY(100%) scale(0.8);
         border-radius: 8px;
-        margin: 0 auto;
+        padding-bottom: env(safe-area-inset-bottom, 0);
+        overscroll-behavior: contain;
     }
     .chatbot-container.open {
-        transform: translateY(0) scale(1);
+        transform: translateX(-50%) translateY(0) scale(1);
     }
     .chatbot-toggle {
         bottom: 1rem;

@@ -50,12 +50,12 @@ ControllerBot.prototype.createChatInterface = function() {
         '            </div>',
         '',
         '            <!-- Chatbot Container -->',
-        '            <div id="chatbot-container" class="chatbot-container">',
+        '            <div id="chatbot-container" class="chatbot-container" role="dialog" aria-labelledby="chatbot-title" aria-modal="true">',
         '                <div class="chatbot-header">',
         '                    <div class="chatbot-header-info">',
         '                        <img src="images/roundlogo.png" alt="Controller Bot" class="chatbot-avatar">',
         '                        <div class="chatbot-header-text">',
-        '                            <h3>Controller Bot</h3>',
+        '                            <h3 id="chatbot-title">Controller Bot</h3>',
         '                            <span class="chatbot-status">Online • Ready to help</span>',
         '                        </div>',
         '                    </div>',
@@ -66,7 +66,7 @@ ControllerBot.prototype.createChatInterface = function() {
         '                    </button>',
         '                </div>',
         '                ',
-        '                <div class="chatbot-messages" id="chatbot-messages">',
+        '                <div class="chatbot-messages" id="chatbot-messages" role="log" aria-live="polite" aria-label="Chat conversation">',
         '                    <!-- Messages will be added here dynamically -->',
         '                </div>',
         '                ',
@@ -167,9 +167,22 @@ ControllerBot.prototype.openChat = function() {
     toggle.classList.add('hidden');
     this.isOpen = true;
 
-    // Focus input after animation
+    // Store the currently focused element for restoration later
+    this.previousFocus = document.activeElement;
+
+    // Add body scroll lock on mobile devices
+    if (window.innerWidth <= 768) {
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
+    }
+
+    // Focus input after animation and ensure it stays within the chatbot
+    var self = this;
     setTimeout(function() {
-        document.getElementById('chatbot-input').focus();
+        var input = document.getElementById('chatbot-input');
+        input.focus();
+        self.trapFocusInChat();
     }, 300);
 };
 
@@ -180,6 +193,60 @@ ControllerBot.prototype.closeChat = function() {
     container.classList.remove('open');
     toggle.classList.remove('hidden');
     this.isOpen = false;
+
+    // Remove body scroll lock
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.width = '';
+
+    // Return focus to the toggle button or previously focused element
+    if (this.previousFocus && this.previousFocus.focus) {
+        this.previousFocus.focus();
+    } else {
+        toggle.focus();
+    }
+
+    // Remove focus trap
+    this.removeFocusTrap();
+};
+
+// Focus trap functionality for accessibility
+ControllerBot.prototype.trapFocusInChat = function() {
+    var container = document.getElementById('chatbot-container');
+    var focusableElements = container.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    
+    var firstFocusable = focusableElements[0];
+    var lastFocusable = focusableElements[focusableElements.length - 1];
+    
+    this.focusTrapHandler = function(e) {
+        var key = e.key || e.keyCode;
+        var isTabPressed = (key === 'Tab' || key === 9);
+        
+        if (!isTabPressed) return;
+        
+        if (e.shiftKey) {
+            if (document.activeElement === firstFocusable) {
+                lastFocusable.focus();
+                e.preventDefault();
+            }
+        } else {
+            if (document.activeElement === lastFocusable) {
+                firstFocusable.focus();
+                e.preventDefault();
+            }
+        }
+    };
+    
+    document.addEventListener('keydown', this.focusTrapHandler);
+};
+
+ControllerBot.prototype.removeFocusTrap = function() {
+    if (this.focusTrapHandler) {
+        document.removeEventListener('keydown', this.focusTrapHandler);
+        this.focusTrapHandler = null;
+    }
 };
 
 ControllerBot.prototype.addWelcomeMessage = function() {
