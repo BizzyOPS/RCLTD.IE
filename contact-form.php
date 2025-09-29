@@ -23,8 +23,6 @@ $smtp_secure = 'tls'; // or 'ssl'
 $smtp_username = 'info@rcltd.ie'; // Your domain email
 $smtp_password = ''; // Set in Plesk email account
 
-// Email settings
-$to_email = 'info@rcltd.ie';
 $from_email = 'info@rcltd.ie';
 $from_name = 'RC Ltd Contact Form';
 
@@ -49,6 +47,7 @@ $email = isset($_POST['email']) ? trim(filter_var($_POST['email'], FILTER_SANITI
 $company = isset($_POST['company']) ? trim(filter_var($_POST['company'], FILTER_SANITIZE_STRING)) : '';
 $phone = isset($_POST['phone']) ? trim(filter_var($_POST['phone'], FILTER_SANITIZE_STRING)) : '';
 $service = isset($_POST['service']) ? trim(filter_var($_POST['service'], FILTER_SANITIZE_STRING)) : '';
+$department = isset($_POST['department']) ? trim(filter_var($_POST['department'], FILTER_SANITIZE_EMAIL)) : '';
 $message = isset($_POST['message']) ? trim(filter_var($_POST['message'], FILTER_SANITIZE_STRING)) : '';
 
 // Required field validation
@@ -59,6 +58,24 @@ if (empty($name) || empty($email) || empty($message)) {
 // Email validation
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     sendResponse(false, 'Please enter a valid email address');
+}
+
+// Department email validation and routing
+$valid_departments = [
+    'info@rcltd.ie',
+    'chelsey.omahony@rcltd.ie',
+    'morgan@rcltd.ie',
+    'benedict.larkin@rcltd.ie', // Normalized to lowercase
+    'lmccormack@rcltd.ie'
+];
+
+// Normalize department email to lowercase for comparison
+$department_normalized = !empty($department) ? strtolower(trim($department)) : '';
+
+// Determine recipient email based on department selection
+$to_email = 'info@rcltd.ie'; // Default fallback
+if (!empty($department_normalized) && in_array($department_normalized, $valid_departments)) {
+    $to_email = $department_normalized;
 }
 
 // Rate limiting (simple)
@@ -137,6 +154,23 @@ if (!empty($service)) {
         </div>";
 }
 
+if (!empty($department)) {
+    $department_labels = [
+        'info@rcltd.ie' => 'General Inquiries',
+        'chelsey.omahony@rcltd.ie' => 'Health, Safety & Operations',
+        'morgan@rcltd.ie' => 'Operations Management',
+        'benedict.larkin@rcltd.ie' => 'Marketing & Communications',
+        'lmccormack@rcltd.ie' => 'General Administration'
+    ];
+    $department_display = isset($department_labels[$department_normalized]) ? $department_labels[$department_normalized] : $department;
+    
+    $html_body .= "
+        <div class='field'>
+            <div class='label'>Department:</div>
+            <div>" . htmlspecialchars($department_display) . " (" . htmlspecialchars($department) . ")</div>
+        </div>";
+}
+
 $html_body .= "
         <div class='field'>
             <div class='label'>Message:</div>
@@ -166,6 +200,7 @@ $text_body .= "Email: " . $email . "\n";
 if (!empty($company)) $text_body .= "Company: " . $company . "\n";
 if (!empty($phone)) $text_body .= "Phone: " . $phone . "\n";
 if (!empty($service)) $text_body .= "Service Interest: " . $service_display . "\n";
+if (!empty($department)) $text_body .= "Department: " . $department_display . " (" . $to_email . ")\n";
 $text_body .= "\nMessage:\n" . $message . "\n";
 $text_body .= "\nSubmitted: " . date('Y-m-d H:i:s T') . "\n";
 $text_body .= "IP Address: " . $_SERVER['REMOTE_ADDR'] . "\n";
