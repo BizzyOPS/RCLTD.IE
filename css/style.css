@@ -11184,12 +11184,27 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     transition: transform var(--transition-normal);
 }
 
+/* Styling for colored PNG course icons */
+.course-icon img,
+.course-icon-png {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    transition: transform var(--transition-normal);
+}
+
 .brochure-card:hover .course-icon {
     transform: scale(1.1);
     box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
 }
 
 .brochure-card:hover .course-icon svg {
+    transform: scale(1.1);
+}
+
+.brochure-card:hover .course-icon img,
+.brochure-card:hover .course-icon-png {
     transform: scale(1.1);
 }
 
