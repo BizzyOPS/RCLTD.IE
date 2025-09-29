@@ -207,6 +207,15 @@ ControllerBot.prototype.sendMessage = function() {
     
     if (!message || this.isTyping) return;
 
+    // Enhanced input sanitization - remove potentially harmful content
+    message = this.sanitizeInput(message);
+    
+    if (!message) {
+        // Input was entirely malicious content
+        input.value = '';
+        return;
+    }
+
     // Add user message
     var userMessage = {
         type: 'user',
@@ -507,6 +516,54 @@ ControllerBot.prototype.getLocalResponse = function(message) {
                 '[Food Safety Consultation →](contact.html)\n\n' +
                 'What food safety challenges can we help you solve?';
             resolve(response);
+        } else if (lowerMessage.includes('buy') || lowerMessage.includes('purchase') || lowerMessage.includes('order') || lowerMessage.includes('pay') || lowerMessage.includes('payment') || lowerMessage.includes('invoice') || lowerMessage.includes('billing')) {
+            var response = '**💰 Ready to Purchase Our Services?**\n\n' +
+                'Thank you for your interest in R&C Ltd services! For all purchases, quotes, and billing inquiries, please contact us directly:\n\n' +
+                '**🛒 To Purchase or Get Quote:**\n' +
+                '• **Call Our Sales Team:** [+353 (0) 52 7443258](tel:+353527443258)\n' +
+                '• **Email for Quote:** [info@rcltd.ie](mailto:info@rcltd.ie)\n' +
+                '• **Online Quote Form:** [Get Free Quote →](contact.html)\n' +
+                '• **Schedule Consultation:** Free on-site visit available\n\n' +
+                '**💼 What We\'ll Need for Your Quote:**\n' +
+                '• Project scope and timeline\n' +
+                '• Technical requirements\n' +
+                '• Site location details\n' +
+                '• Budget range (optional)\n\n' +
+                '**⚡ Our Process:**\n' +
+                '1. **Consultation** - Free technical discussion\n' +
+                '2. **Quote** - Detailed proposal within 24-48 hours\n' +
+                '3. **Agreement** - Clear terms and timeline\n' +
+                '4. **Delivery** - Professional implementation\n\n' +
+                '**🏆 Why Choose Us:**\n' +
+                '• 15+ years of experience\n' +
+                '• Competitive pricing with no hidden costs\n' +
+                '• Full project support from design to commissioning\n' +
+                '• 12-month warranty on all work\n\n' +
+                '[Contact Us Now →](contact.html) to start your project!\n\n' +
+                'What type of service are you looking to purchase?';
+            resolve(response);
+        } else if (lowerMessage.includes('complaint') || lowerMessage.includes('problem') || lowerMessage.includes('issue') || lowerMessage.includes('wrong') || lowerMessage.includes('error') || lowerMessage.includes('broken') || lowerMessage.includes('not working') || lowerMessage.includes('disappointed') || lowerMessage.includes('unsatisfied') || lowerMessage.includes('grievance') || lowerMessage.includes('dispute')) {
+            var response = '**🙏 We Sincerely Apologize**\n\n' +
+                'I\'m truly sorry to hear that you\'re experiencing issues with our service. Your concerns are our **highest priority** and we take all feedback very seriously.\n\n' +
+                '**🚨 Immediate Action Required:**\n' +
+                'Please contact us directly so we can resolve this matter urgently:\n\n' +
+                '**📞 Priority Contact Methods:**\n' +
+                '• **Call Direct:** [+353 (0) 52 7443258](tel:+353527443258) - *Speak with management*\n' +
+                '• **Email:** [info@rcltd.ie](mailto:info@rcltd.ie) - *Mark as URGENT*\n' +
+                '• **Contact Form:** [Priority Support →](contact.html) - *24hr response guaranteed*\n\n' +
+                '**🔧 What We\'ll Do:**\n' +
+                '• **Listen** - Understand your specific concerns\n' +
+                '• **Investigate** - Thoroughly review what went wrong\n' +
+                '• **Resolve** - Take immediate corrective action\n' +
+                '• **Follow-up** - Ensure your complete satisfaction\n\n' +
+                '**💯 Our Promise:**\n' +
+                '• Your issue will be escalated to senior management\n' +
+                '• We will respond within 4 business hours\n' +
+                '• We will work tirelessly to make this right\n' +
+                '• Your satisfaction is our ultimate goal\n\n' +
+                'At R&C Ltd, we stand behind our work 100%. Please don\'t hesitate to reach out - we value your business and want to earn back your trust.\n\n' +
+                '[Contact Us Now →](contact.html) - Your satisfaction matters most!';
+            resolve(response);
         } else if (lowerMessage.includes('location') || lowerMessage.includes('where') || lowerMessage.includes('address') || lowerMessage.includes('about') || lowerMessage.includes('company')) {
             var response = '**🏢 About Robotics & Control Ltd**\n\n' +
                 '**📍 Our Location:**\n' +
@@ -645,6 +702,53 @@ ControllerBot.prototype.escapeHtml = function(text) {
         var div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML.replace(/\n/g, '<br>');
+    }
+
+    ControllerBot.prototype.sanitizeInput = function(input) {
+        // Enhanced input sanitization for security
+        if (!input || typeof input !== 'string') {
+            return '';
+        }
+        
+        // Remove potentially dangerous patterns
+        var sanitized = input
+            // Remove script tags and content
+            .replace(/<script[\s\S]*?<\/script>/gi, '')
+            // Remove javascript: protocols  
+            .replace(/javascript:/gi, '')
+            // Remove data: protocols
+            .replace(/data:/gi, '')
+            // Remove on* event handlers
+            .replace(/on\w+\s*=/gi, '')
+            // Remove excessive whitespace but preserve reasonable formatting
+            .replace(/\s+/g, ' ')
+            // Trim whitespace
+            .trim();
+            
+        // Check for excessive length (could be an attack)
+        if (sanitized.length > 500) {
+            sanitized = sanitized.substring(0, 500);
+        }
+        
+        // Basic check for obvious injection attempts
+        var suspiciousPatterns = [
+            /<\/?\w+[^>]*>/i,  // HTML tags
+            /\beval\s*\(/i,     // eval functions
+            /\balert\s*\(/i,    // alert functions
+            /\bdocument\./i,    // document access
+            /\bwindow\./i       // window access
+        ];
+        
+        for (var i = 0; i < suspiciousPatterns.length; i++) {
+            if (suspiciousPatterns[i].test(sanitized)) {
+                // Log potential attack (in production, this would be logged server-side)
+                console.warn('Potential security threat detected in user input');
+                // Return empty string to block the input
+                return '';
+            }
+        }
+        
+        return sanitized;
     }
 
 ControllerBot.prototype.showTypingIndicator = function() {
