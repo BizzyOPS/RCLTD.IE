@@ -10516,6 +10516,34 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     stroke-width: 1.5;
 }
 
+/* SVG icon styling for service cards */
+.service-card__icon .service-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(174deg) brightness(95%) contrast(97%);
+}
+
+/* Feature icon SVG styling */
+.feature-icon-svg {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(174deg) brightness(95%) contrast(97%);
+}
+
+/* Category icon SVG styling */
+.category-icon-svg {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(174deg) brightness(95%) contrast(97%);
+}
+
+/* Industry icon SVG styling */
+.industry-icon {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(174deg) brightness(95%) contrast(97%);
+}
+
 /* Service card title */
 .service-card__title {
     font-size: var(--font-size-xl);
