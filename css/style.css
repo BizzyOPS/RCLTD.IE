@@ -6689,12 +6689,12 @@ body.safety-training-page a.btn-hero-secondary,
     text-align: center;
 }
 
-/* Bottom Schedule Training button - WHITE text */
-.contact-action .btn-primary,
-.contact-action .btn-primary:visited,
-.contact-action .btn-primary:hover,
-.contact-action .btn-primary:focus,
-.contact-action .btn-primary:active {
+/* Bottom Schedule Training button - WHITE text (Safety Training page only) */
+body.safety-training-page .contact-action .btn-primary,
+body.safety-training-page .contact-action .btn-primary:visited,
+body.safety-training-page .contact-action .btn-primary:hover,
+body.safety-training-page .contact-action .btn-primary:focus,
+body.safety-training-page .contact-action .btn-primary:active {
     font-size: 1.2rem;
     padding: var(--spacing-4) var(--spacing-8);
     border-radius: 12px;
