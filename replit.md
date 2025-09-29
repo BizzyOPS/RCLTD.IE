@@ -21,6 +21,7 @@ This project is a professional static website for Robotics & Control Ltd, an Iri
 - **Auto-Hide Header Implementation**: Enhanced header functionality to automatically disappear when scrolling down and reappear when scrolling up, maximizing page view space and improving user experience. The header uses smooth transitions and maintains theme switching while providing intelligent scroll-based hiding with a 100px threshold for optimal usability
 - **About Page Hero Section Removal**: Removed the hero section from the About page to create a cleaner, more focused layout that immediately showcases company information without introductory content
 - **About Page Video Relocation**: Moved the company introduction video from the intro section to the "Ready to Transform" section for better visual impact and engagement at the call-to-action point
+- **Blog Page Hero Section Removal**: Removed the hero section from the Blog page to create a cleaner, more focused layout that immediately showcases articles and content without introductory banner elements
 
 # User Preferences
 
