@@ -6885,9 +6885,20 @@ body.safety-training-page .nav-item.nav-dropdown .nav-dropdown-container .nav-dr
     fill: none !important;
 }
 
-/* Make course icons visible on Safety Training page dark background */
+/* Make course icons visible on Safety Training page dark background with white backdrop */
 body.safety-training-page .course-icon-png {
-    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%);
+    background: white;
+    border-radius: 8px;
+    padding: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Make metadata icons (clock, people) visible with smaller white backdrop */
+body.safety-training-page .feature-icon-png {
+    background: white;
+    border-radius: 4px;
+    padding: 2px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
 }
 
 body.safety-training-page .brochure-courses h2 {
