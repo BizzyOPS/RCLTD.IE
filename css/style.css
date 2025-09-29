@@ -6869,6 +6869,12 @@ body.safety-training-page .btn-course {
     font-weight: 600;
 }
 
+/* Make dropdown arrow visible on Safety Training page dark background */
+body.safety-training-page .nav-dropdown-toggle,
+body.safety-training-page .dropdown-arrow {
+    color: white !important;
+}
+
 body.safety-training-page .brochure-courses h2 {
     color: #ffffff !important;
 }
