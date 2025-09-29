@@ -6890,11 +6890,25 @@ body.safety-training-page .brochure-card * {
 }
 
 /* Ensure buttons maintain proper contrast - BURNT ORANGE text for Book Training buttons */
-body.safety-training-page .btn-course {
+html body.safety-training-page .btn-course,
+html body.safety-training-page .course-cta .btn-course,
+html body.safety-training-page .course-cta a.btn-course,
+html body.safety-training-page a.btn-course {
     color: #FF6F00 !important;
     min-height: 44px !important;
-    text-shadow: none;
-    font-weight: 600;
+    text-shadow: none !important;
+    font-weight: 600 !important;
+}
+
+/* Additional high-specificity rules for all button states */
+html body.safety-training-page .course-cta a.btn-course:link,
+html body.safety-training-page .course-cta a.btn-course:visited,
+html body.safety-training-page .course-cta a.btn-course:hover,
+html body.safety-training-page .course-cta a.btn-course:focus,
+html body.safety-training-page .course-cta a.btn-course:active {
+    color: #FF6F00 !important;
+    font-weight: 600 !important;
+    text-shadow: none !important;
 }
 
 /* Make dropdown arrow visible on Safety Training page dark background */
