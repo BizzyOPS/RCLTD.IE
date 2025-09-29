@@ -6689,7 +6689,7 @@ body.safety-training-page a.btn-hero-secondary,
     text-align: center;
 }
 
-/* Bottom Schedule Training button - burnt orange text */
+/* Bottom Schedule Training button - WHITE text */
 .contact-action .btn-primary,
 .contact-action .btn-primary:visited,
 .contact-action .btn-primary:hover,
@@ -6698,7 +6698,7 @@ body.safety-training-page a.btn-hero-secondary,
     font-size: 1.2rem;
     padding: var(--spacing-4) var(--spacing-8);
     border-radius: 12px;
-    color: #FF6F00 !important;
+    color: white !important;
     font-weight: 600 !important;
     box-shadow: 0 4px 15px rgba(8, 145, 178, 0.3);
     transition: all 0.3s ease;
@@ -6861,9 +6861,9 @@ body.safety-training-page .brochure-card * {
     color: inherit !important;
 }
 
-/* Ensure buttons maintain proper contrast - WHITE text for Book Training buttons */
+/* Ensure buttons maintain proper contrast - BURNT ORANGE text for Book Training buttons */
 body.safety-training-page .btn-course {
-    color: white !important;
+    color: #FF6F00 !important;
     min-height: 44px !important;
     text-shadow: none;
     font-weight: 600;
@@ -6873,6 +6873,11 @@ body.safety-training-page .btn-course {
 body.safety-training-page .nav-dropdown-toggle,
 body.safety-training-page .dropdown-arrow {
     color: white !important;
+}
+
+/* Make course icons visible on Safety Training page dark background */
+body.safety-training-page .course-icon-png {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%);
 }
 
 body.safety-training-page .brochure-courses h2 {
