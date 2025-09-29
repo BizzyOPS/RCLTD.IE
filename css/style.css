@@ -5016,6 +5016,14 @@ section + section {
         z-index: 999;
     }
 }
+/* CSS class for training course icons */
+.course-icon-png {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(100%) contrast(100%);
+}
+
 /* Benefits Section Styling */
 .benefits-section {
     padding: var(--spacing-16) 0;
@@ -6248,7 +6256,7 @@ section + section {
 
 .btn-hero-primary {
     background: linear-gradient(135deg, #4CAF50, #66BB6A) !important;
-    color: #ffffff !important;
+    color: #FF6F00 !important;
     padding: var(--spacing-4) var(--spacing-8);
     border: none;
     border-radius: var(--radius-lg);
@@ -6270,10 +6278,11 @@ body.safety-training-page a.btn-hero-primary,
 .brochure-cta a.btn-hero-primary,
 a.btn-hero-primary,
 .btn-hero-primary {
-    color: #ffffff !important;
+    color: #FF6F00 !important;
     text-shadow: none !important;
     background: linear-gradient(135deg, #4CAF50, #66BB6A) !important;
     border: none !important;
+    font-weight: 600 !important;
 }
 
 /* Force white text with highest specificity possible for all button states */
@@ -6282,7 +6291,8 @@ html body.safety-training-page main section.brochure-hero .brochure-cta a.btn-he
 html body.safety-training-page main section.brochure-hero .brochure-cta a.btn-hero-primary:hover,
 html body.safety-training-page main section.brochure-hero .brochure-cta a.btn-hero-primary:focus,
 html body.safety-training-page main section.brochure-hero .brochure-cta a.btn-hero-primary:active {
-    color: #ffffff !important;
+    color: #FF6F00 !important;
+    font-weight: 600 !important;
 }
 
 /* Additional ID-based rule for extra specificity */
@@ -6291,7 +6301,8 @@ html body.safety-training-page main section.brochure-hero .brochure-cta a.btn-he
 #schedule-training-btn:hover,
 #schedule-training-btn:focus,
 #schedule-training-btn:active {
-    color: #ffffff !important;
+    color: #FF6F00 !important;
+    font-weight: 600 !important;
 }
 
 body.safety-training-page .btn-hero-secondary,
@@ -6500,7 +6511,7 @@ body.safety-training-page a.btn-hero-secondary,
 
 .btn-course {
     background: linear-gradient(135deg, #4CAF50, #66BB6A);
-    color: white !important;
+    color: #FF6F00 !important;
     padding: var(--btn-padding-y) var(--btn-padding-x);
     border: none;
     border-radius: var(--radius-md);
@@ -6822,9 +6833,10 @@ body.safety-training-page .brochure-card * {
 
 /* Ensure buttons maintain proper contrast */
 body.safety-training-page .btn-course {
-    color: #ffffff !important;
+    color: #FF6F00 !important;
     min-height: 44px !important;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    text-shadow: none;
+    font-weight: 600;
 }
 
 body.safety-training-page .brochure-courses h2 {
