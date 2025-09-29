@@ -6156,14 +6156,19 @@ section + section {
 /* Ensure hero buttons always have white text on safety training page */
 body.safety-training-page .btn-hero-primary,
 body.safety-training-page .brochure-cta .btn-hero-primary,
-body.safety-training-page a.btn-hero-primary {
+body.safety-training-page a.btn-hero-primary,
+.safety-training-page .btn-hero-primary,
+.brochure-cta a.btn-hero-primary {
     color: #ffffff !important;
     text-shadow: none !important;
+    background: linear-gradient(135deg, #4CAF50, #66BB6A) !important;
 }
 
 body.safety-training-page .btn-hero-secondary,
 body.safety-training-page .brochure-cta .btn-hero-secondary,
-body.safety-training-page a.btn-hero-secondary {
+body.safety-training-page a.btn-hero-secondary,
+.safety-training-page .btn-hero-secondary,
+.brochure-cta a.btn-hero-secondary {
     color: #ffffff !important;
     text-shadow: none !important;
 }
