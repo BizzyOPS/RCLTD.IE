@@ -754,6 +754,7 @@ function initPageLoader() {
     
     if (!pageLoader) return;
     
+    
     // Check for reduced motion preference
     var prefersReducedMotion = false;
     if (window.matchMedia) {
@@ -816,8 +817,8 @@ function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
     
     var currentProgress = 0;
     var loaderStartTime = Date.now();
-    var minLoadTime = prefersReducedMotion ? 500 : 3000; // Reduced timing for better UX
-    var maxLoadTime = prefersReducedMotion ? 1000 : 4500; // Reduced timing for better UX
+    var minLoadTime = prefersReducedMotion ? 500 : 2000; // Faster but reasonable timing
+    var maxLoadTime = prefersReducedMotion ? 1000 : 3500; // Faster but reasonable timing
     
     // Initialize display
     progressCounter.textContent = '0%';
@@ -912,7 +913,7 @@ function startAdvancedLoader(progressCounter, progressBar, pageLoader) {
     
     // Page load event handler - with minimum display time to see animation
     var pageLoadComplete = false;
-    var minDisplayTime = 2500; // Minimum 2.5 seconds to see the animation
+    var minDisplayTime = 1500; // Reasonable minimum display time
     
     window.addEventListener('load', function pageLoadHandler() {
         console.log('Page load event triggered, current progress:', currentProgress);
