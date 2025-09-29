@@ -2,6 +2,15 @@
 
 This project is a professional static website for Robotics & Control Ltd, an Irish technology company established in 2010. The website serves as the primary online presence for showcasing the company's industrial automation, safety solutions, electrical design, and panel building services. The site features a multi-page architecture with interactive elements including a chatbot, training platform, and comprehensive contact forms designed to generate leads and establish the company's expertise in the automation industry.
 
+## Recent Updates (September 29, 2025)
+
+- **Department Contact System Implementation**: Successfully integrated department-specific email routing system with dedicated contact information for HSO (chelsey.omahony@rcltd.ie), Operations (morgan@rcltd.ie), Marketing (benedict.larkin@rcltd.ie), and General Administration (lmccormack@rcltd.ie) 
+- **Enhanced About Page**: Added professional department contact cards with SVG icons, hover effects, and clear contact information
+- **Enhanced Contact Page**: Added department contact section and dropdown selection in contact form for targeted email routing
+- **Backend Email Routing**: Updated contact-form.php with department validation, case-insensitive email matching, and proper routing logic to send emails to appropriate department contacts
+- **Professional Styling**: Added comprehensive CSS styling for department contact cards, responsive grid layouts, and professional visual design
+- **Bug Fixes**: Resolved critical order-of-operations issue in contact form processing to ensure proper department email routing
+
 # User Preferences
 
 Preferred communication style: Simple, everyday language.
