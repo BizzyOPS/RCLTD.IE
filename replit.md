@@ -23,6 +23,7 @@ This project is a professional static website for Robotics & Control Ltd, an Iri
 - **About Page Video Relocation**: Moved the company introduction video from the intro section to the "Ready to Transform" section for better visual impact and engagement at the call-to-action point
 - **Blog Page Streamlining**: Removed the hero section and CEng/TÜV badges from the Blog page, restructured the featured article section to single-column layout at the very top for immediate content visibility without white space or distracting visual elements
 - **Hero Section Addition**: Added professional hero sections to About and Blog pages matching the Store page design, featuring badge elements, page titles, and compelling subtitles for consistent user experience across all major pages
+- **About Page Video Enhancement**: Removed the teal gradient background box from the company introduction video for a cleaner, more professional presentation
 
 # User Preferences
 
