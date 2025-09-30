@@ -977,8 +977,16 @@ SafetyTrainingSystem.prototype.setupEventListeners = function() {
         // Module start buttons
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('module-start-btn')) {
-                var moduleId = e.target.getAttribute('data-module');
-                this.showModule(moduleId, 1);
+                var domModuleId = e.target.getAttribute('data-module');
+                
+                // Validate DOM attribute value against trusted trainingData
+                // This breaks the taint chain for CodeQL analysis
+                var validModuleIds = Object.keys(trainingData.modules);
+                var safeModuleId = validModuleIds.indexOf(domModuleId) >= 0 ? domModuleId : null;
+                
+                if (safeModuleId) {
+                    this.showModule(safeModuleId, 1);
+                }
             }
         });
         
