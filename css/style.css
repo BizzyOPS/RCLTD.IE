@@ -4263,7 +4263,7 @@ section + section {
 }
 @media (min-width: 768px) and (max-width: 1023px) {
     .certifications-image {
-        max-height: 72px;
+        max-height: 96px;
         width: auto;
     }
     .footer-logo {
@@ -4272,7 +4272,7 @@ section + section {
 }
 @media (min-width: 1024px) {
     .certifications-image {
-        max-height: 80px;
+        max-height: 140px;
         width: auto;
     }
     .footer-logo {
