@@ -1,0 +1,73 @@
+Page/ Tab name: Machine Safety, should be the same in Services   
+Sub-heading/h2: Smart Safety Solutions to Protect People and Machines  
+
+Heading 2: Machine Safety services 
+Sub- Paragraph/p: Robotics & Control Ltd. designs and implements Machine safety systems that safeguard people, optimize operations, and meet international compliance standards and can offer machine certification.  
+
+Cards:  
+Safety Assessments
+Comprehensive machine safety assessments to identify hazards, evaluate risks, and define safety requirements for your equipment.
+
+
+Hazard Identification: Pinpoint potential dangers from moving parts, energy sources, or operational processes.
+
+Risk Assessment: Evaluate the likelihood and severity of potential incidents to prioritize safety measures.
+
+Safety Requirements Specification: Define the necessary safeguards, including emergency stops, interlocks, light curtains, and protective devices.
+
+Performance Level Determination: Assign appropriate Performance Levels (PL) to safety functions in line with ISO 13849 and IEC 62061. 
+
+
+
+
+Safety System Design
+Engineering and specifying comprehensive machine safety systems to protect personnel, prevent hazards, and ensure compliance with ISO 13849 and IEC 62061.
+
+
+Safety Circuit & PLC Design: Develop fail-safe control circuits and program safety logic for machinery, including emergency stops and interlocks.
+
+Physical Safeguards: Design and integrate safety cages, barriers, and enclosures to prevent access to hazardous areas.
+
+Emergency Stop Systems: Implement reliable mechanisms to halt equipment instantly in unsafe conditions.
+
+Light Curtain & Sensor Integration: Install electro-sensitive protective devices to safeguard access points without disrupting workflow.
+
+
+
+
+
+
+
+
+
+
+Implementation & Build
+Professional implementation of machine safety systems, integrating control logic, physical safeguards, and protective devices directly into your equipment.
+
+•	Safety Panel Construction: Assemble and wire fail-safe panels tailored to your machinery’s safety requirements.
+•	Component Installation: Fit safety relays, PLCs, light curtains, alarms, and cages to protect personnel and machinery.
+•	System Integration: Seamlessly connect safety devices with existing controls and operational systems.
+•	Documentation Preparation: Provide comprehensive records of installation, schematics, and safety compliance for auditing and CE marking.
+
+
+Validation & Testing
+Thorough testing and verification of machine safety systems to ensure they operate reliably and protect personnel and equipment.
+•	Functional Testing: Confirm all safety devices, interlocks, and emergency stops work correctly under real operating conditions.
+•	Performance Verification: Ensure control logic, sensors, alarms, and physical safeguards respond accurately and consistently.
+•	Documentation Review: Check that installation records, schematics, and safety measures are complete and up to date.
+•	Compliance Certification: Provide formal evidence that safety systems meet client requirements and legal obligations.    
+
+
+
+
+
+
+Certification & Documentation
+We provide complete documentation and certification support for your machinery, including CE marking, to help ensure compliance and simplify regulatory requirements.
+Key Steps:
+•	Technical File Preparation: Compile and organize documentation for safety systems and machine operation.
+•	Declaration of Conformity: Assist with creating statements of compliance for regulatory standards.
+•	User Manual Creation: Develop clear operating instructions and safety guidelines.
+•	Certification Support: Offer certification services, including CE marking, to help validate your machinery’s safety and compliance.
+
+
