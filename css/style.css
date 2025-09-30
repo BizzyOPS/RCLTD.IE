@@ -1889,6 +1889,11 @@ section + section {
 }
 /* Mobile dropdown adjustments - Enhanced for visibility and scrollability */
 @media (max-width: 767px) {
+    /* Ensure nav dropdown item has proper spacing */
+    .nav-dropdown {
+        margin-bottom: var(--spacing-2);
+    }
+    
     .nav-dropdown-container {
         width: 100%;
         display: flex !important;
@@ -1905,7 +1910,7 @@ section + section {
         min-height: 44px;
         padding: var(--spacing-3);
         flex-shrink: 0;
-        z-index: 100;
+        z-index: 10;
     }
     
     /* Mobile menu must be scrollable */
@@ -1916,7 +1921,7 @@ section + section {
         overscroll-behavior: contain;
     }
     
-    /* Dropdown menu - initially hidden */
+    /* Dropdown menu - initially hidden with no space */
     .nav-dropdown-menu {
         position: static !important;
         opacity: 0;
@@ -1926,23 +1931,28 @@ section + section {
         border: none;
         background: transparent;
         margin-left: var(--spacing-4);
-        padding: var(--spacing-2) 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 0;
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
-        width: 100%;
+        transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease, margin 0.3s ease, padding 0.3s ease;
+        width: calc(100% - var(--spacing-4));
+        display: block;
     }
     
-    /* Dropdown menu when open - MUST be visible */
+    /* Dropdown menu when open - expands with proper spacing */
     .nav-dropdown.open .nav-dropdown-menu {
         opacity: 1 !important;
         visibility: visible !important;
-        max-height: none !important;
-        height: auto !important;
+        max-height: 1000px !important;
+        margin-top: var(--spacing-2) !important;
+        margin-bottom: var(--spacing-2) !important;
+        padding: var(--spacing-1) 0 !important;
         overflow-y: visible !important;
         overflow-x: hidden !important;
-        display: block !important;
         pointer-events: auto !important;
+        transform: none !important;
     }
     
     /* Ensure dropdown items are visible and clickable */
