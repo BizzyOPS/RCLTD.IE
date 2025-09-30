@@ -1191,34 +1191,32 @@ ControllerBot.prototype.escapeHtml = function(text) {
     }
 
     ControllerBot.prototype.sanitizeInput = function(input) {
-        // Enhanced input sanitization for security
+        // Enhanced input sanitization for security - DOM-based approach
         if (!input || typeof input !== 'string') {
             return '';
         }
         
-        var sanitized = input;
-        var previousValue;
+        // First pass: use DOM to parse and sanitize
+        var temp = document.createElement('div');
+        temp.textContent = input; // textContent automatically escapes HTML
+        var sanitized = temp.innerHTML; // Get the escaped version
         
-        // Loop to handle nested/repeated attack patterns (prevents bypass with javajavascript:script:)
-        do {
-            previousValue = sanitized;
-            
-            // Remove potentially dangerous patterns
-            sanitized = sanitized
-                // Remove all script tags (any variation)
-                .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script\s*>/gi, '')
-                .replace(/<script[^>]*>/gi, '')
-                // Remove dangerous protocols
-                .replace(/javascript\s*:/gi, '')
-                .replace(/data\s*:/gi, '')
-                .replace(/vbscript\s*:/gi, '')
-                // Remove event handlers
-                .replace(/on\w+\s*=/gi, '')
-                // Remove other dangerous tags
-                .replace(/<iframe[^>]*>/gi, '')
-                .replace(/<object[^>]*>/gi, '')
-                .replace(/<embed[^>]*>/gi, '');
-        } while (sanitized !== previousValue);
+        // Second pass: remove any dangerous patterns that might have been encoded
+        var dangerousPatterns = [
+            /&lt;script/gi,
+            /&lt;iframe/gi,
+            /&lt;object/gi,
+            /&lt;embed/gi
+        ];
+        
+        for (var i = 0; i < dangerousPatterns.length; i++) {
+            sanitized = sanitized.replace(dangerousPatterns[i], '');
+        }
+        
+        // Remove dangerous protocols (case-insensitive)
+        sanitized = sanitized.replace(/javascript\s*:/gi, '');
+        sanitized = sanitized.replace(/data\s*:/gi, '');
+        sanitized = sanitized.replace(/vbscript\s*:/gi, '');
         
         // Clean up whitespace
         sanitized = sanitized.replace(/\s+/g, ' ').trim();

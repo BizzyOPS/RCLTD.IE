@@ -78,32 +78,84 @@ SafetyTrainingSystem.prototype.escapeHtml = function(s) {
 };
 
 SafetyTrainingSystem.prototype.sanitizeHTML = function(html) {
-    // Additional sanitization layer before innerHTML assignment
-    // Remove dangerous patterns even from static content as defense-in-depth
-    var sanitized = html;
-    var previousValue;
+    // DOM-based sanitization - safer than regex and avoids backtracking issues
+    // Create a temporary DOM element to parse and sanitize HTML
+    var temp = document.createElement('div');
+    temp.innerHTML = html;
     
-    // Loop to handle nested/repeated dangerous patterns
-    do {
-        previousValue = sanitized;
-        sanitized = sanitized
-            // Remove script tags and content
-            .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script\s*>/gi, '')
-            .replace(/<script[^>]*>/gi, '')
-            // Remove event handlers
-            .replace(/on\w+\s*=\s*["'][^"']*["']/gi, '')
-            .replace(/on\w+\s*=\s*[^\s>]*/gi, '')
-            // Remove dangerous protocols in links/attributes
-            .replace(/href\s*=\s*["']javascript:[^"']*["']/gi, 'href="#"')
-            .replace(/src\s*=\s*["']javascript:[^"']*["']/gi, 'src="#"')
-            .replace(/href\s*=\s*["']data:[^"']*["']/gi, 'href="#"')
-            // Remove iframe, object, embed tags
-            .replace(/<iframe[^>]*>[\s\S]*?<\/iframe>/gi, '')
-            .replace(/<object[^>]*>[\s\S]*?<\/object>/gi, '')
-            .replace(/<embed[^>]*>/gi, '');
-    } while (sanitized !== previousValue);
+    // Remove dangerous elements entirely (including their content)
+    var dangerousTags = ['script', 'iframe', 'object', 'embed', 'style'];
+    for (var i = 0; i < dangerousTags.length; i++) {
+        var elements = temp.querySelectorAll(dangerousTags[i]);
+        for (var j = 0; j < elements.length; j++) {
+            elements[j].parentNode.removeChild(elements[j]);
+        }
+    }
     
-    return sanitized;
+    // Remove dangerous attributes from all elements
+    var allElements = temp.getElementsByTagName('*');
+    var dangerousProto = ['javascript:', 'data:', 'vbscript:'];
+    var uriAttributes = ['href', 'src', 'xlink:href', 'formaction', 'action', 'srcset', 'srcdoc'];
+    
+    for (var k = 0; k < allElements.length; k++) {
+        var el = allElements[k];
+        var attrs = el.attributes;
+        var attrsToRemove = [];
+        
+        // Check all attributes
+        for (var m = 0; m < attrs.length; m++) {
+            var attrName = attrs[m].name.toLowerCase();
+            var attrValue = attrs[m].value ? attrs[m].value.toLowerCase().replace(/\s/g, '') : '';
+            
+            // Remove event handler attributes (onclick, onload, etc.)
+            if (attrName.indexOf('on') === 0) {
+                attrsToRemove.push(attrs[m].name);
+                continue;
+            }
+            
+            // Check URI attributes for dangerous protocols
+            var isUriAttr = false;
+            for (var p = 0; p < uriAttributes.length; p++) {
+                if (attrName === uriAttributes[p] || attrName.indexOf(uriAttributes[p]) >= 0) {
+                    isUriAttr = true;
+                    break;
+                }
+            }
+            
+            if (isUriAttr) {
+                // For srcset, check each URL in the comma-separated list
+                var urlsToCheck = [attrValue];
+                if (attrName === 'srcset') {
+                    urlsToCheck = attrValue.split(',');
+                }
+                
+                var hasDangerousProto = false;
+                for (var r = 0; r < urlsToCheck.length; r++) {
+                    var urlPart = urlsToCheck[r].replace(/[\s\n\r\t]/g, '');
+                    for (var q = 0; q < dangerousProto.length; q++) {
+                        var protoCheck = dangerousProto[q].replace(/:/g, '');
+                        // Check if dangerous protocol appears ANYWHERE in the URL
+                        if (urlPart.indexOf(protoCheck) >= 0) {
+                            hasDangerousProto = true;
+                            break;
+                        }
+                    }
+                    if (hasDangerousProto) break;
+                }
+                
+                if (hasDangerousProto) {
+                    attrsToRemove.push(attrs[m].name);
+                }
+            }
+        }
+        
+        // Remove all flagged attributes
+        for (var n = 0; n < attrsToRemove.length; n++) {
+            el.removeAttribute(attrsToRemove[n]);
+        }
+    }
+    
+    return temp.innerHTML;
 };
     
 // ==================== ACCESSIBILITY SETUP ====================
