@@ -950,9 +950,17 @@ SafetyTrainingSystem.prototype.handleHashRoute = function() {
         var routeMatch = hash.match(/^#\/module\/([^\/]+)\/chapter\/(\d+)$/);
         
         if (routeMatch) {
-            var [, moduleId, chapterId] = routeMatch;
-            if (trainingData.modules[moduleId] && trainingData.modules[moduleId].chapters[chapterId]) {
-                this.showModule(moduleId, parseInt(chapterId));
+            var urlModuleId = routeMatch[1];
+            var urlChapterId = routeMatch[2];
+            
+            // Validate that module and chapter exist in trusted trainingData
+            // Break taint chain by only using validated keys from trainingData
+            var validModuleIds = Object.keys(trainingData.modules);
+            var safeModuleId = validModuleIds.indexOf(urlModuleId) >= 0 ? urlModuleId : null;
+            
+            if (safeModuleId && trainingData.modules[safeModuleId].chapters[urlChapterId]) {
+                // safeModuleId is now validated against trusted trainingData keys
+                this.showModule(safeModuleId, parseInt(urlChapterId));
                 return;
             }
         }
