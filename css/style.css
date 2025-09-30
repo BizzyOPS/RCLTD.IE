@@ -11687,7 +11687,7 @@ body.safety-training-page .page-loader {
 
 /* Safety Training logo is taller, scale it down to match visual size of other logos */
 body.safety-training-page .loader-logo {
-    width: 240px;
+    width: 200px;
 }
 
 body.safety-training-page .loader-logo img {
@@ -11702,13 +11702,13 @@ body.safety-training-page .progress-counter {
 /* Responsive sizing for Safety Training logo */
 @media (max-width: 768px) {
     body.safety-training-page .loader-logo {
-        width: 200px;
+        width: 170px;
     }
 }
 
 @media (max-width: 480px) {
     body.safety-training-page .loader-logo {
-        width: 180px;
+        width: 150px;
     }
 }
 
