@@ -77,88 +77,6 @@ SafetyTrainingSystem.prototype.escapeHtml = function(s) {
         .replace(/'/g, '&#x27;');
 };
 
-SafetyTrainingSystem.prototype.sanitizeHTML = function(html) {
-    // DOM-based sanitization using DOMParser - safer than regex and avoids backtracking issues
-    // Use DOMParser to safely parse HTML without triggering innerHTML security warnings
-    var parser = new DOMParser();
-    var doc = parser.parseFromString(html, 'text/html');
-    var temp = doc.body;
-    
-    // Remove dangerous elements entirely (including their content)
-    var dangerousTags = ['script', 'iframe', 'object', 'embed', 'style'];
-    for (var i = 0; i < dangerousTags.length; i++) {
-        var elements = temp.querySelectorAll(dangerousTags[i]);
-        for (var j = 0; j < elements.length; j++) {
-            elements[j].parentNode.removeChild(elements[j]);
-        }
-    }
-    
-    // Remove dangerous attributes from all elements
-    var allElements = temp.getElementsByTagName('*');
-    var dangerousProto = ['javascript:', 'data:', 'vbscript:'];
-    var uriAttributes = ['href', 'src', 'xlink:href', 'formaction', 'action', 'srcset', 'srcdoc'];
-    
-    for (var k = 0; k < allElements.length; k++) {
-        var el = allElements[k];
-        var attrs = el.attributes;
-        var attrsToRemove = [];
-        
-        // Check all attributes
-        for (var m = 0; m < attrs.length; m++) {
-            var attrName = attrs[m].name.toLowerCase();
-            var attrValue = attrs[m].value ? attrs[m].value.toLowerCase().replace(/\s/g, '') : '';
-            
-            // Remove event handler attributes (onclick, onload, etc.)
-            if (attrName.indexOf('on') === 0) {
-                attrsToRemove.push(attrs[m].name);
-                continue;
-            }
-            
-            // Check URI attributes for dangerous protocols
-            var isUriAttr = false;
-            for (var p = 0; p < uriAttributes.length; p++) {
-                if (attrName === uriAttributes[p] || attrName.indexOf(uriAttributes[p]) >= 0) {
-                    isUriAttr = true;
-                    break;
-                }
-            }
-            
-            if (isUriAttr) {
-                // For srcset, check each URL in the comma-separated list
-                var urlsToCheck = [attrValue];
-                if (attrName === 'srcset') {
-                    urlsToCheck = attrValue.split(',');
-                }
-                
-                var hasDangerousProto = false;
-                for (var r = 0; r < urlsToCheck.length; r++) {
-                    var urlPart = urlsToCheck[r].replace(/[\s\n\r\t]/g, '');
-                    for (var q = 0; q < dangerousProto.length; q++) {
-                        var protoCheck = dangerousProto[q].replace(/:/g, '');
-                        // Check if dangerous protocol appears ANYWHERE in the URL
-                        if (urlPart.indexOf(protoCheck) >= 0) {
-                            hasDangerousProto = true;
-                            break;
-                        }
-                    }
-                    if (hasDangerousProto) break;
-                }
-                
-                if (hasDangerousProto) {
-                    attrsToRemove.push(attrs[m].name);
-                }
-            }
-        }
-        
-        // Remove all flagged attributes
-        for (var n = 0; n < attrsToRemove.length; n++) {
-            el.removeAttribute(attrsToRemove[n]);
-        }
-    }
-    
-    return temp.innerHTML;
-};
-    
 // ==================== ACCESSIBILITY SETUP ====================
 
 SafetyTrainingSystem.prototype.setupAccessibility = function() {
@@ -307,7 +225,7 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
             '</div>'
         ].join('\n');
         
-        this.trainingContainer.innerHTML = this.sanitizeHTML(moduleSelectionHTML);
+        this.trainingContainer.innerHTML = moduleSelectionHTML;
         this.currentModule = null;
         this.currentChapter = null;
         
@@ -382,7 +300,7 @@ SafetyTrainingSystem.prototype.showModule = function(moduleId, chapterId) {
                 '</div>' +
             '</div>';
         
-        this.trainingContainer.innerHTML = this.sanitizeHTML(moduleHTML);
+        this.trainingContainer.innerHTML = moduleHTML;
         this.updateURL(moduleId, this.currentChapter);
         this.announce(module.title + ' module loaded. Currently viewing chapter ' + this.currentChapter + '.');
     }

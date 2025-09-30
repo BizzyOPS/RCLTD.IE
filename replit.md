@@ -33,13 +33,10 @@ The project adheres to:
 - **Accessibility-First**: WCAG 2.1 AA compliance with ARIA attributes.
 - **SEO Optimization**: Structured data and semantic markup.
 - **Security-by-Design**: Production-grade input sanitization and secure form handling (Sept 2025):
-  - **DOMParser Sanitization**: Uses browser's native DOMParser API (not innerHTML) to safely parse HTML without CodeQL warnings
-  - **Comprehensive Protocol Blocking**: Detects `javascript:`, `data:`, `vbscript:` protocols ANYWHERE in URI attributes, not just at start
-  - **Multi-URL Attribute Handling**: Splits `srcset` by commas to check each URL separately, preventing protocol injection in multi-URL lists
-  - **Complete URI Attribute Coverage**: Sanitizes `href`, `src`, `xlink:href`, `formaction`, `action`, `srcset`, `srcdoc` - including namespaced attributes
-  - **Element Removal**: Completely removes dangerous elements (`script`, `iframe`, `object`, `embed`, `style`) including all content
-  - **Event Handler Stripping**: Removes all event handler attributes (`onclick`, `onload`, etc.) from all elements
-  - **Defense-in-Depth**: Multiple sanitization layers with textContent escaping for user input, preventing all XSS vectors
+  - **Trusted Data Model**: Application HTML built from static, trusted `trainingData` definitions - no parsing of untrusted content
+  - **Comprehensive Escaping**: All dynamic strings (titles, descriptions, user input) flow through `escapeHtml()`/`escapeAttr()` before interpolation
+  - **No User Input to innerHTML**: Strict separation - user input is escaped as text, never parsed as HTML
+  - **Defense-in-Depth**: Multiple validation layers including client-side sanitization and server-side validation
   - **CodeQL Compliant**: No regex backtracking, no innerHTML security warnings, no DOM reinterpretation issues
 
 ## System Design Choices
