@@ -11669,7 +11669,11 @@ p, h1, h2, h3, h4, h5, h6, span, div {
 }
 
 
-/* Fix loading screen progress text visibility on Safety Training page */
+/* Safety Training page loader styling to match page background */
+body.safety-training-page .page-loader {
+    background: var(--background-dark);
+}
+
 body.safety-training-page .progress-counter,
 body.safety-training-page .tech-status {
     color: white !important;
