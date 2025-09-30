@@ -1710,11 +1710,12 @@ section + section {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
     border-top: 1px solid var(--border-color);
     z-index: 10001;
-    max-height: calc(100vh - 140px); /* Account for actual header height ~137px */
+    max-height: calc(100vh - 120px); /* Conservative calculation for mobile header ~117px */
     min-height: auto;
-    overflow-y: auto;
+    overflow-y: auto !important;
     overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior: contain;
     animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     transform-origin: top center;
 }
@@ -1738,8 +1739,9 @@ section + section {
 /* Enhanced mobile touch targets - scalable across devices */
 @media (max-width: 767px) {
     .nav-menu.mobile-open {
-        max-height: calc(100vh - 140px); /* Account for actual header height ~137px */
+        max-height: calc(100vh - 120px); /* Conservative calculation for mobile header ~117px */
         padding: var(--spacing-3) var(--spacing-5);
+        overflow-y: auto !important;
     }
     
     .nav-menu.mobile-open .nav-item {
@@ -1782,8 +1784,9 @@ section + section {
 /* Small mobile optimizations */
 @media (max-width: 480px) {
     .nav-menu.mobile-open {
-        max-height: calc(100vh - 60px);
+        max-height: calc(100vh - 120px);
         padding: var(--spacing-2) var(--spacing-4);
+        overflow-y: auto !important;
     }
     
     .nav-menu.mobile-open .nav-link {
