@@ -14,7 +14,14 @@ The website is a static multi-page HTML application built with semantic HTML for
 ## JavaScript Architecture
 Built with vanilla JavaScript (ES6+) organized using the Module Pattern, key interactive components include:
 - A responsive navigation controller.
-- A "Controller Bot" AI assistant for customer engagement.
+- A "Controller Bot" AI assistant with intelligent conversation flow, state management, and smart department routing:
+  - **Conversation State Management**: Tracks discovery mode, service category, and industry context
+  - **Guided Service Discovery**: 6-category discovery flow (automation, safety, design, panel, training, general)
+  - **Industry-Specific Guidance**: Pharmaceutical, automotive, food & beverage automation advice
+  - **Smart Department Routing**: Sales (automation, training), Technical (safety, design), Support (complaints/issues)
+  - **Security**: URL encoding with encodeURIComponent via buildContactLink() helper
+  - **Reset Functionality**: "start over", "reset", "main menu" commands to restart conversation
+  - **Complete CTAs**: Every response includes contact links, phone numbers, and email
 - An interactive safety training platform.
 - Real-time client-side form validation with XSS prevention.
 - A professional tooltip system.
