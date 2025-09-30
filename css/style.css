@@ -11685,9 +11685,31 @@ body.safety-training-page .page-loader {
     background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
 }
 
+/* Safety Training logo has different proportions - adjust sizing */
+body.safety-training-page .loader-logo {
+    width: 280px;
+    min-height: 200px;
+    padding: var(--spacing-4) 0 var(--spacing-6);
+}
+
 /* Fix loading screen progress text visibility on Safety Training page */
 body.safety-training-page .progress-counter {
     color: white !important;
+}
+
+/* Responsive adjustments for Safety Training logo */
+@media (max-width: 768px) {
+    body.safety-training-page .loader-logo {
+        width: 240px;
+        min-height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    body.safety-training-page .loader-logo {
+        width: 200px;
+        min-height: 160px;
+    }
 }
 
 
