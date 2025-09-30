@@ -112,3 +112,8 @@ Desktop.ini
 *.old
 # Production deployment guides
 SECURITY_DEPLOYMENT_GUIDE.md
+
+# Replit-specific files (not needed for Plesk deployment)
+attached_assets/
+replit.md
+.replit
