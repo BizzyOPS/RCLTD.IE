@@ -2017,7 +2017,7 @@ body.menu-open .header {
         display: flex !important;
         align-items: center;
         border-radius: var(--radius-sm);
-        color: var(--text-primary) !important;
+        color: #CC5500 !important;
         background: rgba(8, 145, 178, 0.05);
         width: 100%;
         box-sizing: border-box;
@@ -2025,6 +2025,7 @@ body.menu-open .header {
     .nav-dropdown-menu .nav-link:hover,
     .nav-dropdown-menu .nav-link:active {
         background: rgba(8, 145, 178, 0.15) !important;
+        color: #CC5500 !important;
     }
 }
 /* Hero Section */
