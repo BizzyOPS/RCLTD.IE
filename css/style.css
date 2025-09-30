@@ -6230,16 +6230,9 @@ img.service-icon {
     animation: gentleShimmer 2s ease-in-out infinite;
 }
 
-/* Professional Status Text */
+/* Hide Status Text - Not Needed */
 .tech-status {
-    font-family: var(--font-family);
-    font-size: var(--font-size-lg);
-    font-weight: 500;
-    color: var(--text-secondary);
-    opacity: 0;
-    animation: fadeInUp 0.8s ease-out 1.4s forwards;
-    max-width: 100%;
-    line-height: 1.5;
+    display: none !important;
 }
 
 /* Remove All Gear Elements - Clean Design */
