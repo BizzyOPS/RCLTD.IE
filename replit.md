@@ -32,7 +32,12 @@ The project adheres to:
 - **Component-Based CSS**: Modular and reusable CSS architecture.
 - **Accessibility-First**: WCAG 2.1 AA compliance with ARIA attributes.
 - **SEO Optimization**: Structured data and semantic markup.
-- **Security-by-Design**: Input sanitization and secure form handling.
+- **Security-by-Design**: Comprehensive input sanitization and secure form handling:
+  - **Iterative Sanitization**: Multi-pass cleaning prevents bypass attacks (e.g., nested scripts)
+  - **Secure Regex Patterns**: Non-backtracking patterns prevent catastrophic performance issues
+  - **URL Validation**: RFC 3986 compliant strict whitelisting for HTTP/HTTPS, tel, mailto, and relative paths
+  - **XSS Prevention**: HTML sanitization before innerHTML assignments, escaped user input
+  - **Defense-in-Depth**: Multiple layers of validation and sanitization throughout the application
 
 ## System Design Choices
 - **Icon System**: Comprehensive custom PNG icon system with consistent sizing, coloring, drop-shadow effects, and aggressive transparency removal for seamless integration. This includes 48 professionally edited transparent PNG icon files.
