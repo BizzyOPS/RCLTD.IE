@@ -333,15 +333,17 @@ SafetyTrainingSystem.prototype.renderChapter = function(moduleId, chapterId) {
         var self = this;
         return '<div class="chapter-container">' +
             '<div class="chapter-header">' +
-                '<h3 class="chapter-title">Chapter ' + chapterId + ': ' + chapter.title + '</h3>' +
+                '<h3 class="chapter-title">Chapter ' + chapterId + ': ' + self.escapeHtml(chapter.title) + '</h3>' +
                 '<div class="learning-objectives">' +
                     '<h4>Learning Objectives</h4>' +
                     '<ul>' +
-                        chapter.learningObjectives.map(function(obj) { return '<li>' + obj + '</li>'; }).join('') +
+                        chapter.learningObjectives.map(function(obj) { return '<li>' + self.escapeHtml(obj) + '</li>'; }).join('') +
                     '</ul>' +
                 '</div>' +
             '</div>' +
             '<div class="chapter-content-text">' +
+                // Note: chapter.content is trusted HTML from static trainingData
+                // It contains formatted educational content and is not user input
                 chapter.content +
             '</div>' +
             '<div class="chapter-questions">' +
@@ -356,8 +358,8 @@ SafetyTrainingSystem.prototype.renderChapter = function(moduleId, chapterId) {
                     (prevChapter ? 
                         '<button class="btn-secondary training-nav-btn" ' +
                                 'onclick="trainingSystem.showChapter(\'' + moduleId + '\', ' + (chapterId - 1) + ')" ' +
-                                'aria-label="Go to previous chapter: ' + prevChapter.title + '">' +
-                            '← Previous: ' + prevChapter.title +
+                                'aria-label="Go to previous chapter: ' + self.escapeAttr(prevChapter.title) + '">' +
+                            '← Previous: ' + self.escapeHtml(prevChapter.title) +
                         '</button>' : '') +
                     '<button class="btn-primary complete-chapter-btn training-nav-btn" ' +
                             'onclick="trainingSystem.completeChapter(\'' + moduleId + '\', ' + chapterId + ')" ' +
@@ -368,8 +370,8 @@ SafetyTrainingSystem.prototype.renderChapter = function(moduleId, chapterId) {
                     (nextChapter ? 
                         '<button class="btn-secondary training-nav-btn" ' +
                                 'onclick="trainingSystem.showChapter(\'' + moduleId + '\', ' + (chapterId + 1) + ')" ' +
-                                'aria-label="Go to next chapter: ' + nextChapter.title + '">' +
-                            'Next: ' + nextChapter.title + ' →' +
+                                'aria-label="Go to next chapter: ' + self.escapeAttr(nextChapter.title) + '">' +
+                            'Next: ' + self.escapeHtml(nextChapter.title) + ' →' +
                         '</button>' : 
                         '<button class="btn-primary training-nav-btn" ' +
                                 'onclick="trainingSystem.showModuleSelection()" ' +
