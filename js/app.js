@@ -295,15 +295,20 @@ function initNavigation() {
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(e) {
             if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                // Only restore scroll if menu was actually open
+                var wasOpen = document.body.classList.contains('menu-open');
+                
                 navToggle.classList.remove('active');
                 navMenu.classList.remove('mobile-open');
                 
-                // Restore scroll position when closing
-                var scrollY = parseInt(document.body.dataset.scrollY || '0', 10);
-                document.body.classList.remove('menu-open');
-                document.body.style.top = '';
-                window.scrollTo(0, scrollY);
-                delete document.body.dataset.scrollY;
+                // Only restore scroll position if menu was open
+                if (wasOpen) {
+                    var scrollY = parseInt(document.body.dataset.scrollY || '0', 10);
+                    document.body.classList.remove('menu-open');
+                    document.body.style.top = '';
+                    window.scrollTo(0, scrollY);
+                    delete document.body.dataset.scrollY;
+                }
                 
                 navToggle.setAttribute('aria-expanded', 'false');
             }
