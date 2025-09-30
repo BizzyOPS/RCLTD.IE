@@ -4191,6 +4191,11 @@ section + section {
     border-color: #0077b5;
     color: white;
 }
+.social-link.instagram:hover {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    border-color: #dc2743;
+    color: white;
+}
 .social-link svg {
     width: 24px;
     height: 24px;
