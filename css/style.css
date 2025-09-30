@@ -192,7 +192,7 @@ body:not(.home) {
 /* Override for specifically styled sections - exclude homepage hero with cover images */
 .page-hero,
 .store-hero {
-    background: var(--hero-gradient) !important;
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%) !important;
 }
 
 /* Specific section backgrounds take precedence over alternation */
@@ -267,7 +267,7 @@ body:not(.home) {
     /* Homepage keeps its original background with images */
 }
 
-/* Page Hero Sections with Professional Gradient */
+/* Page Hero Sections with Dark Blue Gradient */
 .page-hero,
 .store-hero {
     position: relative;
@@ -278,7 +278,7 @@ body:not(.home) {
     color: white;
     overflow: hidden;
     margin-bottom: var(--spacing-6);
-    background: var(--hero-gradient);
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
     text-align: center;
     padding: var(--spacing-16) var(--spacing-4);
 }
