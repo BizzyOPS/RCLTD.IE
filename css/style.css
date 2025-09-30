@@ -6149,16 +6149,19 @@ img.service-icon {
     position: relative;
     width: 320px;
     height: auto;
+    min-height: 180px;
     opacity: 0;
     transform: scale(0.8);
     animation: elegantLogoEntrance 1.2s ease-out 0.3s forwards;
     filter: drop-shadow(0 8px 32px rgba(8, 145, 178, 0.12));
+    padding: var(--spacing-4) 0;
 }
 
 .loader-logo img {
     width: 100%;
     height: auto;
     display: block;
+    object-fit: contain;
 }
 
 /* Elegant Glow Effect */
@@ -7294,6 +7297,8 @@ body.safety-training-page a:hover {
     height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    padding: var(--spacing-4);
+    object-fit: contain;
 }
 
 @media (max-width: 768px) {
@@ -11669,18 +11674,8 @@ p, h1, h2, h3, h4, h5, h6, span, div {
 }
 
 
-/* Safety Training page loader styling to match page background */
-body.safety-training-page .page-loader {
-    background: var(--background-dark);
-}
-
-body.safety-training-page .page-loader .progress-counter {
-    color: #ffffff !important;
-    opacity: 1 !important;
-    display: block !important;
-    visibility: visible !important;
-}
-
+/* Fix loading screen progress text visibility on Safety Training page */
+body.safety-training-page .progress-counter,
 body.safety-training-page .tech-status {
     color: white !important;
 }
