@@ -11674,7 +11674,13 @@ body.safety-training-page .page-loader {
     background: var(--background-dark);
 }
 
-body.safety-training-page .progress-counter,
+body.safety-training-page .page-loader .progress-counter {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    display: block !important;
+    visibility: visible !important;
+}
+
 body.safety-training-page .tech-status {
     color: white !important;
 }
