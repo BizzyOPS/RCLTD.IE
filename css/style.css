@@ -6149,12 +6149,12 @@ img.service-icon {
     position: relative;
     width: 320px;
     height: auto;
-    min-height: 180px;
+    min-height: 240px;
     opacity: 0;
     transform: scale(0.8);
     animation: elegantLogoEntrance 1.2s ease-out 0.3s forwards;
     filter: drop-shadow(0 8px 32px rgba(8, 145, 178, 0.12));
-    padding: var(--spacing-4) 0;
+    padding: var(--spacing-6) 0 var(--spacing-12);
 }
 
 .loader-logo img {
@@ -6162,6 +6162,7 @@ img.service-icon {
     height: auto;
     display: block;
     object-fit: contain;
+    max-height: none;
 }
 
 /* Elegant Glow Effect */
