@@ -76,6 +76,35 @@ SafetyTrainingSystem.prototype.escapeHtml = function(s) {
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#x27;');
 };
+
+SafetyTrainingSystem.prototype.sanitizeHTML = function(html) {
+    // Additional sanitization layer before innerHTML assignment
+    // Remove dangerous patterns even from static content as defense-in-depth
+    var sanitized = html;
+    var previousValue;
+    
+    // Loop to handle nested/repeated dangerous patterns
+    do {
+        previousValue = sanitized;
+        sanitized = sanitized
+            // Remove script tags and content
+            .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script\s*>/gi, '')
+            .replace(/<script[^>]*>/gi, '')
+            // Remove event handlers
+            .replace(/on\w+\s*=\s*["'][^"']*["']/gi, '')
+            .replace(/on\w+\s*=\s*[^\s>]*/gi, '')
+            // Remove dangerous protocols in links/attributes
+            .replace(/href\s*=\s*["']javascript:[^"']*["']/gi, 'href="#"')
+            .replace(/src\s*=\s*["']javascript:[^"']*["']/gi, 'src="#"')
+            .replace(/href\s*=\s*["']data:[^"']*["']/gi, 'href="#"')
+            // Remove iframe, object, embed tags
+            .replace(/<iframe[^>]*>[\s\S]*?<\/iframe>/gi, '')
+            .replace(/<object[^>]*>[\s\S]*?<\/object>/gi, '')
+            .replace(/<embed[^>]*>/gi, '');
+    } while (sanitized !== previousValue);
+    
+    return sanitized;
+};
     
 // ==================== ACCESSIBILITY SETUP ====================
 
@@ -225,7 +254,7 @@ SafetyTrainingSystem.prototype.showModuleSelection = function() {
             '</div>'
         ].join('\n');
         
-        this.trainingContainer.innerHTML = moduleSelectionHTML;
+        this.trainingContainer.innerHTML = this.sanitizeHTML(moduleSelectionHTML);
         this.currentModule = null;
         this.currentChapter = null;
         
@@ -300,7 +329,7 @@ SafetyTrainingSystem.prototype.showModule = function(moduleId, chapterId) {
                 '</div>' +
             '</div>';
         
-        this.trainingContainer.innerHTML = moduleHTML;
+        this.trainingContainer.innerHTML = this.sanitizeHTML(moduleHTML);
         this.updateURL(moduleId, this.currentChapter);
         this.announce(module.title + ' module loaded. Currently viewing chapter ' + this.currentChapter + '.');
     }

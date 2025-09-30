@@ -1170,14 +1170,16 @@ ControllerBot.prototype.formatMessage = function(content) {
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
             .replace(/\*(.*?)\*/g, '<em>$1</em>')
             .replace(/\[([^\]]+)\]\(([^)]+)\)/g, function(match, text, url) {
-                // Sanitize URLs - only allow safe schemes with proper full URL patterns
-                if (url.match(/^(https?:\/\/[^\s"'<>]+|tel:[0-9+()\-\s]+|mailto:[^\s"'<>]+|[A-Za-z0-9._\/-]+\.html)$/)) {
+                // Sanitize URLs - strict whitelist approach for safe schemes only (RFC 3986 compliant)
+                if (url.match(/^https?:\/\/[a-zA-Z0-9\-._~:/?#\[\]@!$&'()*+,;=%]+$/) || 
+                    url.match(/^tel:\+?[0-9\s\-()]+$/) ||
+                    url.match(/^mailto:[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}(?:\?[a-zA-Z0-9=&_%+\-]+)?$/) ||
+                    url.match(/^[a-zA-Z0-9][a-zA-Z0-9_\/-]*\.html(?:\?[a-zA-Z0-9=&_%\-]+)?$/)) {
                     // Text is already escaped above, URL is validated
                     return '<a href="' + url + '" target="_self" rel="noopener" class="chat-link">' + text + '</a>';
                 }
                 return text; // Strip unsafe links, keep text
-            })
-            .replace(/•/g, '•');
+            });
             // Note: \n already converted to <br> by escapeHtml
     }
 
@@ -1194,20 +1196,32 @@ ControllerBot.prototype.escapeHtml = function(text) {
             return '';
         }
         
-        // Remove potentially dangerous patterns
-        var sanitized = input
-            // Remove script tags and content
-            .replace(/<script[\s\S]*?<\/script>/gi, '')
-            // Remove javascript: protocols  
-            .replace(/javascript:/gi, '')
-            // Remove data: protocols
-            .replace(/data:/gi, '')
-            // Remove on* event handlers
-            .replace(/on\w+\s*=/gi, '')
-            // Remove excessive whitespace but preserve reasonable formatting
-            .replace(/\s+/g, ' ')
-            // Trim whitespace
-            .trim();
+        var sanitized = input;
+        var previousValue;
+        
+        // Loop to handle nested/repeated attack patterns (prevents bypass with javajavascript:script:)
+        do {
+            previousValue = sanitized;
+            
+            // Remove potentially dangerous patterns
+            sanitized = sanitized
+                // Remove all script tags (any variation)
+                .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script\s*>/gi, '')
+                .replace(/<script[^>]*>/gi, '')
+                // Remove dangerous protocols
+                .replace(/javascript\s*:/gi, '')
+                .replace(/data\s*:/gi, '')
+                .replace(/vbscript\s*:/gi, '')
+                // Remove event handlers
+                .replace(/on\w+\s*=/gi, '')
+                // Remove other dangerous tags
+                .replace(/<iframe[^>]*>/gi, '')
+                .replace(/<object[^>]*>/gi, '')
+                .replace(/<embed[^>]*>/gi, '');
+        } while (sanitized !== previousValue);
+        
+        // Clean up whitespace
+        sanitized = sanitized.replace(/\s+/g, ' ').trim();
             
         // Check for excessive length (could be an attack)
         if (sanitized.length > 500) {

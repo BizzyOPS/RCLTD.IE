@@ -112,8 +112,9 @@ function FormValidator() {
         };
         
         this.securityPatterns = [
-            // XSS patterns
-            /<script[^>]*>.*?<\/script>/gi,
+            // XSS patterns - use more secure regex that avoids catastrophic backtracking
+            /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script\s*>/gi,
+            /<script[^>]*>/gi,
             /javascript\s*:/gi,
             /vbscript\s*:/gi,
             /on(load|error|click|focus|blur|mouseover|mouseout)\s*=/gi,
