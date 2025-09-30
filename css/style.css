@@ -1844,10 +1844,13 @@ section + section {
 .nav-dropdown-menu .nav-link::after {
     display: none;
 }
-/* Mobile dropdown adjustments */
+/* Mobile dropdown adjustments - Enhanced for visibility and scrollability */
 @media (max-width: 767px) {
     .nav-dropdown-container {
         width: 100%;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
     }
     .nav-dropdown-container .nav-link {
         flex: 1;
@@ -1858,9 +1861,21 @@ section + section {
         min-width: 44px;
         min-height: 44px;
         padding: var(--spacing-3);
+        flex-shrink: 0;
+        z-index: 100;
     }
+    
+    /* Mobile menu must be scrollable */
+    .nav-menu.mobile-open {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        overscroll-behavior: contain;
+    }
+    
+    /* Dropdown menu - initially hidden */
     .nav-dropdown-menu {
-        position: static;
+        position: static !important;
         opacity: 0;
         visibility: hidden;
         transform: none;
@@ -1872,18 +1887,34 @@ section + section {
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+        width: 100%;
     }
+    
+    /* Dropdown menu when open - MUST be visible */
     .nav-dropdown.open .nav-dropdown-menu {
         opacity: 1 !important;
         visibility: visible !important;
-        max-height: 500px !important;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
+        max-height: none !important;
+        height: auto !important;
+        overflow-y: visible !important;
+        overflow-x: hidden !important;
         display: block !important;
+        pointer-events: auto !important;
     }
+    
+    /* Ensure dropdown items are visible and clickable */
+    .nav-dropdown.open .nav-dropdown-menu .nav-link {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+    
     .nav-dropdown-toggle::after {
         display: none;
     }
+    
+    /* Individual dropdown link styling */
     .nav-dropdown-menu .nav-link {
         margin: var(--spacing-1) 0;
         padding: var(--spacing-3) var(--spacing-4);
@@ -1893,6 +1924,8 @@ section + section {
         border-radius: var(--radius-sm);
         color: var(--text-primary) !important;
         background: rgba(8, 145, 178, 0.05);
+        width: 100%;
+        box-sizing: border-box;
     }
     .nav-dropdown-menu .nav-link:hover,
     .nav-dropdown-menu .nav-link:active {
