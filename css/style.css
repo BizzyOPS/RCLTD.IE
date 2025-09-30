@@ -1699,10 +1699,12 @@ section + section {
 /* Enhanced Mobile Menu - Scalable & Responsive */
 .nav-menu.mobile-open {
     display: flex;
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: var(--header-height, 120px);
     left: 0;
     right: 0;
+    bottom: 0;
+    height: calc(100vh - var(--header-height, 120px));
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(20px);
     flex-direction: column;
@@ -1710,14 +1712,31 @@ section + section {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
     border-top: 1px solid var(--border-color);
     z-index: 10001;
-    max-height: calc(100vh - 120px); /* Conservative calculation for mobile header ~117px */
-    min-height: auto;
-    overflow-y: auto !important;
+    overflow-y: auto;
     overflow-x: hidden;
-    -webkit-overflow-scrolling: touch !important;
+    -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
-    animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     transform-origin: top center;
+}
+
+/* Use dynamic viewport height on supporting browsers */
+@supports (height: 100dvh) {
+    .nav-menu.mobile-open {
+        height: calc(100dvh - var(--header-height, 120px));
+    }
+}
+
+/* Lock body scroll when mobile menu is open */
+body.menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
+/* Prevent header transform while menu is open */
+body.menu-open .header {
+    transform: none !important;
 }
 
 @keyframes slideDown {
@@ -1739,9 +1758,7 @@ section + section {
 /* Enhanced mobile touch targets - scalable across devices */
 @media (max-width: 767px) {
     .nav-menu.mobile-open {
-        max-height: calc(100vh - 120px); /* Conservative calculation for mobile header ~117px */
         padding: var(--spacing-3) var(--spacing-5);
-        overflow-y: auto !important;
     }
     
     .nav-menu.mobile-open .nav-item {
@@ -1784,9 +1801,7 @@ section + section {
 /* Small mobile optimizations */
 @media (max-width: 480px) {
     .nav-menu.mobile-open {
-        max-height: calc(100vh - 120px);
         padding: var(--spacing-2) var(--spacing-4);
-        overflow-y: auto !important;
     }
     
     .nav-menu.mobile-open .nav-link {

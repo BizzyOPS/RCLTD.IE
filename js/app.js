@@ -227,6 +227,24 @@ function initNavigation() {
                 var isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
                 navToggle.classList.toggle('active');
                 navMenu.classList.toggle('mobile-open');
+                
+                // Handle scroll lock with position preservation
+                if (!isExpanded) {
+                    // Opening menu - preserve scroll position
+                    var scrollY = window.scrollY || window.pageYOffset || 0;
+                    document.body.dataset.scrollY = scrollY;
+                    document.body.style.top = '-' + scrollY + 'px';
+                    document.body.classList.add('menu-open');
+                    setHeaderOffset();
+                } else {
+                    // Closing menu - restore scroll position
+                    var scrollY = parseInt(document.body.dataset.scrollY || '0', 10);
+                    document.body.classList.remove('menu-open');
+                    document.body.style.top = '';
+                    window.scrollTo(0, scrollY);
+                    delete document.body.dataset.scrollY;
+                }
+                
                 navToggle.setAttribute('aria-expanded', !isExpanded);
             });
         } else if (navToggle.attachEvent) {
@@ -255,6 +273,14 @@ function initNavigation() {
                 link.addEventListener('click', function() {
                     navToggle.classList.remove('active');
                     navMenu.classList.remove('mobile-open');
+                    
+                    // Restore scroll position when closing
+                    var scrollY = parseInt(document.body.dataset.scrollY || '0', 10);
+                    document.body.classList.remove('menu-open');
+                    document.body.style.top = '';
+                    window.scrollTo(0, scrollY);
+                    delete document.body.dataset.scrollY;
+                    
                     navToggle.setAttribute('aria-expanded', 'false');
                 });
             } else if (link.attachEvent) {
@@ -271,6 +297,14 @@ function initNavigation() {
             if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
                 navToggle.classList.remove('active');
                 navMenu.classList.remove('mobile-open');
+                
+                // Restore scroll position when closing
+                var scrollY = parseInt(document.body.dataset.scrollY || '0', 10);
+                document.body.classList.remove('menu-open');
+                document.body.style.top = '';
+                window.scrollTo(0, scrollY);
+                delete document.body.dataset.scrollY;
+                
                 navToggle.setAttribute('aria-expanded', 'false');
             }
         });
@@ -280,6 +314,14 @@ function initNavigation() {
             if (e.key === 'Escape' && navMenu.classList.contains('mobile-open')) {
                 navToggle.classList.remove('active');
                 navMenu.classList.remove('mobile-open');
+                
+                // Restore scroll position when closing
+                var scrollY = parseInt(document.body.dataset.scrollY || '0', 10);
+                document.body.classList.remove('menu-open');
+                document.body.style.top = '';
+                window.scrollTo(0, scrollY);
+                delete document.body.dataset.scrollY;
+                
                 navToggle.setAttribute('aria-expanded', 'false');
                 navToggle.focus();
             }
@@ -321,6 +363,14 @@ function initNavigation() {
                     if (navToggle && navMenu) {
                         navToggle.classList.remove('active');
                         navMenu.classList.remove('mobile-open');
+                        
+                        // Restore scroll position when closing
+                        var scrollY = parseInt(document.body.dataset.scrollY || '0', 10);
+                        document.body.classList.remove('menu-open');
+                        document.body.style.top = '';
+                        window.scrollTo(0, scrollY);
+                        delete document.body.dataset.scrollY;
+                        
                         navToggle.setAttribute('aria-expanded', 'false');
                     }
                 });
