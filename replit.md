@@ -33,13 +33,14 @@ The project adheres to:
 - **Accessibility-First**: WCAG 2.1 AA compliance with ARIA attributes.
 - **SEO Optimization**: Structured data and semantic markup.
 - **Security-by-Design**: Production-grade input sanitization and secure form handling (Sept 2025):
-  - **DOM-Based Sanitization**: Browser's native DOM parser safely handles malformed HTML without regex backtracking (CodeQL compliant)
+  - **DOMParser Sanitization**: Uses browser's native DOMParser API (not innerHTML) to safely parse HTML without CodeQL warnings
   - **Comprehensive Protocol Blocking**: Detects `javascript:`, `data:`, `vbscript:` protocols ANYWHERE in URI attributes, not just at start
   - **Multi-URL Attribute Handling**: Splits `srcset` by commas to check each URL separately, preventing protocol injection in multi-URL lists
   - **Complete URI Attribute Coverage**: Sanitizes `href`, `src`, `xlink:href`, `formaction`, `action`, `srcset`, `srcdoc` - including namespaced attributes
   - **Element Removal**: Completely removes dangerous elements (`script`, `iframe`, `object`, `embed`, `style`) including all content
   - **Event Handler Stripping**: Removes all event handler attributes (`onclick`, `onload`, etc.) from all elements
   - **Defense-in-Depth**: Multiple sanitization layers with textContent escaping for user input, preventing all XSS vectors
+  - **CodeQL Compliant**: No regex backtracking, no innerHTML security warnings, no DOM reinterpretation issues
 
 ## System Design Choices
 - **Icon System**: Comprehensive custom PNG icon system with consistent sizing, coloring, drop-shadow effects, and aggressive transparency removal for seamless integration. This includes 48 professionally edited transparent PNG icon files.

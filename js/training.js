@@ -78,10 +78,11 @@ SafetyTrainingSystem.prototype.escapeHtml = function(s) {
 };
 
 SafetyTrainingSystem.prototype.sanitizeHTML = function(html) {
-    // DOM-based sanitization - safer than regex and avoids backtracking issues
-    // Create a temporary DOM element to parse and sanitize HTML
-    var temp = document.createElement('div');
-    temp.innerHTML = html;
+    // DOM-based sanitization using DOMParser - safer than regex and avoids backtracking issues
+    // Use DOMParser to safely parse HTML without triggering innerHTML security warnings
+    var parser = new DOMParser();
+    var doc = parser.parseFromString(html, 'text/html');
+    var temp = doc.body;
     
     // Remove dangerous elements entirely (including their content)
     var dangerousTags = ['script', 'iframe', 'object', 'embed', 'style'];
