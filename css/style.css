@@ -1541,48 +1541,48 @@ section + section {
 /* Large desktop responsive logo sizing */
 @media (min-width: 1200px) {
     .nav-logo {
-        height: 160px; /* Large desktop size - increased for better visibility */
+        height: 130px; /* Large desktop size - balanced for visibility without overlap */
     }
 }
 
 /* Desktop responsive logo sizing */
 @media (min-width: 1024px) and (max-width: 1199px) {
     .nav-logo {
-        height: 150px; /* Standard desktop size - increased for better visibility */
+        height: 120px; /* Standard desktop size - balanced for visibility without overlap */
     }
 }
 
 /* Tablet responsive logo sizing */
 @media (min-width: 768px) and (max-width: 1023px) {
     .nav-logo {
-        height: 140px; /* Tablet size - increased for better visibility */
+        height: 110px; /* Tablet size - balanced for visibility without overlap */
     }
 }
 
 /* Mobile responsive logo sizing - prevent squashing */
 @media (max-width: 767px) {
     .nav-logo {
-        height: 95px; /* Smaller mobile size - increased for better visibility */
+        height: 80px; /* Smaller mobile size - balanced for visibility without overlap */
         max-width: 60vw; /* Prevent logo from taking too much width */
-        min-height: 70px; /* Maintain minimum readable size */
+        min-height: 60px; /* Maintain minimum readable size */
     }
 }
 
 /* Small mobile responsive logo sizing */
 @media (max-width: 480px) {
     .nav-logo {
-        height: 80px; /* Very small mobile - increased for better visibility */
+        height: 70px; /* Very small mobile - balanced for visibility without overlap */
         max-width: 55vw; /* Ensure menu has space */
-        min-height: 65px; /* Maintain legibility */
+        min-height: 55px; /* Maintain legibility */
     }
 }
 
 /* Extra small mobile devices */
 @media (max-width: 360px) {
     .nav-logo {
-        height: 70px;
+        height: 60px;
         max-width: 50vw;
-        min-height: 55px;
+        min-height: 50px;
     }
 }
 /* Removed redundant 480px media query - mobile sizing now handled by 767px breakpoint */
