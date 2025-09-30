@@ -295,7 +295,7 @@ body:not(.home) {
     z-index: 3;
 }
 
-/* Proper Hexagon Grid Pattern Overlay */
+/* Sophisticated Hexagon Grid Pattern Overlay - Blends with Gradient */
 .page-hero::before,
 .store-hero::before {
     content: '';
@@ -306,24 +306,48 @@ body:not(.home) {
     bottom: 0;
     background-size: 86.6px 50px;
     background-image: 
-        linear-gradient(30deg, rgba(255, 255, 255, 0.08) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.08) 87.5%, rgba(255, 255, 255, 0.08)),
-        linear-gradient(150deg, rgba(255, 255, 255, 0.08) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.08) 87.5%, rgba(255, 255, 255, 0.08)),
-        linear-gradient(30deg, rgba(255, 255, 255, 0.08) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.08) 87.5%, rgba(255, 255, 255, 0.08)),
-        linear-gradient(150deg, rgba(255, 255, 255, 0.08) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.08) 87.5%, rgba(255, 255, 255, 0.08)),
-        linear-gradient(60deg, rgba(255, 255, 255, 0.06) 25%, transparent 25.5%, transparent 75%, rgba(255, 255, 255, 0.06) 75%, rgba(255, 255, 255, 0.06)),
-        linear-gradient(60deg, rgba(255, 255, 255, 0.06) 25%, transparent 25.5%, transparent 75%, rgba(255, 255, 255, 0.06) 75%, rgba(255, 255, 255, 0.06));
+        linear-gradient(30deg, rgba(103, 232, 249, 0.06) 12%, transparent 12.5%, transparent 87%, rgba(103, 232, 249, 0.06) 87.5%, rgba(103, 232, 249, 0.06)),
+        linear-gradient(150deg, rgba(103, 232, 249, 0.06) 12%, transparent 12.5%, transparent 87%, rgba(103, 232, 249, 0.06) 87.5%, rgba(103, 232, 249, 0.06)),
+        linear-gradient(30deg, rgba(59, 130, 246, 0.05) 12%, transparent 12.5%, transparent 87%, rgba(59, 130, 246, 0.05) 87.5%, rgba(59, 130, 246, 0.05)),
+        linear-gradient(150deg, rgba(59, 130, 246, 0.05) 12%, transparent 12.5%, transparent 87%, rgba(59, 130, 246, 0.05) 87.5%, rgba(59, 130, 246, 0.05)),
+        linear-gradient(60deg, rgba(148, 163, 184, 0.04) 25%, transparent 25.5%, transparent 75%, rgba(148, 163, 184, 0.04) 75%, rgba(148, 163, 184, 0.04)),
+        linear-gradient(60deg, rgba(226, 232, 240, 0.03) 25%, transparent 25.5%, transparent 75%, rgba(226, 232, 240, 0.03) 75%, rgba(226, 232, 240, 0.03));
     background-position: 0 0, 0 0, 43.3px 25px, 43.3px 25px, 0 0, 43.3px 25px;
     z-index: 2;
     pointer-events: none;
-    mask-image: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0) 100%);
-    -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.65) 25%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.2) 75%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.65) 25%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.2) 75%, rgba(0,0,0,0) 100%);
+}
+
+/* Additional subtle overlay for enhanced color blending */
+.page-hero::after,
+.store-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: 86.6px 50px;
+    background-image: 
+        linear-gradient(30deg, rgba(30, 58, 95, 0.04) 12%, transparent 12.5%, transparent 87%, rgba(30, 58, 95, 0.04) 87.5%, rgba(30, 58, 95, 0.04)),
+        linear-gradient(150deg, rgba(30, 58, 95, 0.04) 12%, transparent 12.5%, transparent 87%, rgba(30, 58, 95, 0.04) 87.5%, rgba(30, 58, 95, 0.04)),
+        linear-gradient(60deg, rgba(74, 95, 127, 0.03) 25%, transparent 25.5%, transparent 75%, rgba(74, 95, 127, 0.03) 75%, rgba(74, 95, 127, 0.03));
+    background-position: 21.65px 12.5px, 21.65px 12.5px, 21.65px 12.5px;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.7;
+    mask-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 85%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 85%, rgba(0,0,0,0) 100%);
 }
 
 /* Ensure hero content is above the pattern */
 .page-hero > *,
-.store-hero > * {
+.store-hero > *,
+.page-hero .container,
+.store-hero .container {
     position: relative;
-    z-index: 3;
+    z-index: 10;
 }
 
 /* Hero background image styling */
