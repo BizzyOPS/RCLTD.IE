@@ -3942,14 +3942,14 @@ section + section {
 .partners-track {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-12);
-    max-width: 800px;
+    gap: var(--spacing-16);
+    max-width: 900px;
     margin: 0 auto;
 }
 .partner-logo {
     flex-shrink: 0;
-    background-color: var(--surface-hover);
-    border: 1px solid var(--border-color);
+    background-color: transparent;
+    border: none;
     border-radius: var(--radius-lg);
     display: flex;
     flex-direction: column;
@@ -3960,8 +3960,6 @@ section + section {
 }
 .partner-logo:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-    border-color: #10b981;
 }
 .partner-image-wrapper {
     width: 100%;
