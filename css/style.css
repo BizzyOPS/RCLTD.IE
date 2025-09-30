@@ -1710,7 +1710,7 @@ section + section {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
     border-top: 1px solid var(--border-color);
     z-index: 10001;
-    max-height: calc(100vh - 80px); /* Dynamic viewport-relative height */
+    max-height: calc(100vh - 140px); /* Account for actual header height ~137px */
     min-height: auto;
     overflow-y: auto;
     overflow-x: hidden;
@@ -1738,7 +1738,7 @@ section + section {
 /* Enhanced mobile touch targets - scalable across devices */
 @media (max-width: 767px) {
     .nav-menu.mobile-open {
-        max-height: calc(100vh - 70px); /* Adjust for smaller mobile headers */
+        max-height: calc(100vh - 140px); /* Account for actual header height ~137px */
         padding: var(--spacing-3) var(--spacing-5);
     }
     
