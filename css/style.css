@@ -192,7 +192,7 @@ body:not(.home) {
 /* Override for specifically styled sections - exclude homepage hero with cover images */
 .page-hero,
 .store-hero {
-    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%) !important;
+    background: linear-gradient(180deg, #000000 0%, #0a1929 25%, #1e3a5f 50%, #4a5f7f 75%, #e5e7eb 100%) !important;
 }
 
 /* Specific section backgrounds take precedence over alternation */
@@ -267,7 +267,7 @@ body:not(.home) {
     /* Homepage keeps its original background with images */
 }
 
-/* Page Hero Sections with Dark Blue Gradient */
+/* Page Hero Sections with Black to Navy to White Gradient + Hexagon Pattern */
 .page-hero,
 .store-hero {
     position: relative;
@@ -278,9 +278,52 @@ body:not(.home) {
     color: white;
     overflow: hidden;
     margin-bottom: var(--spacing-6);
-    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
+    background: linear-gradient(180deg, #000000 0%, #0a1929 25%, #1e3a5f 50%, #4a5f7f 75%, #e5e7eb 100%);
     text-align: center;
     padding: var(--spacing-16) var(--spacing-4);
+}
+
+/* Adjust hero text color for better readability against gradient */
+.page-hero h1,
+.page-hero h2,
+.page-hero p,
+.store-hero h1,
+.store-hero h2,
+.store-hero p {
+    text-shadow: 0 3px 15px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.9);
+    position: relative;
+    z-index: 3;
+}
+
+/* Proper Hexagon Grid Pattern Overlay */
+.page-hero::before,
+.store-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: 86.6px 50px;
+    background-image: 
+        linear-gradient(30deg, rgba(255, 255, 255, 0.08) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.08) 87.5%, rgba(255, 255, 255, 0.08)),
+        linear-gradient(150deg, rgba(255, 255, 255, 0.08) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.08) 87.5%, rgba(255, 255, 255, 0.08)),
+        linear-gradient(30deg, rgba(255, 255, 255, 0.08) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.08) 87.5%, rgba(255, 255, 255, 0.08)),
+        linear-gradient(150deg, rgba(255, 255, 255, 0.08) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, 0.08) 87.5%, rgba(255, 255, 255, 0.08)),
+        linear-gradient(60deg, rgba(255, 255, 255, 0.06) 25%, transparent 25.5%, transparent 75%, rgba(255, 255, 255, 0.06) 75%, rgba(255, 255, 255, 0.06)),
+        linear-gradient(60deg, rgba(255, 255, 255, 0.06) 25%, transparent 25.5%, transparent 75%, rgba(255, 255, 255, 0.06) 75%, rgba(255, 255, 255, 0.06));
+    background-position: 0 0, 0 0, 43.3px 25px, 43.3px 25px, 0 0, 43.3px 25px;
+    z-index: 2;
+    pointer-events: none;
+    mask-image: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 25%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.15) 75%, rgba(0,0,0,0) 100%);
+}
+
+/* Ensure hero content is above the pattern */
+.page-hero > *,
+.store-hero > * {
+    position: relative;
+    z-index: 3;
 }
 
 /* Hero background image styling */
