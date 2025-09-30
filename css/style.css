@@ -475,19 +475,19 @@ body:not(.home) {
 
 @keyframes heroImageCycleClean {
     0%, 20% { 
-        background-image: url('../images/hero-electrical-control.png'); 
+        background-image: url('../images/hero-automation.jpg'); 
     }
     20%, 40% { 
-        background-image: url('../images/hero-robotics-assembly.png'); 
+        background-image: url('../images/hero-electrical-panel.jpg'); 
     }
     40%, 60% { 
-        background-image: url('../images/hero-orange-robot.png'); 
+        background-image: url('../images/hero-safety.jpg'); 
     }
     60%, 80% { 
-        background-image: url('../images/hero-white-robot.png'); 
+        background-image: url('../images/hero-panel-building.jpg'); 
     }
     80%, 100% { 
-        background-image: url('../images/hero-company-logo.png'); 
+        background-image: url('../images/hero-industrial.jpg'); 
     }
 }
 
