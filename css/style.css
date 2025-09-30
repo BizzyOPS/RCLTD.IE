@@ -4135,6 +4135,15 @@ section + section {
     line-height: 1.7;
     max-width: 300px;
 }
+
+/* Center footer description on mobile/tablet */
+@media (max-width: 1023px) {
+    .footer-description {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
 .footer-title {
     font-size: var(--font-size-lg);
     font-weight: 600;
