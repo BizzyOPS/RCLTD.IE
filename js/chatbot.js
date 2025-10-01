@@ -1067,8 +1067,7 @@ ControllerBot.prototype.getLocalResponse = function(message) {
                 '• **Local Support** - Irish company with international reach\n\n' +
                 '**🤝 Professional Memberships:**\n' +
                 '• Engineers Ireland\n' +
-                '• Engineering the South East\n' +
-                '• TÜV Certified Engineers\n\n' +
+                '• Engineering the South East\n\n' +
                 '**📞 Contact Us:**\n' +
                 '[Call: +353 (0) 52 7443258](tel:+353527443258)\n' +
                 '[Email: info@rcltd.ie](mailto:info@rcltd.ie)\n' +
