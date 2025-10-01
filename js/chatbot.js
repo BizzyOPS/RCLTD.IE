@@ -490,7 +490,7 @@ ControllerBot.prototype.getLocalResponse = function(message) {
                     '🏗️ **Panel Building Safety** - IEC 61439, testing procedures\n' +
                     '⚠️ **Risk Assessment** - ISO 12100 methodology\n' +
                     '🛡️ **Machine Safety** - Guards, interlocks, emergency systems\n\n' +
-                    'All training includes practical exercises and certification!\n\n' +
+                    'All training includes practical exercises and documentation!\n\n' +
                     'Which training would benefit your team?';
                 resolve(response);
                 return;
@@ -586,7 +586,7 @@ ControllerBot.prototype.getLocalResponse = function(message) {
                     '2️⃣ **Safety Design** - Guards, interlocks, emergency stops\n' +
                     '3️⃣ **Documentation** - Technical file, DoC, user manual\n' +
                     '4️⃣ **Testing & Validation** - Functional safety verification\n' +
-                    '5️⃣ **CE Declaration** - Full compliance certification\n\n' +
+                    '5️⃣ **CE Declaration** - Full compliance documentation\n\n' +
                     '**Standards We Work With:**\n' +
                     '• Machinery Directive 2006/42/EC\n' +
                     '• ISO 13849 (Safety-related parts of control systems)\n' +
@@ -701,7 +701,7 @@ ControllerBot.prototype.getLocalResponse = function(message) {
                     '• **Machine Safety** - Guards, interlocks, emergency systems\n\n' +
                     '**Training Benefits:**\n' +
                     '• Practical hands-on exercises\n' +
-                    '• Industry certification\n' +
+                    '• Training documentation\n' +
                     '• Delivered on-site at your facility\n' +
                     '• Customized to your equipment\n' +
                     '• Expert instructors with real-world experience\n\n' +
@@ -816,7 +816,7 @@ ControllerBot.prototype.getLocalResponse = function(message) {
                 '• **[Safety Solutions](safety.html)** - Risk assessment, compliance, CE marking\n' +
                 '• **[Electrical Design](design.html)** - Control systems, power distribution\n' +
                 '• **[Panel Building](panel.html)** - Custom control panels, MCCs\n' +
-                '• **[On-Site Safety Training](contact.html)** - Professional on-site courses, certification\n\n' +
+                '• **[On-Site Safety Training](contact.html)** - Professional on-site courses, documentation\n\n' +
                 '**🏭 Industries We Serve:**\n' +
                 '• **Pharmaceutical** - GMP compliance, validation protocols\n' +
                 '• **Automotive** - Assembly lines, quality control systems\n' +
@@ -842,7 +842,7 @@ ControllerBot.prototype.getLocalResponse = function(message) {
                 '• **Real Industry Scenarios** - Practical examples from our projects\n' +
                 '• **Progress Tracking** - Monitor your team\'s development\n' +
                 '• **90% Pass Requirement** - Ensures thorough understanding\n' +
-                '• **Industry Recognition** - Certificates valued by employers\n\n' +
+                '• **Industry Recognition** - Documentation valued by employers\n\n' +
                 '**🏆 Why Choose Our Training:**\n' +
                 '• Developed by practicing engineers with 15+ years experience\n' +
                 '• Based on real-world projects and challenges\n' +
@@ -1058,7 +1058,7 @@ ControllerBot.prototype.getLocalResponse = function(message) {
                 '• **Founded:** 2010 (15+ years of excellence)\n' +
                 '• **Team:** Experienced engineers and technicians\n' +
                 '• **Scope:** Ireland and international projects\n' +
-                '• **Certifications:** Professional engineering memberships\n\n' +
+                '• **Memberships:** Professional engineering associations\n\n' +
                 '**🏆 Why Choose R&C Ltd:**\n' +
                 '• **Proven Track Record** - 200+ successful projects delivered\n' +
                 '• **Industry Expertise** - Pharmaceutical, automotive, food & beverage\n' +
