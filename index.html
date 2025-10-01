@@ -188,7 +188,54 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
 
     <main>
         <!-- Hero Section -->
-        <section class="hero hero-cover-image">
+        <section class="hero hero-carousel-bg">
+            <!-- Full Screen Background Carousel -->
+            <div class="hero-carousel-background">
+                <div class="embla" id="heroCarousel">
+                    <div class="embla__container">
+                        <div class="embla__slide">
+                            <img class="hero-bg-image" src="images/hero-automation-carousel-homepage.jpg" alt="Industrial automation solutions by RCLTD" loading="eager">
+                        </div>
+                        <div class="embla__slide">
+                            <img class="hero-bg-image" src="images/hero-electrical-panel-carousel-homepage.jpg" alt="Electrical panel design and manufacturing" loading="lazy">
+                        </div>
+                        <div class="embla__slide">
+                            <img class="hero-bg-image" src="images/hero-safety-carousel-homepage.jpg" alt="Machine safety and compliance solutions" loading="lazy">
+                        </div>
+                        <div class="embla__slide">
+                            <img class="hero-bg-image" src="images/hero-panel-building-carousel-homepage.jpg" alt="Custom control panel building services" loading="lazy">
+                        </div>
+                        <div class="embla__slide">
+                            <img class="hero-bg-image" src="images/hero-industrial-carousel-homepage.jpg" alt="Industrial control system integration" loading="lazy">
+                        </div>
+                        <div class="embla__slide">
+                            <img class="hero-bg-image" src="images/hero-control-panel-carousel.jpg" alt="Professional control panel solutions" loading="lazy">
+                        </div>
+                        <div class="embla__slide">
+                            <img class="hero-bg-image" src="images/hero-electrical-cabinet-carousel.jpg" alt="Electrical cabinet design and installation" loading="lazy">
+                        </div>
+                        <div class="embla__slide">
+                            <img class="hero-bg-image" src="images/hero-technicians-working-carousel.jpg" alt="Expert technicians providing quality service" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navigation Buttons -->
+            <button class="embla__prev" type="button" aria-label="Previous image">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15,18 9,12 15,6"></polyline>
+                </svg>
+            </button>
+            <button class="embla__next" type="button" aria-label="Next image">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9,18 15,12 9,6"></polyline>
+                </svg>
+            </button>
+            
+            <!-- Dots Navigation -->
+            <div class="embla__dots" id="heroDots"></div>
+            
             <div class="hero-overlay"></div>
             <div class="hero-gradient"></div>
             <div class="hero-container">
@@ -442,6 +489,110 @@ Browser Support: Modern browsers (Chrome 60+, Firefox 55+, Safari 12+)
                                 <path d="M12 5v14M5 12h14"/>
                             </svg>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Coverage Section -->
+        <section class="service-coverage">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Nationwide Service Coverage</h2>
+                    <p class="section-description">Delivering excellence across Ireland with rapid response times and comprehensive support</p>
+                </div>
+                
+                <div class="coverage-grid">
+                    <div class="coverage-item">
+                        <div class="coverage-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                                <circle cx="12" cy="9" r="2.5"/>
+                            </svg>
+                        </div>
+                        <h3 class="coverage-title">Primary Service Area</h3>
+                        <p class="coverage-description">Tipperary, Cork, Limerick, and surrounding counties with same-day service availability</p>
+                    </div>
+                    
+                    <div class="coverage-item">
+                        <div class="coverage-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 12h18m-9-9v18"/>
+                                <circle cx="12" cy="12" r="9"/>
+                            </svg>
+                        </div>
+                        <h3 class="coverage-title">Extended Coverage</h3>
+                        <p class="coverage-description">All-Ireland service network with 48-hour response for emergency automation support</p>
+                    </div>
+                    
+                    <div class="coverage-item">
+                        <div class="coverage-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                            </svg>
+                        </div>
+                        <h3 class="coverage-title">24/7 Support</h3>
+                        <p class="coverage-description">Round-the-clock emergency response for critical automation and safety systems</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trusted Partners Section -->
+        <section class="trusted-partners">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Authorized Partners</h2>
+                    <p class="section-description">Certified partners providing quality products and technical support for our automation solutions</p>
+                </div>
+                
+                <div class="partners-grid">
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <img src="attached_assets/cembre-supplier-transparent_1759235144136.png" alt="Cembre" loading="lazy" onerror="this.style.display='none'">
+                            <span class="logo-fallback">CEMBRE</span>
+                        </div>
+                        <h3 class="partner-name">Cembre</h3>
+                        <p class="partner-description">Professional electrical connection and marking solutions</p>
+                    </div>
+                    
+                    <div class="partner-item">
+                        <div class="partner-logo">
+                            <img src="attached_assets/rockwell-automation-supplier-transparent_1759234930458.png" alt="Rockwell Automation" loading="lazy" onerror="this.style.display='none'">
+                            <span class="logo-fallback">ROCKWELL AUTOMATION</span>
+                        </div>
+                        <h3 class="partner-name">Rockwell Automation</h3>
+                        <p class="partner-description">Industrial automation and information solutions</p>
+                    </div>
+                </div>
+                
+                <div class="partners-certifications">
+                    <div class="certification-item">
+                        <div class="cert-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <span class="cert-text">Certified Integration Partners</span>
+                    </div>
+                    <div class="certification-item">
+                        <div class="cert-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 12l2 2 4-4"/>
+                                <circle cx="12" cy="12" r="9"/>
+                            </svg>
+                        </div>
+                        <span class="cert-text">Authorized Service Centers</span>
+                    </div>
+                    <div class="certification-item">
+                        <div class="cert-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 1v6l4-4-4-2z"/>
+                                <path d="M12 8v13"/>
+                                <path d="M16 17a4 4 0 0 1-8 0c0-4 4-6 8-6"/>
+                            </svg>
+                        </div>
+                        <span class="cert-text">Technical Excellence Awards</span>
                     </div>
                 </div>
             </div>
