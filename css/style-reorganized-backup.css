@@ -673,7 +673,6 @@ body:not(.home) {
     position: relative;
     z-index: 101;
     -webkit-backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
 }
 .title-accent {
@@ -2622,7 +2621,6 @@ body.menu-open .header {
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: 10;
     -webkit-backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     opacity: 0.8;
@@ -2659,7 +2657,6 @@ body.menu-open .header {
     padding: var(--spacing-2);
     border-radius: 20px;
     background: rgba(0, 0, 0, 0.1);
-    -webkit-backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
