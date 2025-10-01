@@ -7178,12 +7178,12 @@ body.safety-training-page .brochure-card * {
     color: inherit !important;
 }
 
-/* Ensure buttons maintain proper contrast - BURNT ORANGE text for Book Training buttons */
+/* Ensure buttons maintain proper contrast - WHITE text for Book Training buttons */
 html body.safety-training-page .btn-course,
 html body.safety-training-page .course-cta .btn-course,
 html body.safety-training-page .course-cta a.btn-course,
 html body.safety-training-page a.btn-course {
-    color: #FF6F00 !important;
+    color: #ffffff !important;
     min-height: 44px !important;
     text-shadow: none !important;
     font-weight: 600 !important;
@@ -7195,7 +7195,7 @@ html body.safety-training-page .course-cta a.btn-course:visited,
 html body.safety-training-page .course-cta a.btn-course:hover,
 html body.safety-training-page .course-cta a.btn-course:focus,
 html body.safety-training-page .course-cta a.btn-course:active {
-    color: #FF6F00 !important;
+    color: #ffffff !important;
     font-weight: 600 !important;
     text-shadow: none !important;
 }
