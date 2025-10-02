@@ -4181,11 +4181,13 @@ body.menu-open .header {
 }
 .footer-brand {
     margin-bottom: var(--spacing-6);
+    text-align: center;
 }
 .footer-logo {
     height: 140px;
     width: auto;
-    margin-bottom: var(--spacing-4);
+    margin: 0 auto var(--spacing-4);
+    display: block;
     background: white;
     padding: var(--spacing-4);
     border-radius: var(--radius-md);
