@@ -1,20 +1,6 @@
 # Overview
 
-This project is a professional static website for Robotics & Control Ltd, an Irish technology company, showcasing its industrial automation, safety solutions, electrical design, and panel building services. The website features a multi-page architecture with interactive elements, including a chatbot, training platform, and comprehensive contact forms designed to generate leads and establish the company's expertise in the automation industry. The site aims to provide a robust online presence with a professional and consistent brand image, incorporating social sharing meta tags, a unified icon system, and a CEMBRE-inspired store page redesign for an enhanced user experience and B2B focus.
-
-# Recent Changes
-
-- **About Page Further Refined (Oct 2025)**: Removed Timeline section completely to streamline page. Redesigned "Nationwide Service Across Ireland" section with modern 3-column card grid (.coverage-modern) featuring gradient SVG icons (location, clock, users), hover animations (translateY -8px, icon scale/rotate), and teal branding. Redesigned "Strategic Technology Partnerships" section with professional 2-column grid (.partners-modern) featuring prominent partner cards with logo containers, role badges, and descriptions. Both sections fully responsive at 768px breakpoint (collapse to 1-column, reduced spacing). CSS includes smooth transitions, teal-themed gradients, professional shadows, and decorative pseudo-elements for visual depth.
-- **Navigation Menu Fixes (Oct 2025)**: Fixed Services dropdown vertical alignment by adding `align-items: center` to `.nav-menu` CSS rule, ensuring all menu items align properly. Changed active page highlight color from teal (#10b981) to burnt orange (#ff6b35) across all navigation variants, including underline accent, for consistent branding when user is on a specific page.
-- **Blog System Enhanced with Professional Imagery (Oct 2025)**: Comprehensive blog enhancements across all 10 articles. Blog.html updated with professional Unsplash stock images replacing text placeholders in all 9 blog cards (lazy-loading enabled for performance). All 4 existing articles (Industrial Automation 2025, Predictive Maintenance, ISO 13849 Updates, Panel Design Best Practices) now feature hero images between article-header and article-content sections. Created comprehensive new blog article "Industry 4.0 Implementation Roadmap" (360 lines, 9-min read) with detailed content on digital transformation, assessment strategies, implementation phases, and best practices. Remaining 5 articles (Collaborative Robots, CE Marking, Energy Efficiency, Safety Culture, Digital Twins) marked as "Coming Soon" with proper imagery and structure ready for future development. All blog cards feature professional industrial imagery: predictive maintenance sensors, safety equipment, control panels, smart factories, collaborative robots, CE certification, green technology, safety training, and digital twins.
-- **All 4 Individual Service Pages Modernized (Oct 2025)**: Complete modernization of Automation, Safety, Electrical Design, and Panel Building service pages with professional layouts, comprehensive detailed content, teal branding (#10b981), and full mobile responsiveness at 1024px/768px/480px breakpoints. Each page features unified hero sections, multi-section detailed content (capabilities, industries, compliance, workflows, case studies, differentiators), modern CSS styling matching Blog/About/Contact design language, and standardized JavaScript integration (polyfills.js, app.js). All HTML structure issues resolved (removed nested Instagram anchor tags). Pages are production-ready and architect-approved.
-- **Contact Page Modernized (Oct 2025)**: Completely redesigned Contact page with modern professional layout featuring teal-branded contact method cards with gradient icons and animated hover effects (rotation, scale, top border reveal), split-screen contact section with shimmer animation on image side and teal focus states on form inputs, enhanced contact details cards with left teal border accent, trust section with gradient stat cards, and comprehensive mobile optimization with responsive breakpoints at 1024px, 768px, and 480px. All sections feature contemporary teal gradients, smooth animations, and professional shadows matching the About and Blog page design language.
-- **Blog Page Modernized (Oct 2025)**: Completely redesigned Blog page with modern card layouts, teal branding throughout, enhanced newsletter section with professional form styling, blog metadata badges with teal accents, shimmer animation effects on blog images, and comprehensive mobile optimization with responsive breakpoints at 1024px, 768px, and 480px. Newsletter section features 2-column grid layout with enhanced CTA buttons and teal focus states. All styling follows the same design language as the About page modernization.
-- **About Page Modernized (Oct 2025)**: Completely redesigned About page with modern, professional layout featuring enhanced visual hierarchy, teal branding throughout, improved card designs with shadows and hover effects, responsive typography using clamp(), and comprehensive mobile optimization with breakpoints at 1024px, 768px, and 480px. All sections (company intro, history, values, testimonials, expertise, capabilities) now feature contemporary styling with gradient backgrounds, border accents, and smooth animations.
-- **Footer Logo Visibility Fixed (Oct 2025)**: Added white background box with padding and rounded corners to footer logo for better visibility against dark footer background. Logo now displays clearly with professional appearance using existing design tokens.
-- **Trusted Partners Section Added (Oct 2025)**: New "Trusted Partners" section added to homepage featuring Cembre and Rockwell Automation logos displayed in full color (no grayscale filters). Responsive 2-column grid layout on desktop, 1-column on mobile. Located between About section and CTA section.
-- **Store Page Temporarily Hidden (Oct 2025)**: Store navigation link removed from all pages (commented out in HTML) due to lack of product listing permissions. Store page (store.html) remains in codebase but is not accessible via navigation menu. Can be easily restored by uncommenting the navigation links when permissions are obtained.
-- **Navigation Color Scheme Updated (Oct 2025)**: Updated navigation menu colors to use teal blue (#10b981) branding. Regular menu items are black by default with teal hover/active states. Home and Services menu items use teal by default with black active states.
+This project is the official static website for Robotics & Control Ltd, an Irish technology company. It serves as a comprehensive online showcase for their industrial automation, safety solutions, electrical design, and panel building services. The website features a multi-page architecture with interactive elements like a chatbot and a training platform, alongside detailed contact forms designed to generate leads and establish the company's expertise in the automation industry. The site aims for a robust online presence with a professional and consistent brand image, incorporating social sharing meta tags, a unified icon system, and a CEMBRE-inspired design for an enhanced user experience and B2B focus.
 
 # User Preferences
 
@@ -23,19 +9,12 @@ Preferred communication style: Simple, everyday language.
 # System Architecture
 
 ## Frontend Architecture
-The website is a static multi-page HTML application built with semantic HTML for accessibility and SEO. It uses a component-based CSS methodology with BEM-like naming conventions and CSS custom properties for consistent theming. A mobile-first responsive approach is implemented across 17 individual pages. The design incorporates a clean, minimal aesthetic with professional typography, unified icon systems, and consistent branding. Specific UI/UX decisions include a CEMBRE-inspired store page design with 4:3 aspect ratio images, professional typography hierarchy, 2-column grid layouts, and brand-consistent color schemes (teal #10b981, dark teal #0f766e). The site also features an auto-hide header for maximized view space and professional footer enhancements.
+The website is a static multi-page HTML application built with semantic HTML for accessibility and SEO. It employs a component-based CSS methodology with BEM-like naming conventions and CSS custom properties for consistent theming. A mobile-first responsive approach is implemented across 17 individual pages, emphasizing a clean, minimal aesthetic with professional typography and consistent branding. UI/UX decisions include a CEMBRE-inspired store page design, professional typography hierarchy, 2-column grid layouts, and a brand-consistent color scheme (teal #10b981, dark teal #0f766e). Features include an auto-hide header for maximized view space and enhanced professional footers.
 
 ## JavaScript Architecture
-Built with vanilla JavaScript (ES6+) organized using the Module Pattern, key interactive components include:
+Built with vanilla JavaScript (ES6+) using the Module Pattern, key interactive components include:
 - A responsive navigation controller.
-- A "Controller Bot" AI assistant with intelligent conversation flow, state management, and smart department routing:
-  - **Conversation State Management**: Tracks discovery mode, service category, and industry context
-  - **Guided Service Discovery**: 6-category discovery flow (automation, safety, design, panel, training, general)
-  - **Industry-Specific Guidance**: Pharmaceutical, automotive, food & beverage automation advice
-  - **Smart Department Routing**: Sales (automation, training), Technical (safety, design), Support (complaints/issues)
-  - **Security**: URL encoding with encodeURIComponent via buildContactLink() helper
-  - **Reset Functionality**: "start over", "reset", "main menu" commands to restart conversation
-  - **Complete CTAs**: Every response includes contact links, phone numbers, and email
+- A "Controller Bot" AI assistant with intelligent conversation flow, state management, guided service discovery across 6 categories (automation, safety, design, panel, training, general), industry-specific guidance (pharmaceutical, automotive, food & beverage), and smart department routing (Sales, Technical, Support). It includes security measures like URL encoding and reset functionality.
 - An interactive safety training platform.
 - Real-time client-side form validation with XSS prevention.
 - A professional tooltip system.
@@ -46,29 +25,24 @@ The project adheres to:
 - **Component-Based CSS**: Modular and reusable CSS architecture.
 - **Accessibility-First**: WCAG 2.1 AA compliance with ARIA attributes.
 - **SEO Optimization**: Structured data and semantic markup.
-- **Security-by-Design**: Production-grade input sanitization and secure form handling (Sept 2025):
-  - **Trusted Data Model**: Application HTML built from static, trusted `trainingData` definitions - no parsing of untrusted content
-  - **Comprehensive Escaping**: All dynamic strings (titles, descriptions, user input) flow through `escapeHtml()`/`escapeAttr()` before interpolation
-  - **No User Input to innerHTML**: Strict separation - user input is escaped as text, never parsed as HTML
-  - **Defense-in-Depth**: Multiple validation layers including client-side sanitization and server-side validation
-  - **CodeQL Compliant**: No regex backtracking, no innerHTML security warnings, no DOM reinterpretation issues
+- **Security-by-Design**: Production-grade input sanitization and secure form handling, utilizing a trusted data model, comprehensive escaping for dynamic strings, strict separation to prevent user input from parsing as HTML, and multiple validation layers. It is CodeQL Compliant.
 
 ## System Design Choices
-- **Icon System**: Comprehensive custom PNG icon system with consistent sizing, coloring, drop-shadow effects, and aggressive transparency removal for seamless integration. This includes 48 professionally edited transparent PNG icon files.
+- **Icon System**: Comprehensive custom PNG icon system with consistent sizing, coloring, drop-shadow effects, and aggressive transparency removal.
 - **Image Optimization**: Images are optimized for multiple screen sizes.
-- **Homepage Hero Carousel (Oct 2025)**: Dynamic 40-second rotating background carousel showcasing 8 professional images (5 Unsplash stock + 3 authentic client photos) relevant to core services: industrial automation, electrical control panels, machine safety, panel building, industrial technology, control panel interior wiring, electrical cabinet terminal blocks, and technicians servicing equipment. Images cycle smoothly every 5 seconds using CSS keyframe animation with 12.5% intervals.
+- **Homepage Hero Carousel**: Dynamic 40-second rotating background carousel showcasing 8 professional images relevant to core services.
 - **Form Handling**: Department-specific email routing system with backend validation.
-- **Page Layouts**: Streamlined service page layouts removing hero sections and intros to immediately showcase content. Hero sections are consistently applied or removed across pages for a unified user experience.
-- **Homepage Content Structure (Oct 2025)**: Streamlined homepage focusing on core value proposition with "Intelligent Automation Solutions" as hero title (teal accent color #10b981), updated statistics (1000+ projects delivered, 15+ years experience, 97% on-time delivery), "Trusted by Industry" section, "What We Do Best" capabilities overview, simplified About section, and core services showcase. Detailed company information (Industry Expertise, Technical Capabilities, Geographic Coverage, Partners) moved to dedicated About page for better information architecture.
-- **Hero Section Styling (Sept 2025)**: Black to navy to light gray gradient (`linear-gradient(180deg, #000000 0%, #0a1929 25%, #1e3a5f 50%, #4a5f7f 75%, #e5e7eb 100%)`) with sophisticated dual-layer hexagon pattern overlay applied to About, Services, Individual Service Pages (Automation, Safety, Design, Panel Building), Contact, Blog, and Store pages. The hexagon pattern uses color-coordinated tones (cyan/blue for dark gradient sections, gray/slate for lighter sections) that blend naturally with the background gradient. The pattern fades from visible (top) to transparent (bottom) with a mid-emphasis overlay layer for enhanced depth. Homepage and Safety Training maintain their unique hero styling.
-- **Navigation System (Sept 2025)**: Auto-hide header that disappears on scroll down and reappears on scroll up. Mobile navigation menu is fully scrollable with enhanced dropdown visibility for all service pages.
-- **Services Page Design (Sept 2025)**: Clean modern layout with unified hero section (matching About/Store/Blog), 5 service cards in responsive grid, feature lists with checkmarks, teal branding throughout. Full mobile responsiveness with proper viewport scaling.
-- **Contact Page Design (Sept 2025)**: Modern split-screen B2B layout with unified hero section (matching About/Store/Blog), contact information on left (methods cards + office hours), simplified 5-field form on right (name, email, phone, service, message), trust/statistics section, and conversion-optimized minimal aesthetic matching CEMBRE-inspired design system. Fully responsive with mobile stacking.
+- **Page Layouts**: Streamlined service page layouts with consistent application or removal of hero sections for a unified user experience.
+- **Homepage Content Structure**: Streamlined homepage focusing on core value proposition, updated statistics, "Trusted by Industry" section, capabilities overview, simplified About section, and core services showcase. Detailed company information is moved to the dedicated About page for improved information architecture.
+- **Hero Section Styling**: Sophisticated dual-layer hexagon pattern overlay with a black to navy to light gray gradient applied to most pages, blending with color-coordinated tones.
+- **Navigation System**: Auto-hide header that disappears on scroll down and reappears on scroll up, with a fully scrollable mobile navigation menu.
+- **Services Page Design**: Clean modern layout with a unified hero section, responsive grid for 5 service cards, and feature lists with checkmarks.
+- **Contact Page Design**: Modern split-screen B2B layout with a unified hero section, contact information, a simplified 5-field form, and a trust/statistics section.
 
 # External Dependencies
 
 ## Third-Party Services
-- **Google Fonts**: Inter font family for consistent typography.
+- **Google Fonts**: Inter font family.
 - **Google Analytics**: For website analytics.
 - **Google Maps**: Embedded for business location services.
 
