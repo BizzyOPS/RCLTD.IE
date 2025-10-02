@@ -4,6 +4,7 @@ This project is a professional static website for Robotics & Control Ltd, an Iri
 
 # Recent Changes
 
+- **Trusted Partners Section Added (Oct 2025)**: New "Trusted Partners" section added to homepage featuring Cembre and Rockwell Automation logos displayed in full color (no grayscale filters). Responsive 2-column grid layout on desktop, 1-column on mobile. Located between About section and CTA section.
 - **Store Page Temporarily Hidden (Oct 2025)**: Store navigation link removed from all pages (commented out in HTML) due to lack of product listing permissions. Store page (store.html) remains in codebase but is not accessible via navigation menu. Can be easily restored by uncommenting the navigation links when permissions are obtained.
 - **Navigation Color Scheme Updated (Oct 2025)**: Updated navigation menu colors to use teal blue (#10b981) branding. Regular menu items are black by default with teal hover/active states. Home and Services menu items use teal by default with black active states.
 
