@@ -4174,6 +4174,10 @@ body.menu-open .header {
     height: 140px;
     width: auto;
     margin-bottom: var(--spacing-4);
+    background: white;
+    padding: var(--spacing-4);
+    border-radius: var(--radius-md);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 .footer-description {
     color: rgba(255, 255, 255, 0.8);
