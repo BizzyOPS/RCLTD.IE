@@ -1870,12 +1870,15 @@ body.menu-open .header {
 /* Dropdown Styles */
 .nav-dropdown {
     position: relative;
+    height: auto;
 }
+
 .nav-dropdown-container {
     display: flex;
     align-items: center;
     gap: 0.25rem;
     gap: var(--spacing-1);
+    height: auto;
 }
 
 .nav-dropdown-container .nav-link {
@@ -1919,7 +1922,7 @@ body.menu-open .header {
     transform: rotate(180deg);
 }
 .nav-dropdown-menu {
-    position: absolute;
+    position: absolute !important;
     top: calc(100% + 5px);
     left: 0;
     background: #ffffff;
@@ -1936,6 +1939,8 @@ body.menu-open .header {
     z-index: 1000;
     list-style: none;
     padding: var(--spacing-2) 0;
+    margin: 0;
+    pointer-events: none;
 }
 .header.on-dark .nav-dropdown-menu {
     background: #1a1f2e;
@@ -1946,6 +1951,7 @@ body.menu-open .header {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+    pointer-events: auto;
 }
 .nav-dropdown-menu .nav-link {
     display: block;
