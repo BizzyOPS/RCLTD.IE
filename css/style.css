@@ -1600,6 +1600,7 @@ section + section {
     list-style: none;
     gap: 2rem;
     gap: var(--spacing-8);
+    align-items: center;
 }
 .nav-link {
     color: var(--brand-teal);
@@ -1612,9 +1613,12 @@ section + section {
     color: var(--text-primary);
 }
 
-.nav-link:hover,
-.nav-link.active {
+.nav-link:hover {
     color: var(--brand-teal);
+}
+
+.nav-link.active {
+    color: #ff6b35 !important;
 }
 
 .nav-link[href="index.html"],
@@ -1624,7 +1628,7 @@ section + section {
 
 .nav-link[href="index.html"].active,
 .nav-link[href="services.html"].active {
-    color: var(--text-primary);
+    color: #ff6b35 !important;
 }
 
 .header.on-light .nav-link[href="index.html"],
@@ -1634,7 +1638,7 @@ section + section {
 
 .header.on-light .nav-link[href="index.html"].active,
 .header.on-light .nav-link[href="services.html"].active {
-    color: var(--text-primary);
+    color: #ff6b35 !important;
 }
 .nav-link.active::after {
     content: '';
@@ -1643,7 +1647,7 @@ section + section {
     left: 0;
     right: 0;
     height: 2px;
-    background-color: #047857;
+    background-color: #ff6b35;
     border-radius: 1px;
 }
 
