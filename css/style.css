@@ -1,3 +1,11 @@
+.nav-link.services {
+    gap: 0 !important;
+/* Removed stray closing brace */
+.nav-link.services .dropdown-arrow {
+    margin-left: 2px !important;
+    padding-left: 0 !important;
+}
+}
 /* ============================================================================
    ROBOTICS & CONTROL LTD - MAIN STYLESHEET
    
@@ -48,10 +56,12 @@
 /* Import hexagonal design system module */
 
 /* CSS Reset - Normalize default browser styles */
+/* Removed stray closing brace */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box; /* Include padding and border in element's total width/height */
+}
 
 /* ============================================================================
    2. GLOBAL BASE STYLES
@@ -298,6 +308,7 @@ body:not(.home) {
 
 /* Additional subtle overlay for enhanced color blending */
 .page-hero::after,
+.page-hero::after,
 .store-hero::after {
     content: '';
     position: absolute;
@@ -313,11 +324,10 @@ body:not(.home) {
     background-position: 21.65px 12.5px, 21.65px 12.5px, 21.65px 12.5px;
     z-index: 2;
     pointer-events: none;
-    opacity: 0.7;
+    opacity: 0.1;
     -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 85%, rgba(0,0,0,0) 100%);
     mask-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.2) 85%, rgba(0,0,0,0) 100%);
 }
-
 /* Ensure hero content is above the pattern */
 .page-hero > *,
 .store-hero > *,
@@ -1436,6 +1446,7 @@ section + section {
 */
 
 /* Header & Navigation */
+
 .header {
     position: fixed;
     top: 0;
@@ -1444,10 +1455,11 @@ section + section {
     z-index: 1000;
     transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     transform: translateY(0);
-    background: rgba(255, 255, 255, 0.95);
+    background: #fff !important; /* White header */
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+    border-bottom: 3px solid #16a34a; /* Green outline */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Header hide/show states for scroll behavior */
@@ -1462,14 +1474,14 @@ section + section {
 /* Store hero section styling - no additional padding needed with global main padding */
 /* Header with white background */
 .header.on-dark {
-    background: #ffffff !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    background: #fff !important;
+    border-bottom: 3px solid #16a34a !important;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
 }
 /* Header on light background - solid white */
 .header.on-light {
-    background: #ffffff !important;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    background: #fff !important;
+    border-bottom: 3px solid #16a34a !important;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
 }
 .nav {
@@ -1610,28 +1622,30 @@ section + section {
 }
 /* Removed redundant 480px media query - mobile sizing now handled by 767px breakpoint */
 .nav-menu {
-    display: flex; /* Show by default for desktop-first approach */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     list-style: none;
-    gap: 2rem;
-    gap: var(--spacing-8);
+    gap: 2.5rem; /* Consistent, professional spacing */
+    padding: 0;
+    margin: 0;
 }
 .nav-link {
-    color: var(--brand-teal);
+    color: #000000;
     text-decoration: none;
     font-weight: 500;
     transition: all var(--transition-normal);
     position: relative;
+    padding: 0.5rem 0.75rem;
+    margin: 0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
 }
-.header.on-light .nav-link {
-    color: var(--brand-teal);
-}
-.nav-link:hover,
-.nav-link.active {
-    color: var(--primary-dark);
-}
-.header.on-light .nav-link:hover,
-.header.on-light .nav-link.active {
-    color: var(--primary-dark);
+.nav-link.home,
+.nav-link.services {
+    color: #367588 !important;
 }
 .nav-link.active::after {
     content: '';
@@ -1650,6 +1664,10 @@ section + section {
     gap: var(--spacing-4);
     position: relative;
     z-index: 100;
+}
+.nav-contact .nav-mail {
+    color: #367588 !important; /* Teal Blue for mail */
+    font-weight: bold;
 }
 .nav-phone {
     font-weight: 500;
@@ -1959,7 +1977,7 @@ body.menu-open .header {
 .nav-dropdown-menu .nav-link {
     display: block;
     padding: var(--spacing-3) var(--spacing-4);
-    color: var(--text-secondary);
+    color: #CC5500 !important; /* Burnt orange for dropdown */
     text-decoration: none;
     transition: background-color 0.2s ease, color 0.2s ease;
     border-radius: var(--radius-sm);
@@ -1974,8 +1992,8 @@ body.menu-open .header {
     white-space: nowrap;
 }
 .nav-dropdown-menu .nav-link:hover {
-    background: var(--accent-color);
-    color: var(--primary-color);
+    background: rgba(8, 145, 178, 0.15) !important;
+    color: #CC5500 !important;
 }
 .nav-dropdown-menu .nav-link::after {
     display: none;
@@ -2095,7 +2113,7 @@ body.menu-open .header {
         background: rgba(8, 145, 178, 0.15) !important;
         color: #CC5500 !important;
     }
-}
+/* Removed stray closing brace */
 /* Hero Section */
 .hero {
     padding: calc(80px + var(--spacing-20)) 0 calc(var(--spacing-20) * 2);
@@ -2849,7 +2867,7 @@ body.menu-open .header {
 .contact-method-clickable {
     display: block;
     text-decoration: none;
-    color: inherit;
+    color: #D4571F !important; /* Burnt Orange for dropdown */
     transition: all var(--transition-fast);
     border-radius: 12px;
     padding: 0.5rem;
@@ -4595,11 +4613,6 @@ body.menu-open .header {
     border-color: #0077b5;
     color: white;
 }
-.social-link.instagram:hover {
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    border-color: #dc2743;
-    color: white;
-}
 .social-link svg {
     width: 24px;
     height: 24px;
@@ -4912,8 +4925,9 @@ body.menu-open .header {
 }
 .chatbot-close:hover {
     background: rgba(0, 0, 0, 0.1);
-    color: #000000;
+    color: #111 !important; /* Black text for menu links */
 }
+/* .nav-link.home, .nav-link.services { color: #367588 !important; } */
 .chatbot-close:active,
 .chatbot-close:focus {
     color: #dc2626;
@@ -7887,7 +7901,7 @@ img.service-icon {
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 1rem;
-}
+/* Removed stray closing brace */
 
 .coverage-highlight p {
     color: var(--text-secondary);
@@ -9801,12 +9815,9 @@ body.services-page .store-hero {
 .page-hero::before {
     display: none;
 }
-.page-hero::after {
-    display: none;
-}
-.page-hero-content {
-    max-width: 800px;
-    margin: 0 auto;
+.page-hero::after,
+.store-hero::after {
+    opacity: 0.15;
 }
 .page-title {
     font-size: var(--font-size-4xl);
@@ -13177,7 +13188,7 @@ p, h1, h2, h3, h4, h5, h6, span, div {
     transition: all var(--transition-normal);
     position: relative;
     text-decoration: none;
-    color: inherit;
+    color: #D4571F !important; /* Burnt orange for dropdown */
     display: block;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
@@ -14765,4 +14776,4 @@ body.safety-training-page .progress-counter {
 .cert-icon {
     color: var(--primary-color);
 }
-
+}

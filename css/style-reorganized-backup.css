@@ -3005,7 +3005,7 @@ body.menu-open .header {
 .floating-elements {
     position: absolute;
     inset: 0;
-}
+/* Removed stray closing brace */
 
 .float-element {
     position: absolute;
@@ -4468,7 +4468,6 @@ body.menu-open .header {
     border-color: #0077b5;
     color: white;
 }
-.social-link.instagram:hover {
     background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
     border-color: #dc2743;
     color: white;
