@@ -9388,17 +9388,24 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
     background: rgba(255, 255, 255, 0.25);
     border-radius: var(--radius-lg);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid var(--brand-teal);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
+    border-color: #0d9488;
 }
 
 .stat-number {
     display: block;
     font-size: var(--font-size-3xl);
-    font-weight: 700;
-    color: var(--brand-teal);
+    font-weight: 800;
+    color: #ffffff;
     margin-bottom: var(--spacing-2);
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 .stat-label {
