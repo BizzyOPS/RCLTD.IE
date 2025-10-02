@@ -112,7 +112,7 @@ function FormValidator() {
         };
         
         this.securityPatterns = [
-            // XSS patterns - simple patterns without backtracking issues
+            // XSS patterns - optimized for security without backtracking issues
             /<script/gi,
             /<\/script/gi,
             /javascript\s*:/gi,
@@ -122,16 +122,16 @@ function FormValidator() {
             /<object/gi,
             /<embed/gi,
             
-            // SQL injection patterns
+            // SQL injection patterns - limited wildcards to prevent catastrophic backtracking
             /(\b(SELECT|INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|EXEC|EXECUTE)\s+)/gi,
             /(\bUNION\s+SELECT\b)/gi,
-            /'(\s*(OR|AND)\s+.*=)|('.*;\s*--)/gi,
+            /'(\s*(OR|AND)\s+.{0,50}=)|('.{0,50};\s*--)/gi,
             
             // Path traversal
             /\.\.\//g,
             /%2e%2e%2f/gi,
             
-            // Command injection
+            // Command injection - standard patterns (no catastrophic backtracking risk)
             /(\;\s*(rm|del|format|wget|curl|python|perl|ruby|php|bash|sh|cmd|powershell))/gi
         ];
 };

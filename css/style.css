@@ -1,9 +1,10 @@
 .nav-link.services {
     gap: 0 !important;
-}
+/* Removed stray closing brace */
 .nav-link.services .dropdown-arrow {
     margin-left: 2px !important;
     padding-left: 0 !important;
+}
 }
 /* ============================================================================
    ROBOTICS & CONTROL LTD - MAIN STYLESHEET
@@ -1504,7 +1505,6 @@ section + section {
 @media (max-width: 1024px) {
     .nav-container {
         padding: 0 var(--spacing-3);
-        min-height: var(--header-height);
     }
     
     /* Ensure nav-contact is hidden on mobile to make room for hamburger */
@@ -1645,6 +1645,12 @@ section + section {
 .nav-link.home,
 .nav-link.services {
     color: #367588 !important;
+    gap: 0 !important;
+}
+
+.nav-link.services .dropdown-arrow {
+    margin-left: 2px !important;
+    padding-left: 0 !important;
 }
 .nav-link.active::after {
     content: '';
@@ -13722,7 +13728,13 @@ p, h1, h2, h3, h4, h5, h6, span, div {
 
 /* Safety Training page loader - uses standard sizing with custom background */
 body.safety-training-page .page-loader {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%) !important;
+}
+
+/* Override the ::before pseudo-element gradient for dark theme */
+body.safety-training-page .page-loader::before {
+    background: none !important;
+    opacity: 0 !important;
 }
 
 /* Safety Training logo is taller, scale it down to match visual size of other logos */
@@ -14774,5 +14786,4 @@ body.safety-training-page .progress-counter {
 
 .cert-icon {
     color: var(--primary-color);
-}
 }
