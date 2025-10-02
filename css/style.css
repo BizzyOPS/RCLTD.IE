@@ -9377,14 +9377,14 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
 
 .hero-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: var(--spacing-6);
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--spacing-8);
     margin-top: var(--spacing-8);
 }
 
 .stat-item {
     text-align: center;
-    padding: var(--spacing-5);
+    padding: var(--spacing-8) var(--spacing-6);
     background: rgba(255, 255, 255, 0.25);
     border-radius: var(--radius-lg);
     backdrop-filter: blur(20px);
@@ -9404,16 +9404,16 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
     font-size: var(--font-size-3xl);
     font-weight: 800;
     color: #ffffff;
-    margin-bottom: var(--spacing-2);
+    margin-bottom: var(--spacing-3);
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 .stat-label {
     color: #ffffff;
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-base);
     font-weight: 600;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 /* Company Introduction Section */
