@@ -1,0 +1,96 @@
+modules = ["python-3.11", "nodejs-20"]
+[agent]
+expertMode = true
+integrations = ["javascript_openai:1.0.0"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Static Website"
+
+[[workflows.workflow]]
+name = "Static Website"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python3 -m http.server 5000"
+waitForPort = 5000
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[[ports]]
+localPort = 34491
+externalPort = 3001
+
+[[ports]]
+localPort = 36477
+externalPort = 6000
+
+[[ports]]
+localPort = 37633
+externalPort = 9000
+
+[[ports]]
+localPort = 39913
+externalPort = 8099
+
+[[ports]]
+localPort = 41601
+externalPort = 8000
+
+[[ports]]
+localPort = 41855
+externalPort = 3002
+
+[[ports]]
+localPort = 42243
+externalPort = 3003
+
+[[ports]]
+localPort = 42555
+externalPort = 8080
+
+[[ports]]
+localPort = 42915
+externalPort = 8081
+
+[[ports]]
+localPort = 43397
+externalPort = 4200
+
+[[ports]]
+localPort = 45439
+externalPort = 5173
+
+[[ports]]
+localPort = 46035
+externalPort = 8008
+
+[[ports]]
+localPort = 46277
+externalPort = 6800
+
+[[ports]]
+localPort = 46569
+externalPort = 5000
+
+[[ports]]
+localPort = 46817
+externalPort = 3000
+
+[nix]
+channel = "stable-25_05"
+packages = ["imagemagick"]

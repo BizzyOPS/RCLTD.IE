@@ -21,26 +21,37 @@
  * @function setHeaderOffset
  * @returns {void}
  */
-let lastHeaderHeight = 0;
 function setHeaderOffset() {
     const header = document.querySelector('.header');
-    if (!header) return;
+    if (!header) return; // Exit early if header not found
     
+    // Get actual header height rounded up to avoid sub-pixel issues
     const h = Math.ceil(header.getBoundingClientRect().height);
     
-    if (Math.abs(h - lastHeaderHeight) > 2) {
-        lastHeaderHeight = h;
-        document.documentElement.style.setProperty('--header-height', h + 'px');
-        console.log('Header height set to exact:', h + 'px');
-    }
+    // Set CSS variable for use throughout stylesheets
+    document.documentElement.style.setProperty('--header-height', h + 'px');
+    console.log('Header height set to exact:', h + 'px');
 }
 
 /**
  * Event listeners for header height calculation
  * 
- * Calculate once on page load only to avoid infinite loops
+ * These ensure the header height is recalculated when:
+ * - Page loads completely
+ * - Window is resized  
+ * - Header content changes (using ResizeObserver for modern browsers)
  */
 window.addEventListener('load', setHeaderOffset);
+window.addEventListener('resize', setHeaderOffset);
+
+// Modern browsers: Watch for header content changes using ResizeObserver
+if (window.ResizeObserver) {
+    const headerObserver = new ResizeObserver(setHeaderOffset);
+    const header = document.querySelector('.header');
+    if (header) {
+        headerObserver.observe(header);
+    }
+}
 
 // PARTICLES COMPLETELY DISABLED - NO PARTICLE CODE SHOULD EXECUTE
 // Safe no-op overrides without monkey-patching
