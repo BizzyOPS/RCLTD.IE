@@ -2,6 +2,11 @@
 
 This project is a professional static website for Robotics & Control Ltd, an Irish technology company, showcasing its industrial automation, safety solutions, electrical design, and panel building services. The website features a multi-page architecture with interactive elements, including a chatbot, training platform, and comprehensive contact forms designed to generate leads and establish the company's expertise in the automation industry. The site aims to provide a robust online presence with a professional and consistent brand image, incorporating social sharing meta tags, a unified icon system, and a CEMBRE-inspired store page redesign for an enhanced user experience and B2B focus.
 
+# Recent Changes
+
+- **Store Page Temporarily Hidden (Oct 2025)**: Store navigation link removed from all pages (commented out in HTML) due to lack of product listing permissions. Store page (store.html) remains in codebase but is not accessible via navigation menu. Can be easily restored by uncommenting the navigation links when permissions are obtained.
+- **Navigation Color Scheme Updated (Oct 2025)**: Updated navigation menu colors to use teal blue (#10b981) branding. Regular menu items are black by default with teal hover/active states. Home and Services menu items use teal by default with black active states.
+
 # User Preferences
 
 Preferred communication style: Simple, everyday language.
