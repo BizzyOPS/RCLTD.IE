@@ -9384,25 +9384,29 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
 
 .stat-item {
     text-align: center;
-    padding: var(--spacing-4);
-    background: rgba(255, 255, 255, 0.1);
+    padding: var(--spacing-5);
+    background: rgba(255, 255, 255, 0.25);
     border-radius: var(--radius-lg);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .stat-number {
     display: block;
     font-size: var(--font-size-3xl);
     font-weight: 700;
-    color: var(--brand-orange);
-    margin-bottom: var(--spacing-1);
+    color: var(--brand-teal);
+    margin-bottom: var(--spacing-2);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .stat-label {
-    color: rgba(255, 255, 255, 0.8);
+    color: #ffffff;
     font-size: var(--font-size-sm);
-    font-weight: 500;
+    font-weight: 600;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+    line-height: 1.4;
 }
 
 /* Company Introduction Section */
