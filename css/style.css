@@ -14176,3 +14176,487 @@ body.safety-training-page .progress-counter {
         font-size: 2rem;
     }
 }
+
+/* ========================================
+   MODERN INDIVIDUAL SERVICE PAGES
+   ======================================== */
+
+/* Service Page Introduction Section */
+.service-intro-section {
+    background: linear-gradient(135deg, var(--section-light-teal), white);
+    padding: var(--spacing-20) 0;
+}
+
+.service-intro-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: var(--spacing-16);
+    align-items: center;
+}
+
+.service-intro-content h2 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: var(--spacing-6);
+    line-height: 1.2;
+}
+
+.service-intro-content .intro-highlight {
+    font-size: var(--font-size-xl);
+    color: var(--brand-teal);
+    font-weight: 600;
+    margin-bottom: var(--spacing-4);
+}
+
+.service-intro-content p {
+    font-size: var(--font-size-lg);
+    line-height: 1.8;
+    color: #4b5563;
+    margin-bottom: var(--spacing-6);
+}
+
+.service-key-points {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--spacing-8);
+}
+
+.service-key-points li {
+    padding: var(--spacing-3) 0;
+    padding-left: var(--spacing-10);
+    position: relative;
+    color: #374151;
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+}
+
+.service-key-points li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--brand-teal);
+    font-weight: bold;
+    font-size: 1.3rem;
+    width: 32px;
+    height: 32px;
+    background: var(--section-light-teal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.service-intro-visual {
+    position: relative;
+}
+
+.service-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-4);
+}
+
+.service-stat-card {
+    background: white;
+    padding: var(--spacing-6);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    border: 2px solid var(--brand-teal);
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.1);
+}
+
+.service-stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--brand-teal), var(--brand-teal-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--spacing-2);
+}
+
+.service-stat-label {
+    font-size: var(--font-size-sm);
+    color: #6b7280;
+    font-weight: 600;
+}
+
+/* Enhanced Service Details Section */
+.service-details-section {
+    padding: var(--spacing-20) 0;
+    background: white;
+}
+
+.service-details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-10);
+    margin-top: var(--spacing-12);
+}
+
+.service-detail-card {
+    background: white;
+    padding: var(--spacing-8);
+    border-radius: var(--radius-xl);
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+.service-detail-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(16, 185, 129, 0.15);
+    border-color: var(--brand-teal);
+}
+
+.service-detail-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--brand-teal), var(--brand-teal-dark));
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-4);
+}
+
+.service-detail-icon svg {
+    width: 32px;
+    height: 32px;
+    color: white;
+}
+
+.service-detail-card h3 {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: var(--spacing-4);
+}
+
+.service-detail-card p {
+    color: #6b7280;
+    line-height: 1.7;
+    margin-bottom: var(--spacing-4);
+}
+
+.service-detail-list {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--spacing-4);
+}
+
+.service-detail-list li {
+    padding: var(--spacing-2) 0;
+    padding-left: var(--spacing-6);
+    position: relative;
+    color: #4b5563;
+    font-size: var(--font-size-sm);
+}
+
+.service-detail-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--brand-teal);
+    font-weight: bold;
+}
+
+/* Technical Specifications Section */
+.tech-specs-section {
+    background: var(--section-light-teal);
+    padding: var(--spacing-20) 0;
+}
+
+.tech-specs-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tech-specs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-8);
+    margin-top: var(--spacing-12);
+}
+
+.tech-spec-card {
+    background: white;
+    padding: var(--spacing-6);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--brand-teal);
+}
+
+.tech-spec-card h4 {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--brand-teal);
+    margin-bottom: var(--spacing-3);
+}
+
+.tech-spec-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.tech-spec-card li {
+    padding: var(--spacing-1) 0;
+    color: #4b5563;
+    font-size: var(--font-size-sm);
+}
+
+/* Industries Served Section */
+.industries-served-section {
+    padding: var(--spacing-20) 0;
+    background: white;
+}
+
+.industries-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-6);
+    margin-top: var(--spacing-12);
+}
+
+.industry-card {
+    background: linear-gradient(135deg, white, var(--section-light-teal));
+    padding: var(--spacing-8);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.industry-card:hover {
+    border-color: var(--brand-teal);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(16, 185, 129, 0.15);
+}
+
+.industry-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto var(--spacing-4);
+    background: var(--brand-teal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.industry-card h3 {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: var(--spacing-3);
+}
+
+.industry-card p {
+    color: #6b7280;
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+}
+
+/* Service Process Section */
+.service-process-section {
+    background: linear-gradient(180deg, white, var(--section-light-teal));
+    padding: var(--spacing-20) 0;
+}
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-6);
+    margin-top: var(--spacing-12);
+    position: relative;
+}
+
+.process-step {
+    text-align: center;
+    position: relative;
+}
+
+.process-step-number {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto var(--spacing-4);
+    background: linear-gradient(135deg, var(--brand-teal), var(--brand-teal-dark));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+}
+
+.process-step h4 {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: var(--spacing-2);
+}
+
+.process-step p {
+    color: #6b7280;
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+}
+
+/* Service CTA Section */
+.service-cta-section {
+    background: linear-gradient(135deg, var(--brand-teal), var(--brand-teal-dark));
+    padding: var(--spacing-20) 0;
+    text-align: center;
+    color: white;
+}
+
+.service-cta-content h2 {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: var(--spacing-4);
+    color: white;
+}
+
+.service-cta-content p {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-8);
+    opacity: 0.95;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.service-cta-buttons {
+    display: flex;
+    gap: var(--spacing-4);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-white {
+    background: white;
+    color: var(--brand-teal);
+    padding: var(--spacing-4) var(--spacing-8);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-white:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+}
+
+.btn-outline-white {
+    background: transparent;
+    color: white;
+    padding: var(--spacing-4) var(--spacing-8);
+    border: 2px solid white;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-outline-white:hover {
+    background: white;
+    color: var(--brand-teal);
+}
+
+/* ========================================
+   SERVICE PAGES MOBILE RESPONSIVENESS
+   ======================================== */
+
+@media (max-width: 1024px) {
+    .service-intro-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-12);
+    }
+    
+    .service-intro-visual {
+        order: -1;
+    }
+    
+    .service-details-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-6);
+    }
+    
+    .tech-specs-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-6);
+    }
+    
+    .industries-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .process-steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .service-stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .service-detail-card {
+        padding: var(--spacing-6);
+    }
+    
+    .industries-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .process-steps {
+        grid-template-columns: 1fr;
+    }
+    
+    .service-cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .btn-white,
+    .btn-outline-white {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-intro-section {
+        padding: var(--spacing-12) 0;
+    }
+    
+    .service-intro-content h2 {
+        font-size: 1.75rem;
+    }
+    
+    .service-stat-number {
+        font-size: 2rem;
+    }
+    
+    .service-detail-card {
+        padding: var(--spacing-4);
+    }
+    
+    .industry-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .process-step-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+}
