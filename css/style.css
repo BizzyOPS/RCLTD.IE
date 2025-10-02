@@ -1608,16 +1608,33 @@ section + section {
     transition: all var(--transition-normal);
     position: relative;
 }
-.header.on-light .nav-link {
-    color: var(--brand-teal);
+.nav-link {
+    color: var(--text-primary);
 }
+
 .nav-link:hover,
 .nav-link.active {
-    color: var(--primary-dark);
+    color: var(--brand-teal);
 }
-.header.on-light .nav-link:hover,
-.header.on-light .nav-link.active {
-    color: var(--primary-dark);
+
+.nav-link[href="index.html"],
+.nav-link[href="services.html"] {
+    color: var(--brand-teal);
+}
+
+.nav-link[href="index.html"].active,
+.nav-link[href="services.html"].active {
+    color: var(--text-primary);
+}
+
+.header.on-light .nav-link[href="index.html"],
+.header.on-light .nav-link[href="services.html"] {
+    color: var(--brand-teal);
+}
+
+.header.on-light .nav-link[href="index.html"].active,
+.header.on-light .nav-link[href="services.html"].active {
+    color: var(--text-primary);
 }
 .nav-link.active::after {
     content: '';
@@ -1933,7 +1950,7 @@ body.menu-open .header {
 }
 .nav-dropdown-menu .nav-link:hover {
     background: var(--accent-color);
-    color: var(--primary-color);
+    color: var(--brand-teal);
 }
 .nav-dropdown-menu .nav-link::after {
     display: none;
