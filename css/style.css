@@ -7218,7 +7218,7 @@ body.safety-training-page .brochure-card {
     color: #f8fafc !important;
 }
 
-body.safety-training-page .brochure-card * {
+body.safety-training-page .brochure-card *:not(.btn-course):not(a.btn-course) {
     color: inherit !important;
 }
 
