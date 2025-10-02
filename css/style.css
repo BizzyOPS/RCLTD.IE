@@ -12786,6 +12786,37 @@ body.safety-training-page .progress-counter {
     line-height: 1.5;
 }
 
+/* Trusted Partners Section - Full Color Logos */
+.trusted-partners .partner-logo {
+    background: white;
+    padding: var(--spacing-6);
+    height: auto;
+    min-height: 120px;
+}
+
+.trusted-partners .partner-logo img,
+.trusted-partners .partner-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 120px;
+    object-fit: contain;
+    filter: none;
+}
+
+.trusted-partners .partners-grid {
+    max-width: 900px;
+    margin: var(--spacing-12) auto 0;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-8);
+}
+
+@media (max-width: 768px) {
+    .trusted-partners .partners-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-6);
+    }
+}
+
 .partners-certifications {
     display: flex;
     justify-content: center;
