@@ -12653,3 +12653,163 @@ body.safety-training-page .progress-counter {
         font-size: 2.5rem;
     }
 }
+<<<<<<< HEAD
+=======
+
+/* ============================================================================
+   SERVICE COVERAGE & TRUSTED PARTNERS SECTIONS
+   ============================================================================ */
+
+/* Service Coverage Section */
+.service-coverage {
+    background: var(--section-light-grey);
+    padding: var(--spacing-16) 0;
+}
+
+.coverage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-8);
+    margin-top: var(--spacing-12);
+}
+
+.coverage-item {
+    background: var(--background-light);
+    padding: var(--spacing-8);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.coverage-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15);
+}
+
+.coverage-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: white;
+    border-radius: 50%;
+    margin-bottom: var(--spacing-6);
+}
+
+.coverage-title {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-3);
+}
+
+.coverage-description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Trusted Partners Section */
+.trusted-partners {
+    background: var(--section-white);
+    padding: var(--spacing-16) 0;
+}
+
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-6);
+    margin-top: var(--spacing-12);
+}
+
+.partner-item {
+    background: var(--section-light-grey);
+    padding: var(--spacing-6);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.partner-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    background: var(--background-light);
+}
+
+.partner-logo {
+    width: 120px;
+    height: 80px;
+    margin: 0 auto var(--spacing-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--background-light);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-3);
+}
+
+.partner-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.partner-item:hover .partner-logo img {
+    filter: grayscale(0%);
+}
+
+.logo-fallback {
+    font-weight: 700;
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+    padding: var(--spacing-2) var(--spacing-3);
+    border-radius: var(--radius-sm);
+    display: inline-block;
+}
+
+.partner-name {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-2);
+}
+
+.partner-description {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+.partners-certifications {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-6);
+    margin-top: var(--spacing-12);
+    padding-top: var(--spacing-8);
+    border-top: 1px solid var(--border-color);
+}
+
+.certification-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    background: var(--section-light-teal);
+    padding: var(--spacing-3) var(--spacing-4);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--brand-teal-dark);
+}
+
+.cert-icon {
+    color: var(--primary-color);
+}
+
+>>>>>>> ab6d35172bbb2282375cd52c258f9b00df392251
