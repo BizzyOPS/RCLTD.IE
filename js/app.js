@@ -38,12 +38,9 @@ function setHeaderOffset() {
 /**
  * Event listeners for header height calculation
  * 
- * These ensure the header height is recalculated when:
- * - Page loads completely
- * - Window is resized  
+ * Calculate once on page load only to avoid infinite loops
  */
 window.addEventListener('load', setHeaderOffset);
-window.addEventListener('resize', setHeaderOffset);
 
 // PARTICLES COMPLETELY DISABLED - NO PARTICLE CODE SHOULD EXECUTE
 // Safe no-op overrides without monkey-patching

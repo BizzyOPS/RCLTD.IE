@@ -1505,7 +1505,6 @@ section + section {
 @media (max-width: 1024px) {
     .nav-container {
         padding: 0 var(--spacing-3);
-        min-height: var(--header-height);
     }
     
     /* Ensure nav-contact is hidden on mobile to make room for hamburger */

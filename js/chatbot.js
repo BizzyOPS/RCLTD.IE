@@ -1212,10 +1212,10 @@ ControllerBot.prototype.escapeHtml = function(text) {
             sanitized = sanitized.replace(dangerousPatterns[i], '');
         }
         
-        // Remove dangerous protocols (case-insensitive)
-        sanitized = sanitized.replace(/javascript\s*:/gi, '');
-        sanitized = sanitized.replace(/data\s*:/gi, '');
-        sanitized = sanitized.replace(/vbscript\s*:/gi, '');
+        // Remove dangerous protocols (case-insensitive, limited whitespace to prevent backtracking)
+        sanitized = sanitized.replace(/javascript\s{0,10}:/gi, '');
+        sanitized = sanitized.replace(/data\s{0,10}:/gi, '');
+        sanitized = sanitized.replace(/vbscript\s{0,10}:/gi, '');
         
         // Clean up whitespace
         sanitized = sanitized.replace(/\s+/g, ' ').trim();

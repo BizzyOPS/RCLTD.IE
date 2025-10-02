@@ -112,27 +112,27 @@ function FormValidator() {
         };
         
         this.securityPatterns = [
-            // XSS patterns - simple patterns without backtracking issues
+            // XSS patterns - limited whitespace to prevent catastrophic backtracking
             /<script/gi,
             /<\/script/gi,
-            /javascript\s*:/gi,
-            /vbscript\s*:/gi,
-            /\son\w+\s*=/gi,
+            /javascript\s{0,10}:/gi,
+            /vbscript\s{0,10}:/gi,
+            /\son\w+\s{0,10}=/gi,
             /<iframe/gi,
             /<object/gi,
             /<embed/gi,
             
-            // SQL injection patterns
+            // SQL injection patterns - limited wildcards to prevent backtracking
             /(\b(SELECT|INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|EXEC|EXECUTE)\s+)/gi,
             /(\bUNION\s+SELECT\b)/gi,
-            /'(\s*(OR|AND)\s+.*=)|('.*;\s*--)/gi,
+            /'(\s{0,10}(OR|AND)\s+.{0,50}=)|('.{0,50};\s{0,10}--)/gi,
             
             // Path traversal
             /\.\.\//g,
             /%2e%2e%2f/gi,
             
-            // Command injection
-            /(\;\s*(rm|del|format|wget|curl|python|perl|ruby|php|bash|sh|cmd|powershell))/gi
+            // Command injection - limited whitespace to prevent backtracking
+            /(\;\s{0,10}(rm|del|format|wget|curl|python|perl|ruby|php|bash|sh|cmd|powershell))/gi
         ];
 };
 
