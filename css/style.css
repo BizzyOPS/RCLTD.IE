@@ -9409,7 +9409,7 @@ a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-large):not(.nav-link)
 }
 
 .stat-label {
-    color: #ffffff;
+    color: #ff6b35;
     font-size: var(--font-size-base);
     font-weight: 600;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
