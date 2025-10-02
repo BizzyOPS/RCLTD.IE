@@ -1,0 +1,549 @@
+<!--
+============================================================================
+SAFETY TRAINING SERVICES PAGE - ROBOTICS & CONTROL LTD WEBSITE
+============================================================================
+
+Professional on-site safety training services for industrial environments
+including interactive training modules, compliance certification, and
+customized safety programs for manufacturing operations.
+
+Key Features:
+- On-site safety training delivery at client facilities
+- Interactive training modules with hands-on exercises
+- Professional certification and compliance documentation
+- Customized training programs for specific industries
+- Expert trainer profiles and qualifications
+- Booking system for training sessions
+
+SEO Focus: Safety training, industrial safety courses, on-site training
+Target Industries: Manufacturing, pharmaceutical, automotive, food processing
+Certifications: Professional safety qualifications, compliance training
+============================================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic document configuration -->
+    <meta charset="UTF-8">
+    
+    <!-- Responsive viewport settings -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+    
+    <!-- SEO meta information -->
+    <meta name="description" content="On-Site Safety Training from Robotics & Control Ltd. Professional safety training courses delivered at your facility for industrial environments, machinery safety, and compliance training in Ireland.">
+    <meta name="keywords" content="safety training, on-site training, industrial safety courses, machinery safety training, safety certification, Ireland">
+    
+    <!-- Page title for search engines and browser -->
+    <title>On-Site Safety Training - Professional Safety Courses | R&C Ltd</title>
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/png" href="images/new-logo.png">
+    <link rel="apple-touch-icon" href="images/new-logo.png">
+    <meta name="msapplication-TileImage" content="images/new-logo.png">
+    <meta name="msapplication-TileColor" content="#0891b2">
+    
+    <!-- Cross-browser polyfills - Load before other scripts -->
+    <script src="js/polyfills.js" defer></script>
+    <script src="js/training-loader.js"></script>
+    
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css?v=1759144002&final-fix=white-button&cache=disabled">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="safety-training-page">
+    <!-- Professional Page Loading Animation -->
+    <div class="page-loader" id="page-loader">
+        <div class="loader-container">
+            <div class="tech-loader">
+                <div class="loader-logo">
+                    <img src="images/safety-training-logo.jpg" alt="R&C Safety and Training Services">
+                </div>
+            </div>
+            
+            <!-- Progress Section -->
+            <div class="progress-section">
+                <!-- Progress Counter -->
+                <div class="progress-counter">0%</div>
+                
+                <!-- Progress Bar -->
+                <div class="progress-bar-container">
+                    <div class="progress-bar"></div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <a href="index.html" class="nav-brand-link">
+                        <img src="images/logo.png" alt="Robotics & Control Ltd Logo" class="nav-logo">
+                    </a>
+                </div>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item nav-dropdown">
+                        <div class="nav-dropdown-container">
+                            <a href="services.html" class="nav-link">Services</a>
+                            <button class="nav-dropdown-toggle" aria-label="Toggle services menu">
+                                <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12">
+                                    <path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="2" fill="none"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <ul class="nav-dropdown-menu">
+                            <li><a href="services.html" class="nav-link">All Services</a></li>
+                            <li><a href="automation.html" class="nav-link">Automation Solutions</a></li>
+                            <li><a href="safety.html" class="nav-link">Machine Safety</a></li>
+                            <li><a href="design.html" class="nav-link">Electrical Design</a></li>
+                            <li><a href="panel.html" class="nav-link">Panel Building</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="safety-training.html" class="nav-link active">Safety Training</a></li>
+                    <li class="nav-item"><a href="store.html" class="nav-link"
+                                           data-tooltip="Shop professional automation equipment"
+                                           data-tooltip-type="info"
+                                           data-tooltip-position="bottom">Store</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                
+                <div class="nav-contact">
+                    <div class="nav-actions">
+                        <a href="contact.html" class="btn-primary btn-compact"
+                           data-tooltip="Get a free quote for your project"
+                           data-tooltip-type="success"
+                           data-tooltip-position="bottom">Quote</a>
+                    </div>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Toggle navigation">
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Professional Hero Section -->
+        <section class="brochure-hero">
+            <div class="container">
+                <div class="brochure-header">
+                    <div class="brochure-content">
+                        <h1 class="brochure-title">Safety Training</h1>
+                        <p class="brochure-tagline">Our health and safety training and service are delivered by qualified professionals to ensure the highest standards.</p>
+                        <div class="brochure-cta">
+                            <a href="contact.html" class="btn-hero-primary" id="schedule-training-btn">Schedule Training</a>
+                            <a href="#courses" class="btn-hero-secondary">View Courses</a>
+                        </div>
+                    </div>
+                    <div class="brochure-visual">
+                        <img src="images/safety-training-logo.jpg" alt="R&C Safety and Training Services" class="brochure-hero-logo">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Training Courses Grid -->
+        <section class="brochure-courses" id="courses">
+            <div class="container">
+                <h2 style="text-align: center; color: white; margin-bottom: var(--spacing-12); font-size: var(--h2-size);">Professional Safety Training Courses</h2>
+                <div class="brochure-grid">
+                    <!-- Forklift Training -->
+                    <div class="brochure-card">
+                        <div class="course-icon">
+                            <img src="images/forklift-training-icon.png" alt="Forklift Training" class="course-icon-png">
+                        </div>
+                        <h3 class="course-title">Forklift Training</h3>
+                        <p class="course-description">We offer training and guidance on a multitude of Lift Trucks, such as Counter Balance, Man Up, Combi Multi-Lift, Moffet, PPT and Aisle Master</p>
+                        <div class="course-offerings">
+                            <ul>
+                                <li>1 Day Refresher Courses</li>
+                                <li>2 Day Experienced Courses</li>
+                                <li>3 Day Novice Courses</li>
+                            </ul>
+                        </div>
+                        <div class="course-meta">
+                            <span class="course-duration">
+                                <img src="images/clock-icon.png" alt="Duration" class="feature-icon-png"> 1-3 Days
+                            </span>
+                            <span class="course-max">
+                                <img src="images/people-icon.png" alt="Max participants" class="feature-icon-png"> Max 3 per course
+                            </span>
+                        </div>
+                        <div class="course-cta">
+                            <a href="contact.html" class="btn-course">Book Training</a>
+                        </div>
+                    </div>
+
+                    <!-- MEWP -->
+                    <div class="brochure-card">
+                        <div class="course-icon">
+                            <img src="images/mewp-training-icon.png" alt="MEWP Training" class="course-icon-png">
+                        </div>
+                        <h3 class="course-title">MEWP</h3>
+                        <p class="course-description">1 Day Training Course on Booms and Scissor Lift</p>
+                        <div class="course-offerings">
+                            <ul>
+                                <li>Boom Lift Operation</li>
+                                <li>Scissor Lift Operation</li>
+                                <li>Safety Procedures</li>
+                            </ul>
+                        </div>
+                        <div class="course-meta">
+                            <span class="course-duration">
+                                <img src="images/clock-icon.png" alt="Duration" class="feature-icon-png"> 1 Day
+                            </span>
+                            <span class="course-max">
+                                <img src="images/people-icon.png" alt="Max participants" class="feature-icon-png"> Max 8 per course
+                            </span>
+                        </div>
+                        <div class="course-cta">
+                            <a href="contact.html" class="btn-course">Book Training</a>
+                        </div>
+                    </div>
+
+                    <!-- Fire Safety Awareness & Fire Warden Training -->
+                    <div class="brochure-card">
+                        <div class="course-icon">
+                            <img src="images/fire-safety-training-icon.png" alt="Fire Safety Training" class="course-icon-png">
+                        </div>
+                        <h3 class="course-title">Fire Safety Awareness & Fire Warden Training</h3>
+                        <p class="course-description">Comprehensive fire safety training covering prevention, evacuation procedures, and fire warden responsibilities.</p>
+                        <div class="course-offerings">
+                            <ul>
+                                <li>Fire Prevention</li>
+                                <li>Evacuation Procedures</li>
+                                <li>Fire Warden Duties</li>
+                            </ul>
+                        </div>
+                        <div class="course-meta">
+                            <span class="course-duration">
+                                <img src="images/clock-icon.png" alt="Duration" class="feature-icon-png"> Half Day
+                            </span>
+                            <span class="course-max">
+                                <img src="images/people-icon.png" alt="Max participants" class="feature-icon-png"> Max 12 per course
+                            </span>
+                        </div>
+                        <div class="course-cta">
+                            <a href="contact.html" class="btn-course">Book Training</a>
+                        </div>
+                    </div>
+
+                    <!-- Manual Handling -->
+                    <div class="brochure-card">
+                        <div class="course-icon">
+                            <img src="images/manual-handling-training-icon.png" alt="Manual Handling Training" class="course-icon-png">
+                        </div>
+                        <h3 class="course-title">Manual Handling</h3>
+                        <p class="course-description">Essential training on safe lifting techniques and injury prevention in the workplace.</p>
+                        <div class="course-offerings">
+                            <ul>
+                                <li>Safe Lifting Techniques</li>
+                                <li>Risk Assessment</li>
+                                <li>Injury Prevention</li>
+                            </ul>
+                        </div>
+                        <div class="course-meta">
+                            <span class="course-duration">
+                                <img src="images/clock-icon.png" alt="Duration" class="feature-icon-png"> 1 Day
+                            </span>
+                            <span class="course-max">
+                                <img src="images/people-icon.png" alt="Max participants" class="feature-icon-png"> Max 2 per course
+                            </span>
+                        </div>
+                        <div class="course-cta">
+                            <a href="contact.html" class="btn-course">Book Training</a>
+                        </div>
+                    </div>
+
+                    <!-- Abrasive Wheel -->
+                    <div class="brochure-card">
+                        <div class="course-icon">
+                            <img src="images/abrasive-wheel-training-icon.png" alt="Abrasive Wheel Training" class="course-icon-png">
+                        </div>
+                        <h3 class="course-title">Abrasive Wheel</h3>
+                        <p class="course-description">Professional training on the safe use and maintenance of abrasive wheels and cutting equipment.</p>
+                        <div class="course-offerings">
+                            <ul>
+                                <li>Wheel Selection</li>
+                                <li>Safe Operation</li>
+                                <li>Maintenance Procedures</li>
+                            </ul>
+                        </div>
+                        <div class="course-meta">
+                            <span class="course-duration">
+                                <img src="images/clock-icon.png" alt="Duration" class="feature-icon-png"> 1 Day
+                            </span>
+                            <span class="course-max">
+                                <img src="images/people-icon.png" alt="Max participants" class="feature-icon-png"> Max 12 per course
+                            </span>
+                        </div>
+                        <div class="course-cta">
+                            <a href="contact.html" class="btn-course">Book Training</a>
+                        </div>
+                    </div>
+
+                    <!-- Overhead Crane -->
+                    <div class="brochure-card">
+                        <div class="course-icon">
+                            <img src="images/overhead-crane-training-icon.png" alt="Overhead Crane Training" class="course-icon-png">
+                        </div>
+                        <h3 class="course-title">Overhead Crane</h3>
+                        <p class="course-description">Comprehensive training on overhead crane operation, safety procedures, and maintenance requirements.</p>
+                        <div class="course-offerings">
+                            <ul>
+                                <li>Crane Operation</li>
+                                <li>Load Handling</li>
+                                <li>Safety Inspections</li>
+                            </ul>
+                        </div>
+                        <div class="course-meta">
+                            <span class="course-duration">
+                                <img src="images/clock-icon.png" alt="Duration" class="feature-icon-png"> 2 Days
+                            </span>
+                            <span class="course-max">
+                                <img src="images/people-icon.png" alt="Max participants" class="feature-icon-png"> Max 8 per course
+                            </span>
+                        </div>
+                        <div class="course-cta">
+                            <a href="contact.html" class="btn-course">Book Training</a>
+                        </div>
+                    </div>
+
+                    <!-- First Aid -->
+                    <div class="brochure-card">
+                        <div class="course-icon">
+                            <img src="images/first-aid-training-icon.png" alt="First Aid Training" class="course-icon-png">
+                        </div>
+                        <h3 class="course-title">First Aid</h3>
+                        <p class="course-description">Essential first aid training from basic care to advanced emergency response procedures.</p>
+                        <div class="course-offerings">
+                            <ul>
+                                <li>Basic First Aid (1 Day)</li>
+                                <li>Advanced First Aid (3 Days)</li>
+                                <li>CPR and AED Training</li>
+                                <li>Emergency Response</li>
+                            </ul>
+                        </div>
+                        <div class="course-meta">
+                            <span class="course-duration">
+                                <img src="images/clock-icon.png" alt="Duration" class="feature-icon-png"> 1-3 Days
+                            </span>
+                            <span class="course-max">
+                                <img src="images/people-icon.png" alt="Max participants" class="feature-icon-png"> Max 12 per course
+                            </span>
+                        </div>
+                        <div class="course-cta">
+                            <a href="contact.html" class="btn-course">Book Training</a>
+                        </div>
+                    </div>
+
+                    <!-- Work at Height / Lanyard Training -->
+                    <div class="brochure-card">
+                        <div class="course-icon">
+                            <img src="images/work-at-height-training-icon.png" alt="Work at Height Training" class="course-icon-png">
+                        </div>
+                        <h3 class="course-title">Work at Height / Lanyard Training</h3>
+                        <p class="course-description">Essential safety training for working at height, including proper use of lanyards, harnesses, and fall protection systems.</p>
+                        <div class="course-offerings">
+                            <ul>
+                                <li>Fall Protection Equipment</li>
+                                <li>Harness and Lanyard Use</li>
+                                <li>Risk Assessment at Height</li>
+                                <li>Emergency Procedures</li>
+                            </ul>
+                        </div>
+                        <div class="course-meta">
+                            <span class="course-duration">
+                                <img src="images/clock-icon.png" alt="Duration" class="feature-icon-png"> 1 Day
+                            </span>
+                            <span class="course-max">
+                                <img src="images/people-icon.png" alt="Max participants" class="feature-icon-png"> Max 12 per course
+                            </span>
+                        </div>
+                        <div class="course-cta">
+                            <a href="contact.html" class="btn-course">Book Training</a>
+                        </div>
+                    </div>
+
+                    <!-- Confined Space -->
+                    <div class="brochure-card">
+                        <div class="course-icon">
+                            <img src="images/confined-space-training-icon.png" alt="Confined Space Training" class="course-icon-png">
+                        </div>
+                        <h3 class="course-title">Confined Space</h3>
+                        <p class="course-description">Comprehensive confined space entry training covering low, medium, and high-risk environments with proper safety protocols.</p>
+                        <div class="course-offerings">
+                            <ul>
+                                <li>Risk Assessment</li>
+                                <li>Entry Procedures</li>
+                                <li>Atmospheric Testing</li>
+                                <li>Emergency Response</li>
+                            </ul>
+                        </div>
+                        <div class="course-meta">
+                            <span class="course-duration">
+                                <img src="images/clock-icon.png" alt="Duration" class="feature-icon-png"> 1 Day
+                            </span>
+                            <span class="course-max">
+                                <img src="images/people-icon.png" alt="Max participants" class="feature-icon-png"> Max 6 per course
+                            </span>
+                        </div>
+                        <div class="course-cta">
+                            <a href="contact.html" class="btn-course">Book Training</a>
+                        </div>
+                    </div>
+
+                    <!-- Lockout Tagout -->
+                    <div class="brochure-card">
+                        <div class="course-icon">
+                            <img src="images/lockout-tagout-training-icon.png" alt="Lockout Tagout Training" class="course-icon-png">
+                        </div>
+                        <h3 class="course-title">Lockout Tagout</h3>
+                        <p class="course-description">Essential LOTO training for safe isolation of hazardous energy sources during equipment maintenance and servicing.</p>
+                        <div class="course-offerings">
+                            <ul>
+                                <li>Energy Isolation Procedures</li>
+                                <li>Lockout Device Application</li>
+                                <li>Verification Testing</li>
+                                <li>Group Lockout Procedures</li>
+                            </ul>
+                        </div>
+                        <div class="course-meta">
+                            <span class="course-duration">
+                                <img src="images/clock-icon.png" alt="Duration" class="feature-icon-png"> Half Day
+                            </span>
+                            <span class="course-max">
+                                <img src="images/people-icon.png" alt="Max participants" class="feature-icon-png"> Max 12 per course
+                            </span>
+                        </div>
+                        <div class="course-cta">
+                            <a href="contact.html" class="btn-course">Book Training</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Information -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h2 class="contact-title">Contact Us</h2>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <span class="contact-label">Phone:</span>
+                                <a href="tel:+353525443258" class="contact-value">+353 (0) 52 5443258</a>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">Email:</span>
+                                <a href="mailto:info@roboticscontrol.ie" class="contact-value">info@roboticscontrol.ie</a>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">Location:</span>
+                                <span class="contact-value">Unit 2, Cahir Business Park, Cahir, Co. Tipperary</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-action">
+                        <a href="contact.html" class="btn-primary">Schedule Training</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <img src="images/logo.png" alt="Robotics & Control Ltd" class="footer-logo">
+                        <p class="footer-description">
+                            Leading Irish technology company providing advanced automation, safety, and electrical solutions since 2010.
+                        </p>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4 class="footer-title">Services</h4>
+                        <ul class="footer-list">
+                            <li><a href="automation.html">Automation Solutions</a></li>
+                            <li><a href="safety.html">Machine Safety</a></li>
+                            <li><a href="design.html">Electrical Design</a></li>
+                            <li><a href="panel.html">Panel Building</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4 class="footer-title">Company</h4>
+                        <ul class="footer-list">
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="store.html">Equipment Store</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-contact">
+                        <h4 class="footer-title">Contact Info</h4>
+                        <div class="contact-info">
+                            <p>Unit 2 Cahir Business Park<br>
+                            Cahir, Co. Tipperary<br>
+                            Ireland, E21 C564</p>
+                            <p>Phone: <a href="tel:+353527443258">+353 (0) 52 7443258</a><br>
+                            Email: <a href="mailto:info@rcltd.ie">info@rcltd.ie</a></p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="footer-social">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/robotics-control/" target="_blank" rel="noopener" class="social-link linkedin" aria-label="Follow us on LinkedIn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Robotics & Control Ltd. All rights reserved. | Designed by <a href="https://bizzyops.com" target="_blank" rel="noopener" class="footer-designer-link">BizzyOps</a></p>
+                <div class="footer-legal">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                    <a href="cookies-policy.html">Cookies</a>
+                    <a href="refund-policy.html">Refunds</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5,12 12,5 19,12"></polyline>
+        </svg>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="js/polyfills.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/tooltips.js"></script>
+    <script src="js/popup-tooltips.js"></script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>

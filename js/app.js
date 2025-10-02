@@ -54,19 +54,7 @@ if (typeof window !== 'undefined') {
 
 // Hero Carousel initialization
 function initHeroCarousel() {
-    // Check if Embla is available
-    if (typeof EmblaCarousel === 'undefined') {
-        console.warn('EmblaCarousel not loaded, skipping carousel initialization');
-        return;
-    }
-    
-    // Get carousel element
-    var emblaNode = document.querySelector('#heroCarousel');
-    if (!emblaNode) {
-        console.warn('Hero carousel element not found');
-        return;
-    }
-    
+    // Hero background cycling is now handled by CSS keyframes animation
     // Check for reduced motion preference to respect user accessibility settings
     var prefersReducedMotion = false;
     
@@ -75,105 +63,22 @@ function initHeroCarousel() {
         prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     }
     
-    // Carousel configuration
-    var options = {
-        loop: true,
-        align: 'center',
-        skipSnaps: false,
-        dragFree: false,
-        containScroll: 'trimSnaps'
-    };
-    
-    // Add autoplay if motion is not reduced
-    var plugins = [];
-    if (!prefersReducedMotion && typeof EmblaCarouselAutoplay !== 'undefined') {
-        plugins.push(EmblaCarouselAutoplay({ delay: 4000, stopOnInteraction: true }));
+    if (prefersReducedMotion) {
+        // Disable CSS animation for users who prefer reduced motion
+        var heroElement = document.querySelector ? document.querySelector('.hero-cover-image') : null;
+        if (heroElement) {
+            heroElement.style.animation = 'none';
+            heroElement.style.backgroundImage = "url('images/hero-electrical-control.png')";
+        }
     }
     
-    try {
-        // Initialize Embla carousel
-        var embla = EmblaCarousel(emblaNode, options, plugins);
-        
-        // Setup navigation buttons
-        var prevBtn = document.querySelector('.hero-carousel-bg .embla__prev');
-        var nextBtn = document.querySelector('.hero-carousel-bg .embla__next');
-        
-        if (prevBtn && nextBtn) {
-            prevBtn.addEventListener('click', function() {
-                embla.scrollPrev();
-            });
-            
-            nextBtn.addEventListener('click', function() {
-                embla.scrollNext();
-            });
-            
-            // Update button states
-            var updateButtons = function() {
-                if (embla.canScrollPrev()) {
-                    prevBtn.removeAttribute('disabled');
-                } else {
-                    prevBtn.setAttribute('disabled', 'true');
-                }
-                
-                if (embla.canScrollNext()) {
-                    nextBtn.removeAttribute('disabled');
-                } else {
-                    nextBtn.setAttribute('disabled', 'true');
-                }
-            };
-            
-            embla.on('select', updateButtons);
-            embla.on('init', updateButtons);
+    // Skip background manipulation for fixed background elements
+    var storeHeroElements = document.querySelectorAll ? document.querySelectorAll('.store-hero') : [];
+    for (var i = 0; i < storeHeroElements.length; i++) {
+        if (storeHeroElements[i].getAttribute('data-bg-fixed') === 'true') {
+            // Skip this element - it has a fixed background that shouldn't be changed
+            continue;
         }
-        
-        // Setup dots navigation
-        var dotsNode = document.querySelector('#heroDots');
-        if (dotsNode) {
-            var dots = [];
-            
-            var addDotBtnsWithClickHandlers = function() {
-                dotsNode.innerHTML = '';
-                var scrollSnaps = embla.scrollSnapList();
-                
-                for (var i = 0; i < scrollSnaps.length; i++) {
-                    var dot = document.createElement('button');
-                    dot.className = 'embla__dot';
-                    dot.type = 'button';
-                    dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-                    
-                    (function(index) {
-                        dot.addEventListener('click', function() {
-                            embla.scrollTo(index);
-                        });
-                    })(i);
-                    
-                    dotsNode.appendChild(dot);
-                    dots.push(dot);
-                }
-            };
-            
-            var toggleDotBtnsActive = function() {
-                var previous = embla.previousScrollSnap();
-                var selected = embla.selectedScrollSnap();
-                
-                if (dots[previous]) {
-                    dots[previous].classList.remove('embla__dot--selected');
-                }
-                if (dots[selected]) {
-                    dots[selected].classList.add('embla__dot--selected');
-                }
-            };
-            
-            embla.on('init', addDotBtnsWithClickHandlers);
-            embla.on('reInit', addDotBtnsWithClickHandlers);
-            embla.on('select', toggleDotBtnsActive);
-        }
-        
-        // Store embla instance globally for potential external access
-        window.heroEmbla = embla;
-        
-    } catch (error) {
-        console.error('Error initializing hero carousel:', error);
     }
 }
 
