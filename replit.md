@@ -4,6 +4,7 @@ This project is a professional static website for Robotics & Control Ltd, an Iri
 
 # Recent Changes
 
+- **About Page Modernized (Oct 2025)**: Completely redesigned About page with modern, professional layout featuring enhanced visual hierarchy, teal branding throughout, improved card designs with shadows and hover effects, responsive typography using clamp(), and comprehensive mobile optimization with breakpoints at 1024px, 768px, and 480px. All sections (company intro, history, values, testimonials, expertise, capabilities) now feature contemporary styling with gradient backgrounds, border accents, and smooth animations.
 - **Footer Logo Visibility Fixed (Oct 2025)**: Added white background box with padding and rounded corners to footer logo for better visibility against dark footer background. Logo now displays clearly with professional appearance using existing design tokens.
 - **Trusted Partners Section Added (Oct 2025)**: New "Trusted Partners" section added to homepage featuring Cembre and Rockwell Automation logos displayed in full color (no grayscale filters). Responsive 2-column grid layout on desktop, 1-column on mobile. Located between About section and CTA section.
 - **Store Page Temporarily Hidden (Oct 2025)**: Store navigation link removed from all pages (commented out in HTML) due to lack of product listing permissions. Store page (store.html) remains in codebase but is not accessible via navigation menu. Can be easily restored by uncommenting the navigation links when permissions are obtained.
