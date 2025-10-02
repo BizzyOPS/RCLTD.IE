@@ -1646,6 +1646,12 @@ section + section {
     background-color: #047857;
     border-radius: 1px;
 }
+
+/* Prevent underline on Services dropdown link */
+.nav-dropdown-container .nav-link.active::after,
+.nav-dropdown-container .nav-link:hover::after {
+    display: none;
+}
 .nav-contact {
     display: flex;
     align-items: center;
