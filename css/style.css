@@ -12795,14 +12795,14 @@ body.safety-training-page .progress-counter {
     background: white;
     padding: var(--spacing-6);
     height: auto;
-    min-height: 120px;
+    min-height: 180px;
 }
 
 .trusted-partners .partner-logo img,
 .trusted-partners .partner-image {
     max-width: 100%;
     height: auto;
-    max-height: 120px;
+    max-height: 180px;
     object-fit: contain;
     filter: none;
 }
