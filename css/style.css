@@ -474,32 +474,29 @@ body:not(.home) {
 /* Legacy keyframes removed to prevent duplication conflicts */
 
 @keyframes heroImageCycleClean {
-    0%, 11.11% { 
+    0%, 12.5% { 
         background-image: url('../images/hero-automation-carousel-homepage.jpg'); 
     }
-    11.11%, 22.22% { 
+    12.5%, 25% { 
         background-image: url('../images/hero-electrical-panel-carousel-homepage.jpg'); 
     }
-    22.22%, 33.33% { 
+    25%, 37.5% { 
         background-image: url('../images/hero-safety-carousel-homepage.jpg'); 
     }
-    33.33%, 44.44% { 
+    37.5%, 50% { 
         background-image: url('../images/hero-panel-building-carousel-homepage.jpg'); 
     }
-    44.44%, 55.55% { 
+    50%, 62.5% { 
         background-image: url('../images/hero-industrial-carousel-homepage.jpg'); 
     }
-    55.55%, 66.66% { 
+    62.5%, 75% { 
         background-image: url('../images/hero-control-panel-carousel.jpg'); 
     }
-    66.66%, 77.77% { 
+    75%, 87.5% { 
         background-image: url('../images/hero-electrical-cabinet-carousel.jpg'); 
     }
-    77.77%, 88.88% { 
+    87.5%, 100% { 
         background-image: url('../images/hero-technicians-working-carousel.jpg'); 
-    }
-    88.88%, 100% { 
-        background-image: url('../images/hero-safety-officer-carousel-homepage.jpg'); 
     }
 }
 
