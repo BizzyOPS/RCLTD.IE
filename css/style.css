@@ -474,14 +474,17 @@ body:not(.home) {
 /* Legacy keyframes removed to prevent duplication conflicts */
 
 @keyframes heroImageCycleClean {
-    0%, 33.33% { 
+    0%, 25% { 
         background-image: url('../images/hero-control-panel-carousel-original.jpg'); 
     }
-    33.33%, 66.66% { 
+    25%, 50% { 
         background-image: url('../images/hero-panel-building-carousel-homepage.jpg'); 
     }
-    66.66%, 100% { 
+    50%, 75% { 
         background-image: url('../images/hero-technicians-working-carousel-original.jpg'); 
+    }
+    75%, 100% { 
+        background-image: url('../images/hero-industrial-carousel-homepage.jpg'); 
     }
 }
 
