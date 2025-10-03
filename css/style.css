@@ -6789,7 +6789,7 @@ body.safety-training-page a.btn-hero-secondary,
     background: #333333;
     border: 1px solid rgba(76, 175, 80, 0.3);
     border-radius: var(--radius-xl);
-    padding: var(--spacing-8);
+    padding: var(--spacing-10);
     box-shadow: var(--shadow-lg);
     transition: all var(--transition-normal);
     position: relative;
@@ -6799,7 +6799,7 @@ body.safety-training-page a.btn-hero-secondary,
     color: white !important;
     text-align: left;
     overflow: hidden;
-    min-height: 320px;
+    min-height: 340px;
 }
 
 .brochure-card:hover {
@@ -6822,8 +6822,8 @@ body.safety-training-page a.btn-hero-secondary,
 .course-description {
     font-size: var(--font-size-base);
     color: #e0e0e0 !important;
-    line-height: var(--line-height-normal);
-    margin-bottom: var(--spacing-6);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-8);
     flex-grow: 1;
 }
 
@@ -7404,15 +7404,32 @@ body.safety-training-page a:hover {
     object-fit: contain;
 }
 
+.brochure-hero-image {
+    max-width: 450px;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(76, 175, 80, 0.3);
+    object-fit: cover;
+}
+
 @media (max-width: 768px) {
     .brochure-hero-logo {
         max-width: 300px;
+    }
+    
+    .brochure-hero-image {
+        max-width: 350px;
     }
 }
 
 @media (max-width: 480px) {
     .brochure-hero-logo {
         max-width: 250px;
+    }
+    
+    .brochure-hero-image {
+        max-width: 280px;
     }
 }
 
@@ -14534,189 +14551,5 @@ body.safety-training-page .progress-counter {
         width: 50px;
         height: 50px;
         font-size: 1.25rem;
-    }
-}
-
-/* ========================================
-   SAFETY TRAINING - HEALTH & SAFETY OFFICER SECTION
-   ======================================== */
-
-.safety-officer-section {
-    padding: var(--spacing-20) 0;
-    background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
-}
-
-.safety-officer-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-12);
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.officer-image-container {
-    position: relative;
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-}
-
-.officer-image {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-    aspect-ratio: 4/5;
-    transition: transform 0.4s ease;
-}
-
-.officer-image-container:hover .officer-image {
-    transform: scale(1.05);
-}
-
-.officer-details {
-    padding: var(--spacing-8);
-}
-
-.officer-badge {
-    display: inline-block;
-    padding: 0.5rem 1.25rem;
-    background: linear-gradient(135deg, var(--brand-teal), var(--brand-teal-dark));
-    color: white;
-    font-size: 0.875rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    border-radius: 50px;
-    margin-bottom: var(--spacing-4);
-}
-
-.officer-title {
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: var(--spacing-4);
-    line-height: 1.2;
-}
-
-.officer-description {
-    font-size: 1.125rem;
-    color: #6b7280;
-    line-height: 1.7;
-    margin-bottom: var(--spacing-8);
-}
-
-.officer-credentials {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--spacing-4);
-    margin-bottom: var(--spacing-8);
-}
-
-.credential-item {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-3);
-    padding: var(--spacing-4);
-    background: white;
-    border-radius: var(--radius-lg);
-    border: 1px solid #e5e7eb;
-    transition: all 0.3s ease;
-}
-
-.credential-item:hover {
-    border-color: var(--brand-teal);
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
-    transform: translateX(8px);
-}
-
-.credential-icon {
-    color: var(--brand-teal);
-    flex-shrink: 0;
-}
-
-.credential-item span {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #374151;
-}
-
-.officer-cta {
-    margin-top: var(--spacing-6);
-}
-
-/* Responsive Design for Safety Officer Section */
-@media (max-width: 1024px) {
-    .safety-officer-content {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-10);
-    }
-    
-    .officer-image {
-        aspect-ratio: 16/10;
-    }
-}
-
-@media (max-width: 768px) {
-    .safety-officer-section {
-        padding: var(--spacing-16) 0;
-    }
-    
-    .officer-details {
-        padding: var(--spacing-4);
-    }
-    
-    .officer-title {
-        font-size: 1.75rem;
-    }
-    
-    .officer-description {
-        font-size: 1rem;
-    }
-    
-    .credential-item {
-        padding: var(--spacing-3);
-    }
-    
-    .credential-item span {
-        font-size: 0.9375rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .safety-officer-section {
-        padding: var(--spacing-12) 0;
-    }
-    
-    .officer-image {
-        aspect-ratio: 1/1;
-    }
-    
-    .officer-badge {
-        font-size: 0.75rem;
-        padding: 0.4rem 1rem;
-    }
-    
-    .officer-title {
-        font-size: 1.5rem;
-    }
-    
-    .officer-description {
-        font-size: 0.9375rem;
-    }
-    
-    .credential-item {
-        gap: var(--spacing-2);
-        padding: var(--spacing-3);
-    }
-    
-    .credential-icon {
-        width: 20px;
-        height: 20px;
-    }
-    
-    .credential-item span {
-        font-size: 0.875rem;
     }
 }
