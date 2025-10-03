@@ -30,7 +30,7 @@ The project adheres to:
 ## System Design Choices
 - **Icon System**: Comprehensive custom PNG icon system with consistent sizing, coloring, drop-shadow effects, and aggressive transparency removal.
 - **Image Optimization**: Images are optimized for multiple screen sizes.
-- **Homepage Hero Carousel**: Dynamic 40-second rotating background carousel showcasing 8 professional images relevant to core services.
+- **Homepage Hero Carousel**: Dynamic 40-second rotating background carousel showcasing 9 professional images relevant to core services, including Health and Safety Officer professional photograph.
 - **Form Handling**: Department-specific email routing system with backend validation.
 - **Page Layouts**: Streamlined service page layouts with consistent application or removal of hero sections for a unified user experience.
 - **Homepage Content Structure**: Streamlined homepage focusing on core value proposition, updated statistics, "Trusted by Industry" section, capabilities overview, simplified About section, and core services showcase. Detailed company information is moved to the dedicated About page for improved information architecture.
