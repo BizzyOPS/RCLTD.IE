@@ -30,14 +30,14 @@ The project adheres to:
 ## System Design Choices
 - **Icon System**: Comprehensive custom PNG icon system with consistent sizing, coloring, drop-shadow effects, and aggressive transparency removal.
 - **Image Optimization**: Images are optimized for multiple screen sizes.
-- **Homepage Hero Carousel**: Dynamic 40-second rotating background carousel showcasing 9 professional images relevant to core services, including Health and Safety Officer professional photograph.
+- **Homepage Hero Carousel**: Dynamic 40-second rotating background carousel showcasing 8 professional images relevant to core services.
 - **Form Handling**: Department-specific email routing system with backend validation.
 - **Page Layouts**: Streamlined service page layouts with consistent application or removal of hero sections for a unified user experience.
 - **Homepage Content Structure**: Streamlined homepage focusing on core value proposition, updated statistics, "Trusted by Industry" section, capabilities overview, simplified About section, and core services showcase. Detailed company information is moved to the dedicated About page for improved information architecture.
 - **Hero Section Styling**: Sophisticated dual-layer hexagon pattern overlay with a black to navy to light gray gradient applied to most pages, blending with color-coordinated tones.
 - **Navigation System**: Auto-hide header that disappears on scroll down and reappears on scroll up, with a fully scrollable mobile navigation menu. Instagram social link removed from header navigation (October 2025) - social media links retained in footer only.
 - **Services Page Design**: Clean modern layout with a unified hero section, responsive grid for 5 service cards, and feature lists with checkmarks.
-- **Contact Page Design**: Modern split-screen B2B layout with a unified hero section, contact information, a simplified 5-field form, and a trust/statistics section.
+- **Contact Page Design**: Modern split-screen B2B layout with a unified hero section, contact information featuring Health and Safety Officer professional photograph, a simplified 5-field form, and a trust/statistics section.
 - **Safety Training Page Design**: Course cards use expanded padding (spacing-10) and increased line-height (1.8) for improved text readability and visual breathing room.
 
 # External Dependencies
