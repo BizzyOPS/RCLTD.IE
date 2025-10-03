@@ -38,7 +38,7 @@ The project adheres to:
 - **Navigation System**: Auto-hide header that disappears on scroll down and reappears on scroll up, with a fully scrollable mobile navigation menu. Instagram social link removed from header navigation (October 2025) - social media links retained in footer only.
 - **Services Page Design**: Clean modern layout with a unified hero section, responsive grid for 5 service cards, and feature lists with checkmarks.
 - **Contact Page Design**: Modern split-screen B2B layout with a unified hero section, contact information, a simplified 5-field form, and a trust/statistics section.
-- **Safety Training Page Design**: Features a Health and Safety Officer section with responsive 2-column grid layout (desktop) that stacks to single column on mobile, professional image display with hover effects, credential list with teal-accented icons, and smooth hover animations on credential items.
+- **Safety Training Page Design**: Hero banner features professional health and safety officer photograph. Course cards use expanded padding (spacing-10) and increased line-height (1.8) for improved text readability and visual breathing room.
 
 # External Dependencies
 
