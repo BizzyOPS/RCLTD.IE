@@ -734,6 +734,7 @@ body:not(.home) {
     background: var(--hero-cta-color);
     color: white;
     padding: 1rem 2.5rem;
+    min-height: 44px;
     font-size: 1.1rem;
     font-weight: 600;
     text-decoration: none;
@@ -1400,6 +1401,7 @@ section + section {
     -ms-flex-pack: center;
     justify-content: center;
     padding: var(--spacing-3) var(--spacing-6);
+    min-height: 44px;
     background-color: var(--brand-orange);
     color: white !important;
     text-decoration: none;
@@ -1442,6 +1444,7 @@ section + section {
     justify-content: center;
     padding: 0.75rem 1.5rem;
     padding: var(--spacing-3) var(--spacing-6);
+    min-height: 44px;
     background-color: transparent;
     color: #111827;
     color: var(--text-primary);
@@ -1483,6 +1486,7 @@ section + section {
 .btn-large {
     padding: 1rem 2rem;
     padding: var(--spacing-4) var(--spacing-8);
+    min-height: 44px;
     font-size: 1rem;
     font-size: var(--font-size-base);
 }
@@ -3033,6 +3037,7 @@ body.menu-open .header {
     display: inline-flex;
     align-items: center;
     padding: var(--spacing-3) var(--spacing-6);
+    min-height: 44px;
     border: 2px solid var(--primary-color);
     color: var(--primary-color);
     text-decoration: none;
@@ -12472,6 +12477,7 @@ body.safety-training-page .progress-counter {
     display: inline-flex;
     align-items: center;
     padding: 0.875rem 1.75rem;
+    min-height: 44px;
     background: transparent;
     color: #10b981;
     border: 2px solid #10b981;
@@ -13530,6 +13536,7 @@ body.safety-training-page .progress-counter {
 .form-submit {
     width: 100%;
     padding: var(--spacing-4);
+    min-height: 44px;
     background: linear-gradient(135deg, var(--brand-teal), var(--primary-light));
     color: white;
     border: none;
@@ -13900,6 +13907,7 @@ body.safety-training-page .progress-counter {
 .form-submit-modern {
     width: 100%;
     padding: var(--spacing-4);
+    min-height: 44px;
     background: linear-gradient(135deg, var(--brand-teal), var(--primary-light));
     color: white;
     border: none;

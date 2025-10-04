@@ -82,10 +82,10 @@
     --btn-font-size: clamp(0.875rem, 2vw, 1rem);
     --btn-font-size-lg: clamp(1rem, 2.5vw, 1.125rem);
     
-    /* Responsive Padding System */
-    --btn-padding-y: clamp(0.75rem, 2vw, 1rem);
+    /* Responsive Padding System - Ensures 44px minimum tap target */
+    --btn-padding-y: clamp(0.875rem, 2vw, 1rem);
     --btn-padding-x: clamp(1rem, 3vw, 1.5rem);
-    --btn-padding-y-lg: clamp(1rem, 2.5vw, 1.25rem);
+    --btn-padding-y-lg: clamp(1.125rem, 2.5vw, 1.25rem);
     --btn-padding-x-lg: clamp(1.5rem, 4vw, 2rem);
     
     /* Typography Weights & Line Heights */
