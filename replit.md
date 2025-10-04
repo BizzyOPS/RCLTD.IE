@@ -49,7 +49,16 @@ The project adheres to:
 
 ## Email Integration
 - **PHP Contact Forms**: Server-side processing via `contact-form.php`.
-- **Email Configuration**: Designed for Plesk hosting with `info@rcltd.ie` as the primary contact.
+- **Email Configuration**: Designed for Plesk hosting with department-specific routing.
+- **Department Email Routing**: Contact form routes to specific departments based on user selection:
+  - General Inquiries → info@rcltd.ie
+  - Health, Safety & Operations → chelsey.omahony@rcltd.ie
+  - Operations Management → morgan@rcltd.ie
+  - Marketing & Communications → benedict.larkin@rcltd.ie
+  - General Administration → lmccormack@rcltd.ie
+  - Services (All Services Including Machine Safety) → morgan@rcltd.ie
+  - Safety Training → morgan@rcltd.ie
+- **Future**: Product enquiry forms will be added when Store page is unhidden.
 
 ## Development Tools
 - **Node.js Environment**: Used for local development and security auditing.

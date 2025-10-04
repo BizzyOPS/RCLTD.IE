@@ -137,19 +137,20 @@ if (!empty($phone)) {
 }
 
 if (!empty($service)) {
-    $service_labels = [
-        'automation' => 'Automation Services',
-        'safety' => 'Machine Safety',
-        'design' => 'Electrical Design',
-        'panel' => 'Panel Building',
-        'training' => 'Safety Training',
-        'consultation' => 'General Consultation'
+    $department_labels = [
+        'info@rcltd.ie' => 'General Inquiries',
+        'chelsey.omahony@rcltd.ie' => 'Health, Safety & Operations',
+        'morgan@rcltd.ie' => 'Operations Management',
+        'benedict.larkin@rcltd.ie' => 'Marketing & Communications',
+        'lmccormack@rcltd.ie' => 'General Administration',
+        'services@morgan' => 'Services (All Services Including Machine Safety)',
+        'training@morgan' => 'Safety Training'
     ];
-    $service_display = isset($service_labels[$service]) ? $service_labels[$service] : $service;
+    $service_display = isset($department_labels[$service]) ? $department_labels[$service] : $service;
     
     $html_body .= "
         <div class='field'>
-            <div class='label'>Service Interest:</div>
+            <div class='label'>Department Selected:</div>
             <div>" . htmlspecialchars($service_display) . "</div>
         </div>";
 }
@@ -199,8 +200,8 @@ $text_body .= "Name: " . $name . "\n";
 $text_body .= "Email: " . $email . "\n";
 if (!empty($company)) $text_body .= "Company: " . $company . "\n";
 if (!empty($phone)) $text_body .= "Phone: " . $phone . "\n";
-if (!empty($service)) $text_body .= "Service Interest: " . $service_display . "\n";
-if (!empty($department)) $text_body .= "Department: " . $department_display . " (" . $to_email . ")\n";
+if (!empty($service)) $text_body .= "Department Selected: " . $service_display . "\n";
+if (!empty($department)) $text_body .= "Routed to: " . $department_display . " (" . $to_email . ")\n";
 $text_body .= "\nMessage:\n" . $message . "\n";
 $text_body .= "\nSubmitted: " . date('Y-m-d H:i:s T') . "\n";
 $text_body .= "IP Address: " . $_SERVER['REMOTE_ADDR'] . "\n";

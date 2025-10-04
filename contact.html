@@ -227,15 +227,16 @@ Form Validation: Real-time client-side validation with security measures
                             </div>
                             
                             <div class="form-group">
-                                <label for="service" class="form-label">What can we help with?</label>
+                                <label for="service" class="form-label">Select Department</label>
                                 <select id="service" name="service" class="form-input">
-                                    <option value="">Select a service</option>
-                                    <option value="automation">Automation Services</option>
-                                    <option value="safety">Machine Safety</option>
-                                    <option value="design">Electrical Design</option>
-                                    <option value="panel">Panel Building</option>
-                                    <option value="training">Safety Training</option>
-                                    <option value="consultation">General Consultation</option>
+                                    <option value="">Choose a department</option>
+                                    <option value="info@rcltd.ie">General Inquiries</option>
+                                    <option value="chelsey.omahony@rcltd.ie">Health, Safety & Operations</option>
+                                    <option value="morgan@rcltd.ie">Operations Management</option>
+                                    <option value="benedict.larkin@rcltd.ie">Marketing & Communications</option>
+                                    <option value="lmccormack@rcltd.ie">General Administration</option>
+                                    <option value="services@morgan">Services (All Services Including Machine Safety)</option>
+                                    <option value="training@morgan">Safety Training</option>
                                 </select>
                             </div>
                             
@@ -447,17 +448,20 @@ Form Validation: Real-time client-side validation with security measures
                 errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
             
-            // Map service selections to department emails
-            function getServiceDepartment(service) {
-                const serviceDepartmentMap = {
-                    'automation': 'morgan@rcltd.ie',           // Operations Management
-                    'safety': 'chelsey.omahony@rcltd.ie',      // Health, Safety & Operations
-                    'design': 'morgan@rcltd.ie',               // Operations Management
-                    'panel': 'morgan@rcltd.ie',                // Operations Management
-                    'training': 'chelsey.omahony@rcltd.ie',    // Health, Safety & Operations
-                    'consultation': 'info@rcltd.ie'            // General Inquiries
+            // Map department selections to email addresses
+            function getDepartmentEmail(department) {
+                // Handle special routing cases
+                const departmentEmailMap = {
+                    'services@morgan': 'morgan@rcltd.ie',      // Services (All Services)
+                    'training@morgan': 'morgan@rcltd.ie'       // Safety Training
                 };
-                return serviceDepartmentMap[service] || 'info@rcltd.ie'; // Default to general inquiries
+                
+                // If it's a direct email, use it; otherwise check the map
+                if (department && department.includes('@rcltd.ie')) {
+                    return department;
+                }
+                
+                return departmentEmailMap[department] || 'info@rcltd.ie'; // Default to general inquiries
             }
             
             // Handle form submission
@@ -470,8 +474,8 @@ Form Validation: Real-time client-side validation with security measures
                 submitButton.textContent = 'Sending...';
                 submitButton.disabled = true;
                 
-                // Determine department email based on service selection
-                const departmentEmail = getServiceDepartment(formData.service);
+                // Determine department email based on department selection
+                const departmentEmail = getDepartmentEmail(formData.service);
                 
                 // Prepare form data for submission
                 const postData = new FormData();
@@ -541,7 +545,7 @@ Form Validation: Real-time client-side validation with security measures
                     'benedict.larkin@rcltd.ie': 'Marketing & Communications',
                     'lmccormack@rcltd.ie': 'General Administration'
                 };
-                return departmentNames[email] || 'General Inquiries';
+                return departmentNames[email.toLowerCase()] || 'General Inquiries';
             }
         });
     </script>
