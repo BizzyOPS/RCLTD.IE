@@ -14601,3 +14601,83 @@ body.safety-training-page .progress-counter {
         font-size: 1.25rem;
     }
 }
+
+/* ============================================================================
+   SERVICE PAGE CONTACT FORMS
+   ============================================================================ */
+
+.service-contact-form-section {
+    padding: var(--spacing-12) 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+}
+
+.service-contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-12);
+    align-items: start;
+}
+
+.service-contact-info h2 {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: var(--spacing-4);
+}
+
+.contact-intro {
+    color: var(--text-gray);
+    font-size: var(--font-size-lg);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-8);
+}
+
+.contact-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+}
+
+.contact-highlight-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    color: var(--text-dark);
+    font-size: var(--font-size-base);
+}
+
+.highlight-icon {
+    color: var(--brand-teal);
+    flex-shrink: 0;
+}
+
+.service-contact-form {
+    background: white;
+    padding: var(--spacing-8);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+.service-form .form-group {
+    margin-bottom: var(--spacing-6);
+}
+
+.form-submit-btn {
+    width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .service-contact-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-8);
+    }
+    
+    .service-contact-info {
+        order: 2;
+    }
+    
+    .service-contact-form {
+        order: 1;
+    }
+}
