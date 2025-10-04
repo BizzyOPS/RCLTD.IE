@@ -447,6 +447,19 @@ Form Validation: Real-time client-side validation with security measures
                 errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
             
+            // Map service selections to department emails
+            function getServiceDepartment(service) {
+                const serviceDepartmentMap = {
+                    'automation': 'morgan@rcltd.ie',           // Operations Management
+                    'safety': 'chelsey.omahony@rcltd.ie',      // Health, Safety & Operations
+                    'design': 'morgan@rcltd.ie',               // Operations Management
+                    'panel': 'morgan@rcltd.ie',                // Operations Management
+                    'training': 'chelsey.omahony@rcltd.ie',    // Health, Safety & Operations
+                    'consultation': 'info@rcltd.ie'            // General Inquiries
+                };
+                return serviceDepartmentMap[service] || 'info@rcltd.ie'; // Default to general inquiries
+            }
+            
             // Handle form submission
             contactForm.addEventListener('validSubmit', function(e) {
                 const formData = e.detail.sanitizedData;
@@ -455,37 +468,81 @@ Form Validation: Real-time client-side validation with security measures
                 // Show loading state
                 submitButton.classList.add('btn-submitting');
                 submitButton.textContent = 'Sending...';
+                submitButton.disabled = true;
                 
-                // Simulate form submission (since this is a static site)
-                setTimeout(function() {
+                // Determine department email based on service selection
+                const departmentEmail = getServiceDepartment(formData.service);
+                
+                // Prepare form data for submission
+                const postData = new FormData();
+                postData.append('name', formData.name);
+                postData.append('email', formData.email);
+                postData.append('phone', formData.phone || '');
+                postData.append('service', formData.service || '');
+                postData.append('department', departmentEmail);
+                postData.append('message', formData.message);
+                
+                // Send to contact-form.php
+                fetch('contact-form.php', {
+                    method: 'POST',
+                    body: postData
+                })
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(data) {
                     // Reset button state
                     submitButton.classList.remove('btn-submitting');
                     submitButton.textContent = 'Send Message';
+                    submitButton.disabled = false;
                     
-                    // Show success message
-                    showSuccess(
-                        `Thank you, ${formData.name}! Your message has been received. We'll get back to you at ${formData.email} within 24 hours. For urgent matters, please call us directly at <a href="tel:+353527443258">+353 (0) 52 7443258</a>.`
-                    );
+                    if (data.success) {
+                        // Show success message
+                        showSuccess(
+                            `Thank you, ${formData.name}! Your message has been received and sent to our ${getDepartmentName(departmentEmail)} team. We'll get back to you at ${formData.email} within 24 hours. For urgent matters, please call us directly at <a href="tel:+353527443258">+353 (0) 52 7443258</a>.`
+                        );
+                        
+                        // Reset form
+                        contactForm.reset();
+                        
+                        // Clear any validation states
+                        const inputs = contactForm.querySelectorAll('.form-input, .form-textarea');
+                        inputs.forEach(function(input) {
+                            input.classList.remove('valid', 'invalid');
+                        });
+                        
+                        // Log successful submission
+                        console.log('Contact form submitted successfully to:', departmentEmail);
+                    } else {
+                        // Show error message
+                        showError(data.message || 'Sorry, there was an error sending your message. Please try again or call us directly.');
+                    }
+                })
+                .catch(function(error) {
+                    // Reset button state
+                    submitButton.classList.remove('btn-submitting');
+                    submitButton.textContent = 'Send Message';
+                    submitButton.disabled = false;
                     
-                    // Reset form
-                    contactForm.reset();
+                    // Show error message
+                    showError('Sorry, there was an error sending your message. Please try again or call us directly at <a href="tel:+353527443258">+353 (0) 52 7443258</a>.');
                     
-                    // Clear any validation states
-                    const inputs = contactForm.querySelectorAll('.form-input, .form-textarea');
-                    inputs.forEach(input => {
-                        input.classList.remove('valid', 'invalid');
-                    });
-                    
-                    // Log form submission (for analytics)
-                    console.log('Contact form submitted:', {
-                        name: formData.name,
-                        email: formData.email,
-                        service: formData.service,
-                        timestamp: new Date().toISOString()
-                    });
-                    
-                }, 1500); // Simulate network delay
+                    // Log error
+                    console.error('Form submission error:', error);
+                });
             });
+            
+            // Helper function to get department name for display
+            function getDepartmentName(email) {
+                const departmentNames = {
+                    'info@rcltd.ie': 'General Inquiries',
+                    'chelsey.omahony@rcltd.ie': 'Health, Safety & Operations',
+                    'morgan@rcltd.ie': 'Operations Management',
+                    'benedict.larkin@rcltd.ie': 'Marketing & Communications',
+                    'lmccormack@rcltd.ie': 'General Administration'
+                };
+                return departmentNames[email] || 'General Inquiries';
+            }
         });
     </script>
     <script src="js/popup-tooltips.js?v=1758021605&nocache=true&hero=new&bust=force"></script>
