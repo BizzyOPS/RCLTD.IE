@@ -40,6 +40,7 @@ The project adheres to:
 - **Contact Page Design**: Modern split-screen B2B layout with a unified hero section, contact information featuring Health and Safety Officer professional photograph, a simplified 5-field form, and a trust/statistics section.
 - **Service Page Contact Forms**: Individual contact forms on all service pages (Automation, Safety, Design, Panel Building) with professional 2-column layouts, client-side validation, and email routing to morgan@rcltd.ie. Fully mobile responsive with stacked layout on smaller screens.
 - **Safety Training Page Design**: Course cards use expanded padding (spacing-10) and increased line-height (1.8) for improved text readability and visual breathing room.
+- **Mobile Accessibility Compliance**: All buttons meet the 44px minimum tap target requirement through explicit min-height declarations across 10 button classes (.btn-primary, .btn-secondary, .btn-hero, .btn-large, .btn-outline, .btn-outline-modern, .form-submit, .form-submit-modern, .btn-hero-primary, .btn-hero-secondary) and responsive padding variables ensuring adequate touch targets at all viewport sizes including ≤360px mobile devices.
 
 # External Dependencies
 
