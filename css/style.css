@@ -397,7 +397,7 @@ body:not(.home) {
     }
     .hero-cover-image {
         background-size: cover !important;
-        background-position: center center !important;
+        background-position: center 40% !important;
         background-attachment: scroll !important;
         width: 100% !important;
         height: 100% !important;
@@ -406,8 +406,10 @@ body:not(.home) {
     .hero-cover-image::before,
     .hero-cover-image::after {
         background-size: cover !important;
-        background-position: center center !important;
+        background-position: center 40% !important;
         background-attachment: scroll !important;
+        min-height: 100% !important;
+        width: 100% !important;
     }
     .hero-carousel {
         max-width: 350px;
@@ -854,15 +856,27 @@ body:not(.home) {
     .hero-cover-image::before,
     .hero-cover-image::after {
         background-size: cover !important;
-        background-position: center center !important;
+        background-position: center 40% !important;
         width: 100% !important;
         height: 100% !important;
+        min-height: 100% !important;
         image-rendering: -webkit-optimize-contrast;
         image-rendering: optimize-contrast;
     }
     .hero-image-item {
         image-rendering: -webkit-optimize-contrast;
         image-rendering: optimize-contrast;
+    }
+}
+
+/* Extra small screens - ensure images display properly */
+@media (max-width: 480px) {
+    .hero-cover-image,
+    .hero-cover-image::before,
+    .hero-cover-image::after {
+        background-size: cover !important;
+        background-position: center 35% !important;
+        min-height: 100% !important;
     }
 }
 /* Landscape orientation adjustments */
