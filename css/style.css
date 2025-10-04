@@ -397,7 +397,7 @@ body:not(.home) {
     }
     .hero-cover-image {
         background-size: cover !important;
-        background-position: center 40% !important;
+        background-position: 50% 30vh !important;
         background-attachment: scroll !important;
         width: 100% !important;
         height: 100% !important;
@@ -406,7 +406,7 @@ body:not(.home) {
     .hero-cover-image::before,
     .hero-cover-image::after {
         background-size: cover !important;
-        background-position: center 40% !important;
+        background-position: 50% 30vh !important;
         background-attachment: scroll !important;
         min-height: 100% !important;
         width: 100% !important;
@@ -857,7 +857,6 @@ body:not(.home) {
     .hero-cover-image::before,
     .hero-cover-image::after {
         background-size: cover !important;
-        background-position: center 40% !important;
         width: 100% !important;
         height: 100% !important;
         min-height: 100% !important;
@@ -876,7 +875,7 @@ body:not(.home) {
     .hero-cover-image::before,
     .hero-cover-image::after {
         background-size: cover !important;
-        background-position: center 35% !important;
+        background-position: 50% 25vh !important;
         min-height: 100% !important;
     }
 }
